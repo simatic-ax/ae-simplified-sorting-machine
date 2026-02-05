@@ -1,0 +1,56 @@
+Templates:
+  Modules:
+  - Name: 'g220_im_v64_Template'
+    Placeholders:
+    - Name: 'NAME'
+    - Name: 'IP_ADDRESS_X150'
+      Value: '192.168.0.1/24'
+    - Name: 'PROFINET_DEVICE_NAME_X150'
+      Value: 'sinamics-g220-pn'
+    Content:
+      Name: '${NAME}'
+      TypeIdentifier:
+        FileName: 'GSDML-V2.42-SIEMENS-SINAMICS_G220-20240814.XML'
+        GsdId: 'IDD_G220-V6.4'
+      Interfaces:
+      - Name: 'PN-IO'
+        Label: 'X150'
+        Addresses:
+          Configured:
+          - IPv4: '${IP_ADDRESS_X150}'
+          - ProfinetDeviceName: '${PROFINET_DEVICE_NAME_X150}'
+        Parameters:
+          IECV22LLDPMode: False
+          # PrioritizedStartup (Boolean)
+      Ports:
+      - Name: 'Port_1'
+        Label: 'X150 P1'
+        Parameters:
+          PortActivation: True
+          # Possible values: 8 - Automatic | 16 - TP 100 Mbps full duplex
+          TransmissionRateAndDuplex: 'Automatic'
+          EndOfDetectionOfAccessibleDevices: False
+          EndOfTopologyDiscovery: False
+          PortMonitoring: False
+          # TransmissionRateAutoNegotiation: True
+          # CableName: 0
+          # MediumAttachmentType: 'Copper'
+      - Name: 'Port_2'
+        Label: 'X150 P2'
+        Parameters:
+          PortActivation: True
+          # Possible values: 8 - Automatic | 16 - TP 100 Mbps full duplex
+          TransmissionRateAndDuplex: 'Automatic'
+          EndOfDetectionOfAccessibleDevices: False
+          EndOfTopologyDiscovery: False
+          PortMonitoring: False
+          # TransmissionRateAutoNegotiation: True
+          # CableName: 0
+          # MediumAttachmentType: 'Copper'
+      Parameters:
+        RecordDataList:
+        - IndexName: 'General settings'
+          Values:
+          - OffsetName: 'Activate channel diagnostics'
+            # Possible ValueNames: Inactive | Standard alarms (PROFIdrive)
+            ValueName: 'Standard alarms (PROFIdrive)'

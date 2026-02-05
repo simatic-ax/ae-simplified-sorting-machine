@@ -1,0 +1,24 @@
+#Version: 2.0
+
+Cycles:
+  T100ms:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Interval: 100
+  T250ms:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Interval: 250
+  T500ms:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Interval: 500
+  T1s:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Interval: 1000
+  T2s:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Interval: 2000
+  T5s:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Interval: 5000
+  T10s:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Interval: 10000

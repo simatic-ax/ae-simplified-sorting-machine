@@ -1,0 +1,38 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     overflow="visible">
+
+    <hmi:self type="custom" displayName="Custom Extended Peak Indicator Part" name="custom.extended.peakindicator.part" version="1.0.1" performanceClass="L">
+
+        <hmi:paramDef name="RibbonWidth"        type="number" />
+        <hmi:paramDef name="ScaleOrientation"   type="HmiOrientation" />
+        <hmi:paramDef name="IndicatorForeColor" type="HmiColor" />
+        <hmi:paramDef name="BarSpacing"         type="number" />
+        <hmi:paramDef name="IsTitleMultiLine"   type="boolean" />
+
+    </hmi:self>
+
+    <defs>
+    </defs>
+
+    <g id="PeakValueIndicator"
+       hmi-bind:transform="translate({{ ParamProps.ScaleOrientation == HmiOrientation.Horizontal ? 16 : ParamProps.RibbonWidth - 19 }},{{ ParamProps.ScaleOrientation == HmiOrientation.Horizontal ? ParamProps.RibbonWidth - 19 : 0 }}) rotate({{ ParamProps.ScaleOrientation == HmiOrientation.Horizontal ? 90 : 0 }})">
+        <!-- pointer triangle  -->
+        <path hmi:if="{ ParamProps.IsTitleMultiLine }" d="M 0,8 l13,-8 l8,0 l0,16 l-8,0 z" 
+              hmi-bind:fill="{{ Converter.RGBA( Converter.Darker( ParamProps.IndicatorForeColor, 0.2 ) ) }}"/>
+        <path hmi:if="{{ not(ParamProps.IsTitleMultiLine) }}" d="M 0,8 l16,-8 l8,0 l0,16 l-8,0 z"
+              hmi-bind:fill="{{ Converter.RGBA( Converter.Darker( ParamProps.IndicatorForeColor, 0.2 ) ) }}" />
+    </g>
+
+</svg>

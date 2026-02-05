@@ -1,0 +1,727 @@
+#Version: 2.0
+
+ScriptModules:
+  _0_0_underscore_Application_underscore_Main_underscore_DynamicScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/00_Application_Main_DynamicScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      craneUp:
+        Parameters:
+          item:
+            DataType: 14
+      craneDown:
+        Parameters:
+          item:
+            DataType: 14
+      craneStop:
+        Parameters:
+          item:
+            DataType: 14
+      syncElevatorBoxPosTop:
+        Parameters:
+          item:
+            DataType: 14
+      AppStatusAutomatic:
+        Parameters:
+          item:
+            DataType: 14
+      AppStatusManual:
+        Parameters:
+          item:
+            DataType: 14
+  _0_0_underscore_Application_underscore_Main_underscore_EventScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/00_Application_Main_EventScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      txtMoveElevatorDown_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveElevatorDown_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveElevatorUp_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveElevatorUp_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtStopElevator_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtStopElevator_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor1Stop_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor1Stop_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor1Forward_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor1Forward_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor1Backward_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor1Backward_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor2Stop_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor2Stop_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor2Forward_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor2Forward_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor2Backward_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor2Backward_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor3Stop_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor3Stop_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor3Forward_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor3Forward_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor3Backward_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtMoveConveyor3Backward_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtAutomaticApplication_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtManualApplication_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtAcknowledge_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtAcknowledge_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+      btnAppNewBoxRandom1_Down:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      btnAppNewBoxRandom1_Up:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      btnAppNewBoxX1_Down:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      btnAppNewBoxX1_Up:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      btnAppNewBoxY1_Down:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      btnAppNewBoxY1_Up:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      txtResetAll_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      txtResetAll_OnDeactivated:
+        Parameters:
+          item:
+            DataType: 14
+  _0_1_underscore_ScreenLayout_underscore_EventScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/01_ScreenLayout_EventScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      _1_ScreenLayout_OnLoaded:
+        Parameters:
+          item:
+            DataType: 14
+      btnHideMainNavigation_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+  _0_2_underscore_Header_underscore_DynamicScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/02_Header_DynamicScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      ioDateTime_ProcessValue_Trigger:
+        Parameters:
+          item:
+            DataType: 14
+  _0_2_underscore_Header_underscore_EventScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/02_Header_EventScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      btnTitleBar_OnDown:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      btnNavigation_OnDown:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      btnTitleBarIcon_OnDown:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+  _0_3_underscore_MainNavigation_underscore_EventScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/03_MainNavigation_EventScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      txtMainNav1_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      txtMainNav2_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      txtMainNav3_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      txtMainNav4_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      _3_MainNavigation_OnLoaded:
+        Parameters:
+          item:
+            DataType: 14
+  _0_4_underscore_SubNavigation_underscore_EventScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/04_SubNavigation_EventScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      _4_SubNavigation_OnLoaded:
+        Parameters:
+          item:
+            DataType: 14
+      _4_SubNavigation_AlternateBackColor_OnPropertyChanged:
+        Parameters:
+          item:
+            DataType: 14
+          value:
+            DataType: 14
+      txtSubNav1_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      txtSubNav2_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      txtSubNav3_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      txtSubNav4_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      txtSubNav5_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      txtSubNav6_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      gfxStartscreen_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+  _0_5_underscore_ThirdNavigation_underscore_EventScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/05_ThirdNavigation_EventScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      _5_ThirdNavigation_AlternateBackColor_OnPropertyChanged:
+        Parameters:
+          item:
+            DataType: 14
+          value:
+            DataType: 14
+      _5_ThirdNavigation_OnLoaded:
+        Parameters:
+          item:
+            DataType: 14
+      txtThirdNav1_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      btnStopRT_1_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+  _3_0_underscore_Settings_underscore_EventScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/30_Settings_EventScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      _0_Settings_OnLoaded:
+        Parameters:
+          item:
+            DataType: 14
+  fpBtnWithState_underscore_EventScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/fpBtnWithState_EventScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      fpBtnWithState_OnUp:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+  fpButton_underscore_V001_underscore_EventScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/fpButton_V001_EventScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      fpButton_OnDown:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      fpButton_OnUp:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+  fpConveyor_underscore_V001_underscore_EventScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/fpConveyor_V001_EventScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      btnMoveConveyor1Forward_OnDown:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      btnMoveConveyor1Forward_OnUp:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      btnMoveConveyor1Backward_OnDown:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      btnMoveConveyor1Backward_OnUp:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      btnMoveConveyor1Stop_OnDown:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      btnMoveConveyor1Stop_OnUp:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+  fpElevator_underscore_V001_underscore_EventScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/fpElevator_V001_EventScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      btnMoveElevatorUp_OnDown:
+        Parameters:
+          item:
+            DataType: 14
+      btnMoveElevatorUp_OnUp:
+        Parameters:
+          item:
+            DataType: 14
+      btnMoveElevatorDown_OnDown:
+        Parameters:
+          item:
+            DataType: 14
+      btnMoveElevatorDown_OnUp:
+        Parameters:
+          item:
+            DataType: 14
+      btnMoveElevatorStop_OnDown:
+        Parameters:
+          item:
+            DataType: 14
+      btnMoveElevatorStop_OnUp:
+        Parameters:
+          item:
+            DataType: 14
+  Navigation_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/Navigation.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      HideMainNavigation: 
+      HideSubNavigation: 
+      HideThirdNavigation: 
+      ShowMainNavigation: 
+      ShowSubNavigation:
+        Parameters:
+          ButtonNumber:
+            DataType: 14
+      ShowThirdNavigation:
+        Parameters:
+          ButtonNumber:
+            DataType: 14
+      ChangeScreen:
+        Parameters:
+          screen:
+            DataType: 14
+      ShowTileNavigation: 
+      HideTileNavigation: 
+      HighlightThirdNavIcon:
+        Parameters:
+          ButtonName:
+            DataType: 14
+      HighlightButton:
+        Parameters:
+          ButtonName:
+            DataType: 14
+          ButtonsScreenPath:
+            DataType: 14
+  Root_blank_navigation_blank_level_underscore_EventScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/Root navigation level_EventScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      changeScreenApplication_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      changeScreenMessages_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      changeScreenDiag_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+      changeScreenSettings_OnActivated:
+        Parameters:
+          item:
+            DataType: 14
+  Template_underscore_Stop_underscore_Runtime_underscore_EventScripts_dot_js: # PREDEFINED - please do NOT change/delete
+    ScriptFile: Scripts/Template_Stop_Runtime_EventScripts.js
+    ScriptLanguage: JavaScript
+    Scripts:
+      txtCancel_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      txtStopRt_OnTapped:
+        Parameters:
+          item:
+            DataType: 14
+          x:
+            DataType: 14
+          y:
+            DataType: 14
+          modifiers:
+            DataType: 14
+          trigger:
+            DataType: 14
+      Template_Stop_Runtime_OnLoaded:
+        Parameters:
+          item:
+            DataType: 14

@@ -1,0 +1,157 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     preserveAspectRatio="none">
+
+    <hmi:self type="item:HmiToggleSwitch" displayName="Extended ToggleSwitch" name="style.extended.toggleswitch" version="2.8" performanceClass="L" >
+        <hmi:focus focusVisual="local" />
+    </hmi:self>
+
+    <defs>
+        <!-- Local definitions of this template -->
+        <hmi:localDef name="BorderColorAlphaMask"   type="number"   value="0x01000000" />
+        <hmi:localDef name="BorderPressedAlpha"     type="number"   value="0x80000000" />
+
+        <hmi:localDef name="Pressed"                type="number"   hmi-bind:value="{{ HmiProps.IsAlternateState ? 0 : 1 }}" />
+        <hmi:localDef name="MouseHover"             type="number"   value="0" />
+
+        <hmi:localDef name="ShowFocus"              type="boolean"  hmi-bind:value="{{ and( HmiProps.ShowFocusVisual, HmiProps.HasFocus ) }}" />
+        <hmi:localDef name="ForeColor"              type="string"   hmi-bind:value="{{ Converter.RGBA( HmiProps.ForeColor ) }}" />
+        <hmi:localDef name="BorderWidth"            type="number"   hmi-bind:value="{{ LocalProps.ShowFocus ? ( HmiProps.BorderWidth + 2 ) : HmiProps.BorderWidth }}" />
+        <hmi:localDef name="BorderColorPressed"     type="number"   hmi-bind:value="{{ HmiProps.BorderColor % LocalProps.BorderColorAlphaMask + LocalProps.BorderPressedAlpha }}" />
+
+        <hmi:localDef name="Graphic"                type="string"   hmi-bind:value="{{ HmiProps.IsAlternateState ? HmiProps.AlternateGraphic       : HmiProps.Graphic       }}" />
+        <hmi:localDef name="GraphicWidth"           type="number"   hmi-bind:value="{{ HmiProps.IsAlternateState ? HmiProps.AlternateGraphicWidth  : HmiProps.GraphicWidth  }}" />
+        <hmi:localDef name="GraphicHeight"          type="number"   hmi-bind:value="{{ HmiProps.IsAlternateState ? HmiProps.AlternateGraphicHeight : HmiProps.GraphicHeight }}" />
+        <hmi:localDef name="Text"                   type="string"   hmi-bind:value="{{ HmiProps.IsAlternateState ? HmiProps.AlternateText          : HmiProps.Text          }}" />
+
+        <hmi:localDef name="ContentPaddingAtCenter" type="number"   value="0" />
+        <hmi:localDef name="TogglePaddingAtCenter"  type="number"   value="0" />
+
+        <hmi:localDef name="ContentPositionX"       type="number"   hmi-bind:value="{{ HmiProps.BorderWidth + HmiProps.Padding.Left }}" />
+        <hmi:localDef name="ContentPositionY"       type="number"   hmi-bind:value="{{ HmiProps.BorderWidth + HmiProps.Padding.Top  }}" />
+
+        <hmi:localDef name="ContentWidth"           type="number"   hmi-bind:value="{{ HmiProps.Width  - (2 * HmiProps.BorderWidth) - HmiProps.Padding.Left - HmiProps.Padding.Right }}" />
+        <hmi:localDef name="ContentHeight"          type="number"   hmi-bind:value="{{ HmiProps.Height - (2 * HmiProps.BorderWidth) - HmiProps.Padding.Top  - HmiProps.Padding.Bottom }}" />
+
+        <hmi:localDef name="BackColorDarker"        type="HmiColor" hmi-bind:value="{{ Converter.Darker( HmiProps.BackColor, 0.4 ) }}" />
+        <hmi:localDef name="BackColorHover"         type="HmiColor" hmi-bind:value="{{ Converter.Darker( HmiProps.BackColor, 0.6 ) }}" />
+
+        <hmi:localDef name="ItemOperable"           type="boolean"  hmi-bind:value="{{ HmiProps.Operability == HmiOperability.Operable }}" />
+
+        <!-- Actions of this template -->
+        <hmi:action id="onMouseHover" hmi-bind:condition="{ LocalProps.ItemOperable }" >
+            <hmi:setProperty name="LocalProps.MouseHover" type="number" value="1" />
+        </hmi:action>
+        <hmi:action id="onMouseTapped" trigger="accept" hmi-bind:condition="{ LocalProps.ItemOperable }" >
+            <hmi:setProperty name="HmiProps.IsAlternateState" type="boolean" hmi-bind:value="{{ HmiProps.IsAlternateState ? false : true }}"
+                             hmi-bind:condition="{{ or( or( (EventArgs.Trigger == HmiEventTrigger.Left), (EventArgs.Trigger == HmiEventTrigger.Space) ), EventArgs.Trigger==HmiEventTrigger.Touch ) }}" />
+        </hmi:action>
+        <hmi:action id="onMouseLeave" hmi-bind:condition="{ LocalProps.ItemOperable }" >
+            <hmi:setProperty name="LocalProps.MouseHover" type="number" value="0" />
+        </hmi:action>
+
+        <!-- Graphical elements of this template -->
+        <linearGradient id="BgGradient_LigtherDarker" gradientUnits="objectBoundingBox"
+                        x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop hmi-bind:stop-opacity="{{ Converter.Alpha( HmiProps.BackColor )                                                             }}" hmi-bind:stop-color="{{ Converter.RGB( HmiProps.BackColor )                                                             }}" offset="0.0" />
+            <stop hmi-bind:stop-opacity="{{ Converter.Alpha( LocalProps.MouseHover ? LocalProps.BackColorHover : LocalProps.BackColorDarker ) }}" hmi-bind:stop-color="{{ Converter.RGB( LocalProps.MouseHover ? LocalProps.BackColorHover : LocalProps.BackColorDarker ) }}" offset="1.0" />
+        </linearGradient>
+
+        <clipPath id="ContentClipRect">
+            <rect id="ContentRect"
+                  hmi-bind:x="{{ LocalProps.ContentPositionX + ( HmiProps.IsAlternateState == false ? 0 : LocalProps.ContentWidth / 2 + LocalProps.ContentPaddingAtCenter ) }}"
+                  hmi-bind:y="{ LocalProps.ContentPositionY }"
+                  hmi-bind:width="{{ LocalProps.ContentWidth / 2 - LocalProps.ContentPaddingAtCenter }}"
+                  hmi-bind:height="{ LocalProps.ContentHeight }"
+                  rx="5" />
+        </clipPath>
+
+        <!-- Only for showing the Areas for Content, Grahic and Text
+        <rect id="DebugOutput"
+              hmi-bind:IsAlternateState="{ HmiProps.IsAlternateState }"
+              hmi-bind:Pressed="{ LocalProps.Pressed }"
+              hmi-bind:BorderColor="{ LocalProps.BorderColor }"
+              hmi-bind:BorderColorPressed="{ LocalProps.BorderColorPressed }"
+              hmi-bind:ContentPositionX="{ LocalProps.ContentPositionX }"
+              hmi-bind:ContentPaddingAtCenter="{ LocalProps.ContentPaddingAtCenter }"
+              hmi-bind:ContentWidth="{ LocalProps.ContentWidth }"
+              hmi-bind:TogglePaddingAtCenter="{ LocalProps.TogglePaddingAtCenter }"
+              hmi-bind:ContentPositionY="{ LocalProps.ContentPositionY }"
+              hmi-bind:CalculatedDelta="{{ HmiProps.IsAlternateState ? 0 : LocalProps.ContentWidth / 2 + LocalProps.TogglePaddingAtCenter }}"
+              hmi-bind:CalculatedPosition="{{ LocalProps.ContentPositionX + ( HmiProps.IsAlternateState ? 0 : LocalProps.ContentWidth / 2 + LocalProps.TogglePaddingAtCenter ) }}">
+        </rect>
+        -->
+
+    </defs>
+
+    <g hmi-event:mouseHover="url(#onMouseHover)" hmi-event:tapped="url(#onMouseTapped)" hmi-event:mouseLeave="url(#onMouseLeave)"
+    hmi-bind:opacity="{{ LocalProps.ItemOperable ? 1.0 : 0.5  }}">
+
+        <rect id="ItemBGRect"
+              hmi-bind:x="{ HmiProps.BorderWidth }"
+              hmi-bind:y="{ HmiProps.BorderWidth }"
+              hmi-bind:width="{{ HmiProps.Width - 2 * HmiProps.BorderWidth }}"
+              hmi-bind:height="{{ HmiProps.Height - 2 * HmiProps.BorderWidth }}"
+              hmi-bind:fill="{{ Converter.RGBA( HmiProps.AlternateBackColor ) }}"
+              stroke-width="0"
+              hmi-bind:rx="{{ Converter.Max( 1, 5 - LocalProps.BorderWidth ) }}" />
+
+        <g clip-path="url(#ContentClipRect)">
+            <hmi:include template="include.style.extended.content.svghmi" hmi-bind:for="{ HmiProps.Content }"
+                         hmi-bind:x="{{ floor( LocalProps.ContentPositionX + ( HmiProps.IsAlternateState == false ? 0 : LocalProps.ContentWidth / 2 + LocalProps.ContentPaddingAtCenter ) ) }}"
+                         hmi-bind:y="{ LocalProps.ContentPositionY }"
+                         hmi-bind:width="{{ floor( LocalProps.ContentWidth / 2 - LocalProps.ContentPaddingAtCenter ) }}"
+                         hmi-bind:height="{ LocalProps.ContentHeight }">
+
+                <hmi:param name="Graphic"       type="HmiGraphic"  hmi-bind:value="{ LocalProps.Graphic }"          />
+                <hmi:param name="GraphicWidth"  type="number"      hmi-bind:value="{ LocalProps.GraphicWidth }"     />
+                <hmi:param name="GraphicHeight" type="number"      hmi-bind:value="{ LocalProps.GraphicHeight }"    />
+                <hmi:param name="Text"          type="string"      hmi-bind:value="{ LocalProps.Text }"             />
+                <hmi:param name="Font"          type="HmiFontPart" hmi-bind:value="{ HmiProps.Font }"               />
+                <hmi:param name="TextColor"     type="HmiColor"    hmi-bind:value="{ HmiProps.ForeColor }"          />
+
+            </hmi:include>
+        </g>
+
+        <g hmi-bind:transform="translate( {{ LocalProps.ContentPositionX + ( HmiProps.IsAlternateState ? 0 : LocalProps.ContentWidth / 2 + LocalProps.TogglePaddingAtCenter ) }} , {{ LocalProps.ContentPositionY }} )">
+            <rect id="ToggleRect"
+                  hmi-bind:width="{{ LocalProps.ContentWidth / 2 - LocalProps.TogglePaddingAtCenter }}"
+                  hmi-bind:height="{ LocalProps.ContentHeight }"
+                  fill="url(#BgGradient_LigtherDarker)"
+                  stroke="#000000"
+                  stroke-width="1"
+                  rx="5" />
+
+            <g hmi-bind:transform="translate( {{ ( LocalProps.ContentWidth / 2 - LocalProps.TogglePaddingAtCenter ) / 2 }} ,0)"
+               hmi-bind:stroke-width="{{ Converter.Max( 1, ( LocalProps.ContentWidth / 2 - LocalProps.TogglePaddingAtCenter ) / 30 ) }}" >
+                <line hmi-bind:x1="{{ LocalProps.ContentWidth * -0.05 }}" hmi-bind:x2="{{ LocalProps.ContentWidth * -0.05 }}" hmi-bind:y1="{{ LocalProps.ContentHeight * 0.2 }}" hmi-bind:y2="{{ LocalProps.ContentHeight * 0.8 }}" hmi-bind:stroke="{{ LocalProps.ForeColor }}" />
+                <line hmi-bind:x1="{{ LocalProps.ContentWidth *  0.0  }}" hmi-bind:x2="{{ LocalProps.ContentWidth *  0.0  }}" hmi-bind:y1="{{ LocalProps.ContentHeight * 0.2 }}" hmi-bind:y2="{{ LocalProps.ContentHeight * 0.8 }}" hmi-bind:stroke="{{ LocalProps.ForeColor }}" />
+                <line hmi-bind:x1="{{ LocalProps.ContentWidth *  0.05 }}" hmi-bind:x2="{{ LocalProps.ContentWidth *  0.05 }}" hmi-bind:y1="{{ LocalProps.ContentHeight * 0.2 }}" hmi-bind:y2="{{ LocalProps.ContentHeight * 0.8 }}" hmi-bind:stroke="{{ LocalProps.ForeColor }}" />
+            </g>
+
+        </g>
+
+        <rect id="ItemRect_Used"
+              fill-opacity="0"
+              hmi-bind:stroke="{{ Converter.RGBA( LocalProps.ShowFocus ? HmiProps.FocusColor : ( LocalProps.MouseHover ? LocalProps.BorderColorPressed : HmiProps.BorderColor ) ) }}"
+              hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+              hmi-bind:y="{{ HmiProps.BorderWidth / 2 }}"
+              hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth }}"
+              hmi-bind:height="{{ HmiProps.Height - HmiProps.BorderWidth }}"
+              hmi-bind:stroke-width="{ LocalProps.BorderWidth }"
+              rx="5" />
+
+    </g>
+
+</svg>

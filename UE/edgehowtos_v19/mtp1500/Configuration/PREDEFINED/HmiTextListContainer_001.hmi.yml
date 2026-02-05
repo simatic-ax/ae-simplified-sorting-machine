@@ -1,0 +1,765 @@
+#Version: 2.0
+
+TextListContainers:
+  ConfigErrorAlarmTextLibrary:
+    ESOrigin: PREDEFINED
+    ResourceListType: Text
+    ResourceLists:
+      TextList_1:
+        RangeType: Decimal
+        Entries:
+          Entry_1:
+            Type: SingleValue
+            Value: 1
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_800
+          Entry_2:
+            Type: SingleValue
+            Value: 2
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_801
+      TextList_2:
+        RangeType: Decimal
+        Entries:
+          Entry_1:
+            Type: SingleValue
+            Value: 1
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_300
+          Entry_2:
+            Type: SingleValue
+            Value: 2
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_301
+          Entry_3:
+            Type: SingleValue
+            Value: 3
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_302
+          Entry_4:
+            Type: SingleValue
+            Value: 4
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_303
+          Entry_5:
+            Type: SingleValue
+            Value: 5
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_304
+          Entry_6:
+            Type: SingleValue
+            Value: 6
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_305
+          Entry_7:
+            Type: SingleValue
+            Value: 7
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_306
+          Entry_8:
+            Type: SingleValue
+            Value: 8
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_307
+          Entry_9:
+            Type: SingleValue
+            Value: 9
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_308
+          Entry_10:
+            Type: SingleValue
+            Value: 10
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_309
+      TextList_3:
+        RangeType: Decimal
+        Entries:
+          Entry_1:
+            Type: SingleValue
+            Value: 1
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_350
+          Entry_2:
+            Type: SingleValue
+            Value: 2
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_351
+      TextList_4:
+        RangeType: Decimal
+        Entries:
+          Entry_1:
+            Type: SingleValue
+            Value: 2
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_113
+          Entry_2:
+            Type: SingleValue
+            Value: 3
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_114
+          Entry_3:
+            Type: SingleValue
+            Value: 4
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_115
+          Entry_4:
+            Type: SingleValue
+            Value: 1
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_116
+          Entry_5:
+            Type: SingleValue
+            Value: 5
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_117
+          Entry_6:
+            Type: SingleValue
+            Value: 6
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_125
+          Entry_7:
+            Type: SingleValue
+            Value: 7
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_144
+          Entry_17:
+            Type: SingleValue
+            Value: 8
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_155
+          Entry_18:
+            Type: SingleValue
+            Value: 9
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_156
+          Entry_8:
+            Type: SingleValue
+            Value: 0
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_118
+          Entry_9:
+            Type: SingleValue
+            Value: 65638
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_119
+          Entry_10:
+            Type: SingleValue
+            Value: 65639
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_120
+          Entry_11:
+            Type: SingleValue
+            Value: 65640
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_121
+          Entry_12:
+            Type: SingleValue
+            Value: 65641
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_122
+          Entry_13:
+            Type: SingleValue
+            Value: 65541
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_123
+          Entry_14:
+            Type: SingleValue
+            Value: 65542
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_124
+          Entry_15:
+            Type: SingleValue
+            Value: 65543
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_127
+          Entry_16:
+            Type: SingleValue
+            Value: 65544
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_128
+      TextList_5:
+        RangeType: Decimal
+        Entries:
+          Entry_1:
+            Type: SingleValue
+            Value: 1
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_200
+          Entry_2:
+            Type: SingleValue
+            Value: 2
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_201
+          Entry_3:
+            Type: SingleValue
+            Value: 3
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_202
+          Entry_4:
+            Type: SingleValue
+            Value: 4
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_203
+          Entry_5:
+            Type: SingleValue
+            Value: 5
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_204
+          Entry_6:
+            Type: SingleValue
+            Value: 6
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_205
+          Entry_7:
+            Type: SingleValue
+            Value: 7
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_206
+          Entry_8:
+            Type: SingleValue
+            Value: 4096
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_207
+          Entry_9:
+            Type: SingleValue
+            Value: 4097
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_208
+          Entry_10:
+            Type: SingleValue
+            Value: 4098
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_209
+          Entry_11:
+            Type: SingleValue
+            Value: 4099
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_210
+          Entry_12:
+            Type: SingleValue
+            Value: 4100
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_211
+          Entry_13:
+            Type: SingleValue
+            Value: 4101
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_212
+          Entry_14:
+            Type: SingleValue
+            Value: 4102
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_213
+          Entry_15:
+            Type: SingleValue
+            Value: 4103
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_214
+          Entry_16:
+            Type: SingleValue
+            Value: 4104
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_215
+          Entry_17:
+            Type: SingleValue
+            Value: 4105
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_216
+          Entry_18:
+            Type: SingleValue
+            Value: 4106
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_217
+          Entry_19:
+            Type: SingleValue
+            Value: 4107
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_218
+          Entry_20:
+            Type: SingleValue
+            Value: 4108
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_219
+          Entry_21:
+            Type: SingleValue
+            Value: 4109
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_220
+          Entry_22:
+            Type: SingleValue
+            Value: 4110
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_221
+          Entry_23:
+            Type: SingleValue
+            Value: 4111
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_222
+          Entry_24:
+            Type: SingleValue
+            Value: 4112
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_223
+          Entry_25:
+            Type: SingleValue
+            Value: 4113
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_224
+          Entry_26:
+            Type: SingleValue
+            Value: 4114
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_225
+          Entry_27:
+            Type: SingleValue
+            Value: 4115
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_226
+          Entry_28:
+            Type: SingleValue
+            Value: 4116
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_227
+      TextList_6:
+        RangeType: Decimal
+        Entries:
+          Entry_1:
+            Type: SingleValue
+            Value: 1
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_600
+          Entry_2:
+            Type: SingleValue
+            Value: 2
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_601
+          Entry_3:
+            Type: SingleValue
+            Value: 3
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_602
+          Entry_4:
+            Type: SingleValue
+            Value: 4
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_603
+          Entry_5:
+            Type: SingleValue
+            Value: 5
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_604
+          Entry_6:
+            Type: SingleValue
+            Value: 6
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_605
+          Entry_7:
+            Type: SingleValue
+            Value: 7
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_606
+          Entry_8:
+            Type: SingleValue
+            Value: 8
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_607
+          Entry_9:
+            Type: SingleValue
+            Value: 9
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_608
+          Entry_10:
+            Type: SingleValue
+            Value: 10
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_609
+          Entry_11:
+            Type: SingleValue
+            Value: 11
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_610
+          Entry_12:
+            Type: SingleValue
+            Value: 12
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_611
+          Entry_13:
+            Type: SingleValue
+            Value: 13
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_612
+          Entry_14:
+            Type: SingleValue
+            Value: 14
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_613
+          Entry_15:
+            Type: SingleValue
+            Value: 15
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_614
+          Entry_16:
+            Type: SingleValue
+            Value: 16
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_615
+          Entry_17:
+            Type: SingleValue
+            Value: 17
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_616
+          Entry_18:
+            Type: SingleValue
+            Value: 18
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_617
+          Entry_19:
+            Type: SingleValue
+            Value: 19
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_618
+          Entry_20:
+            Type: SingleValue
+            Value: 20
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_619
+          Entry_21:
+            Type: SingleValue
+            Value: 21
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_620
+          Entry_22:
+            Type: SingleValue
+            Value: 22
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_621
+          Entry_23:
+            Type: SingleValue
+            Value: 23
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_622
+          Entry_24:
+            Type: SingleValue
+            Value: 24
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_623
+          Entry_25:
+            Type: SingleValue
+            Value: 25
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_624
+          Entry_26:
+            Type: SingleValue
+            Value: 26
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_625
+          Entry_27:
+            Type: SingleValue
+            Value: 27
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_626
+          Entry_28:
+            Type: SingleValue
+            Value: 28
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_627
+          Entry_29:
+            Type: SingleValue
+            Value: 29
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_628
+          Entry_30:
+            Type: SingleValue
+            Value: 30
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_629
+          Entry_31:
+            Type: SingleValue
+            Value: 31
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_630
+          Entry_32:
+            Type: SingleValue
+            Value: 32
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_631
+          Entry_34:
+            Type: SingleValue
+            Value: 34
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_632
+          Entry_51:
+            Type: SingleValue
+            Value: 101
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_650
+          Entry_52:
+            Type: SingleValue
+            Value: 103
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_651
+          Entry_53:
+            Type: SingleValue
+            Value: 104
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_652
+          Entry_54:
+            Type: SingleValue
+            Value: 201
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_653
+          Entry_55:
+            Type: SingleValue
+            Value: 202
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_654
+          Entry_56:
+            Type: SingleValue
+            Value: 203
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_655
+          Entry_57:
+            Type: SingleValue
+            Value: 204
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_656
+          Entry_58:
+            Type: SingleValue
+            Value: 205
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_657
+          Entry_59:
+            Type: SingleValue
+            Value: 206
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_658
+          Entry_60:
+            Type: SingleValue
+            Value: 207
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_659
+          Entry_61:
+            Type: SingleValue
+            Value: 301
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_660
+          Entry_62:
+            Type: SingleValue
+            Value: 302
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_661
+          Entry_63:
+            Type: SingleValue
+            Value: 303
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_662
+          Entry_64:
+            Type: SingleValue
+            Value: 304
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_663
+          Entry_65:
+            Type: SingleValue
+            Value: 305
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_664
+          Entry_66:
+            Type: SingleValue
+            Value: 401
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_665
+      TextList_7:
+        RangeType: Decimal
+        Entries:
+          Entry_1:
+            Type: SingleValue
+            Value: 1
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_275
+          Entry_2:
+            Type: SingleValue
+            Value: 2
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_276
+          Entry_3:
+            Type: SingleValue
+            Value: 3
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_277
+      TextList_8:
+        RangeType: Decimal
+        Entries:
+          Entry_1:
+            Type: SingleValue
+            Value: 1
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_700
+      TextList_9:
+        RangeType: Decimal
+        Entries:
+          Entry_1:
+            Type: SingleValue
+            Value: 1
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_163
+          Entry_2:
+            Type: SingleValue
+            Value: 2
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_164
+          Entry_3:
+            Type: SingleValue
+            Value: 3
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_165
+      TextList_10:
+        RangeType: Decimal
+        Entries:
+          Entry_1:
+            Type: SingleValue
+            Value: 1
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_280
+          Entry_2:
+            Type: SingleValue
+            Value: 2
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_281
+  RuntimeCollaborationFailureReason:
+    ESOrigin: PREDEFINED
+    ResourceListType: Text
+    ResourceLists:
+      TextList_1:
+        RangeType: Decimal
+        Entries:
+          Entry_1:
+            Type: SingleValue
+            IsDefaultEntry: true
+            Text: AlarmTextLibrary.Entry_932
+          Entry_2:
+            Type: SingleValue
+            Value: 1
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_933
+          Entry_3:
+            Type: SingleValue
+            Value: 2
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_934
+          Entry_4:
+            Type: SingleValue
+            Value: 3
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_935
+          Entry_5:
+            Type: SingleValue
+            Value: 4
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_936
+          Entry_6:
+            Type: SingleValue
+            Value: 5
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_937
+          Entry_7:
+            Type: SingleValue
+            Value: 6
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_938
+          Entry_8:
+            Type: SingleValue
+            Value: 7
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_939
+          Entry_9:
+            Type: SingleValue
+            Value: 8
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_940
+          Entry_10:
+            Type: SingleValue
+            Value: 9
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_941
+          Entry_11:
+            Type: SingleValue
+            Value: 10
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_942
+          Entry_12:
+            Type: SingleValue
+            Value: 11
+            IsDefaultEntry: false
+            Text: AlarmTextLibrary.Entry_943
+  S7PlusAlarmTextListCollection:
+    ESOrigin: PREDEFINED
+    ResourceListType: Text
+    ResourceLists:
+      TextList_1:
+        RangeType: Decimal
+        Entries:
+          Entry_20:
+            Type: SingleValue
+            Value: 4096
+            IsDefaultEntry: false
+            Text: S7PlusAlarmTextLibrary.Entry_220
+          Entry_21:
+            Type: SingleValue
+            Value: 4097
+            IsDefaultEntry: false
+            Text: S7PlusAlarmTextLibrary.Entry_221
+          Entry_22:
+            Type: SingleValue
+            Value: 4098
+            IsDefaultEntry: false
+            Text: S7PlusAlarmTextLibrary.Entry_222
+          Entry_23:
+            Type: SingleValue
+            Value: 4099
+            IsDefaultEntry: false
+            Text: S7PlusAlarmTextLibrary.Entry_223
+          Entry_24:
+            Type: SingleValue
+            Value: 4100
+            IsDefaultEntry: false
+            Text: S7PlusAlarmTextLibrary.Entry_224
+          Entry_25:
+            Type: SingleValue
+            Value: 4101
+            IsDefaultEntry: false
+            Text: S7PlusAlarmTextLibrary.Entry_225
+          Entry_26:
+            Type: SingleValue
+            Value: 4102
+            IsDefaultEntry: false
+            Text: S7PlusAlarmTextLibrary.Entry_226
+          Entry_27:
+            Type: SingleValue
+            Value: 4103
+            IsDefaultEntry: false
+            Text: S7PlusAlarmTextLibrary.Entry_227
+          Entry_28:
+            Type: SingleValue
+            Value: 4104
+            IsDefaultEntry: false
+            Text: S7PlusAlarmTextLibrary.Entry_228
+          Entry_29:
+            Type: SingleValue
+            Value: 4105
+            IsDefaultEntry: false
+            Text: S7PlusAlarmTextLibrary.Entry_229
+          Entry_30:
+            Type: SingleValue
+            Value: 4106
+            IsDefaultEntry: false
+            Text: S7PlusAlarmTextLibrary.Entry_230
+          Entry_31:
+            Type: SingleValue
+            Value: 4107
+            IsDefaultEntry: false
+            Text: S7PlusAlarmTextLibrary.Entry_231
+          Entry_32:
+            Type: SingleValue
+            Value: 4108
+            IsDefaultEntry: false
+            Text: S7PlusAlarmTextLibrary.Entry_232

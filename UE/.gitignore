@@ -1,0 +1,9 @@
+.apax/
+.ile/
+HMIRuntime.code-snippets
+.dynTsTypes/
+Model
+RDF_full/
+RDF_delta_*/
+NameData.yml
+PORT

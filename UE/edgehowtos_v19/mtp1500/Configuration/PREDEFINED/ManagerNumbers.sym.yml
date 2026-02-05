@@ -1,0 +1,14 @@
+#Version: 2.0
+
+SymbolicConstants:
+  ManagerNumber:
+    Entries:
+      OpcUaCommunication:
+        DataType: USInt
+        Value: 3
+      S7PlusCommunication:
+        DataType: USInt
+        Value: 2
+      RTS:
+        DataType: USInt
+        Value: 22

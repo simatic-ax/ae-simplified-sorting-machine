@@ -1,0 +1,111 @@
+FaceplateTypes:
+  fpBtnWithState_V001:
+    ObjectType: FaceplateType
+    Width: 272
+    Height: 36
+    BackColor: Black 0%
+    DisplayName: GlobalTextLibrary.Entity_130
+    ScriptModules:
+      EventScripts:
+        ScriptLanguage: JavaScript
+        ScriptFile: Scripts\fpBtnWithState_EventScripts.js
+        Scripts:
+          fpBtnWithState_OnUp:
+    LocalTags:
+      ControlTag:
+        ObjectType: LocalSimpleTag
+        DataType: Bool
+        IsPublic: True
+      StatusTag:
+        ObjectType: LocalSimpleTag
+        DataType: Bool
+        IsPublic: True
+    PropertyInterface:
+      Properties:
+        ObjectType: FaceplateInterfacePropertyCollectionType
+        Members:
+          Text:
+            ObjectType: FaceplateSimplePropertyType
+            DataType: String
+            Default AS String: Button
+          ControlTag:
+            ObjectType: FaceplateTagPropertyType
+            DataType: Bool
+          StatusTag:
+            ObjectType: FaceplateTagPropertyType
+            DataType: Bool
+    Layers:
+      Layer_0:
+        Items:
+          txtBackground:
+            ObjectType: TextBox
+            Top: 0
+            Left: 0
+            Height: 36
+            Width: 272
+            BackColor: 0xFF3E435A
+            ForeColor: 0xFFDDDCDC
+            BorderWidth: 0
+            HorizontalTextAlignment: Center
+            Font:
+              Description: GlobalFontLibrary.Entity_23
+            Dynamics:
+              PropertyLink1:
+                ObjectType: PropertyLinkDynamic
+                Source: fpBtnWithState_V001.Properties.Text
+                Property: fpBtnWithState_V001.Layers.Layer_0.Items.txtBackground#Text
+      Layer_1:
+        Items:
+          recStatusIndicator:
+            ObjectType: Rectangle
+            BorderWidth: 0
+            BackFillPattern: Solid
+            Top: 30
+            Left: 124
+            Width: 24
+            Height: 6
+            Corners:
+              BottomLeftRadius: 42
+              BottomRightRadius: 42
+              TopLeftRadius: 42
+              TopRightRadius: 42
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Indirect: false
+                Tag: '@local::StatusTag'
+                Direction: toProperty
+                Property: fpBtnWithState_V001.Layers.Layer_1.Items.recStatusIndicator#BackColor
+                ValueConverter: '@local::StatusColorConverter'
+          btnOverlay:
+            ObjectType: Button
+            Top: 0
+            Left: 0
+            Height: 36
+            Width: 272
+            BackColor: Black 0%
+            BorderWidth: 0
+            ForeColor: 0x00000000
+            ShowFocusVisual: False
+            Content:
+              SplitRatio: 1
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Up
+                Type: Script
+                Script: '@local::EventScripts.fpBtnWithState_OnUp'
+    ValueConverters:
+      StatusColorConverter:
+        ConditionType: Boolean
+        Default AS Color: 0xFFB5BEC5
+        Entries:
+          Entry1:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: true
+            Flashing: false
+            Value AS Color: 0xFF5ED1AD
+          Entry2:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: false
+            Flashing: false
+            Value AS Color: 0xFFB5BEC5

@@ -1,0 +1,30 @@
+#Version: 2.0
+
+SimpleTags:
+  SIMATIC_S7-1500_OPC-UA_Application__ControllerTag:
+    AcquisitionMode: ExternAlert
+    Address: V:2$AC$i=2041$i=2253
+    Connection: SIMATIC_S7-1500_OPC-UA_Application_
+    ControllerDataType: OpcUa_Boolean
+    DataType: Bool
+    ManagerNumber: 3
+    Alarms:
+      SIMATIC_S7-1500_OPC-UA_Application__ControllerAlarm:
+        ObjectType: HmiControllerAlarm
+        AlarmClass: Alarm
+        Area: System/HMI/DriverCommunication
+        EventText: OpcuaAlarmTextLibrary.OpcuaAlarm
+        MultiInstance: False
+        Priority: None
+        SingleAcknowledgment: False
+        SourceType: Controller
+TextLibraries:
+  OpcuaAlarmTextLibrary:
+    DefaultLanguage: en-US
+    Languages:
+    - en-US
+    Type: Text
+    Entries:
+      OpcuaAlarm:
+        Text:
+        - ''

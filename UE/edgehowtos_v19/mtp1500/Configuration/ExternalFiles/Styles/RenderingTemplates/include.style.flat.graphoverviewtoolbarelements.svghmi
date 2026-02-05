@@ -1,0 +1,97 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:hmi="http://svg.siemens.com/hmi/"
+    xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+    xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+    xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+    xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+    xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+    xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+	
+    hmi-flex:shrink="0"
+    hmi-flex:grow="{{ ( HmiProps.Type == HmiScreenObjectType.ControlBarTextBoxPart ) ? 1 : 0 }}"
+    hmi-flex:width="{{ HmiProps.Visible ? HmiProps.Width : 0 }}"
+    hmi-flex:height="{{ HmiProps.Visible ? HmiProps.Height : 0 }}"
+    hmi-flex:marginTop="{{ HmiProps.Visible ? (HmiProps.Margin.Top / 2) : 0 }}"
+    hmi-flex:marginLeft="2"
+    hmi-flex:marginBottom="{{ HmiProps.Visible ? (HmiProps.Margin.Bottom / 2) : 0 }}"
+    hmi-flex:marginRight="2"
+    preserveAspectRatio="none"
+    
+    overflow="visible">
+
+<hmi:self type="part:HmiControlBarElementPartBase" displayName="Extended ControlBarElement" name="extended.controlbarelement.part" version="1.0.1" performanceClass="L">
+
+        <hmi:paramDef name="Font"                 type="HmiFontPart" />
+        <hmi:paramDef name="ControlBarOperable"   type="boolean" />
+        <hmi:paramDef name="FocusColor"           type="string" />
+        <hmi:paramDef name="ShowFocusVisual"      type="boolean" />
+
+    </hmi:self>
+
+    <g id="IncludeControlBarElementContainer" hmi:if="{ HmiProps.Visible }">
+        <g hmi:if="{{ HmiProps.Type == HmiScreenObjectType.ControlBarButtonPart }}" id="IncludeControlBarElementButton" >
+            <hmi:include template="include.style.flat.controlbarbutton.default.svghmi" hmi-bind:for="{ HmiProps }"
+                hmi-bind:width="{ Layout.ActualWidth }"
+                hmi-bind:height="{ Layout.ActualHeight }">
+                <hmi:param name="Font" 					type="HmiFontPart" 	hmi-bind:value="{ ParamProps.Font }" 				/>
+                <hmi:param name="ControlBarOperable" 	type="boolean" 		hmi-bind:value="{ ParamProps.ControlBarOperable }" 	/>
+                <hmi:param name="FocusColor" 			type="string" 	 	hmi-bind:value="{ ParamProps.FocusColor }" 			/>
+                <hmi:param name="ShowFocusVisual"		type="boolean" 	 	hmi-bind:value="{ ParamProps.ShowFocusVisual }"		/>
+            </hmi:include>
+        </g>
+
+        <g hmi:if="{{ HmiProps.Type == HmiScreenObjectType.ControlBarDisplayPart }}" id="IncludeControlBarElementDisplay" >
+            <hmi:include template="include.style.flat.controlbardisplay.default.svghmi" hmi-bind:for="{ HmiProps }"
+                hmi-bind:width="{ Layout.ActualWidth }"
+                hmi-bind:height="{ Layout.ActualHeight }">
+                <hmi:param name="Font" 					type="HmiFontPart" 	hmi-bind:value="{ ParamProps.Font }" 				/>
+                <hmi:param name="ControlBarOperable" 	type="boolean"      hmi-bind:value="{ ParamProps.ControlBarOperable }" 	/>
+                <hmi:param name="ShowFocusVisual"		type="boolean" 	 	hmi-bind:value="{ ParamProps.ShowFocusVisual }"		/>
+            </hmi:include>
+        </g>
+
+        <g hmi:if="{{ HmiProps.Type == HmiScreenObjectType.ControlBarLabelPart }}" id="IncludeControlBarElementLabel" >
+            <hmi:include template="include.style.flat.controlbarlabel.default.svghmi" hmi-bind:for="{ HmiProps }"
+                hmi-bind:width="{ Layout.ActualWidth }"
+                hmi-bind:height="{ Layout.ActualHeight }">
+                <hmi:param name="Font" 					type="HmiFontPart" 	hmi-bind:value="{ ParamProps.Font }" 				/>
+                <hmi:param name="ControlBarOperable" 	type="boolean"      hmi-bind:value="{ ParamProps.ControlBarOperable }" 	/>
+                <hmi:param name="FocusColor" 			type="string" 	 	hmi-bind:value="{ ParamProps.FocusColor }" 			/>
+                <hmi:param name="ShowFocusVisual"		type="boolean" 	 	hmi-bind:value="{ ParamProps.ShowFocusVisual }"		/>
+            </hmi:include>
+        </g>
+
+        <g hmi:if="{{ HmiProps.Type == HmiScreenObjectType.ControlBarSeparatorPart }}" id="IncludeControlBarElementSeparator" >
+            <hmi:include template="include.style.flat.controlbarseparator.default.svghmi" hmi-bind:for="{ HmiProps }"
+                hmi-bind:width="{ Layout.ActualWidth }"
+                hmi-bind:height="{ Layout.ActualHeight }">
+            </hmi:include>
+        </g>
+
+        <g hmi:if="{{ HmiProps.Type == HmiScreenObjectType.ControlBarTextBoxPart }}" id="IncludeControlBarElementTextBox" >
+            <hmi:include template="include.style.flat.controlbartextbox.default.svghmi" hmi-bind:for="{ HmiProps }"
+                hmi-bind:width="{ Layout.ActualWidth }"
+                hmi-bind:height="{ Layout.ActualHeight }">
+                <hmi:param name="Font" 					type="HmiFontPart" 	hmi-bind:value="{ ParamProps.Font }" 				/>
+                <hmi:param name="ControlBarOperable" 	type="boolean"      hmi-bind:value="{ ParamProps.ControlBarOperable }" 	/>
+                <hmi:param name="FocusColor" 			type="string" 	 	hmi-bind:value="{ ParamProps.FocusColor }" 			/>
+                <hmi:param name="ShowFocusVisual"		type="boolean" 	 	hmi-bind:value="{ ParamProps.ShowFocusVisual }"		/>
+            </hmi:include>
+        </g>
+
+        <g hmi:if="{{ HmiProps.Type == HmiScreenObjectType.ControlBarToggleSwitchPart }}" id="IncludeControlBarElementToggleSwitch">
+            <hmi:include template="include.style.flat.controlbartoggleswitch.default.svghmi" hmi-bind:for="{ HmiProps }"
+                hmi-bind:width="{ Layout.ActualWidth }"
+                hmi-bind:height="{ Layout.ActualHeight }">
+                <hmi:param name="Font" 					type="HmiFontPart"  hmi-bind:value="{ ParamProps.Font }"                />
+                <hmi:param name="ControlBarOperable" 	type="boolean"      hmi-bind:value="{ ParamProps.ControlBarOperable }"  />
+                <hmi:param name="FocusColor"            type="string"       hmi-bind:value="{ ParamProps.FocusColor }"          />
+                <hmi:param name="ShowFocusVisual"		type="boolean" 	 	hmi-bind:value="{ ParamProps.ShowFocusVisual }"		/>
+            </hmi:include>
+        </g>
+    </g>
+</svg>

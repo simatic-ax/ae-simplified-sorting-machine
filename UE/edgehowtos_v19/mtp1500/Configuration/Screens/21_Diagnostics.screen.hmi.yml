@@ -1,0 +1,253 @@
+#Version: 2.0
+
+Screens:
+  21_Diagnostics:
+    Width: 1920
+    Height: 976
+    BackColor: 0xFFCDD3D7
+    Layers:
+      Layer_0:
+        Items:
+          System diagnostics control_1:
+            ObjectType: SystemDiagnosisControl
+            Top: 0
+            Left: -1
+            Width: 1921
+            Height: 976
+            SystemDiagnosisViewType: Matrix
+            DiagnosisOverviewPathText: GlobalTextLibrary.Entity_85
+            DiagnosisBufferPathText: GlobalTextLibrary.Entity_86
+            WindowFlags: None
+            SystemDiagnosisView:
+              Columns:
+                Event number:
+                  ObjectType: SystemDiagnosisControlColumnPart
+                  Width: 120
+                  SystemDiagnosisControlBlock: Number
+                  Header:
+                    Text: GlobalTextLibrary.Entity_235
+                Event state:
+                  ObjectType: SystemDiagnosisControlColumnPart
+                  Width: 40
+                  SystemDiagnosisControlBlock: EventState
+                  Content:
+                    ContentMode: GraphicOrText
+                Event type:
+                  ObjectType: SystemDiagnosisControlColumnPart
+                  Width: 40
+                  SystemDiagnosisControlBlock: EventType
+                  Content:
+                    ContentMode: GraphicOrText
+                Date _ Time1:
+                  ObjectType: SystemDiagnosisControlColumnPart
+                  Width: 120
+                  SystemDiagnosisControlBlock: DateTime
+                  Header:
+                    Text: GlobalTextLibrary.Entity_236
+                Event text:
+                  ObjectType: SystemDiagnosisControlColumnPart
+                  Width: 120
+                  SystemDiagnosisControlBlock: EventMessage
+                  Header:
+                    Text: GlobalTextLibrary.Entity_237
+            MatrixView:
+              SystemDiagnosisHardwareDetailView:
+                HardwareDetails:
+                  SystemDiagnosisHardwareDetailPart1:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: Status
+                  SystemDiagnosisHardwareDetailPart2:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: Name
+                  SystemDiagnosisHardwareDetailPart3:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: OperatingState
+                  SystemDiagnosisHardwareDetailPart4:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: Rack
+                  SystemDiagnosisHardwareDetailPart5:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: Slot
+                  SystemDiagnosisHardwareDetailPart6:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: OrderNumber
+                  SystemDiagnosisHardwareDetailPart7:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: Address
+                  SystemDiagnosisHardwareDetailPart8:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: PlantDesignation
+                  SystemDiagnosisHardwareDetailPart9:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: LocationIdentifier
+                  SystemDiagnosisHardwareDetailPart10:
+                    Visible: False
+                    SystemDiagnosisMatrixBlock: Subsystem
+                  SystemDiagnosisHardwareDetailPart11:
+                    Visible: False
+                    SystemDiagnosisMatrixBlock: Station
+                  SystemDiagnosisHardwareDetailPart12:
+                    Visible: False
+                    SystemDiagnosisMatrixBlock: Subslot
+                  SystemDiagnosisHardwareDetailPart13:
+                    Visible: False
+                    SystemDiagnosisMatrixBlock: SubAddress
+                  SystemDiagnosisHardwareDetailPart14:
+                    Visible: False
+                    SystemDiagnosisMatrixBlock: SoftwareVersion
+                  SystemDiagnosisHardwareDetailPart15:
+                    Visible: False
+                    SystemDiagnosisMatrixBlock: Installation
+                  SystemDiagnosisHardwareDetailPart16:
+                    Visible: False
+                    SystemDiagnosisMatrixBlock: AdditionaInformation
+                  SystemDiagnosisHardwareDetailPart17:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: ErrorDescription
+                  SystemDiagnosisHardwareDetailPart18:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: ManufacturerID
+                  SystemDiagnosisHardwareDetailPart19:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: HardwareVersion
+                  SystemDiagnosisHardwareDetailPart20:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: ProfileID
+                  SystemDiagnosisHardwareDetailPart21:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: SpecificProfileData
+                  SystemDiagnosisHardwareDetailPart22:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: IandMDataVersion
+                  SystemDiagnosisHardwareDetailPart23:
+                    Visible: False
+                    SystemDiagnosisMatrixBlock: SerialNumber
+                  SystemDiagnosisHardwareDetailPart24:
+                    Visible: False
+                    SystemDiagnosisMatrixBlock: RevisionCounter
+                  SystemDiagnosisHardwareDetailPart25:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: Type
+                  SystemDiagnosisHardwareDetailPart26:
+                    Visible: True
+                    SystemDiagnosisMatrixBlock: IPAddress
+              HardwareDetails:
+                SystemDiagnosisHardwareDetailPart1:
+                  Visible: True
+                  SystemDiagnosisMatrixBlock: Status
+                SystemDiagnosisHardwareDetailPart2:
+                  Visible: True
+                  SystemDiagnosisMatrixBlock: Name
+                SystemDiagnosisHardwareDetailPart3:
+                  Visible: True
+                  SystemDiagnosisMatrixBlock: Address
+                SystemDiagnosisHardwareDetailPart4:
+                  Visible: True
+                  SystemDiagnosisMatrixBlock: Type
+                SystemDiagnosisHardwareDetailPart5:
+                  Visible: True
+                  SystemDiagnosisMatrixBlock: OperatingState
+                SystemDiagnosisHardwareDetailPart6:
+                  Visible: True
+                  SystemDiagnosisMatrixBlock: IPAddress
+            ToolBar:
+              Elements:
+                ControlBarButton1:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: Home
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton2:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: Reload
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton3:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: FirstLine
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton4:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: PreviousLine
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton5:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: NextLine
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton6:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: LastLine
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarToggleSwitch1:
+                  ObjectType: ControlBarToggleSwitchPart
+                  Mapping: SplitView
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton7:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: Back
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton8:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: ShowDiagnosticBuffer
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+            StatusBar:
+              Elements:
+                ControlBarDisplay1:
+                  ObjectType: ControlBarDisplayPart
+                  Width: 40
+                  Mapping: ConnectionStatus
+                  Visible: True
+                ControlBarDisplay2:
+                  ObjectType: ControlBarDisplayPart
+                  Visible: True
+                  Width: 400
+                  Mapping: Path
+                  Content:
+                    ContentMode: Text
+      Layer_1: 
+      Layer_2: 
+      Layer_3: 
+      Layer_4: 
+      Layer_5: 
+      Layer_6: 
+      Layer_7: 
+      Layer_8: 
+      Layer_9: 
+      Layer_10: 
+      Layer_11: 
+      Layer_12: 
+      Layer_13: 
+      Layer_14: 
+      Layer_15: 
+      Layer_16: 
+      Layer_17: 
+      Layer_18: 
+      Layer_19: 
+      Layer_20: 
+      Layer_21: 
+      Layer_22: 
+      Layer_23: 
+      Layer_24: 
+      Layer_25: 
+      Layer_26: 
+      Layer_27: 
+      Layer_28: 
+      Layer_29: 
+      Layer_30: 
+      Layer_31: 

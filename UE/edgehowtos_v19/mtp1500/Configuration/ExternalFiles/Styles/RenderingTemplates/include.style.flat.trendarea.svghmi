@@ -1,0 +1,451 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2020. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+     preserveAspectRatio="none"
+     hmi:if="{ HmiProps.Visible }"
+     hmi-flex:grow="{{ HmiProps.Visible ? HmiProps.SizeFactor : 0 }}" 
+     hmi-flex:marginBottom = "{{ ParamProps.ShiftAxes ? 0 : (HmiProps.Visible == false ? 0 : ((HmiProps.$index == HmiProps.$count - 1) ? 0 :LocalProps.AreaDependentSpacing))}}"
+     hmi-flex:marginRight = "{{ ParamProps.ShiftAxes ? (HmiProps.Visible == false ? 0 : ((HmiProps.$index == HmiProps.$count - 1) ? 0 :LocalProps.AreaDependentSpacing)): 0}}"
+     >
+
+    <hmi:self type="part:HmiTrendAreaPart" displayName="Flat Trend Area" name="style.flat.trend.area" version="2.9">
+        <hmi:paramDef name="BackColor"              type="HmiColor" />
+        <hmi:paramDef name="AreaSpacing"            type="number"   />
+        <hmi:paramDef name="ShiftAxes"              type="boolean"  />
+        <hmi:paramDef name="Online"                 type="boolean"  />
+        <hmi:paramDef name="ShowRuler"              type="boolean"  />
+        <hmi:paramDef name="ShowStatisticRulers"    type="boolean"  />
+        <hmi:paramDef name="TimeZone"               type="number"   />
+        <hmi:paramDef name="ExtendRulerToAxis"      type="boolean"  />
+        <hmi:paramDef name="LegendFont"             type="HmiFontPart"  />
+        <hmi:paramDef name="LegendForeColor"        type="HmiColor"  />
+        <hmi:paramDef name="LegendVisibilty"        type="boolean"  />
+    </hmi:self>
+
+    <defs>
+        <hmi:localDef name="LegendTextHeightWithFont"   type="number"                         hmi-bind:value="{{ Converter.TextHeight( 'XY', ParamProps.LegendFont ) }}"/>
+        <hmi:localDef name="LegendTextHeight"           type="number"                         value="30"/>
+        <hmi:localDef name="MarginFactor"               type="number"                         value="10"/>
+        <hmi:localDef name="MarginBetweenAreas"         type="number"                         hmi-bind:value="{{ ParamProps.LegendVisibilty ? 10 : 20 }}"/>
+        <hmi:localDef name="RulerExtension"             type="number"                         hmi-bind:value="{{( ParamProps.ExtendRulerToAxis ? -1 : 0 ) }}" />
+        <hmi:localDef name="OffsetBetweenText"          type="number"                         value="5"/>
+        <hmi:localDef name="LegendWidth"                type="number"                         value="180"/>
+        <hmi:localDef name="VertScrollBarPosition"      type="number"                         value="0"     />
+        <hmi:localDef name="LegendMaxHeight"            type="number"                         hmi-bind:value="{{ ParamProps.LegendVisibilty ? ( gt( HmiProps.VisibleTrendCount, 0 ) ? ( (4 * LocalProps.LegendTextHeight) + (4 * LocalProps.OffsetBetweenText) ) : 0 ) : 0 }}" />
+        <hmi:localDef name="ScrollBarPart"              type="HmiScrollBarSystemPart"         hmi-bind:value="{{ Converter.GetDefaultValue( 'HmiScrollBarSystemPart' ) }}" />
+        <hmi:localDef name="LegendFactor"               type="number"                         value="1" />
+        <hmi:localDef name="LegendRightMargin"          type="number"                         hmi-bind:value="{{ LocalProps.ScrollBarPart.Thickness + ( 2 * LocalProps.MarginFactor ) }}" />
+        <hmi:localDef name="RulerIndicatorSystemPart"   type="HmiRulerIndicatorSystemPart"    hmi-bind:value="{{ Converter.GetDefaultValue( 'HmiRulerIndicatorSystemPart' ) }}" />
+        <hmi:localDef name="StartX"                     type="number"                         hmi-bind:value="{{ ParamProps.ShiftAxes ? 0 : LocalProps.MarginFactor }}" />
+        <hmi:localDef name="AreaDependentSpacing"       type="number"                         hmi-bind:value="{{ gt( HmiProps.$count, 1 ) ? ParamProps.AreaSpacing : 0 }}" />
+    </defs>
+
+    <g id="Background">
+        <g hmi-flex:width="{ Layout.ActualWidth }" hmi-flex:height="{ Layout.ActualHeight }" hmi-flex:direction="column-reverse" hmi-flex:justifyContent="end">
+            <g hmi-flex:grow="1">
+                <hmi-element:chart hmi-bind:area-spacing="{ ParamProps.AreaSpacing }"
+                                   hmi-bind:shift-axes="{ ParamProps.ShiftAxes }"
+                                   hmi-bind:config="{ HmiProps }"
+                                   hmi-bind:online="{ ParamProps.Online }"
+                                   hmi-bind:show-ruler="{ ParamProps.ShowRuler }"
+                                   hmi-bind:show-selector-rulers="{ ParamProps.ShowStatisticRulers }"
+                                   hmi-bind:timezone="{ ParamProps.TimeZone }"
+                                   hmi-bind:height="{{ Layout.ActualHeight - ( ParamProps.ShiftAxes ? LocalProps.MarginBetweenAreas : 0 ) }}"
+                                   hmi-bind:width="{{ Layout.ActualWidth - ( ParamProps.ShiftAxes ? 0 : ( 2 * LocalProps.MarginFactor ) ) }}"
+                                   hmi-bind:start-x="{ LocalProps.StartX }" >
+
+                    <hmi-feature:axes>
+                          <hmi-feature:axis>
+                              <!--Add structuring and visual children here.-->
+                              <hmi-feature:areaGridlines />
+                          </hmi-feature:axis>
+                    </hmi-feature:axes>
+                    <hmi-feature:rulers hmi-bind:low-extension="{ LocalProps.RulerExtension }"
+                                        hmi-bind:high-extension="{ LocalProps.RulerExtension }" >
+                        <hmi-feature:rulerIndicator content-height="300"
+                                                    content-width="300">
+                            <hmi:master-inline>
+                                <hmi:param name="ShiftAxes"  type="boolean"    hmi-bind:value="{ ParamProps.ShiftAxes }"/>
+                                <hmi:param name="TimeZone"   type="number"     hmi-bind:value="{ ParamProps.TimeZone }"/>
+                                <hmi:param name="RulerColor" type="HmiColor"   hmi-bind:value="{ HmiProps.Ruler.Color }"/>
+                                <hmi:template>
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         xmlns:hmi="http://svg.siemens.com/hmi/"
+                                         xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                                         xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+                                         xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/">
+                                        <hmi:self type="system:HmiRulerIndicatorSystemPart" displayName="Ruler" name="ruler" version="1.0.0" performanceClass="s">
+                                            <hmi:paramDef name="ShiftAxes"      type="boolean"   />
+                                            <hmi:paramDef name="TimeZone"       type="number"    />
+                                            <hmi:paramDef name="RulerColor"     type="HmiColor"  />
+                                            <hmi:data type="ruler-details"></hmi:data>
+                                        </hmi:self>
+
+                                        <defs>
+                                            <!--Local definitions of this template-->
+                                            <hmi:localDef name="RawRulerText"           type="string"   hmi-data-bind:value="{ Content.Text1 }" />
+                                            <hmi:localDef name="RulerText"              type="string"   hmi-bind:value="{{ Converter.FormatPattern( LocalProps.RawRulerText, HmiProps.OutputFormat, ParamProps.TimeZone ) }}" />
+                                            <hmi:localDef name="IsMultiline"            type="boolean"  hmi-bind:value="{{ Converter.IsMultiline( LocalProps.RulerText ) }}" />
+                                            <hmi:localDef name="TextHeight"             type="number"   hmi-bind:value="{{ Converter.TextHeight( LocalProps.RulerText, HmiProps.Font, LocalProps.IsMultiline ) }}" />
+                                            <hmi:localDef name="RectHeight"             type="number"   hmi-bind:value="{{ LocalProps.IsMultiline ? LocalProps.TextHeight + 5 : LocalProps.TextHeight + 12 }}" />
+                                            <hmi:localDef name="TextWidth"              type="number"   hmi-bind:value="{{ Converter.TextWidth( LocalProps.RulerText, HmiProps.Font, LocalProps.IsMultiline ) }}" />
+                                            <hmi:localDef name="RulerDimension"         type="number"   hmi-bind:value="{{ ParamProps.ShiftAxes ? HmiProps.Height : HmiProps.Width }}" />
+                                            <hmi:localDef name="MidRulerDimension"      type="number"   hmi-bind:value="{{ LocalProps.RulerDimension / 2 }}" />
+                                            <hmi:localDef name="Derivation"             type="number"   hmi-bind:value="{{ -LocalProps.RulerDimension * HmiProps.RulerPosition / 2 }}" />
+                                            <hmi:localDef name="RectWidth"              type="number"   hmi-bind:value="{{ LocalProps.TextWidth + 18 }}" />
+                                            <hmi:localDef name="RectWidthPadding"       type="number"   hmi-bind:value="{{ LocalProps.RectWidth + 10 }}" />
+                                            <hmi:localDef name="OffsetX"                type="number"   hmi-bind:value="{{ LocalProps.Derivation + ( LocalProps.RectWidthPadding / 2 ) }}" />
+                                            <hmi:localDef name="RightLimit"             type="number"   hmi-bind:value="{{ LocalProps.RectWidthPadding - LocalProps.MidRulerDimension }}" />
+                                            <hmi:localDef name="LowerLimitReached"      type="boolean"  hmi-bind:value="{{ gt( LocalProps.OffsetX, LocalProps.MidRulerDimension) }}" />
+                                            <hmi:localDef name="UpperLimitReached"      type="boolean"  hmi-bind:value="{{ lt( LocalProps.OffsetX, LocalProps.RightLimit ) }}" />
+                                            <hmi:localDef name="RectXY"                 type="number"   hmi-bind:value="{{ LocalProps.LowerLimitReached ? -LocalProps.MidRulerDimension : ( LocalProps.UpperLimitReached ? -LocalProps.RightLimit : -LocalProps.OffsetX ) }}" />
+                                            <hmi:localDef name="TextX"                  type="number"   hmi-bind:value="{{ LocalProps.Derivation - LocalProps.TextHeight - 5 }}" />
+                                            <hmi:localDef name="ShiftX"                 type="number"   hmi-bind:value="{{ LocalProps.LowerLimitReached ? LocalProps.TextX - ( LocalProps.OffsetX - ( HmiProps.Height / 2 ) ) : ( LocalProps.UpperLimitReached ? LocalProps.TextX + LocalProps.RightLimit - LocalProps.OffsetX : LocalProps.TextX )}}" />
+                                            <!--When axis shifts then Width and height are interchanged-->
+                                        </defs>
+
+                                        <g hmi-flex:width="{ HmiProps.Width }"
+                                           hmi-flex:height="{ HmiProps.Height }"
+                                           hmi-flex:justifyContent="center"
+                                           hmi-flex:direction="{{ ParamProps.ShiftAxes ? 'column' : 'row' }}" >
+                                            <g hmi-flex:alignSelf="{{ ParamProps.ShiftAxes ? 'end' : 'start' }}" >
+                                                <rect 
+                                                      hmi-bind:x="{{ ParamProps.ShiftAxes ? -LocalProps.RectHeight - 1 : LocalProps.RectXY }}"
+                                                      hmi-bind:y="{{ ParamProps.ShiftAxes ? LocalProps.RectXY : 1 }}"
+                                                      hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}"
+                                                      hmi-bind:width="{{ ParamProps.ShiftAxes ? LocalProps.RectHeight : LocalProps.RectWidthPadding }}"
+                                                      hmi-bind:height="{{ ParamProps.ShiftAxes ? LocalProps.RectWidthPadding : LocalProps.RectHeight}}"
+                                                      hmi-bind:stroke = "{{ Converter.RGBA( ParamProps.RulerColor ) }}"/>
+                                                <line id="ItemBorder"
+                                                      hmi-bind:x1="{{ ParamProps.ShiftAxes ? -LocalProps.RectHeight : LocalProps.RectXY }}"
+                                                      hmi-bind:y1="{{ ParamProps.ShiftAxes ? LocalProps.RectXY : LocalProps.RectHeight }}"
+                                                      hmi-bind:x2="{{ ParamProps.ShiftAxes ? -LocalProps.RectHeight : LocalProps.RectXY + LocalProps.RectWidthPadding}}"
+                                                      hmi-bind:y2="{{ ParamProps.ShiftAxes ? LocalProps.RectXY + LocalProps.RectWidthPadding : LocalProps.RectHeight }}"
+                                                      hmi-bind:stroke="{{ Converter.RGBA( ParamProps.RulerColor) }}"
+                                                      stroke-width="2"/>
+                                                <g hmi:if="{ ParamProps.ShiftAxes }"
+                                                   hmi-bind:transform="rotate(-90, {{ -LocalProps.TextHeight - 5 }} ,0)"
+                                                   stroke="none">
+                                                    <hmi-element:textField hmi-bind:start-x="{{ LocalProps.ShiftX - ( LocalProps.TextWidth / 2 ) }}"
+                                                                           horizontal-text-alignment="center"
+                                                                           hmi-bind:start-y="{{ LocalProps.IsMultiline ? 2 : 0 }}"
+                                                                           hmi-bind:width="{ LocalProps.TextWidth }"
+                                                                           hmi-bind:height="{ LocalProps.TextHeight }"
+                                                                           hmi-bind:multi-line="{ LocalProps.IsMultiline }"
+                                                                           enabled="false"
+                                                                           read-only="true"
+                                                                           hmi-bind:value="{ LocalProps.RulerText }"
+                                                                           hmi-bind:fore-color="{{ Converter.RGBA( ParamProps.RulerColor ) }}"
+                                                                           hmi-bind:horizontal-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}"
+                                                                           hmi-bind:vertical-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}">
+                                                        <hmi-feature:font hmi-bind:size="{ HmiProps.Font.Size }"
+                                                                          hmi-bind:italic="{ HmiProps.Font.Italic }"
+                                                                          hmi-bind:weight="{ HmiProps.Font.Weight }"
+                                                                          hmi-bind:name="{ HmiProps.Font.Name }" />
+                                                    </hmi-element:textField>
+                                                </g>
+                                                <g hmi:if="{{ not( ParamProps.ShiftAxes ) }}"
+                                                    stroke="none">
+                                                  <hmi-element:textField hmi-bind:start-x="{{ LocalProps.RectXY != null ? LocalProps.RectXY : 0 }}"
+                                                                         horizontal-text-alignment="center"
+                                                                         start-y="1"
+                                                                         hmi-bind:width="{ LocalProps.RectWidthPadding  }"
+                                                                         hmi-bind:height="{ LocalProps.RectHeight }"
+                                                                         hmi-bind:multi-line="{ LocalProps.IsMultiline }"
+                                                                         enabled="false"
+                                                                         read-only="true"
+                                                                         hmi-bind:value="{ LocalProps.RulerText }"
+                                                                         hmi-bind:fore-color="{{ Converter.RGBA( ParamProps.RulerColor ) }}"
+                                                                         hmi-bind:horizontal-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}"
+                                                                         hmi-bind:vertical-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}">
+                                                    <hmi-feature:font hmi-bind:italic="{ HmiProps.Font.Italic }"
+                                                                      hmi-bind:size="{ HmiProps.Font.Size }"
+                                                                      hmi-bind:weight="{ HmiProps.Font.Weight }"
+                                                                      hmi-bind:name="{ HmiProps.Font.Name }" />
+                                                  </hmi-element:textField>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </hmi:template>
+                            </hmi:master-inline>
+                        </hmi-feature:rulerIndicator>
+                        <hmi-feature:rulerIndicator ruler-filter="regular"
+                                                    indicator-filter="secondary"
+                                                    content-height="300"
+                                                    content-width="300">
+                            <hmi:master-inline>
+                                <hmi:param name="ShiftAxes"        type="boolean"              hmi-bind:value="{ ParamProps.ShiftAxes }"/>
+                                <hmi:template>
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         xmlns:hmi="http://svg.siemens.com/hmi/"
+                                         xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                                         xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+                                         xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"  >
+                                        <hmi:self type="system:HmiRulerIndicatorSystemPart" displayName="Ruler" name="ruler" >
+                                           <hmi:paramDef name="ShiftAxes"        type="boolean"  />
+                                           <hmi:data type="ruler-details"></hmi:data>
+                                        </hmi:self>
+
+                                        <defs>
+                                            <hmi:localDef name="RulerText"              type="string"               hmi-data-bind:value="{ Content.Text1 }" />
+                                            <hmi:localDef name="TextPadding"            type="number"               value="5"/>
+                                            <hmi:localDef name="TextMinWidth"           type="number"               hmi-bind:value="{{ Converter.TextWidth( '123456', HmiProps.Font ) }}" />
+                                            <hmi:localDef name="TextHeight"             type="number"               hmi-bind:value="{{ Converter.TextHeight( LocalProps.RulerText, HmiProps.Font ) }}" />
+                                            <hmi:localDef name="TextWidth"              type="number"               hmi-bind:value="{{ Converter.TextWidth( LocalProps.RulerText, HmiProps.Font ) + LocalProps.TextPadding }}" />
+                                            <hmi:localDef name="RulerTextWidth"         type="number"               hmi-bind:value="{{ Converter.Max( LocalProps.TextMinWidth, LocalProps.TextWidth ) + 10 }}" />
+                                            <hmi:localDef name="TextX"                  type="number"               hmi-bind:value="{{ LocalProps.RulerTextWidth * ( ParamProps.ShiftAxes ? 0.8 : 0.55 ) }}"/>
+                                            <hmi:localDef name="RulerDimension"         type="number"               hmi-bind:value="{{ ParamProps.ShiftAxes ? HmiProps.Height : HmiProps.Width }}" />
+                                            <hmi:localDef name="Derivation"             type="number"               hmi-bind:value="{{ -LocalProps.RulerDimension * HmiProps.RulerPosition / 2 }}" />
+                                            <hmi:localDef name="PolylinePoint"          type="number"               hmi-bind:value="{{ LocalProps.RulerTextWidth - LocalProps.Derivation }}"/>
+                                            <hmi:localDef name="PolylinePoint1"         type="number"               value="0"/>
+                                            <hmi:localDef name="PolylinePoint2"         type="number"               hmi-bind:value="{{ LocalProps.TextHeight * ( ParamProps.ShiftAxes ? 0.8 : 0.55 ) }}"/>
+                                            <hmi:localDef name="PolylinePoint3"         type="number"               hmi-bind:value="{{ LocalProps.PolylinePoint2 - LocalProps.Derivation }}"/>
+                                            <hmi:localDef name="Rotate"                 type="boolean"              hmi-bind:value="{{ gt(( LocalProps.PolylinePoint ), ( LocalProps.RulerDimension / 2 )) ? true : false }}"/>
+                                            <hmi:localDef name="FontStyle"              type="string"               hmi-bind:value="{{ HmiProps.Font.Italic ? 'italic' : 'normal' }}"/>
+                                            <hmi:localDef name="TextDecoration"         type="string"               hmi-bind:value="{{ Converter.TextDecoration( HmiProps.Font ) }}"/>
+                                            <hmi:localDef name="ToolTipStylePart"       type="HmiTooltipSystemPart" hmi-bind:value="{{ Converter.GetDefaultValue( 'HmiTooltipSystemPart' ) }}" />
+                                            <hmi:localDef name="PolylinePadding"        type="number"               hmi-bind:value="{{ LocalProps.PolylinePoint + LocalProps.TextPadding }}" />
+                                            <hmi:localDef name="PolylineReducedPadding" type="number"               hmi-bind:value="{{ LocalProps.PolylinePoint - LocalProps.TextPadding }}" />
+                                            <hmi:localDef name="MidRulerTextWidth"      type="number"               hmi-bind:value="{{ LocalProps.RulerTextWidth / 2 }}" />
+                                            <hmi:localDef name="PaddedRulerTextWidth"   type="number"               hmi-bind:value="{{ LocalProps.MidRulerTextWidth - LocalProps.Derivation }}" />
+                                        </defs>
+
+                                        <g hmi-flex:width="{ HmiProps.Width }"
+                                           hmi-flex:height="{ HmiProps.Height }"
+                                           hmi-flex:justifyContent="center"
+                                           hmi-flex:direction="{{ ParamProps.ShiftAxes ? 'column' : 'row' }}">
+                                            <g hmi-flex:alignSelf="center">
+                                                <polyline hmi:if="{ ParamProps.ShiftAxes }"
+                                                          hmi-bind:points="{ LocalProps.PolylinePoint1 } , {{ -LocalProps.Derivation }} ,
+                                                                           { LocalProps.PolylinePoint2 } , { LocalProps.PolylinePoint3 } ,
+                                                                           { LocalProps.PolylinePoint2 } , { LocalProps.PolylinePadding } ,
+                                                                           {{ -LocalProps.PolylinePoint2 }} , { LocalProps.PolylinePadding } ,
+                                                                           {{ -LocalProps.PolylinePoint2 }} , { LocalProps.PolylinePoint3 } ,
+                                                                           { LocalProps.PolylinePoint1 } , {{ -LocalProps.Derivation }}"
+                                                          hmi-bind:fill="{{ Converter.RGBA( LocalProps.ToolTipStylePart.BackColor ) }}"
+                                                          hmi-bind:stroke="{{ Converter.RGBA( LocalProps.ToolTipStylePart.BorderColor ) }}"
+                                                          hmi-bind:transform="rotate( {{ LocalProps.Rotate ? 180 : 0 }}, {{ LocalProps.Rotate ? LocalProps.PolylinePoint1 - 5 : 0 }}, {{ -LocalProps.Derivation }} )">
+                                                </polyline>
+                                                <polyline hmi:if="{{ not( ParamProps.ShiftAxes ) }}"
+                                                          hmi-bind:points="{{ -LocalProps.Derivation }} , { LocalProps.PolylinePoint1 } ,
+                                                                           { LocalProps.PolylinePoint3 } , {{ -LocalProps.PolylinePoint2 }} ,
+                                                                           { LocalProps.PolylineReducedPadding } , {{ -LocalProps.PolylinePoint2 }} ,
+                                                                           { LocalProps.PolylineReducedPadding } , { LocalProps.PolylinePoint2 } ,
+                                                                           { LocalProps.PolylinePoint3 } , { LocalProps.PolylinePoint2 } ,
+                                                                           {{ -LocalProps.Derivation }} , { LocalProps.PolylinePoint1 }"
+                                                          hmi-bind:fill="{{ Converter.RGBA( LocalProps.ToolTipStylePart.BackColor ) }}"
+                                                          hmi-bind:stroke="{{ Converter.RGBA( LocalProps.ToolTipStylePart.BorderColor ) }}"
+                                                          hmi-bind:transform="rotate( {{ LocalProps.Rotate ? 180 : 0 }}, {{ LocalProps.Rotate ? -LocalProps.Derivation - 1 : 0 }}, { LocalProps.PolylinePoint1 } )">
+                                                </polyline>
+                                                <text hmi:if="{ ParamProps.ShiftAxes }"
+                                                      hmi-bind:width="{ LocalProps.RulerTextWidth }"
+                                                      hmi-bind:height="{ LocalProps.TextHeight }"
+                                                      hmi-bind:x="{{ LocalProps.Rotate ? LocalProps.TextPadding : -LocalProps.TextPadding }}"
+                                                      hmi-bind:y="{{ LocalProps.Rotate ? -LocalProps.MidRulerTextWidth - LocalProps.Derivation - 10 : LocalProps.PaddedRulerTextWidth }}"
+                                                      hmi-bind:font-size="{ LocalProps.ToolTipStylePart.Font.Size }"
+                                                      hmi-bind:font-style="{ LocalProps.FontStyle }"
+                                                      hmi-bind:font-family="{ LocalProps.ToolTipStylePart.Font.Name }"
+                                                      hmi-bind:fill="{{ Converter.RGBA( LocalProps.ToolTipStylePart.ForeColor ) }}"
+                                                      hmi-bind:text-decoration="{ LocalProps.TextDecoration }"
+                                                      text-anchor="middle"
+                                                      stroke="none"
+                                                      dominant-baseline="central"
+                                                      hmi-bind:transform="rotate(-90, 0, {{ LocalProps.Rotate ? ( -LocalProps.MidRulerTextWidth ) - LocalProps.Derivation : LocalProps.PaddedRulerTextWidth }} )">
+                                                    <hmi:text hmi-bind:value="{ LocalProps.RulerText }" />
+                                                </text>
+                                                <text hmi:if="{{ not( ParamProps.ShiftAxes ) }}"
+                                                      hmi-bind:width="{ LocalProps.RulerTextWidth }"
+                                                      hmi-bind:height="{ LocalProps.TextHeight }"
+                                                      hmi-bind:x="{{ LocalProps.Rotate ? -LocalProps.Derivation - LocalProps.TextX : LocalProps.TextX - LocalProps.Derivation }}"
+                                                      hmi-bind:y="{{ LocalProps.TextHeight / 3 + 1 }}"
+                                                      hmi-bind:font-size="{ LocalProps.ToolTipStylePart.Font.Size }"
+                                                      hmi-bind:font-style="{ LocalProps.FontStyle }"
+                                                      hmi-bind:name="{ LocalProps.ToolTipStylePart.Font.Name }"
+                                                      hmi-bind:fill="{{ Converter.RGBA( LocalProps.ToolTipStylePart.ForeColor ) }}"
+                                                      hmi-bind:text-decoration="{ LocalProps.TextDecoration }"
+                                                      text-anchor="middle"
+                                                      stroke="none">
+                                                    <hmi:text hmi-bind:value="{ LocalProps.RulerText }" />
+                                                </text>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </hmi:template>
+                            </hmi:master-inline>
+                        </hmi-feature:rulerIndicator>
+                    </hmi-feature:rulers>
+
+                    <hmi-feature:graphs>
+                        <hmi-feature:graph>
+                            <hmi-feature:graphMarker/>
+                            <hmi-feature:tooltip>
+                                <hmi:master-include template="include.style.flat.tooltip.svghmi">
+                                </hmi:master-include>
+                            </hmi-feature:tooltip>
+                        </hmi-feature:graph>
+                    </hmi-feature:graphs>
+
+                </hmi-element:chart>
+            </g>
+
+            <g hmi-flex:maxHeight="{{ LocalProps.LegendMaxHeight + LocalProps.LegendFactor }}" hmi-flex:marginTop="{{ ParamProps.ShiftAxes ? LocalProps.MarginFactor : 0  }}" hmi-flex:marginLeft="{ LocalProps.StartX }" hmi:if="{ ParamProps.LegendVisibilty }">
+                <defs>
+                    <clipPath id="legendClipPath">
+                        <rect id="legendClipRect"
+                              hmi-bind:width="{ Layout.ActualWidth }"
+                              hmi-bind:height="{{ gt( Layout.ActualHeight, LocalProps.LegendMaxHeight ) ? LocalProps.LegendMaxHeight : Layout.ActualHeight }}"/>
+                    </clipPath>
+                </defs>
+
+                <g id="TIFID_TrendLegendsLabel" clip-path="url(#legendClipPath)" hmi-flex:maxWidth="{{ Layout.ActualWidth - LocalProps.LegendRightMargin - ( ParamProps.ShiftAxes ? LocalProps.AreaDependentSpacing : 0 ) }}" hmi-flex:minHeight="{{ ParamProps.ShiftAxes ? ( gt( LocalProps.LegendMaxHeight, 0 ) : round( LocalProps.LegendMaxHeight ) : 0 ) : 0 }}">
+                    <hmi:inline hmi-bind:forEach="{ HmiProps.Trends }"
+                               hmi-bind:y="{{ gt( Layout.ActualHeight , round( LocalProps.LegendMaxHeight )) ? -( LocalProps.VertScrollBarPosition ) : 0 }}"
+                               hmi-flex:direction="row"
+                               hmi-flex:wrap="true" hmi-flex:alignContent="start"  >
+                    <hmi:param name="Font"                     type="HmiFontPart"    hmi-bind:value="{ ParamProps.LegendFont }" />
+                    <hmi:param name="SelectedLegendBackColor"  type="HmiColor"       hmi-bind:value="{ HmiProps.Ruler.Color }" />
+                    <hmi:param name="SelectedLegendForeColor"  type="HmiColor"       hmi-bind:value="{ LocalProps.RulerIndicatorSystemPart.BackColor }" />
+                    <hmi:param name="LegendWidth"              type="number"         hmi-bind:value="{ LocalProps.LegendWidth }"/>
+                    <hmi:param name="OffsetBetweenText"        type="number"         hmi-bind:value="{ LocalProps.OffsetBetweenText }"/>
+                    <hmi:param name="LegendTextHeight"         type="number"         hmi-bind:value="{ LocalProps.LegendTextHeight }"/>
+                    <hmi:param name="SelectedTrendId"          type="number"         hmi-bind:value="{ HmiProps.SelectedTrend }"/>
+                    <hmi:param name="BackColor"                type="HmiColor"       hmi-bind:value="{ ParamProps.BackColor }"/>
+                    <hmi:param name="LegendTextHeightWithFont" type="number"         hmi-bind:value="{ LocalProps.LegendTextHeightWithFont }"/>
+                    <hmi:param name="LegendForeColor"          type="HmiColor"       hmi-bind:value="{ ParamProps.LegendForeColor }" />
+                    <hmi:param name="VisibleTrendCount"        type="number"         hmi-bind:value="{ HmiProps.VisibleTrendCount }" />
+
+                    <hmi:template>
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           xmlns:xlink="http://www.w3.org/1999/xlink"
+                           xmlns:hmi="http://svg.siemens.com/hmi/"
+                           xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                           xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+                           xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+                           xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+                           hmi:if="{ HmiProps.Visible }"
+                           hmi-flex:minHeight="{{ HmiProps.Visible ? ParamProps.LegendTextHeight + ParamProps.OffsetBetweenText : 0 }}"
+                           hmi-flex:width="{{ HmiProps.Visible ? ParamProps.LegendWidth : 0 }}">
+
+                        <hmi:self type="part:HmiTrendPart">
+                          <hmi:paramDef name="Font"                     type="HmiFontPart"  />
+                          <hmi:paramDef name="SelectedLegendBackColor"  type="HmiColor"     />
+                          <hmi:paramDef name="SelectedLegendForeColor"  type="HmiColor"     />
+                          <hmi:paramDef name="LegendWidth"              type="number"  />
+                          <hmi:paramDef name="OffsetBetweenText"        type="number"  />
+                          <hmi:paramDef name="LegendTextHeight"         type="number"  />
+                          <hmi:paramDef name="SelectedTrendId"          type="number" two-way="true" />
+                          <hmi:paramDef name="BackColor"                type="HmiColor" />
+                          <hmi:paramDef name="LegendTextHeightWithFont" type="number" />
+                          <hmi:paramDef name="LegendForeColor"          type="HmiColor" />
+                          <hmi:paramDef name="VisibleTrendCount"        type="number" />
+                        </hmi:self>
+
+                        <defs>
+                          <hmi:localDef name="InnerPadding"        type="number" value="10"/>
+                          <hmi:localDef name="LegendTextStartPos"  type="number" value="25"/>
+                          <hmi:localDef name="TrendDisplayText"    type="string" hmi-bind:value="{{ Converter.TextEllipsis( HmiProps.TrendDescription, ( ( ParamProps.LegendWidth - LocalProps.LegendTextStartPos ) - LocalProps.InnerPadding ) , ParamProps.Font )}}" />
+                          <hmi:localDef name="LegendTextMidPos"    type="number" hmi-bind:value="{{ ParamProps.LegendTextHeight / 2 }}"/>
+                          <hmi:localDef name="DashTypeSolid"       type="string" value="null" />
+                          <hmi:localDef name="DashTypeDash"        type="string" value="2,1" />
+                          <hmi:localDef name="DashTypeDot"         type="string" value="1,1" />
+                          <hmi:localDef name="DashTypeDashDot"     type="string" value="2,1,1,1" />
+                          <hmi:localDef name="DashTypeDashDotDot"  type="string" value="2,1,1,1,1,1" />
+                          <hmi:localDef name="DashArray"           type="string" hmi-bind:value="{{ HmiProps.DashType == 0 ? LocalProps.DashTypeSolid : HmiProps.DashType == 1 ? LocalProps.DashTypeDash : HmiProps.DashType == 2 ? LocalProps.DashTypeDot : HmiProps.DashType == 3 ? LocalProps.DashTypeDashDot : LocalProps.DashTypeDashDotDot }}" />
+
+                          <clipPath id="legendTextClipPath">
+                            <rect id="legendTextClip"
+                                  hmi-bind:width="{ Layout.ActualWidth }"
+                                  hmi-bind:height="{ ParamProps.LegendTextHeight }"/>
+                          </clipPath>
+
+                          <hmi:action id="onMouseEnter">
+                            <hmi:sendCommand name="SHOW_TOOLTIP"    type="string" hmi-bind:value="{ HmiProps.TrendDescription }" hmi-bind:condition="{{ gt( Converter.TextWidth( HmiProps.TrendDescription, ParamProps.Font ), ( Layout.ActualWidth - 50 ) ) }}"/>
+                          </hmi:action>
+
+                          <hmi:action id="onMouseLeave">
+                            <hmi:sendCommand name="HIDE_TOOLTIP" />
+                          </hmi:action>
+
+                          <hmi:action id="onSelectingTrend">
+                            <hmi:setProperty name="ParamProps.SelectedTrendId"   type="number"  hmi-bind:value="{ HmiProps.ElementID }"  />
+                          </hmi:action>
+
+                        </defs>
+                        <g hmi-event:down="url(#onSelectingTrend)" clip-path="url(#legendTextClipPath)">
+                          <rect hmi-bind:width="{ Layout.ActualWidth }"
+                                hmi-bind:height="{ ParamProps.LegendTextHeight }"
+                                hmi-bind:fill="{{ and( gt( ParamProps.VisibleTrendCount, 1 ), eq( HmiProps.ElementID, ParamProps.SelectedTrendId )) ? Converter.RGBA( ParamProps.SelectedLegendBackColor ) : Converter.RGBA( ParamProps.BackColor ) }}">
+                          </rect>
+                          <line hmi-bind:stroke="{{ Converter.RGBA( HmiProps.LineColor ) }}"
+                                hmi-bind:stroke-dasharray="{ LocalProps.DashArray }"
+                                stroke-width="2"
+                                hmi-bind:x1="{ LocalProps.InnerPadding }"
+                                hmi-bind:y1="{ LocalProps.LegendTextMidPos }"
+                                hmi-bind:x2="{{ LocalProps.InnerPadding + 20 }}"
+                                hmi-bind:y2="{ LocalProps.LegendTextMidPos }"/>
+
+                          <rect hmi:if="{{ HmiProps.MarkerType == HmiMarkerType.Square }}" hmi-bind:fill="{{ HmiProps.MarkerType == HmiMarkerType.None ? Converter.RGBA( HmiProps.LineColor ) : Converter.RGBA( HmiProps.MarkerColor ) }}" stroke-width="0" hmi-bind:x="{{ 5 + LocalProps.InnerPadding }}" hmi-bind:y="{{ LocalProps.LegendTextMidPos - 5 }}" width="10" height="10"/>
+
+                          <image hmi:if="{{ HmiProps.MarkerType == HmiMarkerType.Graphic }}" height="10" width="10" hmi-bind:x="{{ LocalProps.InnerPadding + 5 }}" hmi-bind:y="{{ LocalProps.LegendTextMidPos - 5 }}" hmi-bind--xlink:href="{ HmiProps.MarkerGraphic }"/>
+
+                          <circle hmi:if="{{ or( HmiProps.MarkerType == HmiMarkerType.None , or( HmiProps.MarkerType == HmiMarkerType.Point , HmiProps.MarkerType == HmiMarkerType.Circle ) ) }}" hmi-bind:stroke="{{ Converter.RGBA ( HmiProps.LineColor ) }}" hmi-bind:fill="{{ HmiProps.MarkerType == HmiMarkerType.None ? Converter.RGBA( HmiProps.LineColor ) : Converter.RGBA( HmiProps.MarkerColor ) }}" stroke-width="0" r="5" hmi-bind:cx="{{ LocalProps.InnerPadding + 10 }}" hmi-bind:cy="{ LocalProps.LegendTextMidPos }"/>
+
+                          <text hmi-event:mouseEnter="url(#onMouseEnter)"
+                                hmi-event:mouseLeave="url(#onMouseLeave)"
+                                hmi-bind:fill="{{ and( gt( ParamProps.VisibleTrendCount, 1 ), eq( HmiProps.ElementID, ParamProps.SelectedTrendId )) ? Converter.RGBA( ParamProps.SelectedLegendForeColor ) : Converter.RGBA( ParamProps.LegendForeColor ) }}"
+                                hmi-bind:font-style="{{ ParamProps.Font.Italic ? 'italic' : 'normal' }}"
+                                hmi-bind:font-weight="{ ParamProps.Font.Weight }"
+                                hmi-bind:font-family="{ ParamProps.Font.Name }"
+                                hmi-bind:text-decoration="{{ Converter.TextDecoration( ParamProps.Font ) }}"
+                                hmi-bind:font-size="{ ParamProps.Font.Size }"
+                                hmi-bind:y="{{ LocalProps.LegendTextMidPos +  ( ( ParamProps.LegendTextHeightWithFont - LocalProps.InnerPadding  ) / 2 ) }}"
+                                stroke-width="0"
+                                hmi-bind:x="{{ LocalProps.LegendTextStartPos + LocalProps.InnerPadding }}">
+                            <hmi:text hmi-bind:value="{ LocalProps.TrendDisplayText }" />
+                          </text>
+                        </g>
+                      </svg>
+                    </hmi:template>
+                  </hmi:inline>
+                </g>
+                <g hmi:if="{{ gt( Layout.ActualHeight , round( LocalProps.LegendMaxHeight) ) }}">
+                    <hmi:include template="include.style.flat.scrollbarstandalone.svghmi"
+                                 hmi-bind:width="{ Layout.ActualWidth }"
+                                 hmi-bind:height="{ Layout.ActualHeight }">
+
+                        <hmi:param name="BackColor"           type="HmiColor"         hmi-bind:value="{ LocalProps.ScrollBarPart.BackColor }" />
+                        <hmi:param name="ThumbBackColor"      type="HmiColor"         hmi-bind:value="{ LocalProps.ScrollBarPart.ThumbBackColor }" />
+                        <hmi:param name="Orientation"         type="HmiOrientation"   hmi-bind:value="{{ HmiOrientation.Vertical }}" />
+                        <hmi:param name="Width"               type="number"           hmi-bind:value="{ LocalProps.ScrollBarPart.Thickness }" />
+                        <hmi:param name="Height"              type="number"           hmi-bind:value="{ LocalProps.LegendMaxHeight }" />
+                        <hmi:param name="BeginValue"          type="number"           hmi-bind:value="{ LocalProps.ScrollBarPart.BeginValue }" />
+                        <!--Formula to calculate number of rows legends could have been extended considering the visible trend count and Actual Width-->
+                        <hmi:param name="EndValue"            type="number"           hmi-bind:value="{{ gt( Layout.ActualWidth, LocalProps.LegendWidth ) ? (ceil( HmiProps.VisibleTrendCount / floor( (Layout.ActualWidth - LocalProps.LegendRightMargin ) / LocalProps.LegendWidth ))) * ( LocalProps.LegendTextHeight + LocalProps.OffsetBetweenText ) :  HmiProps.VisibleTrendCount * ( LocalProps.LegendTextHeight + LocalProps.OffsetBetweenText ) }}" />
+                        <hmi:param name="CurrentValue"        type="number"           hmi-bind:value="{ LocalProps.VertScrollBarPosition }" />
+                        <hmi:param name="VisibleValueRange"   type="number"           hmi-bind:value="{ LocalProps.LegendMaxHeight }" />
+                        <hmi:param name="Thickness"           type="number"           hmi-bind:value="{ LocalProps.ScrollBarPart.Thickness }" />
+                        <hmi:param name="SmallStepValueRange" type="number"           hmi-bind:value="{{ gt( Layout.ActualWidth, LocalProps.LegendWidth ) ? ceil( HmiProps.VisibleTrendCount / floor( (Layout.ActualWidth - LocalProps.LegendRightMargin ) / LocalProps.LegendWidth )) :  HmiProps.VisibleTrendCount }}" />
+                        <hmi:param name="BorderWidth"         type="number"           hmi-bind:value= "{ LocalProps.ScrollBarPart.BorderWidth }" />
+                        <hmi:param name="OffsetX"             type="number"           hmi-bind:value="{{ Layout.ActualWidth - LocalProps.ScrollBarPart.Thickness - ( ParamProps.ShiftAxes ? LocalProps.AreaDependentSpacing : LocalProps.MarginFactor ) }}" />
+                        <hmi:param name="OffsetY"             type="number"           value="0" />
+                    </hmi:include>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

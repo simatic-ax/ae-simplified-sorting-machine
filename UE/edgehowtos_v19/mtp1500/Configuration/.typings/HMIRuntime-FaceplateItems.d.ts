@@ -1,0 +1,1 @@
+type FaceplateItemType<T>=HmiScreenItemBase;

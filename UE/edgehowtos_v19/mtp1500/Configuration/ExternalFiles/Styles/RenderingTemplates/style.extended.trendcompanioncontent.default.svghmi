@@ -1,0 +1,212 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2021. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     preserveAspectRatio="none"
+     id="custom_TrendCompanionContent"
+     data-tif-type="WSI:SvgGrid" >
+
+    <hmi:self type="part:HmiDataGridViewPart" displayName="Extended TrendCompanionContent" name="style.extended.trendcompanioncontent">
+        <hmi:paramDef name="AlwaysShowRecent"   type="boolean"  />
+        <hmi:paramDef name="FocusColor"         type="string"   />
+        <hmi:paramDef name="ShowFocusVisual"    type="boolean"  />
+    </hmi:self>
+    <defs>
+        <hmi:localDef name="BorderWidth"        type="number"  value="1" />
+        <hmi:localDef name="ShowFocus"          type="boolean" hmi-bind:value="{{ and( ParamProps.ShowFocusVisual, SysProps.HasFocus ) }}" />
+    </defs>
+
+    <g id="Background">
+
+        <hmi-element:table hmi-bind:auto-scroll="{ParamProps.AlwaysShowRecent}" hmi-bind:config="{ HmiProps }" hmi-bind:height="{Layout.ActualHeight}" hmi-bind:width="{Layout.ActualWidth}" start-x="0" start-y="0" hmi-bind:horizontal-scrollbar-visibility="{HmiProps.HorizontalScrollBarVisibility}"
+                           hmi-bind:vertical-scrollbar-visibility="{ HmiProps.VerticalScrollBarVisibility }">
+
+            <!--Column Header-->
+            <hmi-feature:header>
+                <hmi:master-inline>
+                    <hmi:param name="Padding"   type="HmiPaddingPart"   hmi-bind:value="{ HmiProps.CellPadding }" />
+
+                    <hmi:template>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                          xmlns:hmi="http://svg.siemens.com/hmi/"
+                          xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                          height="10" width="10" id="ColumnHeaderSVG" >
+
+                          <hmi:self type="system:HmiHeaderCellSystemPart" displayName="ColumnHeader" name="columnheader" version="1.0.0" performanceClass="s">
+                              <hmi:paramDef name="Padding"          type="HmiPaddingPart" />
+                          </hmi:self>
+
+                          <defs>
+                              <hmi:localDef name="PaddingLeftRight"   type="number"     hmi-bind:value="{{ ( ParamProps.Padding.Left + ParamProps.Padding.Right ) }}" />
+                              <hmi:localDef name="ReducedWidth"       type="number"     hmi-bind:value="{{ ( HmiProps.Width - 30 ) }}"                                />
+                              <hmi:localDef name="ReducedHeight"      type="number"     hmi-bind:value="{{ ( HmiProps.Height / 2 ) }}"                                />
+                          </defs>
+
+                          <g id="TIFID_ColumnHeaderGroup" opacity="1">
+                              <rect id="ColumnHeaderRect"
+                                    x="0"
+                                    y="0"
+                                    hmi-bind:width="{ HmiProps.Width }"
+                                    hmi-bind:height="{ HmiProps.Height }"
+                                    hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}"/>
+                              <hmi:include template="include.style.extended.content.svghmi" hmi-bind:for="{ HmiProps.Content }"
+                                           hmi-bind:x="{ ParamProps.Padding.Left }"
+                                           hmi-bind:y="{ ParamProps.Padding.Top }"
+                                           hmi-bind:width="{{  gt( HmiProps.SortDirection, 0 ) ? (lt(( HmiProps.Width - LocalProps.PaddingLeftRight - 40 ), 0 ) ? 0 : ( HmiProps.Width - LocalProps.PaddingLeftRight - 40 ) ) : HmiProps.Width - LocalProps.PaddingLeftRight }}"
+                                           hmi-bind:height="{{ HmiProps.Height - ParamProps.Padding.Bottom }}">
+                                  <hmi:param name="Text"            type="string"       hmi-bind:value="{{ Converter.IsNumber(HmiProps.Text) ?
+                                                                                                            HmiProps.Text :
+                                                                                                            ( HmiProps.Text ?
+                                                                                                              HmiProps.Text :
+                                                                                                              HmiProps.Name ) }}"   />
+                                  <hmi:param name="Graphic"         type="HmiGraphic"   hmi-bind:value="{ HmiProps.Graphic }"       />
+                                  <hmi:param name="Font"            type="HmiFontPart"  hmi-bind:value="{ HmiProps.Font }"          />
+                                  <hmi:param name="TextColor"       type="HmiColor"     hmi-bind:value="{ HmiProps.ForeColor }"     />
+                                  <hmi:param name="GraphicWidth"    type="number"       hmi-bind:value="{ HmiProps.GraphicWidth }"  />
+                                  <hmi:param name="GraphicHeight"   type="number"       hmi-bind:value="{ HmiProps.GraphicHeight }" />
+                              </hmi:include>
+                              <svg hmi-bind:x="{{ gt( LocalProps.ReducedWidth, 0 ) ? ( LocalProps.ReducedWidth ) : HmiProps.Width }}" hmi-bind:y="{ LocalProps.ReducedHeight }" hmi:if="{{ and( and( gt( HmiProps.SortOrder, 0 ), eq( HmiProps.SortDirection, 1 )), eq( HmiProps.AllowSort,true )) }}">
+                                  <path d="M 5 0 L0 10 L 10 10 z"></path>
+                                  <text   x="11" y="10" font-size="14" font-style="normal" font-weight="400" font-family="Siemens Sans"  >
+                                      <hmi:text hmi-bind:value="{ HmiProps.SortOrder }"/>
+                                  </text>
+                              </svg>
+                              <svg hmi-bind:x="{{ gt( LocalProps.ReducedWidth, 0) ? ( LocalProps.ReducedWidth ) : HmiProps.Width }}" hmi-bind:y="{ LocalProps.ReducedHeight }" hmi:if="{{ and( and( gt( HmiProps.SortOrder, 0 ), eq( HmiProps.SortDirection, 2 )), eq( HmiProps.AllowSort,true )) }}">
+                                  <path d="M 0 0 L 5 10 L 10 0 z"></path>
+                                  <text   x="11" y="10" font-size="14" font-style="normal" font-weight="400" font-family="Siemens Sans"  >
+                                      <hmi:text hmi-bind:value="{ HmiProps.SortOrder }"/>
+                                  </text>
+                              </svg>
+
+                          </g>
+                        </svg>
+                    </hmi:template>
+                </hmi:master-inline>
+
+            </hmi-feature:header>
+
+            <!--Row Headers-->
+            <hmi-feature:recordHeader >
+                <hmi:master-inline >
+                    <hmi:param name="Padding"   type="HmiPaddingPart"   hmi-bind:value="{ HmiProps.CellPadding }" />
+                    <hmi:template>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            xmlns:hmi="http://svg.siemens.com/hmi/"
+                            xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                            xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"
+                            height="10" width="10" >
+                            <hmi:self type="system:HmiHeaderCellSystemPart" displayName="RowHeader" name="rowheader" version="1.0.0" performanceClass="s">
+                                <hmi:data type="header-view"></hmi:data>
+                                <hmi:paramDef name="Padding"      type="HmiPaddingPart" />
+                            </hmi:self>
+
+                            <g id="TIFID_RowHeaderGroup" opacity="1">
+                                <rect id="RowHeaderRect"
+                                      x="0"
+                                      y="0"
+                                      hmi-bind:width="{ HmiProps.Width }"
+                                      hmi-bind:height="{ HmiProps.Height }"
+                                      hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}"
+                                      />
+                                <hmi:include template="include.style.extended.text.svghmi"
+                                           hmi-bind:x="{ ParamProps.Padding.Left }"
+                                           hmi-bind:y="{ ParamProps.Padding.Top }"
+                                           hmi-bind:width="{{ HmiProps.Width - ( ParamProps.Padding.Right + ParamProps.Padding.Left ) }}"
+                                           hmi-bind:height="{{ HmiProps.Height - ParamProps.Padding.Bottom }}">
+                                    <hmi:param name="Text"                    type="string"                   hmi-data-bind:value="{ Content.Index }"                       />
+                                    <hmi:param name="Font"                    type="HmiFontPart"              hmi-bind:value="{ HmiProps.Font }"                            />
+                                    <hmi:param name="TextColor"               type="HmiColor"                 hmi-bind:value="{ HmiProps.ForeColor }"                       />
+                                    <hmi:param name="HorizontalTextAlignment" type="HmiHorizontalAlignment"   hmi-bind:value="{ HmiProps.Content.HorizontalTextAlignment }" />
+                                    <hmi:param name="VerticalTextAlignment"   type="HmiVerticalAlignment"     value="1"                                                     />
+
+
+                              </hmi:include>
+                            </g>
+                        </svg>
+                    </hmi:template>
+                </hmi:master-inline>
+            </hmi-feature:recordHeader>
+
+            <hmi-feature:dataTemplates>
+                <hmi:master-include template="include.style.extended.datacell.svghmi">
+                    <hmi:param name="Padding"   type="HmiPaddingPart"   hmi-bind:value="{ HmiProps.CellPadding }" />
+                </hmi:master-include>
+            </hmi-feature:dataTemplates>
+
+            <hmi-feature:rowBackground >
+                <hmi:master-include template="include.style.extended.rowbackground.svghmi">
+                </hmi:master-include>
+            </hmi-feature:rowBackground>
+
+            <hmi-feature:columnBackground >
+                <hmi:master-include template="include.style.extended.columnbackground.svghmi">
+                </hmi:master-include>
+            </hmi-feature:columnBackground>
+
+            <!--Grid lines-->
+            <hmi-feature:gridlines>
+                <hmi-feature:gridline
+                    position-filter="begin header end" expansion="header inner"
+                    hmi-bind:stroke-width="{ HmiProps.GridLineWidth }"
+                    hmi-bind:stroke="{{ Converter.RGBA(  HmiProps.HeaderSettings.HeaderGridLineColor ) }}"
+                    orientation="row column">
+                </hmi-feature:gridline>
+                <hmi-feature:gridline
+                    position-filter="inner" expansion="header"
+                    hmi-bind:stroke-width="{ HmiProps.GridLineWidth }"
+                    hmi-bind:stroke="{{ Converter.RGBA(  HmiProps.HeaderSettings.HeaderGridLineColor ) }}"
+                    orientation="row column">
+                </hmi-feature:gridline>
+                <hmi-feature:gridline
+                    position-filter="inner" expansion="inner"
+                    hmi-bind:stroke-width="{ HmiProps.GridLineWidth }"
+                    hmi-bind:stroke="{{ HmiProps.GridLineVisibility == 0 ? 'rgba(0,0,0,0)' : Converter.RGBA(  HmiProps.GridLineColor ) }}"
+                    hmi-bind:orientation="{{ HmiProps.GridLineVisibility == 3 ? 'row column' : ( HmiProps.GridLineVisibility == 2 ? 'column':'row') }}">
+                </hmi-feature:gridline>
+            </hmi-feature:gridlines>
+
+            <hmi-feature:selection>
+                <hmi:master-inline >
+                    <hmi:template>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            xmlns:hmi="http://svg.siemens.com/hmi/"
+                            xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                            height="10" width="10" >
+                            <hmi:self type="system:HmiSelectionSystemPart" displayName="SelectionBorder" name="selectionborder" version="1.0.0" performanceClass="s">
+                            </hmi:self>
+
+                            <g id="TIFID_SelectionRect" opacity="1">
+                                <rect id="ItemBGRect3"
+                                    hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+                                    hmi-bind:y="{{ HmiProps.BorderWidth / 2 }}"
+                                    hmi-bind:width="{ HmiProps.Width}"
+                                    hmi-bind:height="{ HmiProps.Height }"
+                                    fill="none"
+                                    hmi-bind:stroke-width="{ HmiProps.BorderWidth }"
+                                    hmi-bind:stroke="{{Converter.RGBA(HmiProps.BorderColor)}}"/>
+                            </g>
+                        </svg>
+                    </hmi:template>
+              </hmi:master-inline>
+            </hmi-feature:selection>
+        </hmi-element:table>
+
+        <rect id="ItemBGRect"
+            hmi-bind:x="{{ LocalProps.BorderWidth / 2 }}"
+            hmi-bind:y="{{ LocalProps.BorderWidth / 2 }}"
+            hmi-bind:width="{{ Layout.ActualWidth - LocalProps.BorderWidth }}"
+            hmi-bind:height="{{ Layout.ActualHeight - LocalProps.BorderWidth }}"
+            fill="none"
+            hmi-bind:stroke-width="{{ LocalProps.ShowFocus ? 4 : 0 }}"
+            hmi-bind:stroke="{{ LocalProps.ShowFocus ? ParamProps.FocusColor : 'black' }}"/>
+    </g>
+</svg>

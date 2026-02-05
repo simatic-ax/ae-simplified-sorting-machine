@@ -1,0 +1,2350 @@
+#Version: 2.0
+
+TextLibraries:
+  HmiScreenItemsTextLibrary:
+    Type: Text
+    Languages:
+    - en-US
+    DefaultLanguage: en-US
+    Entries:
+      TextEntry_1:
+        Text:
+        - Text
+      TextEntry_2:
+        Text:
+        - Box1
+      TextEntry_3:
+        Text:
+        - Text
+      TextEntry_9:
+        Text:
+        - Text
+      TextEntry_10:
+        Text:
+        - Last scanned Box
+      TextEntry_11:
+        Text:
+        - isFaulty
+      TextEntry_12:
+        Text:
+        - ID
+      TextEntry_13:
+        Text:
+        - Color
+      TextEntry_14:
+        Text:
+        - isFaulty
+      TextEntry_15:
+        Text:
+        - PosLeft
+      TextEntry_16:
+        Text:
+        - BaseColor
+      TextEntry_17:
+        Text:
+        - Crane Control
+      TextEntry_18:
+        Text:
+        - Stop
+      TextEntry_19:
+        Text:
+        - CranePos
+      TextEntry_20:
+        Text:
+        - Up
+      TextEntry_21:
+        Text:
+        - Down
+      TextEntry_22:
+        Text:
+        - Stop
+      TextEntry_23:
+        Text:
+        - Scanstation
+      TextEntry_24:
+        Text:
+        - Package present
+      TextEntry_25:
+        Text:
+        - Color
+      TextEntry_26:
+        Text:
+        - Error
+      TextEntry_27:
+        Text:
+        - Conveyor1 - Input
+      TextEntry_28:
+        Text:
+        - Status
+      TextEntry_29:
+        Text:
+        - Error
+      TextEntry_30:
+        Text:
+        - Forward
+      TextEntry_31:
+        Text:
+        - Backward
+      TextEntry_32:
+        Text:
+        - Stop
+      TextEntry_33:
+        Text:
+        - Automatic
+      TextEntry_34:
+        Text:
+        - Manual
+      TextEntry_35:
+        Text:
+        - Conveyor2 - Output Up
+      TextEntry_36:
+        Text:
+        - Conveyor3 - Output Down
+      TextEntry_37:
+        Text:
+        - Acknowledge
+      TextEntry_38:
+        Text:
+        - Box control
+      TextEntry_39:
+        Text:
+        - Text
+      TextEntry_40:
+        Text:
+        - Text
+      TextEntry_41:
+        Text:
+        - Text
+      TextEntry_42:
+        Text:
+        - Add new random Box
+      TextEntry_43:
+        Text:
+        - Add new Box X
+      TextEntry_44:
+        Text:
+        - Add new Box Y
+      TextEntry_45:
+        Text:
+        - Status
+      TextEntry_46:
+        Text:
+        - Text
+      TextEntry_47:
+        Text:
+        - Text
+      TextEntry_48:
+        Text:
+        - Text
+      TextEntry_49:
+        Text:
+        - Simulation Control
+      TextEntry_50:
+        Text:
+        - Text
+      TextEntry_51:
+        Text:
+        - Text
+      TextEntry_52:
+        Text:
+        - Text
+      TextEntry_53:
+        Text:
+        - Neuer Text
+  GlobalTextLibrary:
+    DefaultLanguage: en-US
+    Languages:
+    - en-US
+    Type: Text
+    Entries:
+      Entity_1:
+        Text:
+        - 'Bottle is not under the filler. Cannot proceed with filling process. SR affected: '
+      Entity_2:
+        Text:
+        - Bottle damaged. Please change the bottle under the filler and reset to proceed.
+      Entity_3:
+        Text:
+        - Bottle missing. Please place the bottle under the filler and reset to proceed.
+      Entity_4:
+        Text:
+        - Wrong bottle type. Please change the bottle and reset to proceed.
+      Entity_5:
+        Text:
+        - Conveyor does not work properly - detected wrong speed which may affect bottle positions. Please check the PLC program.
+      Entity_6:
+        Text:
+        - Filler does not work properly - detected voltage drops. Please check the electrical connection of the pump.
+      Entity_7:
+        Text:
+        - Bottle cannot be filled - valve can be blocked. Please check the valve.
+      Entity_8:
+        Text:
+        - Product not supplied to the filler. Please check whether the main pump works correctly.
+      Entity_9:
+        Text:
+        - Possible PLC error. Please check the Diagnostic tab of the HMI or open PLC webserver to check the diag. buffer.
+      Entity_10:
+        Text:
+        - Possible PLC alarm. Please check the Messages tab of the HMI.
+      Entity_11:
+        Text:
+        - No further information. Please contact your machine supplier.
+      Entity_12:
+        Text:
+        - Text fields
+      Entity_13:
+        Text:
+        - Standard
+      Entity_14:
+        Text:
+        - '"Standard-Style"'
+      Entity_15:
+        Text:
+        - '"Regular (center)"'
+      Entity_16:
+        Text:
+        - '"Regular (right)"'
+      Entity_17:
+        Text:
+        - Titlebar, Statusbar & Pop-ups
+      Entity_18:
+        Text:
+        - '"Headline" '
+      Entity_19:
+        Text:
+        - '"Headline (Center)" '
+      Entity_20:
+        Text:
+        - '"SubHeadline" '
+      Entity_21:
+        Text:
+        - '"TitleBar"'
+      Entity_22:
+        Text:
+        - '"Navigation"'
+      Entity_23:
+        Text:
+        - '"SubNavigation_Active" '
+      Entity_24:
+        Text:
+        - '"SubNavigation_Inactive" '
+      Entity_25:
+        Text:
+        - '"StatusBar_Title" '
+      Entity_26:
+        Text:
+        - '"StatusBar_Text" '
+      Entity_27:
+        Text:
+        - Notifications
+      Entity_28:
+        Text:
+        - '"Notification_OK"'
+      Entity_29:
+        Text:
+        - '"Notification_Warning" '
+      Entity_30:
+        Text:
+        - '"Notification_error"'
+      Entity_31:
+        Text:
+        - Others
+      Entity_32:
+        Text:
+        - '"OptionPanel_Title"'
+      Entity_33:
+        Text:
+        - '"ContentBoard_Title" '
+      Entity_34:
+        Text:
+        - Parameter Name
+      Entity_35:
+        Text:
+        - '"Default"'
+      Entity_36:
+        Text:
+        - Buttons
+      Entity_37:
+        Text:
+        - '"Cancel_Abort_Close"'
+      Entity_38:
+        Text:
+        - '"Execute_Action"'
+      Entity_39:
+        Text:
+        - '"Button“'
+      Entity_40:
+        Text:
+        - '"SubNavigation_Inactive" '
+      Entity_41:
+        Text:
+        - '"SubNavigation_Active" '
+      Entity_42:
+        Text:
+        - '"Delete"'
+      Entity_43:
+        Text:
+        - Tab inactive
+      Entity_44:
+        Text:
+        - Tab active
+      Entity_45:
+        Text:
+        - Text
+      Entity_46:
+        Text:
+        - Text
+      Entity_47:
+        Text:
+        - Text
+      Entity_48:
+        Text:
+        - Text
+      Entity_49:
+        Text:
+        - Text
+      Entity_50:
+        Text:
+        - Text
+      Entity_51:
+        Text:
+        - Text
+      Entity_52:
+        Text:
+        - Text
+      Entity_53:
+        Text:
+        - Text
+      Entity_54:
+        Text:
+        - Text
+      Entity_55:
+        Text:
+        - Text
+      Entity_56:
+        Text:
+        - Text
+      Entity_57:
+        Text:
+        - Text
+      Entity_58:
+        Text:
+        - Text
+      Entity_59:
+        Text:
+        - Text
+      Entity_60:
+        Text:
+        - Text
+      Entity_61:
+        Text:
+        - Text
+      Entity_62:
+        Text:
+        - Text
+      Entity_63:
+        Text:
+        - Text
+      Entity_64:
+        Text:
+        - Text
+      Entity_65:
+        Text:
+        - Text
+      Entity_66:
+        Text:
+        - IO field
+      Entity_67:
+        Text:
+        - '"Standard-Style"'
+      Entity_68:
+        Text:
+        - '"Regular (center)"'
+      Entity_69:
+        Text:
+        - '"Regular (right)"'
+      Entity_70:
+        Text:
+        - '"Regular_Out (left)" '
+      Entity_71:
+        Text:
+        - '"Regular_Out (center)" '
+      Entity_72:
+        Text:
+        - '"Regular_Out (right)"'
+      Entity_73:
+        Text:
+        - '"StatusBar"'
+      Entity_74:
+        Text:
+        - '"ContentBoard_Output"'
+      Entity_75:
+        Text:
+        - '"ContentBoard_Output (center)"'
+      Entity_76:
+        Text:
+        - '"ContentBoard_Large_Output"'
+      Entity_77:
+        Text:
+        - Further objects
+      Entity_78:
+        Text:
+        - KPI Name
+      Entity_79:
+        Text:
+        - KPI Name
+      Entity_80:
+        Text:
+        - A
+      Entity_81:
+        Text:
+        - Bar
+      Entity_82:
+        Text:
+        - Gauge control
+      Entity_83:
+        Text:
+        - Status
+      Entity_84:
+        Text:
+        - Status
+      Entity_85:
+        Text:
+        - Diagnostics overview
+      Entity_86:
+        Text:
+        - Diagnostics buffer - view
+      Entity_87:
+        Text:
+        - Application cycle time
+      Entity_88:
+        Text:
+        - Surface area
+      Entity_89:
+        Text:
+        - Tank settings
+      Entity_90:
+        Text:
+        - Height
+      Entity_91:
+        Text:
+        - Incoming volume flow
+      Entity_92:
+        Text:
+        - Max level
+      Entity_93:
+        Text:
+        - Room temperature
+      Entity_94:
+        Text:
+        - Max temperature
+      Entity_95:
+        Text:
+        - Density of liquid
+      Entity_96:
+        Text:
+        - Max level
+      Entity_97:
+        Text:
+        - Bottle settings
+      Entity_98:
+        Text:
+        - Surface area of the mouth
+      Entity_99:
+        Text:
+        - m²
+      Entity_100:
+        Text:
+        - m
+      Entity_101:
+        Text:
+        - l/min
+      Entity_102:
+        Text:
+        - m³
+      Entity_103:
+        Text:
+        - °C
+      Entity_104:
+        Text:
+        - °C
+      Entity_105:
+        Text:
+        - kg/m³
+      Entity_106:
+        Text:
+        - m²
+      Entity_107:
+        Text:
+        - m²
+      Entity_108:
+        Text:
+        - m³
+      Entity_109:
+        Text:
+        - '  s'
+      Entity_110:
+        Text:
+        - Application
+      Entity_111:
+        Text:
+        - Messages
+      Entity_112:
+        Text:
+        - Diagnostics
+      Entity_113:
+        Text:
+        - Settings
+      Entity_114:
+        Text:
+        - Actual pressure
+      Entity_115:
+        Text:
+        - bar
+      Entity_116:
+        Text:
+        - Actual temperature
+      Entity_117:
+        Text:
+        - deg. C
+      Entity_118:
+        Text:
+        - Tank level
+      Entity_119:
+        Text:
+        - '  litres'
+      Entity_120:
+        Text:
+        - Room temp.
+      Entity_121:
+        Text:
+        - Max temp.
+      Entity_122:
+        Text:
+        - Idle
+      Entity_123:
+        Text:
+        - Application control
+      Entity_124:
+        Text:
+        - Up
+      Entity_125:
+        Text:
+        - Down
+      Entity_126:
+        Text:
+        - Reset
+      Entity_127:
+        Text:
+        - |-
+          Simulate
+          error
+      Entity_128:
+        Text:
+        - |-
+          Next
+          bottle
+      Entity_129:
+        Text:
+        - Storage
+      Entity_130:
+        Text:
+        - Mode
+      Entity_131:
+        Text:
+        - Product ID
+      Entity_132:
+        Text:
+        - Batch ID
+      Entity_133:
+        Text:
+        - Total Packages Stored
+      Entity_134:
+        Text:
+        - Green Packages Stored
+      Entity_135:
+        Text:
+        - Yellow Packages Stored
+      Entity_136:
+        Text:
+        - Product name
+      Entity_137:
+        Text:
+        - Sparkling Water
+      Entity_138:
+        Text:
+        - Heating tank
+      Entity_139:
+        Text:
+        - Wh
+      Entity_140:
+        Text:
+        - Filling tank
+      Entity_141:
+        Text:
+        - Wh
+      Entity_142:
+        Text:
+        - Filling bottle
+      Entity_143:
+        Text:
+        - Wh
+      Entity_144:
+        Text:
+        - Energy and media consumption
+      Entity_145:
+        Text:
+        - kWh
+      Entity_146:
+        Text:
+        - kWh
+      Entity_147:
+        Text:
+        - kWh
+      Entity_148:
+        Text:
+        - Gas (tank heating)
+      Entity_149:
+        Text:
+        - Wh
+      Entity_150:
+        Text:
+        - Water (tank filling)
+      Entity_151:
+        Text:
+        - litres
+      Entity_152:
+        Text:
+        - Text box
+      Entity_153:
+        Text:
+        - Product serial number
+      Entity_154:
+        Text:
+        - Bottle filling volume
+      Entity_155:
+        Text:
+        - litres
+      Entity_156:
+        Text:
+        - Notification test
+      Entity_157:
+        Text:
+        - Reset All
+      Entity_158:
+        Text:
+        - 'SIMATIC AX  |  simplified sorting machine '
+      Entity_159:
+        Text:
+        - Machine status
+      Entity_160:
+        Text:
+        - 7000
+      Entity_161:
+        Text:
+        - Machine state
+      Entity_162:
+        Text:
+        - Operator
+      Entity_163:
+        Text:
+        - Date and Time
+      Entity_164:
+        Text:
+        - Undefined
+      Entity_165:
+        Text:
+        - Application
+      Entity_166:
+        Text:
+        - Messages
+      Entity_167:
+        Text:
+        - Settings
+      Entity_168:
+        Text:
+        - Diagnostics
+      Entity_169:
+        Text:
+        - Application settings
+      Entity_170:
+        Text:
+        - Stop Runtime
+      Entity_171:
+        Text:
+        - Stop Runtime
+      Entity_172:
+        Text:
+        - CANCEL
+      Entity_173:
+        Text:
+        - With this action the server session is stopped. Do you really want to continue?
+      Entity_174:
+        Text:
+        - Stop Runtime
+      Entity_175:
+        Text:
+        - Overview
+      Entity_176:
+        Text:
+        - Module 1
+      Entity_177:
+        Text:
+        - Module 2
+      Entity_178:
+        Text:
+        - Module 3
+      Entity_179:
+        Text:
+        - Module 4
+      Entity_180:
+        Text:
+        - Module 5
+      Entity_181:
+        Text:
+        - HOW TO USE NOTIFICATIONS
+      Entity_182:
+        Text:
+        - |-
+          You can use the function panel to dynamically enable or disable 
+          a specific functionality or module of your machine.
+          Pressing the button should always invert the state before (only two states).
+          The different state should be shown with a different color.
+          (Press Function 1 to see an example)
+      Entity_183:
+        Text:
+        - Function 1
+      Entity_184:
+        Text:
+        - Function 2
+      Entity_185:
+        Text:
+        - Function 3
+      Entity_186:
+        Text:
+        - Function 4
+      Entity_187:
+        Text:
+        - Function 1
+      Entity_188:
+        Text:
+        - Function 2
+      Entity_189:
+        Text:
+        - Function 3
+      Entity_190:
+        Text:
+        - Function 4
+      Entity_191:
+        Text:
+        - Function 8
+      Entity_192:
+        Text:
+        - Function 7
+      Entity_193:
+        Text:
+        - Function 6
+      Entity_194:
+        Text:
+        - Function 5
+      Entity_195:
+        Text:
+        - Function 9
+      Entity_196:
+        Text:
+        - Function 11
+      Entity_197:
+        Text:
+        - Function 10
+      Entity_198:
+        Text:
+        - Function 12
+      Entity_199:
+        Text:
+        - Function 13
+      Entity_200:
+        Text:
+        - Function 14
+      Entity_201:
+        Text:
+        - Function 15
+      Entity_202:
+        Text:
+        - Function 16
+      Entity_203:
+        Text:
+        - Function 1
+      Entity_204:
+        Text:
+        - Function 2
+      Entity_205:
+        Text:
+        - Function 3
+      Entity_206:
+        Text:
+        - Function 4
+      Entity_207:
+        Text:
+        - Function 1
+      Entity_208:
+        Text:
+        - Function 2
+      Entity_209:
+        Text:
+        - Function 3
+      Entity_210:
+        Text:
+        - Function 4
+      Entity_211:
+        Text:
+        - Function 8
+      Entity_212:
+        Text:
+        - Function 7
+      Entity_213:
+        Text:
+        - Function 6
+      Entity_214:
+        Text:
+        - Function 5
+      Entity_215:
+        Text:
+        - Function 1
+      Entity_216:
+        Text:
+        - Function 2
+      Entity_217:
+        Text:
+        - Function 3
+      Entity_218:
+        Text:
+        - Function 4
+      Entity_219:
+        Text:
+        - Function 8
+      Entity_220:
+        Text:
+        - Function 7
+      Entity_221:
+        Text:
+        - Function 6
+      Entity_222:
+        Text:
+        - Function 5
+      Entity_223:
+        Text:
+        - HOW TO USE NOTIFICATIONS
+      Entity_224:
+        Text:
+        - |-
+          A notification should only appear along the lower edge of the display.
+          If you use the second level navigation, the notification should overlay the navigation elements 
+          as shown below.
+          If you do not use the second level navigation, the notification will appear along the full lower edge.
+      Entity_225:
+        Text:
+        - A short Notification is Best
+      Entity_226:
+        Text:
+        - OK
+      Entity_227:
+        Text:
+        - A short Notification is Best
+      Entity_228:
+        Text:
+        - OK
+      Entity_229:
+        Text:
+        - A short Notification is Best
+      Entity_230:
+        Text:
+        - OK
+      Entity_231:
+        Text:
+        - A short Notification is Best
+      Entity_232:
+        Text:
+        - OK
+      Entity_233:
+        Text:
+        - KPI Name
+      Entity_234:
+        Text:
+        - KPI Name
+      Entity_235:
+        Text:
+        - Event number
+      Entity_236:
+        Text:
+        - Date & Time
+      Entity_237:
+        Text:
+        - Event text
+      Entity_238:
+        Text:
+        - Heating
+      Entity_239:
+        Text:
+        - Idle
+      Entity_240:
+        Text:
+        - Bottle in wrong position
+      Entity_241:
+        Text:
+        - Cracked bottle detected
+      Entity_242:
+        Text:
+        - No bottle on the conveyor
+      Entity_243:
+        Text:
+        - Wrong bottle detected
+      Entity_244:
+        Text:
+        - Conveyor malfunction
+      Entity_245:
+        Text:
+        - Filler malfunction
+      Entity_246:
+        Text:
+        - Valve blocked
+      Entity_247:
+        Text:
+        - No flow in main pipe
+      Entity_248:
+        Text:
+        - Generic error - check the PLC buffer
+      Entity_249:
+        Text:
+        - Generic error - check the alarm buffer
+      Entity_250:
+        Text:
+        - Generic error - contact with the supplier
+      Entity_251:
+        Text:
+        - ''
+      Entity_252:
+        Text:
+        - Manual Mode
+      Entity_253:
+        Text:
+        - Automatic Mode
+      Entity_254:
+        Text:
+        - Filling bottle
+      Entity_255:
+        Text:
+        - Shifting bottle
+      Entity_256:
+        Text:
+        - Stop
+      Entity_257:
+        Text:
+        - Reset
+      Entity_258:
+        Text:
+        - Machine fault
+      Entity_259:
+        Text:
+        - Unknown
+      Entity_260:
+        Text:
+        - Running
+      Entity_261:
+        Text:
+        - Stop
+      Entity_262:
+        Text:
+        - Reset
+      Entity_263:
+        Text:
+        - Machine error
+      Entity_264:
+        Text:
+        - Unknown
+      Entity_265:
+        Text:
+        - ROBOT ERROR
+      Entity_266:
+        Text:
+        - NO ERROR
+      Entity_267:
+        Text:
+        - Manual STOP
+      Entity_268:
+        Text:
+        - ON
+      Entity_269:
+        Text:
+        - Program STOP
+      Entity_270:
+        Text:
+        - Off
+      Entity_271:
+        Text:
+        - On
+      Entity_272:
+        Text:
+        - Connection lost on PLC side - @5%s@
+      Entity_273:
+        Text:
+        - Connection lost on HMI side - @5%s@
+      Entity_274:
+        Text:
+        - Maximum number of connections exceeded - @5%s@
+      Entity_275:
+        Text:
+        - Out of resources on PLC -  @5%s@
+      Entity_276:
+        Text:
+        - Legitimation failed, invalid or missing password - @5%s@
+      Entity_277:
+        Text:
+        - Open request failed - @5%s@
+      Entity_278:
+        Text:
+        - Cannot connect to PLC - @5%s@
+      Entity_279:
+        Text:
+        - Open request could not be sent
+      Entity_280:
+        Text:
+        - 'root certificate expired for - @5%s@ '
+      Entity_281:
+        Text:
+        - 'PLC certificate untrusted for - @5%s@ '
+      Entity_282:
+        Text:
+        - 'NameService configuration error: Implicit deletion. Subelement instance @6%s@ must be deleted explicitly.'
+      Entity_283:
+        Text:
+        - 'NameService configuration error: Implicit deletion. Alias/Format/Unit instance @6%s@ must be deleted explicitly.'
+      Entity_284:
+        Text:
+        - 'CDS cache - Cache folder cannot be created or reached: @6%s@'
+      Entity_285:
+        Text:
+        - 'LOC cache - Cache folder cannot be created or reached: @6%s@'
+      Entity_286:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - alert handler config is deleted implicitly for deleted datapoint, @3%s@
+      Entity_287:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - alert handler config is deleted implicitly but still has overrides, @3%s@
+      Entity_288:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - default value config is deleted implicitly for deleted datapoint, @3%s@
+      Entity_289:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - default value config is deleted implicitly but still has overrides, @3%s@
+      Entity_290:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - initial value config is deleted implicitly for deleted datapoint, @3%s@
+      Entity_291:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - initial value config is deleted implicitly but still has overrides, @3%s@
+      Entity_292:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - distribution config is deleted implicitly for deleted datapoint, @3%s@
+      Entity_293:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - distribution config is deleted implicitly but still has overrides, @3%s@
+      Entity_294:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - rangeCheck config is deleted implicitly for deleted datapoint, @3%s@
+      Entity_295:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - rangeCheck config is deleted implicitly but still has overrides, @3%s@
+      Entity_296:
+        Text:
+        - 'The configured data point type was deleted, but a configured type is still defined for the node type: @3%s@.'
+      Entity_297:
+        Text:
+        - 'The configured data point node type was deleted in the data point type, but a configured type is still defined for the element: @3%s@.'
+      Entity_298:
+        Text:
+        - 'Cycles: @6%s@ does not exist'
+      Entity_299:
+        Text:
+        - 'Alarms: @6%s@ exists already'
+      Entity_300:
+        Text:
+        - 'Tags: Address @6%s@ was rejected'
+      Entity_301:
+        Text:
+        - 'Connections: @6%s@ does not exist'
+      Entity_302:
+        Text:
+        - 'Tags: Acquisition mode @6%s@ is not supported.'
+      Entity_303:
+        Text:
+        - 'Cycles: @6%s@ was deleted but associated tags exist.'
+      Entity_304:
+        Text:
+        - 'Connections: @6%s@ was deleted but associated tags exist.'
+      Entity_305:
+        Text:
+        - 'Tags: Tag @6%s@ was rejected.'
+      Entity_306:
+        Text:
+        - 'Tags: Tag @6%s@ has an invalid value.'
+      Entity_307:
+        Text:
+        - 'Connections: Connection to @6%s@ could not be established.'
+      Entity_308:
+        Text:
+        - 'Connections: Connection to @6%s@ could not be established.'
+      Entity_309:
+        Text:
+        - 'Connections: @6%s@ disconnected.'
+      Entity_310:
+        Text:
+        - 'Connections: Connection to the HMI device @6%s@ is lost.'
+      Entity_311:
+        Text:
+        - 'Connections: Connection to the PLC @6%s@ is lost.'
+      Entity_312:
+        Text:
+        - 'Connections: Timeout while establishing the connection to @6%s@.'
+      Entity_313:
+        Text:
+        - 'Connections: @6%s@ faulty.'
+      Entity_314:
+        Text:
+        - 'Connections: Connection to the HMI device disconnected. Connection @5%s@ was changed.'
+      Entity_315:
+        Text:
+        - 'Connections: Connection to the HMI device disconnected. Driver property was changed for connection @5%s@.'
+      Entity_316:
+        Text:
+        - 'Connections: Lifecycle monitoring cycle must be shorter than the response time.'
+      Entity_317:
+        Text:
+        - 'Connections: Cyclic services are configured but not supported by the target device.'
+      Entity_318:
+        Text:
+        - 'Connections: Change-controlled reading is configured but not supported by the target device.'
+      Entity_319:
+        Text:
+        - 'Tags: The address @6%s@ does not exist in the PLC.'
+      Entity_320:
+        Text:
+        - 'Tags: The default conversion type for the address @6%s@ could not be determined.'
+      Entity_321:
+        Text:
+        - 'Tags: Invalid conversion type'
+      Entity_322:
+        Text:
+        - 'Cycles: Invalid conversion type. Conversion is not supported at HmiCycle.'
+      Entity_323:
+        Text:
+        - 'Connections: Version of the address @6%s@ is not supported.'
+      Entity_324:
+        Text:
+        - 'Connections: PROFIBUS address is not supported.'
+      Entity_325:
+        Text:
+        - 'Connections: Softbus address is not supported.'
+      Entity_326:
+        Text:
+        - 'Connections: Address type @6%s@ is not supported.'
+      Entity_327:
+        Text:
+        - 'Connections: Invalid connection name @6%s@. Access point is being ignored.'
+      Entity_328:
+        Text:
+        - 'Connections: Routing is not supported. @6%s@ is not used.'
+      Entity_329:
+        Text:
+        - 'Connections: Routing is not supported. @6%s@ is not used.'
+      Entity_330:
+        Text:
+        - 'Connections: Invalid IP address @6%s@'
+      Entity_331:
+        Text:
+        - 'Connections: Invalid Named Connection @6%s@. Valid format: >VMD</>connection<'
+      Entity_332:
+        Text:
+        - 'Connections: Invalid Named Connection @6%s@. VMD connection name is too long. Only 24 characters are permitted.'
+      Entity_333:
+        Text:
+        - 'Connections: Invalid Named Connection @6%s@. Connection name is too long. Only 32 characters are permitted.'
+      Entity_334:
+        Text:
+        - 'Connections: Rack number @6%s@ is outside of the permitted range (0..7)'
+      Entity_335:
+        Text:
+        - 'Connections: Invalid Named Connection @6%s@. Rack is ignored.'
+      Entity_336:
+        Text:
+        - 'Connections: Slot number @6%s@ is outside of the permitted range (1..32)'
+      Entity_337:
+        Text:
+        - 'Connections: Invalid Named Connection @6%s@. Slot is ignored.'
+      Entity_338:
+        Text:
+        - Connection could not be established. Maximum number of available connections (@6%s@) has been exceeded.
+      Entity_339:
+        Text:
+        - Connection aborted. No sign of life in the last @4%s@ ms.
+      Entity_340:
+        Text:
+        - Connection could not be established - @4%s@
+      Entity_341:
+        Text:
+        - Connection could not be established. The address @6%s@ cannot be used.
+      Entity_342:
+        Text:
+        - Connection could not be established. Invalid address @6%s@
+      Entity_343:
+        Text:
+        - Connection could not be established - @4%s@
+      Entity_344:
+        Text:
+        - Connection could not be established. Application instance certificate is not configured.
+      Entity_345:
+        Text:
+        - Connection could not be established. Server has rejected the client certificate. OPC UA status code @4%s@.
+      Entity_346:
+        Text:
+        - Connection could not be established. Internal problem in the certificate store. OPC UA status code @4%s@
+      Entity_347:
+        Text:
+        - Connection could not be established. Application instance certificate could not be loaded. OPC UA status code @5%s@
+      Entity_348:
+        Text:
+        - Connection could not be established. Server has not provided a certificate. @4%s@
+      Entity_349:
+        Text:
+        - Connection could not be established. Validation of server certificate has failed. OPC UA status code @4%s@.
+      Entity_350:
+        Text:
+        - Connection was closed. Error during alarm synchronization. OPC UA status code @4%s@.
+      Entity_351:
+        Text:
+        - Connection was closed. Alarm/event subscription has failed. The number of operations on the server has been exceeded.
+      Entity_352:
+        Text:
+        - Connection was closed. Alarm/event subscription has failed. The number of alarm/event subscriptions on the server has been exceeded.
+      Entity_353:
+        Text:
+        - Connection could not be established. Server reports a license problem. OPC UA status code @4%s@.
+      Entity_354:
+        Text:
+        - Connection could not be established. Maximum number of server sessions has been exceeded.
+      Entity_355:
+        Text:
+        - Connection could not be established. Safety configuration is inconsistent. @4%s@
+      Entity_356:
+        Text:
+        - Connection could not be established. The address @4%s@ cannot be used.
+      Entity_357:
+        Text:
+        - Connection could not be established. OPC UA status code @4%s@
+      Entity_358:
+        Text:
+        - Connection aborted. OPC UA server was stopped.
+      Entity_359:
+        Text:
+        - Connection aborted. No sign of life in the last @4%s@ ms.
+      Entity_360:
+        Text:
+        - Connection was closed. OPC UA server maintenance.
+      Entity_361:
+        Text:
+        - Connection could not be established. Invalid configuration of the authentication mode - @4%s@
+      Entity_362:
+        Text:
+        - Connection could not be established. User could not be authenticated. OPC UA status code @4%s@
+      Entity_363:
+        Text:
+        - Connection could not be established. Server does not permit anonymous connection. OPC UA status code @4%s@
+      Entity_364:
+        Text:
+        - 'Connection could not be established. Certificate problem: Error when writing the safety-relevant data to @4%s@.'
+      Entity_365:
+        Text:
+        - 'Connection could not be established. Certificate problem: Unexpected file in the folder @4%s@ cannot be removed.'
+      Entity_366:
+        Text:
+        - Connection could not be established. User could not be authenticated. No user or password configured.
+      Entity_367:
+        Text:
+        - Connection could not be established. Unexpected length of the server certificate. @4%s@
+      Entity_368:
+        Text:
+        - Connection could not be established. @4%s@ is empty.
+      Entity_369:
+        Text:
+        - Connection could not be established. @4%s@ has an unexpected format.
+      Entity_370:
+        Text:
+        - Connection could not be established. Server endpoints cannot be read. OPC UA status code @4%s@
+      Entity_371:
+        Text:
+        - Connection could not be established. No server endpoints were found. @4%s@
+      Entity_372:
+        Text:
+        - Connection could not be established. Application instance certificate could not be found.
+      Entity_373:
+        Text:
+        - Connection could not be established. Unexpected format of the certificate @4%s@.
+      Entity_374:
+        Text:
+        - Connection could not be established. Unexpected format of the certificate block list @4%s@.
+      Entity_375:
+        Text:
+        - Connection could not be established. User could not be authenticated. An encryption detail is invalid. @4%s@
+      Entity_376:
+        Text:
+        - Connection could not be established. - The configured non-transparent redundancy mode @4%s@ is not supported.
+      Entity_377:
+        Text:
+        - 'Tags: Address @6%s@ does not exist on the server.'
+      Entity_378:
+        Text:
+        - 'Tags: Address @6%s@ cannot be accessed.'
+      Entity_379:
+        Text:
+        - 'Tags: Acquisition mode is not supported for address @6%s@.'
+      Entity_380:
+        Text:
+        - 'Alarms: Address @6%s@ does not exist on the server.'
+      Entity_381:
+        Text:
+        - 'Alarms: Address @6%s@ cannot be used. The specified range filter is not an OPC UA Event Notifier.'
+      Entity_382:
+        Text:
+        - 'Alarms: Address @6%s@ cannot be used. The specified range filter does not exist on the server.'
+      Entity_383:
+        Text:
+        - 'Alarms: Address @6%s@ cannot be used because it is not an OPC UA event type.'
+      Entity_384:
+        Text:
+        - 'Alarms: Address @6%s@ cannot be used because the OPC UA condition type is not supported.'
+      Entity_385:
+        Text:
+        - 'Alarms: Address @6%s@ cannot be used because the event type does not exist on the server.'
+      Entity_386:
+        Text:
+        - 'Alarms: Acquisition type cannot be used for address @6%s@.'
+      Entity_387:
+        Text:
+        - Address @6%s@ cannot be used because the version number is missing.
+      Entity_388:
+        Text:
+        - Address @6%s@ cannot be used because the version number is invalid.
+      Entity_389:
+        Text:
+        - Address @6%s@ cannot be used because the number of '$' delimiters is invalid.
+      Entity_390:
+        Text:
+        - Address @6%s@ cannot be used because the address type is invalid.
+      Entity_391:
+        Text:
+        - Unsupported version @6%s@ of the address
+      Entity_392:
+        Text:
+        - 'Unexpected OPC UA server response: @6%s@'
+      Entity_393:
+        Text:
+        - 'Messages: Invalid condition string for the alarm view @6%s@.'
+      Entity_394:
+        Text:
+        - 'Messages: Invalid status tag and bit for the alarm view @6%s@.'
+      Entity_395:
+        Text:
+        - 'Messages: Invalid control tag and bit for the alarm view @6%s@.'
+      Entity_396:
+        Text:
+        - 'Logs: Implicit deletion. Logging tag instance @6%s@ should be deleted but there are overloaded elements. '
+      Entity_397:
+        Text:
+        - ''
+      Entity_398:
+        Text:
+        - ' Restart of the runtime is required.'
+      Entity_399:
+        Text:
+        - ' The correct storage medium must be ejected and inserted again.'
+      Entity_400:
+        Text:
+        - Connection lost on PLC side - @5%s@
+      Entity_401:
+        Text:
+        - Connection lost on HMI side - @5%s@
+      Entity_402:
+        Text:
+        - Maximum number of connections exceeded - @5%s@
+      Entity_403:
+        Text:
+        - Out of resources on PLC -  @5%s@
+      Entity_404:
+        Text:
+        - Legitimation failed, invalid or missing password - @5%s@
+      Entity_405:
+        Text:
+        - Open request failed - @5%s@
+      Entity_406:
+        Text:
+        - Cannot connect to PLC - @5%s@
+      Entity_407:
+        Text:
+        - Open request could not be sent
+      Entity_408:
+        Text:
+        - 'root certificate expired for - @5%s@ '
+      Entity_409:
+        Text:
+        - 'PLC certificate untrusted for - @5%s@ '
+      Entity_410:
+        Text:
+        - Connection lost on PLC side - @5%s@
+      Entity_411:
+        Text:
+        - Connection lost on HMI side - @5%s@
+      Entity_412:
+        Text:
+        - Maximum number of connections exceeded - @5%s@
+      Entity_413:
+        Text:
+        - Out of resources on PLC -  @5%s@
+      Entity_414:
+        Text:
+        - Legitimation failed, invalid or missing password - @5%s@
+      Entity_415:
+        Text:
+        - Open request failed - @5%s@
+      Entity_416:
+        Text:
+        - Cannot connect to PLC - @5%s@
+      Entity_417:
+        Text:
+        - Open request could not be sent
+      Entity_418:
+        Text:
+        - 'root certificate expired for - @5%s@ '
+      Entity_419:
+        Text:
+        - 'PLC certificate untrusted for - @5%s@ '
+      Entity_420:
+        Text:
+        - Connection lost on PLC side - @5%s@
+      Entity_421:
+        Text:
+        - Connection lost on HMI side - @5%s@
+      Entity_422:
+        Text:
+        - Maximum number of connections exceeded - @5%s@
+      Entity_423:
+        Text:
+        - Out of resources on PLC -  @5%s@
+      Entity_424:
+        Text:
+        - Legitimation failed, invalid or missing password - @5%s@
+      Entity_425:
+        Text:
+        - Open request failed - @5%s@
+      Entity_426:
+        Text:
+        - Cannot connect to PLC - @5%s@
+      Entity_427:
+        Text:
+        - Open request could not be sent
+      Entity_428:
+        Text:
+        - 'root certificate expired for - @5%s@ '
+      Entity_429:
+        Text:
+        - 'PLC certificate untrusted for - @5%s@ '
+      Entity_430:
+        Text:
+        - Unknown error (@3%s@)
+      Entity_431:
+        Text:
+        - The system is not running or there is a network problem
+      Entity_432:
+        Text:
+        - Runtime is not started on the target device.
+      Entity_433:
+        Text:
+        - The System ID does not match the expected System ID (@3%s@)
+      Entity_434:
+        Text:
+        - The Collaboration name does not match the expected Collaboration name '@3%s@'
+      Entity_435:
+        Text:
+        - Wrong or unknown certificate
+      Entity_436:
+        Text:
+        - Revoked certificate
+      Entity_437:
+        Text:
+        - The time difference is too big.
+      Entity_438:
+        Text:
+        - No common supported message version
+      Entity_439:
+        Text:
+        - System ID (@3%s@) already exists
+      Entity_440:
+        Text:
+        - System name (@3%s@) already exists
+      Entity_441:
+        Text:
+        - ID/Name in local configuration for Runtime Collaboration already exists
+      Entity_442:
+        Text:
+        - 'Connections: Connection to the PLC @5%s@ is lost'
+      Entity_443:
+        Text:
+        - 'Connections: Connection to the HMI device @5%s@ is lost'
+      Entity_444:
+        Text:
+        - 'Connections: Maximum number of connections exceeded - @5%s@'
+      Entity_445:
+        Text:
+        - Out of resources on PLC - @5%s@
+      Entity_446:
+        Text:
+        - Legitimation failed, invalid or missing password - @5%s@
+      Entity_447:
+        Text:
+        - Request to open the connection failed - @5%s@
+      Entity_448:
+        Text:
+        - 'Connections: Cannot connect to PLC - @5%s@'
+      Entity_449:
+        Text:
+        - Request to open the connection could not be sent
+      Entity_450:
+        Text:
+        - General certificate error for PLC - @5%s@
+      Entity_451:
+        Text:
+        - PLC certificate expired for PLC - @5%s@
+      Entity_452:
+        Text:
+        - PLC certificate is revoked for PLC - @5%s@
+      Entity_453:
+        Text:
+        - PLC certificate is untrustworthy. Manual trust is possible for - @5%s@
+      Entity_454:
+        Text:
+        - PLC certificate is untrustworthy. Manual trust is not possible for - @5%s@
+      Entity_455:
+        Text:
+        - Connection lost on PLC side - @5%s@
+      Entity_456:
+        Text:
+        - Connection lost on HMI side - @5%s@
+      Entity_457:
+        Text:
+        - Maximum number of connections exceeded - @5%s@
+      Entity_458:
+        Text:
+        - Out of resources on PLC -  @5%s@
+      Entity_459:
+        Text:
+        - Legitimation failed, invalid or missing password - @5%s@
+      Entity_460:
+        Text:
+        - Open request failed - @5%s@
+      Entity_461:
+        Text:
+        - Cannot connect to PLC - @5%s@
+      Entity_462:
+        Text:
+        - Open request could not be sent
+      Entity_463:
+        Text:
+        - 'root certificate expired for - @5%s@ '
+      Entity_464:
+        Text:
+        - 'PLC certificate untrusted for - @5%s@ '
+      Entity_465:
+        Text:
+        - Connection lost on PLC side - @5%s@
+      Entity_466:
+        Text:
+        - Connection lost on HMI side - @5%s@
+      Entity_467:
+        Text:
+        - Maximum number of connections exceeded - @5%s@
+      Entity_468:
+        Text:
+        - Out of resources on PLC -  @5%s@
+      Entity_469:
+        Text:
+        - Legitimation failed, invalid or missing password - @5%s@
+      Entity_470:
+        Text:
+        - Open request failed - @5%s@
+      Entity_471:
+        Text:
+        - Cannot connect to PLC - @5%s@
+      Entity_472:
+        Text:
+        - Open request could not be sent
+      Entity_473:
+        Text:
+        - 'root certificate expired for - @5%s@ '
+      Entity_474:
+        Text:
+        - 'PLC certificate untrusted for - @5%s@ '
+      Entity_475:
+        Text:
+        - 'NameService configuration error: Implicit deletion. Subelement instance @6%s@ must be deleted explicitly.'
+      Entity_476:
+        Text:
+        - 'NameService configuration error: Implicit deletion. Alias/Format/Unit instance @6%s@ must be deleted explicitly.'
+      Entity_477:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - alert handler config is deleted implicitly for deleted datapoint, @3%s@
+      Entity_478:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - alert handler config is deleted implicitly but still has overrides, @3%s@
+      Entity_479:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - default value config is deleted implicitly for deleted datapoint, @3%s@
+      Entity_480:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - default value config is deleted implicitly but still has overrides, @3%s@
+      Entity_481:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - initial value config is deleted implicitly for deleted datapoint, @3%s@
+      Entity_482:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - initial value config is deleted implicitly but still has overrides, @3%s@
+      Entity_483:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - distribution config is deleted implicitly for deleted datapoint, @3%s@
+      Entity_484:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - distribution config is deleted implicitly but still has overrides, @3%s@
+      Entity_485:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - rangeCheck config is deleted implicitly for deleted datapoint, @3%s@
+      Entity_486:
+        Text:
+        - EvDpManager::cleanupDeletedDatapoint - rangeCheck config is deleted implicitly but still has overrides, @3%s@
+      Entity_487:
+        Text:
+        - 'The configured data point type was deleted, but a configured type is still defined for the node type: @3%s@.'
+      Entity_488:
+        Text:
+        - 'The configured data point node type was deleted in the data point type, but a configured type is still defined for the element: @3%s@.'
+      Entity_489:
+        Text:
+        - 'Cycles: @6%s@ does not exist'
+      Entity_490:
+        Text:
+        - 'Alarms: @6%s@ exists already'
+      Entity_491:
+        Text:
+        - 'Tags: Address @6%s@ was rejected'
+      Entity_492:
+        Text:
+        - 'Connections: @6%s@ does not exist'
+      Entity_493:
+        Text:
+        - 'Tags: Acquisition mode @6%s@ is not supported.'
+      Entity_494:
+        Text:
+        - 'Cycles: @6%s@ was deleted but associated tags exist.'
+      Entity_495:
+        Text:
+        - 'Connections: @6%s@ was deleted but associated tags exist.'
+      Entity_496:
+        Text:
+        - 'Tags: Tag @6%s@ was rejected.'
+      Entity_497:
+        Text:
+        - 'Tags: Tag @6%s@ has an invalid value.'
+      Entity_498:
+        Text:
+        - 'Connections: Connection to @6%s@ could not be established.'
+      Entity_499:
+        Text:
+        - 'Connections: Connection to @6%s@ could not be established.'
+      Entity_500:
+        Text:
+        - 'Connections: @6%s@ disconnected.'
+      Entity_501:
+        Text:
+        - 'Connections: Connection to the HMI device @6%s@ is lost.'
+      Entity_502:
+        Text:
+        - 'Connections: Connection to the PLC @6%s@ is lost.'
+      Entity_503:
+        Text:
+        - 'Connections: Timeout while establishing the connection to @6%s@.'
+      Entity_504:
+        Text:
+        - 'Connections: @6%s@ faulty.'
+      Entity_505:
+        Text:
+        - 'Connections: Connection to the HMI device disconnected. Connection @5%s@ was changed.'
+      Entity_506:
+        Text:
+        - 'Connections: Connection to the HMI device disconnected. Driver property was changed for connection @5%s@.'
+      Entity_507:
+        Text:
+        - 'Connections: Lifecycle monitoring cycle must be shorter than the response time.'
+      Entity_508:
+        Text:
+        - 'Connections: Cyclic services are configured but not supported by the target device.'
+      Entity_509:
+        Text:
+        - 'Connections: Change-controlled reading is configured but not supported by the target device.'
+      Entity_510:
+        Text:
+        - 'Tags: The address @6%s@ does not exist in the PLC.'
+      Entity_511:
+        Text:
+        - 'Tags: The default conversion type for the address @6%s@ could not be determined.'
+      Entity_512:
+        Text:
+        - 'Tags: Invalid conversion type'
+      Entity_513:
+        Text:
+        - 'Cycles: Invalid conversion type. Conversion is not supported at HmiCycle.'
+      Entity_514:
+        Text:
+        - 'Connections: Version of the address @6%s@ is not supported.'
+      Entity_515:
+        Text:
+        - 'Connections: PROFIBUS address is not supported.'
+      Entity_516:
+        Text:
+        - 'Connections: Softbus address is not supported.'
+      Entity_517:
+        Text:
+        - 'Connections: Address type @6%s@ is not supported.'
+      Entity_518:
+        Text:
+        - 'Connections: Invalid connection name @6%s@. Access point is being ignored.'
+      Entity_519:
+        Text:
+        - 'Connections: Routing is not supported. @6%s@ is not used.'
+      Entity_520:
+        Text:
+        - 'Connections: Routing is not supported. @6%s@ is not used.'
+      Entity_521:
+        Text:
+        - 'Connections: Invalid IP address @6%s@'
+      Entity_522:
+        Text:
+        - 'Connections: Invalid Named Connection @6%s@. Valid format: >VMD</>connection<'
+      Entity_523:
+        Text:
+        - 'Connections: Invalid Named Connection @6%s@. VMD connection name is too long. Only 24 characters are permitted.'
+      Entity_524:
+        Text:
+        - 'Connections: Invalid Named Connection @6%s@. Connection name is too long. Only 32 characters are permitted.'
+      Entity_525:
+        Text:
+        - 'Connections: Rack number @6%s@ is outside of the permitted range (0..7)'
+      Entity_526:
+        Text:
+        - 'Connections: Invalid Named Connection @6%s@. Rack is ignored.'
+      Entity_527:
+        Text:
+        - 'Connections: Slot number @6%s@ is outside of the permitted range (1..32)'
+      Entity_528:
+        Text:
+        - 'Connections: Invalid Named Connection @6%s@. Slot is ignored.'
+      Entity_529:
+        Text:
+        - Connection could not be established. Maximum number of available connections (@6%s@) has been exceeded.
+      Entity_530:
+        Text:
+        - Connection aborted. No sign of life in the last @4%s@ ms.
+      Entity_531:
+        Text:
+        - Connection could not be established - @4%s@
+      Entity_532:
+        Text:
+        - Connection could not be established. The address @6%s@ cannot be used.
+      Entity_533:
+        Text:
+        - Connection could not be established. Invalid address @6%s@
+      Entity_534:
+        Text:
+        - Connection could not be established - @4%s@
+      Entity_535:
+        Text:
+        - Connection could not be established. Application instance certificate is not configured.
+      Entity_536:
+        Text:
+        - Connection could not be established. Server has rejected the client certificate. OPC UA status code @4%s@.
+      Entity_537:
+        Text:
+        - Connection could not be established. Internal problem in the certificate store. OPC UA status code @4%s@
+      Entity_538:
+        Text:
+        - Connection could not be established. Application instance certificate could not be loaded. OPC UA status code @4%s@
+      Entity_539:
+        Text:
+        - Connection could not be established. Server has not provided a certificate. @4%s@
+      Entity_540:
+        Text:
+        - Connection could not be established. Validation of server certificate has failed. OPC UA status code @4%s@.
+      Entity_541:
+        Text:
+        - Connection was closed. Error during alarm synchronization. OPC UA status code @4%s@.
+      Entity_542:
+        Text:
+        - Connection was closed. Alarm/event subscription has failed. The number of operations on the server has been exceeded.
+      Entity_543:
+        Text:
+        - Connection was closed. Alarm/event subscription has failed. The number of alarm/event subscriptions on the server has been exceeded.
+      Entity_544:
+        Text:
+        - Connection could not be established. Server reports a license problem. OPC UA status code @4%s@.
+      Entity_545:
+        Text:
+        - Connection could not be established. Maximum number of server sessions has been exceeded.
+      Entity_546:
+        Text:
+        - Connection could not be established. Safety configuration is inconsistent. @4%s@
+      Entity_547:
+        Text:
+        - Connection could not be established. The address @4%s@ cannot be used.
+      Entity_548:
+        Text:
+        - Connection could not be established. OPC UA status code @4%s@
+      Entity_549:
+        Text:
+        - Connection aborted. OPC UA server was stopped.
+      Entity_550:
+        Text:
+        - Connection aborted. No sign of life in the last @4%s@ ms.
+      Entity_551:
+        Text:
+        - Connection was closed. OPC UA server maintenance.
+      Entity_552:
+        Text:
+        - Connection could not be established. Invalid configuration of the authentication mode - @4%s@
+      Entity_553:
+        Text:
+        - Connection could not be established. User could not be authenticated. OPC UA status code @4%s@
+      Entity_554:
+        Text:
+        - Connection could not be established. Server does not permit anonymous connection. OPC UA status code @4%s@
+      Entity_555:
+        Text:
+        - 'Connection could not be established. Certificate problem: Error when writing the safety-relevant data to @4%s@.'
+      Entity_556:
+        Text:
+        - 'Connection could not be established. Certificate problem: Unexpected file in the folder @4%s@ cannot be removed.'
+      Entity_557:
+        Text:
+        - Connection could not be established. User could not be authenticated. No user or password configured.
+      Entity_558:
+        Text:
+        - Connection could not be established. Unexpected length of the server certificate. @4%s@
+      Entity_559:
+        Text:
+        - Connection could not be established. @4%s@ is empty.
+      Entity_560:
+        Text:
+        - Connection could not be established. @4%s@ has an unexpected format.
+      Entity_561:
+        Text:
+        - Connection could not be established. Server endpoints cannot be read. OPC UA status code @4%s@
+      Entity_562:
+        Text:
+        - Connection could not be established. No server endpoints were found. @4%s@
+      Entity_563:
+        Text:
+        - Connection could not be established. Application instance certificate could not be found.
+      Entity_564:
+        Text:
+        - Connection could not be established. Unexpected format of the certificate @4%s@.
+      Entity_565:
+        Text:
+        - Connection could not be established. Unexpected format of the certificate block list @4%s@.
+      Entity_566:
+        Text:
+        - Connection could not be established. User could not be authenticated. An encryption detail is invalid. @4%s@
+      Entity_567:
+        Text:
+        - Connection could not be established. - The configured non-transparent redundancy mode @4%s@ is not supported.
+      Entity_568:
+        Text:
+        - 'Tags: Address @6%s@ does not exist on the server.'
+      Entity_569:
+        Text:
+        - 'Tags: Address @6%s@ cannot be accessed.'
+      Entity_570:
+        Text:
+        - 'Tags: Acquisition mode is not supported for address @6%s@.'
+      Entity_571:
+        Text:
+        - 'Alarms: Address @6%s@ does not exist on the server.'
+      Entity_572:
+        Text:
+        - 'Alarms: Address @6%s@ cannot be used. The specified range filter is not an OPC UA Event Notifier.'
+      Entity_573:
+        Text:
+        - 'Alarms: Address @6%s@ cannot be used. The specified range filter does not exist on the server.'
+      Entity_574:
+        Text:
+        - 'Alarms: Address @6%s@ cannot be used because it is not an OPC UA event type.'
+      Entity_575:
+        Text:
+        - 'Alarms: Address @6%s@ cannot be used because the OPC UA condition type is not supported.'
+      Entity_576:
+        Text:
+        - 'Alarms: Address @6%s@ cannot be used because the event type does not exist on the server.'
+      Entity_577:
+        Text:
+        - 'Alarms: Acquisition type cannot be used for address @6%s@.'
+      Entity_578:
+        Text:
+        - Address @6%s@ cannot be used because the version number is missing.
+      Entity_579:
+        Text:
+        - Address @6%s@ cannot be used because the version number is invalid.
+      Entity_580:
+        Text:
+        - Address @6%s@ cannot be used because the number of '$' delimiters is invalid.
+      Entity_581:
+        Text:
+        - Address @6%s@ cannot be used because the address type is invalid.
+      Entity_582:
+        Text:
+        - Unsupported version @6%s@ of the address
+      Entity_583:
+        Text:
+        - 'Unexpected OPC UA server response: @6%s@'
+      Entity_584:
+        Text:
+        - 'Messages: Invalid condition string for the alarm view @6%s@.'
+      Entity_585:
+        Text:
+        - 'Messages: Invalid status tag and bit for the alarm view @6%s@.'
+      Entity_586:
+        Text:
+        - 'Messages: Invalid control tag and bit for the alarm view @6%s@.'
+      Entity_587:
+        Text:
+        - 'Logs: Implicit deletion. Logging tag instance @6%s@ should be deleted but there are overloaded elements. '
+      Entity_588:
+        Text:
+        - ''
+      Entity_589:
+        Text:
+        - ' Restart of the runtime is required.'
+      Entity_590:
+        Text:
+        - ' The correct storage medium must be ejected and inserted again.'
+      Entity_591:
+        Text:
+        - 'CDS cache - Cache folder cannot be created or reached: @6%s@'
+      Entity_592:
+        Text:
+        - 'LOC cache - Cache folder cannot be created or reached: @6%s@'
+      Entity_593:
+        Text:
+        - Unknown error (@3%s@)
+      Entity_594:
+        Text:
+        - The system is not running or there is a network problem
+      Entity_595:
+        Text:
+        - Runtime is not started on the target device.
+      Entity_596:
+        Text:
+        - The System ID does not match the expected System ID (@3%s@)
+      Entity_597:
+        Text:
+        - The Collaboration name does not match the expected Collaboration name '@3%s@'
+      Entity_598:
+        Text:
+        - Wrong or unknown certificate
+      Entity_599:
+        Text:
+        - Revoked certificate
+      Entity_600:
+        Text:
+        - The time difference is too big.
+      Entity_601:
+        Text:
+        - No common supported message version
+      Entity_602:
+        Text:
+        - System ID (@3%s@) already exists
+      Entity_603:
+        Text:
+        - System name (@3%s@) already exists
+      Entity_604:
+        Text:
+        - ID/Name in local configuration for Runtime Collaboration already exists
+      Entity_605:
+        Text:
+        - 'Connections: Connection to the PLC @4%s@ is lost'
+      Entity_606:
+        Text:
+        - 'Connections: Connection to the HMI device @4%s@ is lost'
+      Entity_607:
+        Text:
+        - 'Connections: Maximum number of connections exceeded - @4%s@'
+      Entity_608:
+        Text:
+        - Out of resources on PLC - @4%s@
+      Entity_609:
+        Text:
+        - Legitimation failed, invalid or missing password - @4%s@
+      Entity_610:
+        Text:
+        - Request to open the connection failed - @4%s@
+      Entity_611:
+        Text:
+        - 'Connections: Cannot connect to PLC - @4%s@'
+      Entity_612:
+        Text:
+        - Request to open the connection could not be sent
+      Entity_613:
+        Text:
+        - General certificate error for PLC - @4%s@
+      Entity_614:
+        Text:
+        - PLC certificate expired for PLC - @4%s@
+      Entity_615:
+        Text:
+        - PLC certificate is revoked for PLC - @4%s@
+      Entity_616:
+        Text:
+        - PLC certificate is untrustworthy. Manual trust is possible for - @4%s@
+      Entity_617:
+        Text:
+        - PLC certificate is untrustworthy. Manual trust is not possible for - @4%s@
+      Entity_618:
+        Text:
+        - Connection lost on PLC side - @5%s@
+      Entity_619:
+        Text:
+        - Connection lost on HMI side - @5%s@
+      Entity_620:
+        Text:
+        - Maximum number of connections exceeded - @5%s@
+      Entity_621:
+        Text:
+        - Out of resources on PLC -  @5%s@
+      Entity_622:
+        Text:
+        - Legitimation failed, invalid or missing password - @5%s@
+      Entity_623:
+        Text:
+        - Open request failed - @5%s@
+      Entity_624:
+        Text:
+        - Cannot connect to PLC - @5%s@
+      Entity_625:
+        Text:
+        - Open request could not be sent
+      Entity_626:
+        Text:
+        - 'root certificate expired for - @5%s@ '
+      Entity_627:
+        Text:
+        - 'PLC certificate untrusted for - @5%s@ '
+      Entity_628:
+        Text:
+        - Connection lost on PLC side - @5%s@
+      Entity_629:
+        Text:
+        - Connection lost on HMI side - @5%s@
+      Entity_630:
+        Text:
+        - Maximum number of connections exceeded - @5%s@
+      Entity_631:
+        Text:
+        - Out of resources on PLC -  @5%s@
+      Entity_632:
+        Text:
+        - Legitimation failed, invalid or missing password - @5%s@
+      Entity_633:
+        Text:
+        - Open request failed - @5%s@
+      Entity_634:
+        Text:
+        - Cannot connect to PLC - @5%s@
+      Entity_635:
+        Text:
+        - Open request could not be sent
+      Entity_636:
+        Text:
+        - 'root certificate expired for - @5%s@ '
+      Entity_637:
+        Text:
+        - 'PLC certificate untrusted for - @5%s@ '
+      Entity_638:
+        Text:
+        - 'Connections: Connection to the PLC @5%s@ is lost'
+      Entity_639:
+        Text:
+        - 'Connections: Connection to the HMI device @5%s@ is lost'
+      Entity_640:
+        Text:
+        - 'Connections: Maximum number of connections exceeded - @5%s@'
+      Entity_641:
+        Text:
+        - Out of resources on PLC - @5%s@
+      Entity_642:
+        Text:
+        - Legitimation failed, invalid or missing password - @5%s@
+      Entity_643:
+        Text:
+        - Request to open the connection failed - @5%s@
+      Entity_644:
+        Text:
+        - 'Connections: Cannot connect to PLC - @5%s@'
+      Entity_645:
+        Text:
+        - Request to open the connection could not be sent
+      Entity_646:
+        Text:
+        - General certificate error for PLC - @5%s@
+      Entity_647:
+        Text:
+        - PLC certificate expired for PLC - @5%s@
+      Entity_648:
+        Text:
+        - PLC certificate is revoked for PLC - @5%s@
+      Entity_649:
+        Text:
+        - PLC certificate is untrustworthy. Manual trust is possible for - @5%s@
+      Entity_650:
+        Text:
+        - PLC certificate is untrustworthy. Manual trust is not possible for - @5%s@
+      Entity_651:
+        Text:
+        - Connection lost on PLC side - @5%s@
+      Entity_652:
+        Text:
+        - Connection lost on HMI side - @5%s@
+      Entity_653:
+        Text:
+        - Maximum number of connections exceeded - @5%s@
+      Entity_654:
+        Text:
+        - Out of resources on PLC -  @5%s@
+      Entity_655:
+        Text:
+        - Legitimation failed, invalid or missing password - @5%s@
+      Entity_656:
+        Text:
+        - Open request failed - @5%s@
+      Entity_657:
+        Text:
+        - Cannot connect to PLC - @5%s@
+      Entity_658:
+        Text:
+        - Open request could not be sent
+      Entity_659:
+        Text:
+        - 'root certificate expired for - @5%s@ '
+      Entity_660:
+        Text:
+        - 'PLC certificate untrusted for - @5%s@ '
+      Entity_661:
+        Text:
+        - Connection lost on PLC side - @5%s@
+      Entity_662:
+        Text:
+        - Connection lost on HMI side - @5%s@
+      Entity_663:
+        Text:
+        - Maximum number of connections exceeded - @5%s@
+      Entity_664:
+        Text:
+        - Out of resources on PLC -  @5%s@
+      Entity_665:
+        Text:
+        - Legitimation failed, invalid or missing password - @5%s@
+      Entity_666:
+        Text:
+        - Open request failed - @5%s@
+      Entity_667:
+        Text:
+        - Cannot connect to PLC - @5%s@
+      Entity_668:
+        Text:
+        - Open request could not be sent
+      Entity_669:
+        Text:
+        - 'root certificate expired for - @5%s@ '
+      Entity_670:
+        Text:
+        - 'PLC certificate untrusted for - @5%s@ '
+      Entity_671:
+        Text:
+        - 'Connections: Connection to the PLC @5%s@ is lost'
+      Entity_672:
+        Text:
+        - 'Connections: Connection to the HMI device @5%s@ is lost'
+      Entity_673:
+        Text:
+        - 'Connections: Maximum number of connections exceeded - @5%s@'
+      Entity_674:
+        Text:
+        - Out of resources on PLC - @5%s@
+      Entity_675:
+        Text:
+        - Legitimation failed, invalid or missing password - @5%s@
+      Entity_676:
+        Text:
+        - Request to open the connection failed - @5%s@
+      Entity_677:
+        Text:
+        - 'Connections: Cannot connect to PLC - @5%s@'
+      Entity_678:
+        Text:
+        - Request to open the connection could not be sent
+      Entity_679:
+        Text:
+        - General certificate error for PLC - @5%s@
+      Entity_680:
+        Text:
+        - PLC certificate expired for PLC - @5%s@
+      Entity_681:
+        Text:
+        - PLC certificate is revoked for PLC - @5%s@
+      Entity_682:
+        Text:
+        - PLC certificate is untrustworthy. Manual trust is possible for - @5%s@
+      Entity_683:
+        Text:
+        - PLC certificate is untrustworthy. Manual trust is not possible for - @5%s@
+      Entity_684:
+        Text:
+        - No job being currently processed
+      Entity_685:
+        Text:
+        - Device is idle and ready
+      Entity_686:
+        Text:
+        - Device is currently moving
+      Entity_687:
+        Text:
+        - Device is positioning to target
+      Entity_688:
+        Text:
+        - Device has reached target position
+      Entity_689:
+        Text:
+        - Device is performing homing operation
+      Entity_690:
+        Text:
+        - Device has completed homing
+      Entity_691:
+        Text:
+        - Device is enabled for operation
+      Entity_692:
+        Text:
+        - Device is disabled
+      Entity_693:
+        Text:
+        - Approaching position limit
+      Entity_694:
+        Text:
+        - Velocity has been limited
+      Entity_695:
+        Text:
+        - Command is not supported or implemented
+      Entity_696:
+        Text:
+        - Device is not enabled for operation
+      Entity_697:
+        Text:
+        - Target position outside of defined limits
+      Entity_698:
+        Text:
+        - Movement timeout
+      Entity_699:
+        Text:
+        - Position feedback error
+      Entity_700:
+        Text:
+        - Drive hardware fault
+      Entity_701:
+        Text:
+        - Communication error with drive
+      Entity_702:
+        Text:
+        - Invalid configuration parameters
+      Entity_703:
+        Text:
+        - Emergency stop activated
+      Entity_704:
+        Text:
+        - Collision detection triggered
+      Entity_705:
+        Text:
+        - Velocity limit exceeded
+      Entity_706:
+        Text:
+        - Acceleration limit exceeded
+      Entity_707:
+        Text:
+        - Upper limit switch activated
+      Entity_708:
+        Text:
+        - Lower limit switch activated
+      Entity_709:
+        Text:
+        - Elevator overload detected
+      Entity_710:
+        Text:
+        - Elevator sensor fault
+      Entity_711:
+        Text:
+        - Conveyor overload detected
+      Entity_712:
+        Text:
+        - Conveyor belt fault
+      Entity_713:
+        Text:
+        - Conveyor sensor fault
+      Entity_714:
+        Text:
+        - Hardware initialization failed
+      Entity_715:
+        Text:
+        - Hardware watchdog timeout
+      Entity_716:
+        Text:
+        - Hardware power fault
+      Entity_717:
+        Text:
+        - Temperature fault detected
+      TextEntry_1:
+        Text:
+        - CranePos
+      TextEntry_2:
+        Text:
+        - CranePos
+      TextEntry_3:
+        Text:
+        - CranePos
+      TextEntry_4:
+        Text:
+        - Storage status
+      TextEntry_5:
+        Text:
+        - Mode
+      TextEntry_6:
+        Text:
+        - Total Packages Stored
+      TextEntry_7:
+        Text:
+        - Package X
+      TextEntry_8:
+        Text:
+        - Package Y
+      TextEntry_10:
+        Text:
+        - CranePos

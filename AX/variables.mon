@@ -1,0 +1,11 @@
+Simulation.statTimerRunning
+Simulation.statRandomState
+Simulation.instTimerError.output
+Simulation.instTimerError.elapsedTime
+Manipulator
+operate
+operate.extModeActive
+ConveyorStation1Boxes[0].posLeft
+ConveyorStation1Boxes[0].isPresent
+hmiSignalCraneStation.elevatorMoveUp
+hmiSignalCraneStation.elevatorPosition

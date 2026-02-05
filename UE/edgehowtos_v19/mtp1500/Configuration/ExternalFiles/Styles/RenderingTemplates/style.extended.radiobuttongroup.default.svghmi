@@ -1,0 +1,95 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     preserveAspectRatio="none">
+
+    <hmi:self type="item:HmiRadioButtonGroup" displayName="Extended RadioButtonGroup" name="style.extended.radiobuttongroup" version="2.8" performanceClass="L" >
+        <hmi:focus focusVisual="local" />
+    </hmi:self>
+
+    <defs>
+        <!-- Local definitions of this template -->
+        <hmi:localDef name="ShowFocus"              type="boolean"  hmi-bind:value="{{ and( HmiProps.ShowFocusVisual, SysProps.HasFocus ) }}" />
+        <hmi:localDef name="BorderColor"            type="number"   hmi-bind:value="{{ LocalProps.ShowFocus ? HmiProps.FocusColor : HmiProps.BorderColor }}" />
+        <hmi:localDef name="BorderWidth"            type="number"   hmi-bind:value="{{ LocalProps.ShowFocus ? ( HmiProps.BorderWidth + 2 ) : HmiProps.BorderWidth }}" />
+
+        <hmi:localDef name="SelectionAutoFactor"    type="number"   hmi-bind:value="{{ and( ( HmiProps.Content.ContentMode == HmiContentMode.GraphicAndText ), or( HmiProps.Content.TextPosition == HmiTextPosition.Top, HmiProps.Content.TextPosition == HmiTextPosition.Bottom ) ) ? 1 - HmiProps.Content.SplitRatio : 1 }}" />
+        <hmi:localDef name="SelectionAutoHeight"    type="number"   hmi-bind:value="{{ HmiProps.Font.Size * 3 / LocalProps.SelectionAutoFactor }}" />
+        <hmi:localDef name="SelectionItemHeight"    type="number"   hmi-bind:value="{{ HmiProps.SelectionItemHeight == 0 ? LocalProps.SelectionAutoHeight : HmiProps.SelectionItemHeight }}" />
+
+        <hmi:localDef name="ContentPositionX"       type="number"   hmi-bind:value="{{ HmiProps.BorderWidth + HmiProps.Padding.Left }}" />
+        <hmi:localDef name="ContentPositionY"       type="number"   hmi-bind:value="{{ HmiProps.BorderWidth + HmiProps.Padding.Top  }}" />
+
+        <hmi:localDef name="ContentWidth"           type="number"   hmi-bind:value="{{ HmiProps.Width  - (2 * HmiProps.BorderWidth) - HmiProps.Padding.Left - HmiProps.Padding.Right }}" />
+        <hmi:localDef name="ContentHeight"          type="number"   hmi-bind:value="{{ HmiProps.Height - (2 * HmiProps.BorderWidth) - HmiProps.Padding.Top  - HmiProps.Padding.Bottom }}" />
+
+        <clipPath id="ItemClipRect">
+            <rect id="ItemRect"
+                  hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+                  hmi-bind:y="{{ HmiProps.BorderWidth / 2 }}"
+                  hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth }}"
+                  hmi-bind:height="{{ HmiProps.Height - HmiProps.BorderWidth }}"
+                  hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}"
+                  hmi-bind:stroke="{{ Converter.RGBA( LocalProps.BorderColor ) }}"
+                  hmi-bind:stroke-width="{ LocalProps.BorderWidth }"
+                  rx="5" />
+        </clipPath>
+
+    </defs>
+
+    <g id="ExtendedButton">
+
+       <rect id="ItemRect_Background"
+              hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+              hmi-bind:y="{{ HmiProps.BorderWidth / 2 }}"
+              hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth }}"
+              hmi-bind:height="{{ HmiProps.Height - HmiProps.BorderWidth }}"
+              hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}"
+              rx="5" />
+
+
+       <g id="SelectionItem_0" clip-path="url(#ItemClipRect)">
+            <hmi:include template="include.style.extended.radiobutton.svghmi" hmi-bind:forEach="{ HmiProps.SelectionItems }"
+                         hmi-bind:x="{ LocalProps.ContentPositionX }"
+                         hmi-bind:y="{ LocalProps.ContentPositionY }"
+                         hmi-bind:width="{ LocalProps.ContentWidth }"
+                         hmi-bind:height="{ LocalProps.ContentHeight }">
+
+                <hmi:param name="ItemOperable"                  type="boolean"        hmi-bind:value="{{ HmiProps.Operability == HmiOperability.Operable }}"  />
+                <hmi:param name="ForeColor"                     type="HmiColor"       hmi-bind:value="{ HmiProps.ForeColor }"                                                          />
+                <hmi:param name="BackColor"                     type="HmiColor"       value="0xFFF2F4FF"                                                                               />
+                <hmi:param name="BorderColor"                   type="HmiColor"       value="0xFF64646A"                                                                               />
+                <hmi:param name="FocusColor"                    type="HmiColor"       hmi-bind:value="{ HmiProps.FocusColor }"                                                         />
+                <hmi:param name="BorderWidth"                   type="number"         value="1"                                                                                        />
+                <hmi:param name="Content"                       type="HmiContentPart" hmi-bind:value="{ HmiProps.Content }"                                                            />
+                <hmi:param name="Font"                          type="HmiFontPart"    hmi-bind:value="{ HmiProps.Font }"                                                               />
+                <hmi:param name="SelectorPosition"              type="number"         hmi-bind:value="{ HmiProps.SelectorPosition }"                                                   />
+                <hmi:param name="SelectionItemHeight"           type="number"         hmi-bind:value="{ LocalProps.SelectionItemHeight }"                                              />
+                <hmi:param name="SelectionItemDefaultHeight"    type="number"         hmi-bind:value="{ HmiProps.SelectionItemHeight }"                                                />
+
+            </hmi:include>
+        </g>
+        
+       <rect id="ItemRect_Used"
+              hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+              hmi-bind:y="{{ HmiProps.BorderWidth / 2 }}"
+              hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth }}"
+              hmi-bind:height="{{ HmiProps.Height - HmiProps.BorderWidth }}"
+              hmi-bind:stroke="{{ Converter.RGBA( LocalProps.BorderColor ) }}"
+              hmi-bind:stroke-width="{ LocalProps.BorderWidth }"
+              fill="none"
+              rx="5" />
+
+    </g>
+
+</svg>

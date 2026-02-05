@@ -1,0 +1,105 @@
+# Reason for this faceplate is the missing functionality to have a button that has one color (gradient)
+# this faceplate can be delete with device version V21.0.0
+# 30.11.2025; Device Version V19.0.2
+FaceplateTypes:
+  fpButton_V001:
+    ObjectType: FaceplateType
+    Width: 272
+    Height: 36
+    BackColor: Black 0%
+    DisplayName: GlobalTextLibrary.Entity_129
+    ScriptModules:
+      EventScripts:
+        ScriptLanguage: JavaScript
+        ScriptFile: Scripts\fpButton_V001_EventScripts.js
+        Scripts:
+          fpButton_OnDown:
+          fpButton_OnUp:
+    LocalTags:
+      ControlTag:
+        ObjectType: LocalSimpleTag
+        DataType: Bool
+        IsPublic: True
+      AutomaticMode:
+        ObjectType: LocalSimpleTag
+        DataType: Bool
+        IsPublic: True
+    PropertyInterface:
+      Properties:
+        ObjectType: FaceplateInterfacePropertyCollectionType
+        Members:
+          Text:
+            ObjectType: FaceplateSimplePropertyType
+            DataType: String
+            Default AS String: New Box
+          ControlTag:
+            ObjectType: FaceplateTagPropertyType
+            DataType: Bool
+          AutomaticMode:
+            ObjectType: FaceplateTagPropertyType
+            DataType: Bool
+    Layers:
+      Layer_0:
+      Layer_1:
+        Items:
+          txtBackground:
+            ObjectType: TextBox
+            Top: 0
+            Left: 0
+            Height: 36
+            Width: 272
+            BackColor: 0xFF1491EB
+            ForeColor: 0xFFDDDCDC
+            BorderWidth: 0
+            HorizontalTextAlignment: Center
+            Font:
+              Description: GlobalFontLibrary.Entity_23
+            Dynamics:
+              PropertyLink1:
+                ObjectType: PropertyLinkDynamic
+                Source: fpButton_V001.Properties.Text
+                Property: fpButton_V001.Layers.Layer_1.Items.txtBackground#Text
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: '@local::AutomaticMode'
+                Indirect: False
+                Direction: toProperty
+                Property: fpButton_V001.Layers.Layer_1.Items.txtBackground#Opacity
+                ValueConverter: '@local::ValueConverter_AutoModeToOpacity'
+          btnOverlay:
+            ObjectType: Button
+            Top: 0
+            Left: 0
+            Height: 36
+            Width: 272
+            BackColor: Black 0%
+            BorderWidth: 0
+            ForeColor: 0x00000000
+            ShowFocusVisual: False
+            Content:
+              SplitRatio: 1
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Down
+                Type: Script
+                Script: '@local::EventScripts.fpButton_OnDown'
+              ScriptEventHandler2:
+                Event: Up
+                Type: Script
+                Script: '@local::EventScripts.fpButton_OnUp'
+    ValueConverters:
+      ValueConverter_AutoModeToOpacity:
+        ConditionType: Boolean
+        Entries:
+          Entry1:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: true
+            Flashing: False
+            Rate: Medium
+            Value AS Real: 0.5
+          Entry2:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: false
+            Flashing: False
+            Rate: Medium
+            Value AS Real: 1.0

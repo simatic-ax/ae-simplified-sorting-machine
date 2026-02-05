@@ -1,0 +1,73 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2022. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+  xmlns:hmi-types="http://svg.siemens.com/hmi/types/"
+  xmlns:hmi="http://svg.siemens.com/hmi/"
+  xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+  xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+  xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+  xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+  xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/">
+  
+  <hmi:self type="part:HmiDynamicPropertyPart" name="style.flat.processdiagnosisoverviewcontroltiles" displayName="Include ProcessDiagnosisOverviewControlTiles" >
+  <hmi:paramDef name="Font"                       type="HmiFontPart"/>
+  <hmi:paramDef name="ListContainerSource"        type="number"/>
+  <hmi:paramDef name="Width"                      type="number"/>
+  <hmi:paramDef name="TileWidth"                  type="number"/>
+  </hmi:self>
+  <defs>
+    <hmi:localDef name="PropNameText"                   type="string"         value="Text"/>
+    <hmi:localDef name="PropNameBackColor"              type="string"         value="BackColor" />
+    <hmi:localDef name="PropNameForeColor"              type="string"         value="ForeColor" />
+  </defs>
+  <g id="ElementsGroup" >
+    <hmi-element:listContainer hmi-bind:source="{ParamProps.ListContainerSource}" hmi-bind:width="{ ParamProps.Width }"  hmi-bind:height="{ Layout.ActualHeight }">
+      <hmi-feature:properties>
+        <hmi-feature:select hmi-bind:name="{ LocalProps.PropNameText }"                     as="Text" />
+        <hmi-feature:select hmi-bind:name="{ LocalProps.PropNameBackColor }"                as="BackColor" />
+        <hmi-feature:select hmi-bind:name="{ LocalProps.PropNameForeColor }"                as="ForeColor" />
+      </hmi-feature:properties>
+      <hmi:master-inline>
+        <hmi:param name="Font"              type="HmiFontPart"     hmi-bind:value="{ ParamProps.Font }" />
+        <hmi:param name="Width"             type="number"          hmi-bind:value="{ ParamProps.Width }" />
+        <hmi:param name="TileWidth"         type="number"          hmi-bind:value="{ ParamProps.TileWidth }"/>
+        <hmi:template>
+          <svg id="TIFID_List_Tiles_Data" data-tif-type="WSI:TileData" xmlns="http://www.w3.org/2000/svg" xmlns:hmi="http://svg.siemens.com/hmi/"
+            xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/" xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+            xmlns:hmi-types="http://svg.siemens.com/hmi/types/"						overflow="visible"> 
+              <hmi:self type="part:HmiListContainerSystemPart" name="lc-master" displayName="Content of the ListContainer master" >
+                <hmi:paramDef name="Font"               type="HmiFontPart"  />
+                <hmi:paramDef name="Width"              type="number" />
+                <hmi:paramDef name="TileWidth"          type="number"/>
+              </hmi:self>
+              <defs>
+                <hmi:localDef name="TileMinHeight"             type="number"     value="30"   />
+                <hmi:localDef name="TileMaxWidth"              type="number"     value="100"  />
+                <hmi:localDef name="TileMaxHeight"             type="number"     value="100"   />
+              </defs>
+
+              <hmi:include template="include.style.flat.controltiles.svghmi"
+                        x="0" y="0"
+                        hmi-flex:justifyContent="start"
+                        hmi-flex:width="{ ParamProps.Width }"
+                        hmi-flex:height="{ Layout.ActualHeight }"
+                        hmi-bind:forEach="{ HmiProps.List }" hmi-flex:direction="row"  hmi-flex:wrap="false">
+
+                  <hmi:param name="TileMinHeight"    type="number"          hmi-bind:value="{ LocalProps.TileMinHeight }"    />
+                  <hmi:param name="TileMaxWidth"     type="number"          hmi-bind:value="{ LocalProps.TileMaxWidth }"    />
+                  <hmi:param name="TileMaxHeight"    type="number"          hmi-bind:value="{ LocalProps.TileMaxHeight }"    />
+                  <hmi:param name="Font"             type="HmiFontPart"     hmi-bind:value="{ ParamProps.Font }" />
+                  <hmi:param name="Width"            type="number"          hmi-bind:value="{ ParamProps.Width }" />
+                  <hmi:param name="TileWidth"        type="number"          hmi-bind:value="{ ParamProps.TileWidth }" />
+              </hmi:include>
+          </svg>
+        </hmi:template>
+      </hmi:master-inline>
+    </hmi-element:listContainer>
+  </g>
+</svg>

@@ -1,0 +1,35 @@
+#Version: 2.0
+
+AlarmClasses:
+  Acknowledgement:
+    ID: 33
+    StateMachine: RaiseClearRequiresAcknowledgment
+    RaisedStateBackColor: Red
+    AcknowledgedStateBackColor: White
+    AcknowledgedClearedStateBackColor: White
+    ClearedStateBackColor: Red
+    RaisedStateTextColor: Black
+    AcknowledgedStateTextColor: Black
+    ClearedStateTextColor: Black
+    AcknowledgedClearedStateTextColor: Black
+    DisplayName:
+      en-US: A
+    NormalStateTextColor: Black
+    NormalStateBackColor: White
+    Priority: None
+  No Acknowledgement:
+    ID: 34
+    StateMachine: RaiseClear
+    RaisedStateBackColor: Red
+    AcknowledgedStateBackColor: White
+    AcknowledgedClearedStateBackColor: White
+    ClearedStateBackColor: Red
+    RaisedStateTextColor: Black
+    AcknowledgedStateTextColor: Black
+    ClearedStateTextColor: Black
+    AcknowledgedClearedStateTextColor: Black
+    DisplayName:
+      en-US: NA
+    NormalStateTextColor: Black
+    NormalStateBackColor: White
+    Priority: None

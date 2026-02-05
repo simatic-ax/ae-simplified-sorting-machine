@@ -1,0 +1,124 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:hmi="http://svg.siemens.com/hmi/"
+    xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+    xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+    xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+    xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+    xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+    preserveAspectRatio="none" >
+
+    <hmi:self type="part:HmiControlBarTextBoxPart" displayName="Extended ControlBarTextBox" name="extended.controlbartextbox.part" version="1.0.1" performanceClass="L">
+
+        <hmi:paramDef name="Font"                 type="HmiFontPart" />
+        <hmi:paramDef name="ControlBarOperable"   type="boolean"     />
+        <hmi:paramDef name="FocusColor"           type="string"      />
+        <hmi:paramDef name="ShowFocusVisual"      type="boolean"     />
+
+        <hmi:focus focusVisual="local" canFocus="true" />
+
+    </hmi:self>
+
+    <defs>
+        <hmi:localDef name="MouseHover"           type="number"   value="0" />
+        <hmi:localDef name="Pressed"              type="number"   value="0" />
+
+        <hmi:localDef name="BorderColorAlphaMask" type="number"   value="0x01000000" />
+        <hmi:localDef name="BorderPressedAlpha"   type="number"   value="0x80000000" />
+        <hmi:localDef name="BorderColorPressed"   type="string"   hmi-bind:value="{{ Converter.RGBA( ( HmiProps.BorderColor % LocalProps.BorderColorAlphaMask ) + LocalProps.BorderPressedAlpha ) }}" />
+
+        <hmi:localDef name="ShowFocus"            type="boolean"  hmi-bind:value="{{ and( ParamProps.ShowFocusVisual, SysProps.HasFocus ) }}" />
+
+        <hmi:localDef name="ContentPositionX"     type="number"   hmi-bind:value="{{ HmiProps.BorderWidth + HmiProps.Padding.Left }}" />
+        <hmi:localDef name="ContentPositionY"     type="number"   hmi-bind:value="{{ HmiProps.BorderWidth + HmiProps.Padding.Top  }}" />
+        <hmi:localDef name="ContentWidth"         type="number"   hmi-bind:value="{{ Layout.ActualWidth  - ( 2 * HmiProps.BorderWidth ) - HmiProps.Padding.Left - HmiProps.Padding.Right }}" />
+        <hmi:localDef name="ContentHeight"        type="number"   hmi-bind:value="{{ Layout.ActualHeight - ( 2 * HmiProps.BorderWidth ) - HmiProps.Padding.Top  - HmiProps.Padding.Bottom }}" />
+
+        <hmi:localDef name="ButtonOperable"       type="boolean"  hmi-bind:value="{{ and( HmiProps.Enabled, HmiProps.Operability == HmiOperability.Operable ) }}" />
+        <hmi:localDef name="Operable"             type="boolean"  hmi-bind:value="{{ and( ParamProps.ControlBarOperable, LocalProps.ButtonOperable ) }}" />
+
+        <!-- definitions of actions -->
+        <hmi:action id="onMouseHover" hmi-bind:condition="{ LocalProps.Operable }" >
+            <hmi:setProperty name="LocalProps.MouseHover"     type="number" value="1" />
+        </hmi:action>
+
+        <!-- Because trigger cannot be dynamic, we must duplicate the actions for the trigger and extend the condition -->
+        <hmi:action id="onMouseDown" hmi-bind:condition="{ LocalProps.Operable }" >
+            <hmi:setProperty name="LocalProps.Pressed"        type="number" value="1" />
+            <hmi:setProperty name="LocalProps.MouseHover"     type="number" value="0" />
+            <hmi:sendCommand name="BUTTON_PRESSED"            type="number" hmi-bind:value="{ HmiProps.Mapping }" />
+        </hmi:action>
+        <hmi:action id="onMouseDown_Sim" trigger="accept" hmi-bind:condition="{ LocalProps.Operable }">
+            <hmi:sendCommand name="BUTTON_PRESSED" 			  type="number" hmi-bind:value="{ HmiProps.Mapping }" />
+        </hmi:action>
+
+        <!-- Because trigger cannot be dynamic, we must duplicate the actions for the trigger and extend the condition -->
+        <hmi:action id="onMouseUp" hmi-bind:condition="{ LocalProps.Operable }" >
+            <hmi:setProperty name="LocalProps.Pressed"    	type="number" value="0" />
+            <hmi:setProperty name="LocalProps.MouseHover" 	type="number" value="1" />
+        </hmi:action>
+        <hmi:action id="onMouseTapped" hmi-bind:condition="{ LocalProps.Operable }" >
+            <hmi:sendCommand name="BUTTON_RELEASED"       	type="number" hmi-bind:value="{ HmiProps.Mapping }" />
+        </hmi:action>
+
+        <hmi:action id="onMouseEnter" >
+            <hmi:sendCommand name="BUTTON_ENTER"          type="number" hmi-bind:value="{ HmiProps.Mapping }" />
+        </hmi:action>
+        <hmi:action id="onMouseLeave" >
+            <hmi:setProperty name="LocalProps.Pressed"    type="number" value="0" hmi-bind:condition="{ LocalProps.Operable }" />
+            <hmi:setProperty name="LocalProps.MouseHover" type="number" value="0" hmi-bind:condition="{ LocalProps.Operable }" />
+            <hmi:sendCommand name="BUTTON_LEAVE"          type="number" hmi-bind:value="{ HmiProps.Mapping }" />
+        </hmi:action>
+
+    </defs>
+
+    <g id="TIFID_ControlBarElement" hmi:if="{ HmiProps.Visible }"
+        hmi-event:mouseHover="url(#onMouseHover)"
+        hmi-event:down="url(#onMouseDown)"
+        hmi-event:up="url(#onMouseUp)"
+        hmi-event:tapped="url(#onMouseTapped)"
+        hmi-event:mouseEnter="url(#onMouseEnter)"
+        hmi-event:mouseLeave="url(#onMouseLeave)">
+
+        <!--  ControlbarTextBox has no ItemBGRect -->
+
+        <rect id="ItemRect_Used"
+            fill-opacity="0"
+            hmi-bind:stroke="{{ LocalProps.ShowFocus ? ParamProps.FocusColor : ( or( LocalProps.Pressed, LocalProps.MouseHover ) ? LocalProps.BorderColorPressed : Converter.RGBA( HmiProps.BorderColor ) ) }}"
+            hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+            hmi-bind:y="{{ HmiProps.BorderWidth / 2 }}"
+            hmi-bind:width="{{ Layout.ActualWidth - HmiProps.BorderWidth }}"
+            hmi-bind:height="{{ Layout.ActualHeight - HmiProps.BorderWidth }}"
+            hmi-bind:stroke-width="{{ HmiProps.BorderWidth + ( LocalProps.ShowFocus ? 4 : 0 ) }}" />
+
+        <g id="TextBehind">
+            <hmi-element:textField
+                hmi-bind:start-x="{ LocalProps.ContentPositionX }"
+                hmi-bind:start-y="{ LocalProps.ContentPositionY }"
+                hmi-bind:width="{ LocalProps.ContentWidth }"
+                hmi-bind:height="{ LocalProps.ContentHeight }"
+                hmi-bind:horizontal-text-alignment="{ HmiProps.HorizontalTextAlignment }"
+                hmi-bind:vertical-text-alignment="{ HmiProps.HorizontalTextAlignment }"
+                hmi-bind:value="{ HmiProps.Text }"
+                hmi-bind:fore-color="{{ Converter.RGBA( HmiProps.ForeColor ) }}"
+                target="HmiProps.Text"
+                output-format="{S}"
+                hmi-bind:enabled="{{ and( not( HmiProps.ReadOnly ), LocalProps.Operable ) }}"
+                padding="0"
+                multi-line="false"
+                text-trimming="none"
+                text-wrapping="no-wrap"
+                hmi-bind:read-only="{ HmiProps.ReadOnly }" >
+
+                <hmi-feature:inputBehavior clear-on-activate="false" />
+                <hmi-feature:font hmi-bind:scope="{ ParamProps.Font }" />
+
+            </hmi-element:textField>
+        </g>
+
+    </g>
+
+</svg>

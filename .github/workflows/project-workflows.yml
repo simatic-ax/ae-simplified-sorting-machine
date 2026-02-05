@@ -1,0 +1,30 @@
+# This workflow orchestrates the project's development lifecycle
+# It automatically builds and tests the SIMATIC AX project when changes are made to the AX folder
+# The workflow can also be triggered manually for testing purposes
+name: Project Workflows
+
+# Define when this workflow should run
+on:
+  push:
+    branches:
+      - 'main'    # Only run when pushing to the main branch
+    paths:
+      - 'AX/**'   # Only run when files in the AX directory are modified
+
+jobs:
+  call-ax-workflow:
+    # Call the reusable development workflow for building and testing
+    uses: ./.github/workflows/package-development-workflow.yml
+    with:
+      # Use the current commit/branch reference that triggered this workflow
+      ref: ${{ github.ref }}
+      # Set a default version for development builds (Note: release tag won't be available for push events)
+      version: ${{ github.event.release.tag_name }}
+      # Specify the path to the AX project within the repository
+      path: "AX"
+    secrets:
+      # Pass required secrets for APAX package management
+      APAX_TOKEN: ${{ secrets.APAX_TOKEN }}           # Token for APAX registry access
+      GH_GITHUB_TOKEN: ${{ secrets.GH_GITHUB_TOKEN }} # GitHub token for package operations
+
+

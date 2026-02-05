@@ -1,0 +1,143 @@
+#Version: 2.0
+
+CoreArtifacts:
+  '@SystemActivationState_1':
+    ObjectType: HmiSimpleTag
+    Alarms:
+      SystemStartupNotification:
+        ObjectType: HmiAnalogAlarm
+        ESOrigin: RuntimeSystem
+        AlarmClass: SystemNotification
+        AlarmParameterTags:
+        - '@ServerMachineName_1#Value'
+        SourceType: TAG
+        SystemSeverity: 134
+        EventText: AlarmTextLibrary.Entry_94
+        Condition: EQ
+        InitialConditionValue: 1
+        Area: System/HMI/RuntimeSystem
+        ID: SystemStartupNotification
+      SystemShutdownNotification:
+        ObjectType: HmiAnalogAlarm
+        ESOrigin: RuntimeSystem
+        AlarmClass: SystemNotification
+        AlarmParameterTags:
+        - '@ServerMachineName_1#Value'
+        SourceType: TAG
+        SystemSeverity: 134
+        EventText: AlarmTextLibrary.Entry_95
+        Condition: GT
+        InitialConditionValue: 2
+        Area: System/HMI/RuntimeSystem
+        ID: SystemShutdownNotification
+  '@DeltaActivationState':
+    ObjectType: HmiSimpleTag
+    Alarms:
+      DeltaActivationNotification:
+        ObjectType: HmiDiscreteAlarm
+        ESOrigin: RuntimeSystem
+        AlarmClass: SystemNotification
+        SourceType: TAG
+        SystemSeverity: 0
+        EventText: AlarmTextLibrary.Entry_398
+        RangeCheckSet:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 10
+        Area: System/HMI/RuntimeSystem
+        ID: DeltaActivationNotification
+      DeltaRollbackNotification:
+        ObjectType: HmiDiscreteAlarm
+        ESOrigin: RuntimeSystem
+        AlarmClass: SystemNotification
+        SourceType: TAG
+        SystemSeverity: 0
+        EventText: AlarmTextLibrary.Entry_399
+        RangeCheckSet:
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 11
+        Area: System/HMI/RuntimeSystem
+        ID: DeltaRollbackNotification
+  '@OnlineBackupState':
+    ObjectType: HmiSimpleTag
+    Alarms:
+      OnlineBackupNotification:
+        ObjectType: HmiDiscreteAlarm
+        ESOrigin: RuntimeSystem
+        AlarmClass: SystemNotification
+        SourceType: TAG
+        SystemSeverity: 0
+        EventText: AlarmTextLibrary.Entry_400
+        RangeCheckSet:
+        - 1
+        Area: System/HMI/RuntimeSystem
+        ID: OnlineBackupNotification
+  '@MemoryInformation_1':
+    ObjectType: HmiStructureTag
+    .UsedInPercent:
+      Alarms:
+        PhysicalMemorySpaceWarning:
+          ObjectType: HmiAnalogAlarm
+          ESOrigin: RuntimeSystem
+          AlarmClass: SystemWarning
+          AlarmParameterTags:
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_99
+          Condition: GE
+          InitialConditionValue: 90
+          DynamicAlarmCondition: MemoryLimitWarning
+          Area: System/HMI/SystemDiagnostics
+          ID: PhysicalMemorySpaceWarning
+        PhysicalMemorySpaceAlarm:
+          ObjectType: HmiAnalogAlarm
+          ESOrigin: RuntimeSystem
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 133
+          EventText: AlarmTextLibrary.Entry_100
+          Condition: GE
+          InitialConditionValue: 95
+          DynamicAlarmCondition: MemoryLimitAlarm
+          Area: System/HMI/SystemDiagnostics
+          ID: PhysicalMemorySpaceAlarm
+  '@DiskInformation_1':
+    ObjectType: HmiStorageDevice
+    Alarms:
+      DiscSpaceWarning:
+        ObjectType: HmiAnalogAlarm
+        ESOrigin: RuntimeSystem
+        ParentID: 262406
+        AlarmClass: SystemWarning
+        AlarmParameterTags:
+        - '@ServerMachineName_1#Value'
+        SourceType: TAG
+        SystemSeverity: 131
+        EventText: AlarmTextLibrary.Entry_103
+        Condition: GE
+        InitialConditionValue: 90
+        Area: System/HMI/SystemDiagnostics
+        ID: DiscSpaceWarning
+      DiscSpaceAlarm:
+        ObjectType: HmiAnalogAlarm
+        ESOrigin: RuntimeSystem
+        ParentID: 262406
+        AlarmClass: SystemAlarm
+        AlarmParameterTags:
+        - '@ServerMachineName_1#Value'
+        SourceType: TAG
+        SystemSeverity: 133
+        EventText: AlarmTextLibrary.Entry_104
+        Condition: GE
+        InitialConditionValue: 95
+        Area: System/HMI/SystemDiagnostics
+        ID: DiscSpaceAlarm

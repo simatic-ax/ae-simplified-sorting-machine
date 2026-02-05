@@ -1,0 +1,7 @@
+#Version: 2.0
+
+GraphicListContainers:
+  ResourceListContainer1:
+    ResourceListType: GraphicList
+
+

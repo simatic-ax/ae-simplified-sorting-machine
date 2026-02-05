@@ -1,0 +1,1 @@
+type TagValueType<T>=Variant;

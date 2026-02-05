@@ -1,0 +1,73 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2020. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/">
+    <hmi:self type="system:HmiInputHintSystemPart" displayName="Extended InputHint" name="style.extended.inputhint" version="2.9" performanceClass="s">
+        <hmi:paramDef name="BackColor"    type="HmiColor" />
+        <hmi:paramDef name="TextColor"    type="HmiColor" />
+        <hmi:paramDef name="Font"         type="HmiFontPart" />
+		<hmi:paramDef name="MinimumValue" type="string" />
+		<hmi:paramDef name="MaximumValue" type="string" />
+        <hmi:data type="inputHint-details"></hmi:data>
+    </hmi:self>
+    <defs>
+          <hmi:localDef name="TextForRange"            type="string"        hmi-bind:value="{{ Converter.GetTextByID( 'TBID_InputHint_Range' ) }}" />
+          <hmi:localDef name="TextForMin"              type="string"        hmi-bind:value="{{ Converter.GetTextByID( 'TBID_InputHint_Minimum' ) }}" />
+          <hmi:localDef name="TextForMax"              type="string"        hmi-bind:value="{{ Converter.GetTextByID( 'TBID_InputHint_Maximum' ) }}" />
+          <hmi:localDef name="IsMin"                   type="boolean"       hmi-bind:value="{{ ParamProps.MinimumValue == '' ? Converter.IsNumber( ParamProps.MinimumValue ) : true }}" />
+          <hmi:localDef name="IsMax"                   type="boolean"       hmi-bind:value="{{ ParamProps.MaximumValue == '' ? Converter.IsNumber( ParamProps.MaximumValue ) : true }}" />
+          <hmi:localDef name="IsRange"                 type="boolean"       hmi-bind:value="{{ or( LocalProps.IsMin, LocalProps.IsMax ) }}" />
+          <hmi:localDef name="ToolTipText"             type="string"        hmi-bind:value="{{ LocalProps.IsRange ? LocalProps.TextForRange + ( LocalProps.IsMin ? ( '\n' + LocalProps.TextForMin + ParamProps.MinimumValue ) : '' ) + ( LocalProps.IsMax ? ( '\n' + LocalProps.TextForMax + ParamProps.MaximumValue ) : '' ) : '' }}" />
+          <hmi:localDef name="TextHeight"              type="number"        hmi-bind:value="{{ Converter.TextHeight( LocalProps.ToolTipText, ParamProps.Font, true ) }}"/>
+          <hmi:localDef name="TooltipHeight"           type="number"        hmi-bind:value="{{ LocalProps.TextHeight - ( and( LocalProps.IsMax, LocalProps.IsMin ) ? 10 : 4 ) }}"/>
+          <hmi:localDef name="TooltipWidth"            type="number"        hmi-bind:value="{{ Converter.TextWidth( LocalProps.ToolTipText, ParamProps.Font, true ) + 20 }}"/>
+          <hmi:localDef name="TwiceTooltipHeight"      type="number"        hmi-bind:value="{{ 2 * LocalProps.TooltipHeight }}" />
+          <hmi:localDef name="HalfTooltipHeight"       type="number"        hmi-bind:value="{{ LocalProps.TooltipHeight / 2 }}" />
+          <hmi:localDef name="StaticZero"              type="number"        value="0" />
+          <hmi:localDef name="StaticOne"               type="number"        value="1" />
+    </defs>
+    <g hmi-flex:width="{ HmiProps.Width }" id="TIFID_inputHintDetails" hmi-flex:height="{ HmiProps.Height }" hmi-flex:justifyContent="start" hmi:if="{ LocalProps.IsRange }" >
+        <g opacity="1" hmi-flex:alignSelf="end">
+            <!--Background polyline-->
+            <polyline hmi-bind:points="{ LocalProps.StaticOne },{{ -LocalProps.TwiceTooltipHeight }}
+	                                     { LocalProps.TooltipWidth },{{ -LocalProps.TwiceTooltipHeight }}
+					                             { LocalProps.TooltipWidth },{{ -LocalProps.HalfTooltipHeight }}
+					                             {{ LocalProps.TooltipWidth - ( 0.8 * LocalProps.TooltipWidth ) }},{{ -LocalProps.HalfTooltipHeight }}
+					                             {{ LocalProps.TooltipWidth - ( 0.85 * LocalProps.TooltipWidth ) }},{ LocalProps.StaticZero }
+					                             {{ LocalProps.TooltipWidth - ( 0.9 * LocalProps.TooltipWidth ) }},{{ -LocalProps.HalfTooltipHeight }}
+					                             { LocalProps.StaticOne },{{ -LocalProps.HalfTooltipHeight }}
+					                             { LocalProps.StaticOne },{{ -LocalProps.TwiceTooltipHeight }}"
+                      hmi-bind:fill="{{ Converter.RGBA( ParamProps.BackColor ) }}"
+                      stroke="rgba(235, 120, 10, 1.0)">
+            </polyline>
+            <g>
+                <hmi-element:textField start-x="5"
+                                       hmi-bind:start-y="{{ -LocalProps.TwiceTooltipHeight + LocalProps.TooltipHeight / 6 }}"
+                                       hmi-bind:width="{ LocalProps.TooltipWidth }"
+                                       hmi-bind:height="{ LocalProps.TextHeight }"
+                                       hmi-bind:value="{ LocalProps.ToolTipText }"
+                                       hmi-bind:fore-color="{{ Converter.RGBA( ParamProps.TextColor ) }}"
+                                       output-format=""
+                                       enabled="false"
+                                       read-only="true"
+                                       multi-line= "true"
+                                       hmi-bind:horizontal-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}"
+									                     hmi-bind:vertical-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}">
+                    <hmi-feature:font hmi-bind:size="{ ParamProps.Font.Size }"
+                                      hmi-bind:italic="{ ParamProps.Font.Italic }"
+                                      hmi-bind:weight="{ ParamProps.Font.Weight }"
+                                      hmi-bind:strike-out="{ ParamProps.Font.StrikeOut }"
+                                      hmi-bind:underline="{ ParamProps.Font.Underline }"
+                                      hmi-bind:name="{ ParamProps.Font.Name }" />
+                </hmi-element:textField>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,24 @@
+#Version: 2.0
+UMCConfig:
+  ProjectConfig:
+    Version: 1.0
+    DomainName: UM_Domain
+    Users:
+      Admin: # Password: Simatic123!
+        FullName: Admin
+        Password: "ZwGw3x3FGXJxA5oORf/bG8Og/rRAhoiZazx76PXFHnpJCF8GLhh8XR9oJTOKygrj890Y+l8sHzim9ZiiqVlIW2dsFVrSkcpGFNiHq6blN4+XuTErSiSp1wxDv59QSsUYTcnkocEbRvYJP6XA4kisb0W8ysTq3ONjqo4x5sp0wCsYhKknYeBMBzoZAWf71LIHXZySgXpl3Y5/aXAxFKIx0nAJS3s3sqZohF7dlrPR6+DhA67sM3Cf6sRLcGyU2bQ2Su2XxrakXJ3euzlsm9B1Le3W92AH5Hb9PepxRXa9cJUrLMNMnEyrUGvKMVAwwFoWvwfoxLCvHsMbBsmIGSfAWg=="
+        Algorithm: PBKDF2-HMAC-SHA512
+        Salt: "XF4xX1FYP2o0ZHxMZTMp"
+        Encoding: utf8
+        Iteration: 6123
+        Language: en-US
+
+##Configure Roles association to Users in this section
+UserRoleAssociations:
+  TheURAssociation:
+    Role: HMI Administrator
+    User: ProjectConfig.Admin
+
+#
+#
+# For more information, see: https://docu.simatic-ue.siemens.io/learn/documentation/reference/winccml/webpage_docs/winccml-reference/LanguageReferenceFiles/Output/8_USERROLEASSOCIATION/

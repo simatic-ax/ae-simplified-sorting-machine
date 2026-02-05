@@ -1,0 +1,48 @@
+#Version: 2.0
+
+Internals:
+  Conn_event_0_1_to_data_150_1:
+    StructureType: ManagerConnections
+    ESOrigin: RuntimeSystem # DFP generated - DO NOT REMOVE
+    .ManagerName:
+      DataType: DTString
+      InitialValue: AlarmServiceManager
+    .ManagerConnected:
+      DataType: DTBool
+      Alarms:
+        ServiceManagerAlarm:
+          ObjectType: HmiBinaryAlarm
+          ParentID: 6
+          AlarmClass: SystemAlarm
+          SourceType: TAG
+          SystemSeverity: 132
+          EventText: AlarmTextLibrary.Entry_22
+          AlarmParameterTags:
+          - Conn_event_0_1_to_data_150_1.ManagerName#Value
+          - '@ServerMachineName_1#Value'
+          ConditionPattern: 0
+          Area: System/HMI/RuntimeSystem
+          ID: ServiceManagerAlarm
+  Service_99342A79-3030-4C1E-A1C0-D4B514C22356:
+    StructureType: ServiceConnections
+    ESOrigin: RuntimeSystem # DFP generated - DO NOT REMOVE
+    .ActiveStubs:
+      DataType: DTDInt
+      Alarms:
+        SystemServiceAlarm:
+          ObjectType: HmiAnalogAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          SourceType: TAG
+          SystemSeverity: 130
+          EventText: AlarmTextLibrary.Entry_16
+          AlarmParameterTags:
+          - Service_99342A79-3030-4C1E-A1C0-D4B514C22356.ServiceName#Value
+          - '@ServerMachineName_1#Value'
+          Condition: EQ
+          InitialConditionValue: 0
+          Area: System/HMI/RuntimeSystem
+          ID: SystemServiceAlarm
+    .ServiceName:
+      DataType: DTString
+      InitialValue: AlarmService

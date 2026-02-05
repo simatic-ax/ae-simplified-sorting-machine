@@ -1,0 +1,44 @@
+#Version: 2.0
+
+SimpleTags:
+  Brightness:
+    InitialValue: 100
+    DataType: Int
+  InScreenTabState:
+    InitialValue: 0
+    DataType: Int
+  CurrentMachineState:
+    InitialValue: 0
+    DataType: Int
+  CurrentLanguage:
+    DataType: Int
+  CurrentParameterSetName:
+    DataType: String
+    MaxLength: 254
+  CurrentUserName:
+    DataType: String
+    MaxLength: 254
+  Passwort:
+    DataType: String
+    MaxLength: 254
+  CircleIndicator:
+    DataType: Int
+  PowerState:
+    DataType: Int
+  MachineState:
+    DataType: Int
+  ErrorState:
+    DataType: Int
+  TextListIndexTag:
+    DataType: Int
+  GraphicListIndexTag:
+    DataType: Int
+  DummyTagBool:
+    DataType: Bool
+  DummyTagInt:
+    DataType: Int
+  ProcessValue Signal:
+    DataType: Int
+  Dummy_Status:
+    InitialValue: 0
+    DataType: Int

@@ -1,0 +1,560 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-types="http://svg.siemens.com/hmi/types/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     preserveAspectRatio="none"
+     id="custom_DetailedParameterControlContent"
+     data-tif-type="WSI:SvgGrid">
+
+    <hmi:self type="custom" displayName="Extended detailedparameterControlContent" name="style.extended.detailedparametercontrolcontent">
+        <hmi:paramDef name="WindowBorderWidth"          type="number"   />
+        <hmi:paramDef name="CaptionHeight"              type="number"   />
+        <hmi:paramDef name="ContentOffsetHeight"        type="number"   />
+        <hmi:paramDef name="FocusColor"                 type="string"   />
+        <hmi:paramDef name="ShowFocusVisual"            type="boolean"  />
+    </hmi:self>
+
+    <defs>
+        <hmi:localDef name="MyLocalContent"     type="HmiContentPart">
+            <hmi-types:content
+            SplitRatio="0.5"
+            ContentMode="2"
+            TextPosition="0"
+            GraphicStretchMode="0"
+            VerticalTextAlignment="1"
+            HorizontalTextAlignment="0"
+            Spacing="5"
+            TextTrimming="1"
+            Type="0"
+            ElementID="0"/>
+        </hmi:localDef>
+        <hmi:localDef name="MyLocalPadding"     type="HmiPaddingPart">
+            <hmi-types:padding
+            Left="5"
+            Right="0"
+            Top="0"
+            Bottom="0"/>
+        </hmi:localDef>
+        <hmi:localDef name="ShowGridFocus"                      type="boolean"  hmi-bind:value="{{ and( ParamProps.ShowFocusVisual, SysProps.HasFocus ) }}"                                                                 />
+        <hmi:localDef name="GridOffsetWidth"                    type="number"   value="20"                                                                                                                                  />
+        <hmi:localDef name="GridOffsetHeight"                   type="number"   value="125"                                                                                                                                 />
+        <hmi:localDef name="OverFlowVisible"                    type="string"   value="visible"                                                                                                                             />
+        <hmi:localDef name="GridXPos"                           type="number"   value="10"                                                                                                                                  />
+        <hmi:localDef name="GridYPos"                           type="number"   value="115"                                                                                                                                 />
+        <hmi:localDef name="ResourceListDelay"                  type="boolean"  value="true"                                                                                                                                />
+        <hmi:localDef name="PropNameText"                       type="string"   value="Text"                                                                                                                                />
+        <hmi:localDef name="PropNameGraphic"                    type="string"   value="Graphic"                                                                                                                             />
+        <hmi:localDef name="PropNameGraphicWidth"               type="string"   value="GraphicWidth"                                                                                                                        />
+        <hmi:localDef name="PropNameGraphicHeight"              type="string"   value="GraphicHeight"                                                                                                                       />
+        <hmi:localDef name="ControlHeight"                      type="number"   value="110"                                                                                                                                 />
+        <hmi:localDef name="ComboWidth"                         type="number"   value="240"                                                                                                                                 />
+        <hmi:localDef name="ComboHeight"                        type="number"   value="30"                                                                                                                                  />
+        <hmi:localDef name="PstBottomPadding"                   type="number"   value="10"                                                                                                                                  />
+        <hmi:localDef name="LayoutHeight"                       type="number"   hmi-bind:value="{{ Layout.ActualHeight - 2 * ParamProps.WindowBorderWidth - ParamProps.CaptionHeight - ParamProps.ContentOffsetHeight }}"   />
+        <hmi:localDef name="PaddingBtwnComboGrid"               type="number"   value="8"                                                                                                                                   />
+        <hmi:localDef name="ListItemHeight"                     type="number"   hmi-bind:value="{{ HmiProps.ParameterView.Font.Size * 1.5 + 10 }}"                                                                          />
+        <hmi:localDef name="MainControlHeight"                  type="number"   value="65"                                                                                                                                  />
+        <hmi:localDef name="IsControlHeightLess"                type="boolean"  hmi-bind:value="{{ lt( LocalProps.LayoutHeight, LocalProps.MainControlHeight - LocalProps.PstBottomPadding ) }}"                            />
+        <hmi:localDef name="ComboHeightTillGrid"                type="number"   hmi-bind:value="{{ 3 * LocalProps.ComboHeight }}"                           />
+        <hmi:localDef name="ListHeightTillWindow"               type="number"   hmi-bind:value="{{ abs( LocalProps.LayoutHeight - ( LocalProps.MainControlHeight - LocalProps.PaddingBtwnComboGrid ) + ( HmiProps.ToolBar.Visible ? HmiProps.ToolBar.Height : 0 ) +  ( HmiProps.StatusBar.Visible ? HmiProps.StatusBar.Height : 0 ) ) }}" />
+        <hmi:localDef name="LayoutHeightPadding"                type="number"   hmi-bind:value="{{ LocalProps.LayoutHeight - LocalProps.GridOffsetHeight }}" />
+        <hmi:localDef name="LayoutWidthPadding"                 type="number"   hmi-bind:value="{{ Layout.ActualWidth - LocalProps.GridOffsetWidth }}" />
+        <!--Parameter set type positioning -->
+        <hmi:localDef name="PstResourceListType"                type="string"   value="PST"         />
+        <hmi:localDef name="PstNameLblY"                        type="number"   value="20"          />
+        <hmi:localDef name="PstNumberTextY"                     type="number"   value="47"          />
+        <hmi:localDef name="PstNumberTextBckRectY"              type="number"   value="26"          />
+        <hmi:localDef name="PstComboY"                          type="number"   value="25"          />
+        <!--Parameter set  positioning -->
+        <hmi:localDef name="PsResourceListType"                 type="string"   value="PS"          />
+        <hmi:localDef name="PsNameLblY"                         type="number"   value="70"          />
+        <hmi:localDef name="PsNumberTextY"                      type="number"   value="97"          />
+        <hmi:localDef name="PsComboY"                           type="number"   value="76"          />
+        <!-- Common combo Properties-->
+        <hmi:localDef name="NameLblX"                           type="number"   value="10"          />
+        <hmi:localDef name="NumberLblX"                         type="number"   value="265"         />
+        <hmi:localDef name="NumberTextX"                        type="number"   value="270"         />
+        <hmi:localDef name="NumberTextBckRectStroke"            type="string"   value="gray"        />
+        <hmi:localDef name="NumberTextBckRectCornerRadius"      type="number"   value="2"           />
+        <hmi:localDef name="NumberTextBckRectX"                 type="number"   value="265"         />
+        <hmi:localDef name="NumberTextBckRectWidth"             type="number"   value="100"         />
+        <hmi:localDef name="ComboX"                             type="number"   value="10"          />
+        <hmi:localDef name="ComboBorderWidth"                   type="number"   value="1"           />
+        <hmi:localDef name="ComboBorderColor"                   type="number"   value="4288059030"  />
+        <hmi:localDef name="ComboGraphicWidth"                  type="number"   value="300"         />
+        <hmi:localDef name="ComboIOFieldType"                   type="number"   value="2"           />
+        <hmi:localDef name="ComboCanOpenComboBox"               type="boolean"  value="true"        />
+        <hmi:localDef name="ComboSelectedIndex"                 type="number"   value="-1"          />
+
+        <!--Font properties-->
+        <hmi:localDef name="FontStyle"                          type="string"   hmi-bind:value="{{ HmiProps.Font.Italic ? 'italic': 'normal' }}" />
+        <hmi:localDef name="TextDecoration"                     type="string"   hmi-bind:value="{{ HmiProps.Font.Underline ? HmiProps.Font.StrikeOut ? 'underline line-through': 'underline' :HmiProps.Font.StrikeOut ? 'line-through': ' ' }}" />
+        <hmi:localDef name="ForeColor"                          type="string"   hmi-bind:value="{{ Converter.RGBA( HmiProps.ForeColor ) }}" />
+        <hmi:localDef name="SelectionForeColor"                 type="string"   hmi-bind:value="{{ Converter.RGBA( HmiProps.SelectionForeColor ) }}" />
+        <hmi:localDef name="HeaderGridLineColor"                type="string"   hmi-bind:value="{{ Converter.RGBA(  HmiProps.ParameterView.HeaderSettings.HeaderGridLineColor ) }}" />
+
+        <hmi:localDef name="DefaultParamSetTypeUnitText"        type="string"   hmi-bind:value="{{ Converter.GetTextByID( 'TBID_PacoCtrl_defaultTextParamSetTypeUnit' ) }}" />
+      
+        <!--Parameter set type label clipping-->
+        <clipPath id="pstNameLblCliping">
+            <rect hmi-bind:x="{ LocalProps.NameLblX }"  hmi-bind:width="{ LocalProps.ComboWidth }" hmi-bind:height="{ LocalProps.ComboHeight }">
+            </rect>
+        </clipPath>
+        <clipPath id="pstNumberLblCliping">
+            <rect hmi-bind:x="{ LocalProps.NumberLblX }" hmi-bind:width="{ LocalProps.ComboWidth }" hmi-bind:height="{ LocalProps.ComboHeight }">
+            </rect>
+        </clipPath>
+        <!--Parameter set type number clipping-->
+        <clipPath id="pstNumberCliping">
+          <rect hmi-bind:x="{ LocalProps.NumberTextBckRectX }" hmi-bind:y="{ LocalProps.PstNumberTextBckRectY }" hmi-bind:width="{ LocalProps.NumberTextBckRectWidth }" hmi-bind:height="{ LocalProps.ComboHeight }">
+          </rect>
+        </clipPath>
+        <!--Parameter set label clipping-->
+        <clipPath id="psNameLblCliping">
+            <rect hmi-bind:x="{ LocalProps.NameLblX }" y="55" hmi-bind:width="{ LocalProps.ComboWidth }" hmi-bind:height="{ LocalProps.ComboHeight }">
+            </rect>
+        </clipPath>
+        <clipPath id="psNumberLblCliping">
+            <rect hmi-bind:x="{ LocalProps.NumberLblX }" y="55" hmi-bind:width="{ LocalProps.ComboWidth }" hmi-bind:height="{ LocalProps.ComboHeight }">
+            </rect>
+        </clipPath>
+         <!--Parameter set number clipping-->
+        <clipPath id="psNumberCliping">
+          <rect hmi-bind:x="{ LocalProps.NumberTextBckRectX }" hmi-bind:y="{ LocalProps.PsComboY }" hmi-bind:width="{ LocalProps.NumberTextBckRectWidth }" hmi-bind:height="{ LocalProps.ComboHeight }">
+          </rect>
+        </clipPath>
+    </defs>
+    <!--Paco grid part-->
+    <g hmi:if="{{ not( HmiProps.HideDetails ) }}" id="Background"   >
+        <!--chnage x to Layout.ActualX-->
+
+        <hmi-element:table hmi-bind:config="{ HmiProps.ParameterView }" hmi-bind:height="{ LocalProps.LayoutHeightPadding }" hmi-bind:width="{ LocalProps.LayoutWidthPadding }" hmi-bind:start-x="{ LocalProps.GridXPos }" hmi-bind:start-y="{LocalProps.GridYPos}" hmi-bind:horizontal-scrollbar-visibility="{ HmiProps.ParameterView.HorizontalScrollBarVisibility }"
+                    hmi-bind:vertical-scrollbar-visibility="{ HmiProps.ParameterView.VerticalScrollBarVisibility }">
+
+            <!--Column Header-->
+            <hmi-feature:header>
+                <hmi:master-inline>
+                    <hmi:param name="Padding"   type="HmiPaddingPart"   hmi-bind:value="{ HmiProps.ParameterView.CellPadding }" />
+                    <hmi:template>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            xmlns:hmi="http://svg.siemens.com/hmi/"
+                            xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                            xmlns:hmi-types="http://svg.siemens.com/hmi/types/"
+                            xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+                            xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+                            height="10" width="10" id="ColumnHeaderSVG" >
+                            <hmi:self type="system:HmiHeaderCellSystemPart" displayName="ColumnHeader" name="columnheader" version="1.0.0" performanceClass="s">
+                              <hmi:paramDef name="Padding"          type="HmiPaddingPart" />
+                            </hmi:self>
+                            <defs>
+                              <hmi:localDef name="PaddingLeftRight"       type="number"     hmi-bind:value="{{ ( ParamProps.Padding.Left + ParamProps.Padding.Right ) }}" />
+                              <hmi:localDef name="PaddingWidth"           type="number"     hmi-bind:value="{{ HmiProps.Width - LocalProps.PaddingLeftRight }}" />
+                            </defs>
+                            <g id="TIFID_ColumnHeaderGroup" opacity="1">
+                                <rect id="ColumnHeaderRect"
+                                      hmi-bind:width="{ HmiProps.Width }"
+                                      hmi-bind:height="{ HmiProps.Height }"
+                                      hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}"/>
+                                <hmi:include template="include.style.extended.content.svghmi" hmi-bind:for="{ HmiProps.Content }"
+                                              hmi-bind:x="{ ParamProps.Padding.Left }"
+                                              hmi-bind:y="{ ParamProps.Padding.Top }"
+                                              hmi-bind:width="{ LocalProps.PaddingWidth }"
+                                              hmi-bind:height="{{ HmiProps.Height - ParamProps.Padding.Bottom }}">
+                                  <hmi:param name="Text"            type="string" hmi-bind:value="{{ Converter.IsNumber(HmiProps.Text) ?
+                                                                                                        HmiProps.Text :
+                                                                                                        ( HmiProps.Text ?
+                                                                                                            HmiProps.Text :
+                                                                                                            HmiProps.Name ) }}"     />
+                                  <hmi:param name="Graphic"         type="HmiGraphic"   hmi-bind:value="{ HmiProps.Graphic }"       />
+                                  <hmi:param name="Font"            type="HmiFontPart"  hmi-bind:value="{ HmiProps.Font }"          />
+                                  <hmi:param name="TextColor"       type="HmiColor"     hmi-bind:value="{ HmiProps.ForeColor }"     />
+                                  <hmi:param name="GraphicWidth"    type="number"       hmi-bind:value="{ HmiProps.GraphicWidth }"  />
+                                  <hmi:param name="GraphicHeight"   type="number"       hmi-bind:value="{ HmiProps.GraphicHeight }" />
+                                </hmi:include>
+                            </g>
+                        </svg>
+                    </hmi:template>
+                </hmi:master-inline>
+
+            </hmi-feature:header>
+
+            <!--Row Headers-->
+            <hmi-feature:recordHeader >
+                <hmi:master-inline >
+                    <hmi:param name="Padding"   type="HmiPaddingPart"   hmi-bind:value="{ HmiProps.ParameterView.CellPadding }" />
+                    <hmi:template>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             xmlns:hmi="http://svg.siemens.com/hmi/"
+                             xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                             xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"
+                             height="10" width="10" >
+                            <hmi:self type="system:HmiHeaderCellSystemPart" displayName="RowHeader" name="rowheader" version="1.0.0" performanceClass="s">
+                                <hmi:data type="header-view"></hmi:data>
+                                <hmi:paramDef name="Padding"      type="HmiPaddingPart" />
+                            </hmi:self>
+
+                            <g id="TIFID_RowHeaderGroup" opacity="1">
+                                <rect id="RowHeaderRect"
+                                      hmi-bind:width="{ HmiProps.Width}"
+                                      hmi-bind:height="{ HmiProps.Height }"
+                                      hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}"/>
+                                <hmi:include template="include.style.extended.text.svghmi"
+                                              hmi-bind:x="{ ParamProps.Padding.Left }"
+                                              hmi-bind:y="{ ParamProps.Padding.Top }"
+                                              hmi-bind:width="{{ HmiProps.Width - ( ParamProps.Padding.Right + ParamProps.Padding.Left ) }}"
+                                              hmi-bind:height="{{ HmiProps.Height - ParamProps.Padding.Bottom }}">
+                                    <hmi:param name="Text"                      type="string"                   hmi-data-bind:value="{ Content.Index }"                         />
+                                    <hmi:param name="Font"                      type="HmiFontPart"              hmi-bind:value="{ HmiProps.Font }"                              />
+                                    <hmi:param name="TextColor"                 type="HmiColor"                 hmi-bind:value="{ HmiProps.ForeColor }"                         />
+                                    <hmi:param name="HorizontalTextAlignment"   type="HmiHorizontalAlignment"   hmi-bind:value="{ HmiProps.Content.HorizontalTextAlignment }"   />
+                                    <hmi:param name="VerticalTextAlignment"     type="HmiVerticalAlignment"     value="1"                                                       />
+                                </hmi:include>
+                            </g>
+                        </svg>
+                    </hmi:template>
+                </hmi:master-inline>
+            </hmi-feature:recordHeader>
+
+            <!--Data template-->
+            <hmi-feature:dataTemplates>
+                <hmi:master-include template="include.style.extended.heirarchicaldatacell.svghmi">
+                    <hmi:param name="Padding"      type="HmiPaddingPart"   hmi-bind:value="{ HmiProps.ParameterView.CellPadding }"   />
+                    <hmi:param name="RowBackColor" type="HmiColor"         hmi-bind:value="{ HmiProps.ParameterView.BackColor }"     />
+                    <hmi:param name="RowForeColor" type="HmiColor"         hmi-bind:value="{ HmiProps.ParameterView.ForeColor }"     />
+                </hmi:master-include>
+            </hmi-feature:dataTemplates>
+
+            <hmi-feature:rowBackground >
+                <hmi:master-include template="include.style.extended.rowbackground.svghmi">
+                </hmi:master-include>
+            </hmi-feature:rowBackground>
+
+            <hmi-feature:columnBackground >
+                <hmi:master-include template="include.style.extended.columnbackground.svghmi">
+                </hmi:master-include>
+            </hmi-feature:columnBackground>
+
+            <!--Grid lines-->
+            <hmi-feature:gridlines>
+                <hmi-feature:gridline
+                  position-filter="begin header end" expansion="header inner"
+                  hmi-bind:stroke-width="{ HmiProps.ParameterView.GridLineWidth }"
+                  hmi-bind:stroke="{ LocalProps.HeaderGridLineColor }">
+                </hmi-feature:gridline>
+                <hmi-feature:gridline
+                  position-filter="inner" expansion="header"
+                  hmi-bind:stroke-width="{ HmiProps.ParameterView.GridLineWidth }"
+                  hmi-bind:stroke="{ LocalProps.HeaderGridLineColor }">
+                </hmi-feature:gridline>
+                <hmi-feature:gridline
+                  position-filter="inner" expansion="inner"
+                  hmi-bind:stroke-width="{ HmiProps.ParameterView.GridLineWidth }"
+                  hmi-bind:stroke="{{ HmiProps.ParameterView.GridLineVisibility == 0 ? 'rgba(0,0,0,0)' : Converter.RGBA(  HmiProps.ParameterView.GridLineColor ) }}"
+                  hmi-bind:orientation="{{ HmiProps.ParameterView.GridLineVisibility == 3 ? 'row column' : ( HmiProps.ParameterView.GridLineVisibility == 2 ? 'column':'row') }}">
+                </hmi-feature:gridline>
+            </hmi-feature:gridlines>
+
+            <hmi-feature:selection>
+                <hmi:master-inline >
+                    <hmi:template>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              xmlns:hmi="http://svg.siemens.com/hmi/"
+                              xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                              height="10" width="10" >
+                            <hmi:self type="system:HmiSelectionSystemPart" displayName="SelectionBorder" name="selectionborder" version="1.0.0" performanceClass="s">
+                            </hmi:self>
+                            <defs>
+                              <hmi:localDef name="BorderWidthPadding"       type="number"     hmi-bind:value="{{ HmiProps.BorderWidth / 2 }}" />
+                            </defs>
+
+                            <g id="TIFID_SelectionRect" opacity="1">
+                                <rect id="ItemBGRect3"
+                                      hmi-bind:x="{ LocalProps.BorderWidthPadding }"
+                                      hmi-bind:y="{ LocalProps.BorderWidthPadding }"
+                                      hmi-bind:width="{ HmiProps.Width}"
+                                      hmi-bind:height="{ HmiProps.Height }"
+                                      fill="none"
+                                      hmi-bind:stroke-width="{ HmiProps.BorderWidth }"
+                                      hmi-bind:stroke="{{Converter.RGBA(HmiProps.BorderColor)}}"/>
+                            </g>
+                        </svg>
+                    </hmi:template>
+                </hmi:master-inline>
+            </hmi-feature:selection>
+          <hmi:master-inline>
+            <hmi:template>
+              <svg xmlns="http://www.w3.org/2000/svg"
+               xmlns:hmi="http://svg.siemens.com/hmi/"
+               xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+               xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"
+               overflow="visible">
+                <hmi:self type="custom" name="title" displayName="title" >
+                  <hmi:data type="grid-combo"></hmi:data>
+                </hmi:self>
+               <defs>
+                  <hmi:localDef name="XPos"                             type="number"                   hmi-data-bind:value="{ Content.X }"        />
+                  <hmi:localDef name="YPos"                             type="number"                   hmi-data-bind:value="{ Content.Y }"        />
+                  <hmi:localDef name="RSType"                           type="string"                   value="GridComboRow"                       />
+                  <hmi:localDef name="RowId"                            type="number"                   hmi-data-bind:value="{ Content.RowId }"    />
+                  <hmi:localDef name="Width"                            type="number"                   hmi-data-bind:value="{ Content.Width }"    />
+                  <hmi:localDef name="Height"                           type="number"                   hmi-data-bind:value="{ Content.Height }"   />
+                  <hmi:localDef name="Font"                             type="HmiFontPart"              hmi-data-bind:value="{ Content.Font }"     />
+                  <hmi:localDef name="FocusColor"                  type="HmiColor"                 value="4286434550"                         />
+                  <hmi:localDef name="BorderColor"                 type="HmiColor"                 value="4288059030"                         />
+                  <hmi:localDef name="BackColor"                   type="HmiColor"                 value="4294506745"                         />
+                  <hmi:localDef name="ForeColor"                   type="HmiColor"                 value="4278190080"                         />
+                  <hmi:localDef name="SelectionForeColor"          type="HmiColor"                 value="4278190080"                         />
+                  <hmi:localDef name="SelectionBackColor"          type="HmiColor"                 value="4286434550"                         />
+                  <hmi:localDef name="AlternateBackColor"          type="HmiColor"                 value="4294506745"                         />
+                  <hmi:localDef name="CollapsedBackColor"          type="HmiColor"                 value="4294506745"                         />
+                  <hmi:localDef name="CollapsedForeColor"          type="HmiColor"                 value="4278190080"                         />
+                  <hmi:localDef name="GridHeight"                  type="number"                   hmi-data-bind:value="{ Content.GridHeight }"    />
+                  <hmi:localDef name="MyLocalContent"                   type="HmiContentPart">
+                     <hmi-types:content SplitRatio="0.2" ContentMode="1" TextPosition="1" Spacing="1" TextTrimming="1" />
+                  </hmi:localDef>
+                  <hmi:localDef name="MyLocalPadding"   type="HmiPaddingPart">
+                    <hmi-types:padding />
+                  </hmi:localDef>
+                </defs>
+
+                <hmi:include template="include.style.extended.combobox.svghmi"
+                           hmi-bind:x="{ LocalProps.XPos }"
+                           hmi-bind:y="{ LocalProps.YPos }"
+                           hmi-bind:width="{ LocalProps.Width }"
+                           hmi-bind:height="{ LocalProps.Height }">
+
+                  <hmi:param name="MaxListBoxViewCount"    type="number"                   hmi-bind:value="{{ abs((LocalProps.GridHeight / LocalProps.Height)-( LocalProps.RowId + 2)) }}"              />
+                  <hmi:param name="ResourceList"           type="string"                   hmi-bind:value="{{ LocalProps.RSType + LocalProps.RowId }}"   />
+                  <hmi:param name="Content"                type="HmiContentPart"           hmi-bind:value="{ LocalProps.MyLocalContent }"                />
+                  <hmi:param name="Font"                   type="HmiFontPart"              hmi-bind:value="{ LocalProps.Font }"                          />
+                  <hmi:param name="Padding"                type="HmiPaddingPart"           hmi-bind:value="{ LocalProps.MyLocalPadding }"                />
+                  <hmi:param name="Width"                  type="number"                   hmi-bind:value="{ LocalProps.Width }"                         />
+                  <hmi:param name="Height"                 type="number"                   hmi-bind:value="{ LocalProps.Height }"                        />
+                  <hmi:param name="ShowFocus"              type="boolean"                  value="false"                                                 />
+                  <hmi:param name="BorderWidth"            type="number"                   value="2"                                                     />
+                  <hmi:param name="FocusColor"             type="HmiColor"                 hmi-bind:value="{ HmiProps.FocusColor }"                      />
+                  <hmi:param name="BorderColor"            type="HmiColor"                 hmi-bind:value="{ LocalProps.BorderColor}"               />
+                  <hmi:param name="BackColor"              type="HmiColor"                 hmi-bind:value="{ LocalProps.BackColor }"                />
+                  <hmi:param name="ForeColor"              type="HmiColor"                 hmi-bind:value="{ LocalProps.ForeColor }"                />
+                  <hmi:param name="SelectionForeColor"     type="HmiColor"                 hmi-bind:value="{ LocalProps.SelectionForeColor }"       />
+                  <hmi:param name="SelectionBackColor"     type="HmiColor"                 hmi-bind:value="{ LocalProps.SelectionBackColor }"       />
+                  <hmi:param name="AlternateBackColor"     type="HmiColor"                 hmi-bind:value="{ LocalProps.AlternateBackColor }"       />
+                  <hmi:param name="CollapsedBackColor"     type="HmiColor"                 hmi-bind:value="{ LocalProps.CollapsedBackColor }"       />
+                  <hmi:param name="CollapsedForeColor"     type="HmiColor"                 hmi-bind:value="{ LocalProps.CollapsedForeColor }"       />
+                  <hmi:param name="GraphicWidth"           type="number"                   value="300"                                                   />
+                  <hmi:param name="GraphicHeight"          type="number"                   value="30"                                                    />
+                  <hmi:param name="Enabled"                type="boolean"                  value="false"                                                 />
+                  <hmi:param name="Operability"            type="HmiOperability"           value="0"                     />
+                  <hmi:param name="IOFieldType"            type="HmiIOFieldType"           value="2"                                                     />
+                  <hmi:param name="ResourceListDelay"      type="boolean"                  value="true"                                                  />
+                  <hmi:param name="PropNameText"           type="string"                   value="Text"                                                  />
+                  <hmi:param name="PropNameGraphic"        type="string"                   value="Graphic"                                               />
+                  <hmi:param name="PropNameGraphicWidth"   type="string"                   value="GraphicWidth"                                          />
+                  <hmi:param name="PropNameGraphicHeight"  type="string"                   value="GraphicHeight"                                         />
+                  <hmi:param name="CanOpenComboBox"        type="boolean"                  value="true"                                                  />
+                  <hmi:param name="SelectedIndex"          type="number"                   value="-1"                                                    />
+                </hmi:include>
+              </svg>
+            </hmi:template>
+          </hmi:master-inline>
+        </hmi-element:table>
+        <!--Grid focus rect-->
+        <rect  hmi-bind:x="{ LocalProps.GridXPos }"
+			         hmi-bind:y="{ LocalProps.GridYPos }"
+			         hmi-bind:width="{ LocalProps.LayoutWidthPadding }"
+			         hmi-bind:height="{ LocalProps.LayoutHeightPadding }"
+			         fill="none"
+			         hmi-bind:stroke-width="{{ LocalProps.ShowGridFocus ? 4 : 0 }}"
+			         hmi-bind:stroke="{{ LocalProps.ShowGridFocus ? ParamProps.FocusColor : 'black' }}"/>
+    </g>
+    <!--Paco combo part-->
+    <svg hmi-bind:height="{ LocalProps.ControlHeight }" hmi-bind:overflow="{ LocalProps.OverFlowVisible }" id="TIFID_pacoMainControl">
+        <!--Parameter set row-->
+        <svg hmi-bind:height="{{ lt(LocalProps.LayoutHeight, LocalProps.ComboHeightTillGrid ) ? LocalProps.LayoutHeight  : HmiProps.Height }}" >
+            <!--Parameter set name label-->
+            <text  hmi-bind:x="{ LocalProps.NameLblX }" hmi-bind:y="{ LocalProps.PsNameLblY }"
+                   clip-path="url(#psNameLblCliping)"
+                   hmi-bind:font-size="{ HmiProps.Font.Size }"
+                   hmi-bind:font-style="{ LocalProps.FontStyle }"
+                   hmi-bind:text-decoration="{ LocalProps.TextDecoration }"
+                   hmi-bind:font-weight="{ HmiProps.Font.Weight }"
+                   hmi-bind:font-family="{ HmiProps.Font.Name }"
+                   hmi-bind:fill="{ LocalProps.ForeColor }">
+              <hmi:text hmi-bind:value="{{ Converter.GetTextByID( 'TBID_PacoCtrl_defaultTextParamSet' ) }}"/>
+            </text>
+            <!--Parameter set number label-->
+            <text  hmi-bind:x="{ LocalProps.NumberLblX }" hmi-bind:y="{ LocalProps.PsNameLblY }"
+                   clip-path="url(#psNumberLblCliping)"
+                   hmi-bind:font-size="{ HmiProps.Font.Size }"
+                   hmi-bind:font-style="{ LocalProps.FontStyle }"
+                   hmi-bind:text-decoration="{ LocalProps.TextDecoration }"
+                   hmi-bind:font-weight="{ HmiProps.Font.Weight }"
+                   hmi-bind:font-family="{ HmiProps.Font.Name }"
+                   hmi-bind:fill="{ LocalProps.ForeColor }">
+              <hmi:text hmi-bind:value="{ LocalProps.DefaultParamSetTypeUnitText }"/>
+            </text>
+            <!--Parameter set number-->
+            <g hmi-bind:opacity="{{ HmiProps.HasPendingChanges ? 0.5 : 1 }}" id="TIFID_pacoPsCombo">
+                <!--Parameter set number field back rect also needed to outline border-->
+                <rect hmi-bind:rx="{ LocalProps.NumberTextBckRectCornerRadius }"
+                      hmi-bind:ry="{ LocalProps.NumberTextBckRectCornerRadius } "
+                      hmi-bind:x="{ LocalProps.NumberTextBckRectX }"
+                      hmi-bind:y="{ LocalProps.PsComboY }"
+                      hmi-bind:width="{ LocalProps.NumberTextBckRectWidth }"
+                      hmi-bind:height="{ LocalProps.ComboHeight }"
+                      hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}"
+                      hmi-bind:stroke="{ LocalProps.NumberTextBckRectStroke }">
+                </rect>
+                <!--Parameter set number text-->
+                <text hmi-bind:x="{ LocalProps.NumberTextX }"
+                      hmi:if="{{ not( SysProps.IsDesignMode ) }}"
+                      hmi-bind:y="{ LocalProps.PsNumberTextY }"
+                      clip-path="url(#psNumberCliping)"
+                      hmi-bind:font-size="{ HmiProps.ParameterView.Font.Size }"
+                      hmi-bind:font-style="{ LocalProps.FontStyle }"
+                      hmi-bind:text-decoration="{ LocalProps.TextDecoration }"
+                      hmi-bind:font-weight="{ HmiProps.Font.Weight }"
+                      hmi-bind:font-family="{ HmiProps.Font.Name }"
+                      hmi-bind:fill="{ LocalProps.ForeColor }" >
+                    <hmi:text hmi-bind:value="{{ HmiProps.CurrentParameterSetID ? Converter.FormatPattern(abs(HmiProps.CurrentParameterSetID), '{I}') : '' }}"/>
+                </text>
+                <!--Parameter set combo-->
+                <hmi:include template="include.style.extended.combobox.svghmi"
+                             hmi-bind:x="{ LocalProps.ComboX }"
+                             hmi-bind:y="{ LocalProps.PsComboY }"
+                             hmi-bind:width="{ LocalProps.ComboWidth }"
+                             hmi-bind:height="{ LocalProps.ComboHeight }" >
+                    <hmi:param name="MaxListBoxViewCount"    type="number"                   hmi-bind:value="{{ abs( LocalProps.ListHeightTillWindow - LocalProps.ComboHeight - LocalProps.GridOffsetWidth ) / LocalProps.ListItemHeight }}" />
+                    <hmi:param name="ResourceList"           type="string"                   hmi-bind:value="{ LocalProps.PsResourceListType }"             />
+                    <hmi:param name="Content"                type="HmiContentPart"           hmi-bind:value="{ LocalProps.MyLocalContent }"                 />
+                    <hmi:param name="Font"                   type="HmiFontPart"              hmi-bind:value="{ HmiProps.ParameterView.Font }"               />
+                    <hmi:param name="Padding"                type="HmiPaddingPart"           hmi-bind:value="{ LocalProps.MyLocalPadding }"                 />
+                    <hmi:param name="Width"                  type="number"                   hmi-bind:value="{ LocalProps.ComboWidth }"                     />
+                    <hmi:param name="Height"                 type="number"                   hmi-bind:value="{ LocalProps.ComboHeight }"                    />
+                    <hmi:param name="ShowFocus"              type="boolean"                  value="false"                                                  />
+                    <hmi:param name="BorderWidth"            type="number"                   hmi-bind:value="{ LocalProps.ComboBorderWidth }"               />
+                    <hmi:param name="FocusColor"             type="HmiColor"                 hmi-bind:value="{ HmiProps.FocusColor }"                       />
+                    <hmi:param name="BorderColor"            type="HmiColor"                 hmi-bind:value="{ LocalProps.ComboBorderColor}"                />
+                    <hmi:param name="BackColor"              type="HmiColor"                 hmi-bind:value="{ HmiProps.BackColor }"                        />
+                    <hmi:param name="ForeColor"              type="HmiColor"                 hmi-bind:value="{ HmiProps.ForeColor }"                        />
+                    <hmi:param name="SelectionForeColor"     type="HmiColor"                 hmi-bind:value="{ HmiProps.SelectionForeColor }"               />
+                    <hmi:param name="SelectionBackColor"     type="HmiColor"                 hmi-bind:value="{ HmiProps.SelectionBackColor }"               />
+                    <hmi:param name="AlternateBackColor"     type="HmiColor"                 hmi-bind:value="{ HmiProps.BackColor }"                        />
+                    <hmi:param name="CollapsedBackColor"     type="HmiColor"                 hmi-bind:value="{ HmiProps.BackColor }"                        />
+                    <hmi:param name="CollapsedForeColor"     type="HmiColor"                 hmi-bind:value="{ HmiProps.ForeColor }"                        />
+                    <hmi:param name="GraphicWidth"           type="number"                   hmi-bind:value="{ LocalProps.ComboGraphicWidth }"              />
+                    <hmi:param name="GraphicHeight"          type="number"                   hmi-bind:value="{ LocalProps.ComboHeight }"                    />
+                    <hmi:param name="Enabled"                type="boolean"                  hmi-bind:value="{ HmiProps.Enabled }"                          />
+                    <hmi:param name="Operability"            type="HmiOperability"           hmi-bind:value="{{ or( HmiProps.HasPendingChanges, HmiProps.Operability ) ? 1 : 0 }}"      /> 
+                    <hmi:param name="IOFieldType"            type="HmiIOFieldType"           hmi-bind:value="{ LocalProps.ComboIOFieldType }"               />
+                    <hmi:param name="ResourceListDelay"      type="boolean"                  hmi-bind:value="{ LocalProps.ResourceListDelay }"              />
+                    <hmi:param name="PropNameText"           type="string"                   hmi-bind:value="{ LocalProps.PropNameText }"                   />
+                    <hmi:param name="PropNameGraphic"        type="string"                   hmi-bind:value="{ LocalProps.PropNameGraphic }"                />
+                    <hmi:param name="PropNameGraphicWidth"   type="string"                   hmi-bind:value="{ LocalProps.PropNameGraphicWidth }"           />
+                    <hmi:param name="PropNameGraphicHeight"  type="string"                   hmi-bind:value="{ LocalProps.PropNameGraphicHeight }"          />
+                    <hmi:param name="CanOpenComboBox"        type="boolean"                  hmi-bind:value="{ LocalProps.ComboCanOpenComboBox }"           />
+                    <hmi:param name="SelectedIndex"          type="number"                   hmi-bind:value="{ LocalProps.ComboSelectedIndex }"             />
+                </hmi:include>
+            </g>
+        </svg>
+        <!--Parameter set type row-->
+        <svg hmi-bind:height="{{ LocalProps.IsControlHeightLess ? LocalProps.LayoutHeight : HmiProps.Height }}" >
+           <!--Parameter set type name label-->
+           <text  hmi-bind:x="{ LocalProps.NameLblX }" hmi-bind:y="{ LocalProps.PstNameLblY }"
+                   clip-path="url(#pstNameLblCliping)"
+                   hmi-bind:font-size="{ HmiProps.Font.Size }"
+                   hmi-bind:font-style="{ LocalProps.FontStyle }"
+                   hmi-bind:text-decoration="{ LocalProps.TextDecoration }"
+                   hmi-bind:font-weight="{ HmiProps.Font.Weight }"
+                   hmi-bind:font-family="{ HmiProps.Font.Name }"
+                   hmi-bind:fill="{ LocalProps.ForeColor }">
+                <hmi:text hmi-bind:value="{{ Converter.GetTextByID( 'TBID_PacoCtrl_defaultTextParamSetType' ) }}"/>
+            </text>
+           <!--Parameter set type number label-->
+           <text  hmi-bind:x="{ LocalProps.NumberLblX }"
+                   hmi-bind:y="{ LocalProps.PstNameLblY }"
+                   clip-path="url(#pstNumberLblCliping)"
+                   hmi-bind:font-size="{ HmiProps.Font.Size }"
+                   hmi-bind:font-style="{ LocalProps.FontStyle }"
+                   hmi-bind:text-decoration="{ LocalProps.TextDecoration }"
+                   hmi-bind:font-weight="{ HmiProps.Font.Weight }"
+                   hmi-bind:font-family="{ HmiProps.Font.Name }"
+                   hmi-bind:fill="{ LocalProps.ForeColor }">
+                <hmi:text hmi-bind:value="{ LocalProps.DefaultParamSetTypeUnitText }"/>
+            </text>
+           <!--Parameter set type number-->
+           <g id="TIFID_pacoPstCombo" hmi-bind:opacity="{{ or(HmiProps.ParameterSetTypeFixed , HmiProps.HasPendingChanges) ? 0.5 : 1 }}">
+                <!--Parameter set type number field back rect also needed to outline border-->
+                <rect hmi-bind:rx="{ LocalProps.NumberTextBckRectCornerRadius }"
+                      hmi-bind:ry="{ LocalProps.NumberTextBckRectCornerRadius }"
+                      hmi-bind:x="{ LocalProps.NumberTextBckRectX }"
+                      hmi-bind:y="{ LocalProps.PstNumberTextBckRectY }"
+                      hmi-bind:width="{ LocalProps.NumberTextBckRectWidth }"
+                      hmi-bind:height="{ LocalProps.ComboHeight }"
+                      hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}"
+                      hmi-bind:stroke="{ LocalProps.NumberTextBckRectStroke }">
+                </rect>
+                <!--Parameter set type number text-->
+                <text hmi-bind:x="{ LocalProps.NumberTextX }"
+                      hmi:if="{{ or( not( SysProps.IsDesignMode ),HmiProps.ParameterSetTypeFixed ) }}"
+                      hmi-bind:y="{ LocalProps.PstNumberTextY }"
+                      clip-path="url(#pstNumberCliping)"
+                      hmi-bind:font-size="{ HmiProps.ParameterView.Font.Size }"
+                      hmi-bind:font-style="{ LocalProps.FontStyle }"
+                      hmi-bind:text-decoration="{ LocalProps.TextDecoration }"
+                      hmi-bind:font-weight="{ HmiProps.Font.Weight }"
+                      hmi-bind:font-family="{ HmiProps.Font.Name }"
+                      hmi-bind:fill="{ LocalProps.ForeColor }"  >
+                    <hmi:text hmi-bind:value="{{ HmiProps.CurrentParameterSetTypeID ? Converter.FormatPattern(abs(HmiProps.CurrentParameterSetTypeID), '{I}') : '' }}"/>
+                </text>
+                <!--Parameter set type combo-->
+                <hmi:include template="include.style.extended.combobox.svghmi"
+                             hmi-bind:x="{ LocalProps.ComboX }"
+                             hmi-bind:y="{ LocalProps.PstComboY }"
+                             hmi-bind:width="{ LocalProps.ComboWidth }"
+                             hmi-bind:height="{ LocalProps.ComboHeight }" >
+
+                    <hmi:param name="MaxListBoxViewCount"    type="number"                   hmi-bind:value="{{ LocalProps.ListHeightTillWindow / LocalProps.ListItemHeight  }}"            />
+                    <hmi:param name="ResourceList"           type="string"                   hmi-bind:value="{ LocalProps.PstResourceListType }"                                            />
+                    <hmi:param name="Content"                type="HmiContentPart"           hmi-bind:value="{ LocalProps.MyLocalContent }"                                                 />
+                    <hmi:param name="Font"                   type="HmiFontPart"              hmi-bind:value="{ HmiProps.ParameterView.Font }"                                               />
+                    <hmi:param name="Padding"                type="HmiPaddingPart"           hmi-bind:value="{ LocalProps.MyLocalPadding }"                                                 />
+                    <hmi:param name="Width"                  type="number"                   hmi-bind:value="{ LocalProps.ComboWidth }"                                                     />
+                    <hmi:param name="Height"                 type="number"                   hmi-bind:value="{ LocalProps.ComboHeight }"                                                    />
+                    <hmi:param name="ShowFocus"              type="boolean"                  value="false"                                                                                  />
+                    <hmi:param name="BorderWidth"            type="number"                   hmi-bind:value="{ LocalProps.ComboBorderWidth }"                                               />
+                    <hmi:param name="FocusColor"             type="HmiColor"                 hmi-bind:value="{ HmiProps.FocusColor }"                                                       />
+                    <hmi:param name="BorderColor"            type="HmiColor"                 hmi-bind:value="{ LocalProps.ComboBorderColor }"                                               />
+                    <hmi:param name="BackColor"              type="HmiColor"                 hmi-bind:value="{ HmiProps.BackColor }"                                                        />
+                    <hmi:param name="ForeColor"              type="HmiColor"                 hmi-bind:value="{ HmiProps.ForeColor }"                                                        />
+                    <hmi:param name="SelectionForeColor"     type="HmiColor"                 hmi-bind:value="{ HmiProps.SelectionForeColor }"                                               />
+                    <hmi:param name="SelectionBackColor"     type="HmiColor"                 hmi-bind:value="{ HmiProps.SelectionBackColor }"                                               />
+                    <hmi:param name="AlternateBackColor"     type="HmiColor"                 hmi-bind:value="{ HmiProps.BackColor }"                                                        />
+                    <hmi:param name="CollapsedBackColor"     type="HmiColor"                 hmi-bind:value="{ HmiProps.BackColor }"                                                        />
+                    <hmi:param name="CollapsedForeColor"     type="HmiColor"                 hmi-bind:value="{ HmiProps.ForeColor }"                                                        />
+                    <hmi:param name="GraphicWidth"           type="number"                   hmi-bind:value="{ LocalProps.ComboGraphicWidth }"                                              />
+                    <hmi:param name="GraphicHeight"          type="number"                   hmi-bind:value="{ LocalProps.ComboHeight }"                                                    />
+                    <hmi:param name="Enabled"                type="boolean"                  hmi-bind:value="{ HmiProps.Enabled }"                                                          />
+                    <hmi:param name="Operability"            type="HmiOperability"           hmi-bind:value="{{ or( HmiProps.Operability, or( HmiProps.ParameterSetTypeFixed , HmiProps.HasPendingChanges )) ? 1 : 0 }}" />
+                    <hmi:param name="IOFieldType"            type="HmiIOFieldType"           hmi-bind:value="{ LocalProps.ComboIOFieldType }"                                               />
+                    <hmi:param name="ResourceListDelay"      type="boolean"                  hmi-bind:value="{ LocalProps.ResourceListDelay }"                                              />
+                    <hmi:param name="PropNameText"           type="string"                   hmi-bind:value="{ LocalProps.PropNameText }"                                                   />
+                    <hmi:param name="PropNameGraphic"        type="string"                   hmi-bind:value="{ LocalProps.PropNameGraphic }"                                                />
+                    <hmi:param name="PropNameGraphicWidth"   type="string"                   hmi-bind:value="{ LocalProps.PropNameGraphicWidth }"                                           />
+                    <hmi:param name="PropNameGraphicHeight"  type="string"                   hmi-bind:value="{ LocalProps.PropNameGraphicHeight }"                                          />
+                    <hmi:param name="CanOpenComboBox"        type="boolean"                  hmi-bind:value="{ LocalProps.ComboCanOpenComboBox }"                                           />
+                    <hmi:param name="SelectedIndex"          type="number"                   hmi-bind:value="{ LocalProps.ComboSelectedIndex }"                                             />
+                </hmi:include>
+            </g>
+        </svg>
+    </svg>
+</svg>

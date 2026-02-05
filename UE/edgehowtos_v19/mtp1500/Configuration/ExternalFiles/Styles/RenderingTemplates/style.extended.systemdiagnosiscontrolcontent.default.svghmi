@@ -1,0 +1,127 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2020. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+     preserveAspectRatio="none"
+     id="custom_SystemDiagnosticContent"
+     data-tif-type="WSI:SvgGrid">
+  <hmi:self type="part:HmiDataGridViewPart" displayName="Extended SystemDiagnosisContent" name="style.extended.systemdiagnosiscontent">
+    <hmi:paramDef name="FocusColor"             type="string"                 />
+    <hmi:paramDef name="SelectedIndex"          type="number"   two-way="true"/>
+    <hmi:paramDef name="ShowFocusVisual"        type="boolean"                />
+  </hmi:self>
+
+  <defs>
+    <hmi:localDef name="SplitterHeight"           type="number"      value="10"                                                                                                   />
+	  <hmi:localDef name="StatusPathHeight"         type="number"      hmi-bind:value="{{ HmiProps.ShowStatusPath ? 50 : 0 }}"                                                                                                   />
+    <hmi:localDef name="InitialHeightRatio"       type="number"      hmi-bind:value="{{ lt( 0.3, ( HmiProps.SystemDiagnosisView.RowHeight * 10 ) / Layout.ActualHeight ) ? 0.3 : ( HmiProps.SystemDiagnosisView.RowHeight * 10 ) / Layout.ActualHeight }}" />
+    <hmi:localDef name="HeightRatio"              type="number"      hmi-bind:value="{{ gt( ParamProps.SelectedIndex, -1 ) ? LocalProps.InitialHeightRatio : 0 }}"                            />
+    <hmi:localDef name="DetailedViewHeight"       type="number"      hmi-bind:value="{{ Layout.ActualHeight * LocalProps.HeightRatio }}"                                      />
+    <hmi:localDef name="GridHeight"               type="number"      hmi-bind:value="{{ Layout.ActualHeight - LocalProps.DetailedViewHeight - LocalProps.SplitterHeight }}"    />
+    <hmi:localDef name="PropNameText"             type="string"      value="Text" />
+    <hmi:localDef name="SystemDiagnosisViewType"  type="number"      hmi-bind:value="{ HmiProps.SystemDiagnosisViewType }" />
+    <hmi:localDef name="SplitterActual"  type="number"      hmi-bind:value="{ Layout.ActualHeight }" />
+    <hmi:localDef name="DetailedViewMaxHeight"    type="number"      hmi-bind:value="{{ HmiProps.ShowStatusPath ? 40 + LocalProps.SplitterHeight : 0 }}" />
+
+    <hmi:action id="onMove">
+      <hmi:setProperty name="LocalProps.DetailedViewHeight"  type="number"   hmi-bind:value="{{ LocalProps.DetailedViewHeight - EventArgs.PanDeltaY  }}" />
+    </hmi:action>
+    <hmi:action id="onSetCursorResizeNS">
+      <hmi:setCursor   name="ns-resize" value="screen" />
+    </hmi:action>
+    <hmi:action id="onCursorResumeLeave">
+      <hmi:setCursor   name="auto"      value="screen" />
+    </hmi:action>
+  </defs>
+
+  <g id="Background" hmi-flex:width="{ Layout.ActualWidth }" hmi-flex:height="{ Layout.ActualHeight }" hmi-flex:direction="column" hmi-flex:wrap="false">
+  
+    <g hmi:if="{{ eq( LocalProps.SystemDiagnosisViewType, 0 ) }}" hmi-flex:grow="1">
+      <hmi:include template="include.style.extended.bufferview.svghmi" hmi-bind:for="{ HmiProps.SystemDiagnosisView }"
+                   hmi-bind:width="{ Layout.ActualWidth }"
+                   hmi-bind:height="{ Layout.ActualHeight }" >
+        <hmi:param name="FocusColor"         type="string"   hmi-bind:value="{ ParamProps.FocusColor }"  />
+        <hmi:param name="SelectedIndex"      type="number"   hmi-bind:value="{ ParamProps.SelectedIndex }" />
+        <hmi:param name="ShowFocusVisual"    type="boolean"  hmi-bind:value="{ ParamProps.ShowFocusVisual }" />
+        <hmi:param name="DetailedViewHeight" type="number"   hmi-bind:value="{ LocalProps.DetailedViewHeight }" />
+        <hmi:param name="BufferTopPosition"  type="number"   hmi-bind:value="{{ HmiProps.ShowStatusPath ? 40 : 0 }}" />
+      </hmi:include>
+    </g>
+    <g hmi:if="{{ or(eq( LocalProps.SystemDiagnosisViewType, 1 ), eq( LocalProps.SystemDiagnosisViewType, 2 )) }}">
+      <hmi:include template="include.style.extended.matrixview.svghmi" hmi-bind:for="{ HmiProps.MatrixView }"
+                   hmi-bind:width="{ Layout.ActualWidth }"
+                   hmi-bind:height="{{ gt ( ParamProps.SelectedIndex, -1 )  ? LocalProps.GridHeight - 8 : 
+                   Layout.ActualHeight }}" >
+        <hmi:param name="ShowStatusPath"          type="boolean"       hmi-bind:value="{ HmiProps.ShowStatusPath }"  />
+        <hmi:param name="Font"                    type="HmiFontPart"   hmi-bind:value="{ HmiProps.SystemDiagnosisView.Font }"  />
+        <hmi:param name="SplitterHeight"          type="number"        hmi-bind:value="{ LocalProps.SplitterHeight }"  />
+        <hmi:param name="DetailedViewHeight"      type="number"        hmi-bind:value="{ LocalProps.DetailedViewHeight }"  />
+      </hmi:include>
+    </g>
+    
+    <g id="TIFID_SplitterGroup" hmi-flex:width="{ Layout.ActualWidth }" hmi-flex:height="{{ gt(ParamProps.SelectedIndex,-1) ? LocalProps.SplitterHeight : 0 }}" hmi:if="{{ and(gt(ParamProps.SelectedIndex,-1), gt(LocalProps.SplitterActual,LocalProps.StatusPathHeight))}}">
+      <rect hmi-event:mouseEnter="url(#onSetCursorResizeNS)" hmi-event:mouseLeave="url(#onCursorResumeLeave)" hmi-event:pan="url(#onMove)"
+            y="0"
+            hmi-bind:width="{ Layout.ActualWidth }"
+            hmi-bind:height="{ LocalProps.SplitterHeight }"
+            hmi-bind:fill="{{ Converter.RGBA( HmiProps.SystemDiagnosisView.HeaderSettings.HeaderBackColor ) }}"/>
+      <g hmi-bind:transform="translate( {{ (Layout.ActualWidth/2) - 3 }}, 2 )" >
+        <path d="M 0 0 L 3 6 L 6 0 z" hmi-bind:fill="{{Converter.RGBA(HmiProps.SystemDiagnosisView.HeaderSettings.HeaderForeColor)}}"></path>
+      </g>
+      <g hmi-bind:transform="translate( {{ (Layout.ActualWidth/2) + 3 }}, 2 )" >
+        <path d="M 3 0 L 0 6 L 6 6 z" hmi-bind:fill="{{Converter.RGBA(HmiProps.SystemDiagnosisView.HeaderSettings.HeaderForeColor)}}"></path>
+      </g>
+    </g>
+ <g  hmi:if="{{ and(eq( LocalProps.SystemDiagnosisViewType, 0 ),gt ( ParamProps.SelectedIndex, -1 ) )}}"
+    hmi-flex:maxHeight="{{ Layout.ActualHeight - LocalProps.StatusPathHeight }}" 
+    hmi-flex:height="{{and(eq( LocalProps.SystemDiagnosisViewType, 0 ),gt ( ParamProps.SelectedIndex, -1 ) ) ? (LocalProps.DetailedViewHeight) : 0}}"
+	>
+     <hmi:include template="include.style.extended.systemdiagnosisdetailedview.svghmi" hmi-bind:for="{ HmiProps.BufferView.SystemDiagnosisDetailedView }"
+                  hmi-bind:width="{ Layout.ActualWidth }"
+                  hmi-bind:height="{ Layout.ActualHeight }"
+				  >
+       <hmi:param name="Font"                   type="HmiFontPart"              hmi-bind:value="{ HmiProps.SystemDiagnosisView.Font }"                  />
+       <hmi:param name="Width"                  type="number"                   hmi-bind:value="{ Layout.ActualWidth }"             />
+       <hmi:param name="BackColor"              type="HmiColor"                 hmi-bind:value="{ HmiProps.SystemDiagnosisView.BackColor }"             />
+       <hmi:param name="ForeColor"              type="HmiColor"                 hmi-bind:value="{ HmiProps.SystemDiagnosisView.ForeColor }"             />
+       <hmi:param name="PropNameText"           type="string"                   hmi-bind:value="{ LocalProps.PropNameText }"        />
+       <hmi:param name="SelectedIndex"          type="number"                   hmi-bind:value="{ ParamProps.SelectedIndex }"       />
+       <hmi:param name="GridLineColor"          type="HmiColor"                 hmi-bind:value="{ HmiProps.SystemDiagnosisView.GridLineColor }"         />
+       <hmi:param name="ResourceList"           type="string"                   value=""                                            />
+       <hmi:param name="BorderWidth"            type="number"                   value="0"                                           />
+       <hmi:param name="BorderColor"            type="HmiColor"                 value="‭4288059030‬"                                  />
+     </hmi:include>
+   </g> 
+    <g 
+    hmi:if="{{ and(or(eq( LocalProps.SystemDiagnosisViewType, 1 ), eq( LocalProps.SystemDiagnosisViewType, 2 )),gt ( ParamProps.SelectedIndex, -1 )) }}"
+    hmi-flex:maxHeight="{{ Layout.ActualHeight - LocalProps.StatusPathHeight }}" 
+    hmi-flex:height="{{and(or(eq( LocalProps.SystemDiagnosisViewType, 1 ), eq( LocalProps.SystemDiagnosisViewType, 2 )),gt ( ParamProps.SelectedIndex, -1 ) ) ? (LocalProps.DetailedViewHeight) : 0}}"
+	>
+      <hmi:include template="include.style.extended.systemdiagnosishardwaredetailview.svghmi" hmi-bind:for="{ HmiProps.MatrixView.SystemDiagnosisHardwareDetailView }"
+                   hmi-bind:width="{ Layout.ActualWidth }"
+                   hmi-bind:height="{ Layout.ActualHeight }" >
+      <hmi:param name="SelectedIndex"          type="number"                   hmi-bind:value="{ ParamProps.SelectedIndex }"       />
+      <hmi:param name="FocusColor"             type="string"                   hmi-bind:value="{ ParamProps.FocusColor }"  />
+      <hmi:param name="ShowFocusVisual"        type="boolean"                  hmi-bind:value="{ ParamProps.ShowFocusVisual }" />
+      <hmi:param name="DetailedViewHeight"     type="number"                   hmi-bind:value="{ LocalProps.DetailedViewHeight }" />
+    </hmi:include>
+  </g>
+  <g hmi-bind:height="{ LocalProps.StatusPathHeight }" hmi-bind:display ="{{ HmiProps.ShowStatusPath ? 'block' : 'none' }}">
+      <hmi:include template="include.style.extended.breadcrumb.svghmi" hmi-bind:for="{ HmiProps }"
+                   hmi-bind:width="{ Layout.ActualWidth }"
+                   hmi-bind:height="{ Layout.ActualHeight }" >
+        <hmi:param name="Font"         type="HmiFontPart"   hmi-bind:value="{ HmiProps.SystemDiagnosisView.Font }"  />
+      </hmi:include>
+    </g>
+  </g>
+</svg>

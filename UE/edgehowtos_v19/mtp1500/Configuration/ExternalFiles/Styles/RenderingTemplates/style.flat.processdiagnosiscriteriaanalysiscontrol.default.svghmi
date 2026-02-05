@@ -1,0 +1,87 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2023. All Rights Reserved. -->
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:hmi="http://svg.siemens.com/hmi/"
+    xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+    xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+    preserveAspectRatio="none"
+    overflow="visible" >
+    <hmi:self type="item:HmiProcessDiagnosisCriteriaAnalysisControl" displayName="CriteriaAnalysisControl" name="style.flat.processdiagnosiscriteriaanalysiscontrol" version="2.9" performanceClass="L"  >
+        <hmi:focus focusVisual="local" />
+    </hmi:self>
+    <defs>
+        
+        <hmi:localDef name="SYS_WindowBorderColor"          type="number"       value="0xFF91939A" />
+        <hmi:localDef name="SYS_WindowBorderWidth"          type="number"       value="2"   />
+        <hmi:localDef name="SYS_RX"                         type="number"       value="0"   />
+        <hmi:localDef name="SYS_CaptionHeight"              type="number"       value="30"  />
+        <hmi:localDef name="ShowFocus"                      type="boolean"      hmi-bind:value="{{ and( HmiProps.ShowFocusVisual, SysProps.HasFocus ) }}" />
+        <hmi:localDef name="CaptionColor"                   type="number"       hmi-bind:value="{{ LocalProps.ShowFocus ? HmiProps.FocusColor : HmiProps.CaptionColor }}" />
+        <hmi:localDef name="ShowCaption"                    type="boolean"      hmi-bind:value="{{ has( HmiProps.WindowFlags, HmiWindowFlag.ShowCaption ) }}" />
+        <hmi:localDef name="CaptionHeight"                  type="number"       hmi-bind:value="{{ LocalProps.ShowCaption ? LocalProps.SYS_CaptionHeight : 0 }}" />
+        <hmi:localDef name="WindowBorderColor"              type="number"       hmi-bind:value="{{ LocalProps.ShowFocus ? HmiProps.FocusColor : LocalProps.SYS_WindowBorderColor }}" />
+        <hmi:localDef name="WindowBorderWidth"              type="number"       hmi-bind:value="{{ has( HmiProps.WindowFlags, HmiWindowFlag.ShowBorder ) ? LocalProps.SYS_WindowBorderWidth : 0 }}" />
+        <hmi:localDef name="FocusColor"                     type="string"       hmi-bind:value="{{ Converter.RGBA( HmiProps.FocusColor ) }}" />
+        <hmi:localDef name="MinimumWidth"                   type="number"       value="100" />
+        <hmi:localDef name="MinimumHeight"                  type="number"       value="60"  />
+        <clipPath id="WindowClipRect">
+            <rect id="ItemRect"
+                  hmi-bind:width="{ HmiProps.Width }"
+                  hmi-bind:height="{ HmiProps.Height }"
+                  stroke="none"
+                  hmi-bind:rx="{ LocalProps.SYS_RX }" />
+        </clipPath>
+    </defs>
+    <g id="ElementsGroup" clip-path="url(#WindowClipRect)">
+        <!-- Background -->
+        <rect id="BackGroundRect"
+              hmi-bind:width="{ HmiProps.Width }"
+              hmi-bind:height="{ HmiProps.Height }"
+              hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}"
+              stroke="none"
+              hmi-bind:rx="{ LocalProps.SYS_RX }" />
+		
+		<g id ="SubTemplate"  >
+            <hmi:include template ="include.style.flat.criteriaanalysiscontent.default.svghmi" hmi-bind:for="{ HmiProps.CriteriaAnalysisView }"
+                          hmi-bind:x="{ LocalProps.WindowBorderWidth }"
+                          hmi-bind:y="{{ LocalProps.WindowBorderWidth + LocalProps.CaptionHeight }}"
+                          hmi-bind:width="{{ HmiProps.Width - 2 * LocalProps.WindowBorderWidth }}"
+                          hmi-bind:height="{{ HmiProps.Height - 2 * LocalProps.WindowBorderWidth - LocalProps.CaptionHeight  }}" >
+                <hmi:param name="AlwaysShowRecent"  type="boolean"      value="false"                               />
+                <hmi:param name="FocusColor"        type="string"       hmi-bind:value="{ LocalProps.FocusColor }"  />
+                <hmi:param name="ShowFocusVisual"   type="boolean"      hmi-bind:value="{ HmiProps.ShowFocusVisual }"    />
+            </hmi:include>
+        </g> 
+    </g>
+	
+	
+	  <!-- Frame -->
+	  <g id="frame" >
+    <hmi:include template="include.style.flat.hmiwindowframe.default.svghmi"
+                 x="0"
+                 y="0"
+                 hmi-bind:width="{ HmiProps.Width }"
+                 hmi-bind:height="{ HmiProps.Height }" >
+
+        <hmi:param name="Top"               type="number"           hmi-bind:value="{ HmiProps.Top }"                 />
+        <hmi:param name="Left"              type="number"           hmi-bind:value="{ HmiProps.Left }"                />
+        <hmi:param name="Width"             type="number"           hmi-bind:value="{ HmiProps.Width }"               />
+        <hmi:param name="Height"            type="number"           hmi-bind:value="{ HmiProps.Height }"              />
+        <hmi:param name="WindowFlags"       type="HmiWindowFlag"    hmi-bind:value="{ HmiProps.WindowFlags }"         />
+        <hmi:param name="MinimumWidth"      type="number"           hmi-bind:value="{ LocalProps.MinimumWidth }"      />
+        <hmi:param name="MinimumHeight"     type="number"           hmi-bind:value="{ LocalProps.MinimumHeight }"     />
+        <hmi:param name="Icon"              type="HmiGraphic"       hmi-bind:value="{ HmiProps.Icon }"                />
+        <hmi:param name="Caption"           type="HmiTextPart"      hmi-bind:value="{ HmiProps.Caption }"             />
+        <hmi:param name="CaptionColor"      type="HmiColor"         hmi-bind:value="{ LocalProps.CaptionColor }"      />
+        <hmi:param name="ShowCaption"       type="boolean"          hmi-bind:value="{ LocalProps.ShowCaption }"       />
+        <hmi:param name="CaptionHeight"     type="number"           hmi-bind:value="{ LocalProps.CaptionHeight }"     />
+        <hmi:param name="WindowBorderWidth" type="number"           hmi-bind:value="{ LocalProps.WindowBorderWidth }" />
+        <hmi:param name="WindowBorderColor" type="HmiColor"         hmi-bind:value="{ LocalProps.WindowBorderColor }" />
+        <hmi:param name="RX"                type="number"           hmi-bind:value="{ LocalProps.SYS_RX }"            />
+        <hmi:param name="ItemOperable"      type="boolean"          hmi-bind:value="{ HmiProps.Enabled }"             />
+        <hmi:param name="WindowState"       type="number"           hmi-bind:value="{ HmiProps.WindowState }"         />
+
+    </hmi:include>
+	</g>
+</svg>

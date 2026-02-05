@@ -1,0 +1,375 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     overflow="visible">
+
+  <hmi:self type="custom" displayName="Extended HmiWindow Frame" name="style.extended.hmiwindowframe" version="2.9" performanceClass="L">
+
+    <hmi:paramDef name="Top"                type="number"        two-way="true"  />
+    <hmi:paramDef name="Left"               type="number"        two-way="true"  />
+    <hmi:paramDef name="Width"              type="number"        two-way="true"  />
+    <hmi:paramDef name="Height"             type="number"        two-way="true"  />
+    <hmi:paramDef name="WindowFlags"        type="HmiWindowFlag"                 />
+    <hmi:paramDef name="MinimumWidth"       type="number"                        />
+    <hmi:paramDef name="MinimumHeight"      type="number"                        />
+    <hmi:paramDef name="Icon"               type="HmiGraphic"                    />
+    <hmi:paramDef name="Caption"            type="HmiTextPart"                   />
+    <hmi:paramDef name="CaptionColor"       type="HmiColor"                      />
+    <hmi:paramDef name="ShowCaption"        type="boolean"                       />
+    <hmi:paramDef name="CaptionHeight"      type="number"                        />
+    <hmi:paramDef name="WindowBorderWidth"  type="number"                        />
+    <hmi:paramDef name="WindowBorderColor"  type="HmiColor"                      />
+    <hmi:paramDef name="RX"                 type="number"                        />
+    <hmi:paramDef name="ItemOperable"       type="boolean"                       />
+    <hmi:paramDef name="WindowState"        type="number"         two-way="true" />
+
+  </hmi:self>
+
+  <defs>
+    <!-- Local definitions of this template -->
+    <hmi:localDef name="HoverMax"                   type="number"   value="0" />
+    <hmi:localDef name="PressedMax"                 type="number"   value="0" />
+
+    <hmi:localDef name="HoverClose"                 type="number"   value="0" />
+    <hmi:localDef name="PressedClose"               type="number"   value="0" />
+
+    <hmi:localDef name="SYS_CaptionOffsetLeft"      type="number"   value="11" />
+    <hmi:localDef name="SYS_CaptionOffsetRight"     type="number"   value="8"  />
+    <hmi:localDef name="SYS_CaptionIconSize"        type="number"   value="21" />
+    <hmi:localDef name="SYS_CaptionButtonSize"      type="number"   value="26" />
+    <hmi:localDef name="SYS_CaptionTextOffset"      type="number"   value="3"  />
+    <hmi:localDef name="SYS_HandleWidth"            type="number"   value="10" />
+
+    <hmi:localDef name="CaptionColor"               type="string"   hmi-bind:value="{{ Converter.RGBA( ParamProps.CaptionColor ) }}" />
+    <hmi:localDef name="CaptionButtonsXPosition"    type="number"   hmi-bind:value="{{ ParamProps.Width - 2 * ParamProps.WindowBorderWidth - LocalProps.SYS_CaptionOffsetRight - LocalProps.SYS_CaptionButtonSize }}" />
+    <hmi:localDef name="CaptionTextXPosition"       type="number"   hmi-bind:value="{{ ( ParamProps.Icon != '' ) ? LocalProps.SYS_CaptionOffsetLeft + LocalProps.SYS_CaptionIconSize + LocalProps.SYS_CaptionTextOffset  : LocalProps.SYS_CaptionOffsetLeft }}" />
+    <hmi:localDef name="CaptionTextWidth"           type="number"   hmi-bind:value="{{ ParamProps.Width - 2 * ParamProps.WindowBorderWidth - LocalProps.CaptionTextXPosition - ( ParamProps.Width - LocalProps.CaptionButtonsXPosition ) - LocalProps.SYS_CaptionOffsetLeft - 2 * LocalProps.SYS_CaptionTextOffset }}" />
+    <hmi:localDef name="CaptionDisplayText"         type="string"   hmi-bind:value="{{ Converter.TextEllipsis( ParamProps.Caption.Text, LocalProps.CaptionTextWidth, ParamProps.Caption.Font ) }}" />
+    <hmi:localDef name="CaptionForeColor"           type="string"   hmi-bind:value="{{ Converter.RGBA( ParamProps.Caption.ForeColor ) }}" />
+    <hmi:localDef name="ButtonYPos"                 type="number"   hmi-bind:value="{{ ( ParamProps.CaptionHeight - LocalProps.SYS_CaptionButtonSize ) / 2 }}" />
+    <hmi:localDef name="BorderXYPos"                type="number"   hmi-bind:value="{{ ParamProps.WindowBorderWidth / 2}}" />
+    <hmi:localDef name="HandleWidthHalf"            type="number"   hmi-bind:value="{{ LocalProps.SYS_HandleWidth / 2 }}" />
+    <hmi:localDef name="CornerX"                    type="number"   hmi-bind:value="{{ ParamProps.Width + LocalProps.HandleWidthHalf }}" />
+    <hmi:localDef name="CornerY"                    type="number"   hmi-bind:value="{{ ParamProps.Height + LocalProps.HandleWidthHalf }}" />
+    <hmi:localDef name="StrokeWidth"                type="number"   hmi-bind:value="{{ LocalProps.SYS_HandleWidth + 2 }}" />
+    <hmi:localDef name="CaptionButtonSizeHalf"      type="number"   hmi-bind:value="{{ LocalProps.SYS_CaptionButtonSize / 2 }}" />
+    <hmi:localDef name="CaptionHeightHalf"          type="number"   hmi-bind:value="{{ ParamProps.CaptionHeight / 2 }}" />
+    <hmi:localDef name="CaptionButtonSizeReduced"   type="number"   hmi-bind:value="{{ LocalProps.CaptionButtonSizeHalf - 6 }}" />
+    <hmi:localDef name="CaptionButtonSizeAdded"     type="number"   hmi-bind:value="{{ LocalProps.CaptionButtonSizeHalf + 6 }}" />
+    <hmi:localDef name="CaptionHeightReduced"       type="number"   hmi-bind:value="{{ LocalProps.CaptionHeightHalf - 6 }}" />
+    <hmi:localDef name="CaptionHeightAdded"         type="number"   hmi-bind:value="{{ LocalProps.CaptionHeightHalf + 6 }}" />
+
+    <!-- Local actions of this template -->
+    <hmi:action id="onMouseHoverMax" hmi-bind:condition="{ ParamProps.ItemOperable }" event-propagation="false">
+      <hmi:setProperty name="LocalProps.HoverMax" type="number" value="1" />
+    </hmi:action>
+
+    <hmi:action id="onMouseDownMax" hmi-bind:condition="{ ParamProps.ItemOperable }" event-propagation="false" >
+      <hmi:setProperty name="LocalProps.PressedMax" type="number" value="1" />
+    </hmi:action>
+
+    <hmi:action id="onMouseUpMax" hmi-bind:condition="{{ and( ParamProps.ItemOperable, LocalProps.PressedMax == 1 ) }}" event-propagation="false" >
+      <hmi:setProperty name="LocalProps.PressedMax" type="number" value="0" />
+      <hmi:sendCommand name="MAXIMIZE" type="boolean" value="true" hmi-bind:condition="{{ ( ParamProps.WindowState == HmiWindowState.Normal ) }}" />
+      <hmi:sendCommand name="RESTORE" type="boolean" value="true" hmi-bind:condition="{{ ( ParamProps.WindowState == HmiWindowState.Maximized ) }}" />
+      <hmi:setProperty name="ParamProps.WindowState" type="number" hmi-bind:value="{{ ParamProps.WindowState ? HmiWindowState.Normal : HmiWindowState.Maximized }}" />
+    </hmi:action>
+
+    <hmi:action id="onMouseLeaveMax" hmi-bind:condition="{ ParamProps.ItemOperable }" event-propagation="false">
+      <hmi:setProperty name="LocalProps.HoverMax" type="number" value="0" />
+    </hmi:action>
+
+    <hmi:action id="onMouseHoverClose" hmi-bind:condition="{ ParamProps.ItemOperable }" event-propagation="false">
+      <hmi:setProperty name="LocalProps.HoverClose" type="number" value="1" />
+    </hmi:action>
+
+    <hmi:action id="onMouseDownClose" hmi-bind:condition="{ ParamProps.ItemOperable }" event-propagation="false">
+      <hmi:setProperty name="LocalProps.PressedClose" type="number" value="1" />
+    </hmi:action>
+
+    <hmi:action id="onMouseUpClose" hmi-bind:condition="{{ and( ParamProps.ItemOperable, LocalProps.PressedClose == 1 ) }}" event-propagation="false" >
+      <hmi:setProperty name="LocalProps.PressedClose" type="number" value="0" />
+      <hmi:sendCommand name="CLOSE" type="boolean" value="true" />
+    </hmi:action>
+
+    <hmi:action id="onMouseLeaveClose" hmi-bind:condition="{ ParamProps.ItemOperable }" event-propagation="false" >
+      <hmi:setProperty name="LocalProps.HoverClose" type="number" value="0" />
+    </hmi:action>
+
+    <hmi:action id="onMove" hmi-bind:condition="{{ and( ParamProps.ItemOperable, has( ParamProps.WindowFlags, HmiWindowFlag.CanMove ) ) }}">
+      <hmi:setProperty name="ParamProps.Top"      type="number" hmi-bind:value="{{ ParamProps.Top  + EventArgs.PanDeltaY }}" />
+      <hmi:setProperty name="ParamProps.Left"     type="number" hmi-bind:value="{{ ParamProps.Left + EventArgs.PanDeltaX }}" />
+      <hmi:sendCommand name="MOVED"               type="boolean" value="true" />
+    </hmi:action>
+
+    <hmi:action id="onSlideTopLeft">
+      <hmi:setProperty name="ParamProps.Top"      type="number" hmi-bind:value="{{ ge( ParamProps.Height - EventArgs.PanDeltaY, ParamProps.MinimumHeight ) ? ParamProps.Top  + EventArgs.PanDeltaY : ParamProps.Top }}" />
+      <hmi:setProperty name="ParamProps.Left"     type="number" hmi-bind:value="{{ ge( ParamProps.Width - EventArgs.PanDeltaX, ParamProps.MinimumWidth ) ? ParamProps.Left + EventArgs.PanDeltaX : ParamProps.Left }}" />
+      <hmi:setProperty name="ParamProps.Width"    type="number" hmi-bind:value="{{ ge( ParamProps.Width - EventArgs.PanDeltaX, ParamProps.MinimumWidth ) ? ParamProps.Width - EventArgs.PanDeltaX : ParamProps.Width }}" />
+      <hmi:setProperty name="ParamProps.Height"   type="number" hmi-bind:value="{{ ge( ParamProps.Height - EventArgs.PanDeltaY, ParamProps.MinimumHeight ) ? ParamProps.Height - EventArgs.PanDeltaY : ParamProps.Height }}" />
+    </hmi:action>
+
+    <hmi:action id="onSlideTop">
+      <hmi:setProperty name="ParamProps.Top"      type="number" hmi-bind:value="{{ ge( ParamProps.Height - EventArgs.PanDeltaY, ParamProps.MinimumHeight ) ? ParamProps.Top + EventArgs.PanDeltaY : ParamProps.Top }}" />
+      <hmi:setProperty name="ParamProps.Height"   type="number" hmi-bind:value="{{ ge( ParamProps.Height - EventArgs.PanDeltaY, ParamProps.MinimumHeight ) ? ParamProps.Height - EventArgs.PanDeltaY : ParamProps.Height }}" />
+    </hmi:action>
+
+    <hmi:action id="onSlideTopRight">
+      <hmi:setProperty name="ParamProps.Top"      type="number" hmi-bind:value="{{ ge( ParamProps.Height - EventArgs.PanDeltaY, ParamProps.MinimumHeight ) ? ParamProps.Top + EventArgs.PanDeltaY : ParamProps.Top }}" />
+      <hmi:setProperty name="ParamProps.Width"    type="number" hmi-bind:value="{{ ge( ParamProps.Width + EventArgs.PanDeltaX,  ParamProps.MinimumWidth ) ? ParamProps.Width + EventArgs.PanDeltaX : ParamProps.Width }}" />
+      <hmi:setProperty name="ParamProps.Height"   type="number" hmi-bind:value="{{ ge( ParamProps.Height - EventArgs.PanDeltaY, ParamProps.MinimumHeight ) ? ParamProps.Height - EventArgs.PanDeltaY : ParamProps.Height }}" />
+    </hmi:action>
+
+    <hmi:action id="onSlideRight">
+      <hmi:setProperty name="ParamProps.Width"    type="number" hmi-bind:value="{{ ge( ParamProps.Width + EventArgs.PanDeltaX, ParamProps.MinimumWidth ) ? ParamProps.Width + EventArgs.PanDeltaX : ParamProps.Width }}" />
+    </hmi:action>
+
+    <hmi:action id="onSlideBottomRight">
+      <hmi:setProperty name="ParamProps.Width"    type="number" hmi-bind:value="{{ ge( ParamProps.Width  + EventArgs.PanDeltaX, ParamProps.MinimumWidth ) ? ParamProps.Width + EventArgs.PanDeltaX : ParamProps.Width }}" />
+      <hmi:setProperty name="ParamProps.Height"   type="number" hmi-bind:value="{{ ge( ParamProps.Height + EventArgs.PanDeltaY, ParamProps.MinimumHeight ) ? ParamProps.Height + EventArgs.PanDeltaY : ParamProps.Height }}" />
+    </hmi:action>
+
+    <hmi:action id="onSlideBottom">
+      <hmi:setProperty name="ParamProps.Height"   type="number" hmi-bind:value="{{ ge( ParamProps.Height + EventArgs.PanDeltaY, ParamProps.MinimumHeight ) ? ParamProps.Height + EventArgs.PanDeltaY : ParamProps.Height }}" />
+    </hmi:action>
+
+    <hmi:action id="onSlideBottomLeft">
+      <hmi:setProperty name="ParamProps.Left"     type="number" hmi-bind:value="{{ ge( ParamProps.Width - EventArgs.PanDeltaX, ParamProps.MinimumWidth ) ? ParamProps.Left + EventArgs.PanDeltaX : ParamProps.Left }}" />
+      <hmi:setProperty name="ParamProps.Width"    type="number" hmi-bind:value="{{ ge( ParamProps.Width - EventArgs.PanDeltaX, ParamProps.MinimumWidth ) ? ParamProps.Width - EventArgs.PanDeltaX : ParamProps.Width }}" />
+      <hmi:setProperty name="ParamProps.Height"   type="number" hmi-bind:value="{{ ge( ParamProps.Height + EventArgs.PanDeltaY, ParamProps.MinimumHeight ) ? ParamProps.Height + EventArgs.PanDeltaY : ParamProps.Height }}" />
+    </hmi:action>
+
+    <hmi:action id="onSlideLeft">
+      <hmi:setProperty name="ParamProps.Left"     type="number" hmi-bind:value="{{ ge( ParamProps.Width - EventArgs.PanDeltaX, ParamProps.MinimumWidth ) ? ParamProps.Left + EventArgs.PanDeltaX : ParamProps.Left }}" />
+      <hmi:setProperty name="ParamProps.Width"    type="number" hmi-bind:value="{{ ge( ParamProps.Width - EventArgs.PanDeltaX, ParamProps.MinimumWidth ) ? ParamProps.Width - EventArgs.PanDeltaX : ParamProps.Width }}" />
+    </hmi:action>
+
+    <hmi:action id="onStartResize">
+      <hmi:sendCommand name="RESIZE_TRIGGERED" type="boolean" value="true" />
+    </hmi:action>
+    <hmi:action id="onStopResize">
+      <hmi:sendCommand name="RESIZE_TRIGGERED" type="boolean" value="false" />
+    </hmi:action>
+
+    <hmi:action id="onSetCursorMove" hmi-bind:condition="{{ and( ParamProps.ItemOperable, has( ParamProps.WindowFlags, HmiWindowFlag.CanMove ) ) }}">
+      <hmi:setCursor name="move" value="screen" />
+      <hmi:sendCommand name="MOVE_TRIGGERED" type="boolean" value="true" />
+    </hmi:action>
+    <hmi:action id="onCursorResumeMove" hmi-bind:condition="{ ParamProps.ItemOperable }">
+      <hmi:setCursor name="auto" value="screen" />
+      <hmi:sendCommand name="MOVE_TRIGGERED" type="boolean" value="false" />
+    </hmi:action>
+
+    <hmi:action id="onSetCursorResizeNESW">
+      <hmi:setCursor name="nesw-resize" value="screen" />
+    </hmi:action>
+
+    <hmi:action id="onSetCursorResizeNWSE">
+      <hmi:setCursor name="nwse-resize" value="screen" />
+    </hmi:action>
+
+    <hmi:action id="onSetCursorResizeNS">
+      <hmi:setCursor name="ns-resize" value="screen" />
+    </hmi:action>
+
+    <hmi:action id="onSetCursorResizeEW">
+      <hmi:setCursor name="ew-resize" value="screen" />
+    </hmi:action>
+
+    <hmi:action id="onCursorResumeLeave" hmi-bind:condition="{{ or( EventArgs.Trigger != HmiEventTrigger.Left, EventArgs.Trigger==HmiEventTrigger.Touch ) }}">
+      <hmi:setCursor name="auto" value="screen" />
+    </hmi:action>
+
+    <clipPath id="ItemClipRect">
+      <rect id="ItemRect"
+            hmi-bind:width="{ ParamProps.Width }"
+            hmi-bind:height="{ ParamProps.Height }"
+            stroke="none" />
+    </clipPath>
+
+  </defs>
+
+  <g id="WindowFrame" >
+
+    <g clip-path="url(#ItemClipRect)" >
+      <!-- Caption -->
+      <g id="TIFID_Caption" hmi:if="{ ParamProps.ShowCaption }"
+         hmi-bind:transform="translate( {ParamProps.WindowBorderWidth }, { ParamProps.WindowBorderWidth } )"
+         hmi-event:pan="url(#onMove)" hmi-event:down="url(#onSetCursorMove)" hmi-event:up="url(#onCursorResumeMove)">
+
+        <path id="CaptionBackground"
+              hmi-bind:d="M 0 {{ ParamProps.CaptionHeight }}
+                         V 5
+                         A 5 5 0 0 1 5 0
+                         H {{ ParamProps.Width - 2 * ParamProps.WindowBorderWidth - 5 }}
+                         A 5 5 0 0 1 {{ ParamProps.Width - 2 * ParamProps.WindowBorderWidth }} 5
+                         V {{ ParamProps.CaptionHeight }} z"
+              hmi-bind:fill="{ LocalProps.CaptionColor }"
+              hmi-bind:stroke="{ LocalProps.CaptionColor }"
+              stroke-width="1" />
+
+        <g id="CaptionContent">
+          <image id="CaptionIcon" hmi:if="{{ ParamProps.Icon != '' }}" hmi-bind--xlink:href="{ ParamProps.Icon }"
+                 x="5" y="4" width="21" height="21" />
+          <text id="CaptionText" hmi:if="{ ParamProps.Caption.Visible }"
+                hmi-bind:x="{ LocalProps.CaptionTextXPosition }"
+                hmi-bind:y="{{ ( ParamProps.CaptionHeight - ParamProps.Caption.Font.Size ) / 2 + ParamProps.Caption.Font.Size - 2 }}"
+                hmi-bind:fill="{ LocalProps.CaptionForeColor }"
+                hmi-bind:font-size="{ ParamProps.Caption.Font.Size }"
+                hmi-bind:font-style="{{ ParamProps.Caption.Font.Italic ? 'italic' : 'normal' }}"
+                hmi-bind:font-weight="{ ParamProps.Caption.Font.Weight }"
+                hmi-bind:font-family="{ ParamProps.Caption.Font.Name }"
+                hmi-bind:text-decoration="{{ Converter.TextDecoration( ParamProps.Caption.Font ) }}">
+            <hmi:text hmi-bind:value="{ LocalProps.CaptionDisplayText }" />
+          </text>
+
+          <g id="CaptionButtons" hmi-bind:transform="translate( { LocalProps.CaptionButtonsXPosition }, 0 )">
+
+            <g hmi:if="{{ has( ParamProps.WindowFlags, HmiWindowFlag.CanClose ) }}" id="TIFID_CaptionCloseButton" hmi:focusArea="box"
+               hmi-event:mouseHover="url(#onMouseHoverClose)" hmi-event:down="url(#onMouseDownClose)" hmi-event:up="url(#onMouseUpClose)" hmi-event:mouseLeave="url(#onMouseLeaveClose)">
+
+              <rect id="BtClose"
+                    x="0"
+                    hmi-bind:y="{LocalProps.ButtonYPos}"
+                    hmi-bind:width="{ LocalProps.SYS_CaptionButtonSize }"
+                    hmi-bind:height="{ LocalProps.SYS_CaptionButtonSize }"
+                    hmi-bind:opacity="{{ LocalProps.HoverClose ? 0.5 : 0 }}"
+                    fill="#C0C0C0"
+                    stroke="none" />
+
+              <path hmi-bind:d="M { LocalProps.CaptionButtonSizeHalf } { LocalProps.CaptionHeightHalf }
+                                        L { LocalProps.CaptionButtonSizeReduced } { LocalProps.CaptionHeightReduced }
+                                        L { LocalProps.CaptionButtonSizeAdded } { LocalProps.CaptionHeightAdded }
+                                        M { LocalProps.CaptionButtonSizeHalf } { LocalProps.CaptionHeightHalf}
+                                        L { LocalProps.CaptionButtonSizeReduced } { LocalProps.CaptionHeightAdded }
+                                        L { LocalProps.CaptionButtonSizeAdded } { LocalProps.CaptionHeightReduced }"
+                    hmi-bind:stroke="{ LocalProps.CaptionForeColor }"
+                    stroke-width="1" />
+            </g>
+
+            <g hmi:if="{{ has( ParamProps.WindowFlags, HmiWindowFlag.CanMaximize ) }}" id="TIFID_CaptionMaxButton" hmi:focusArea="box"
+               hmi-bind:transform="translate( {{ has( ParamProps.WindowFlags, HmiWindowFlag.CanClose ) ? -LocalProps.SYS_CaptionButtonSize : 0 }}, 0 )"
+               hmi-event:mouseHover="url(#onMouseHoverMax)" hmi-event:down="url(#onMouseDownMax)" hmi-event:up="url(#onMouseUpMax)" hmi-event:mouseLeave="url(#onMouseLeaveMax)">
+
+              <rect id="BtMax"
+                    x="0"
+                    hmi-bind:y="{LocalProps.ButtonYPos}"
+                    hmi-bind:width="{ LocalProps.SYS_CaptionButtonSize  }"
+                    hmi-bind:height="{ LocalProps.SYS_CaptionButtonSize }"
+                    hmi-bind:opacity="{{ LocalProps.HoverMax ? 0.5 : 0 }}"
+                    fill="#C0C0C0"
+                    stroke="none" />
+              <g hmi-bind:stroke="{ LocalProps.CaptionForeColor }" fill="none" >
+                <rect hmi:if="{{ ParamProps.WindowState == HmiWindowState.Normal }}"
+                    x="6.5" y="11.5" width="12" height="10" />
+
+                <line hmi:if="{{ ParamProps.WindowState == HmiWindowState.Normal }}"
+                    x1="6" y1="9.5" x2="19" y2="9.5" />
+
+                <rect hmi:if="{{ ParamProps.WindowState == HmiWindowState.Maximized }}"
+                    x="5.5" y="12.5" width="11" height="8" />
+
+                <rect hmi:if="{{ ParamProps.WindowState == HmiWindowState.Maximized }}"
+                    x="11.5" y="9.5" width="10" height="7" />
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- Window Border -->
+    <g id="WindowBorder" hmi:if="{{ has( ParamProps.WindowFlags, HmiWindowFlag.ShowBorder ) }}">
+      <rect fill="none"
+          hmi-bind:stroke="{{ Converter.RGBA( ParamProps.WindowBorderColor ) }}"
+          hmi-bind:width="{{ ParamProps.Width - ParamProps.WindowBorderWidth }}"
+          hmi-bind:height="{{ ParamProps.Height - ParamProps.WindowBorderWidth }}"
+          hmi-bind:x="{LocalProps.BorderXYPos}"
+          hmi-bind:y="{LocalProps.BorderXYPos}"
+          hmi-bind:stroke-width="{ ParamProps.WindowBorderWidth }"
+          hmi-bind:rx="{ ParamProps.RX }" />
+
+      <g id="SizeHandles" hmi:if="{{ and( ParamProps.ItemOperable, has( ParamProps.WindowFlags, HmiWindowFlag.CanSize ) ) }}">
+        <line id="TopBorderLine" hmi-event:mouseEnter="url(#onSetCursorResizeNS)" hmi-event:mouseLeave="url(#onCursorResumeLeave)"
+            hmi-event:pan="url(#onSlideTop)" hmi-event:down="url(#onStartResize)" hmi-event:up="url(#onStopResize)"
+            x1="0"
+            hmi-bind:x2="{ ParamProps.Width }"
+            y1="0"
+            y2="0"
+            hmi-bind:stroke-width="{ LocalProps.SYS_HandleWidth }"
+            stroke="rgba(0,0,0,0)" />
+
+        <line id="RightBorderLine" hmi-event:mouseEnter="url(#onSetCursorResizeEW)" hmi-event:mouseLeave="url(#onCursorResumeLeave)"
+            hmi-event:pan="url(#onSlideRight)" hmi-event:down="url(#onStartResize)" hmi-event:up="url(#onStopResize)"
+            hmi-bind:x1="{ ParamProps.Width }"
+            hmi-bind:x2="{ ParamProps.Width }"
+            y1="0"
+            hmi-bind:y2="{ ParamProps.Height }"
+            hmi-bind:stroke-width="{ LocalProps.SYS_HandleWidth }"
+            stroke="rgba(0,0,0,0)" />
+
+        <line id="BottomBorderLine" hmi-event:mouseEnter="url(#onSetCursorResizeNS)" hmi-event:mouseLeave="url(#onCursorResumeLeave)"
+            hmi-event:pan="url(#onSlideBottom)" hmi-event:down="url(#onStartResize)" hmi-event:up="url(#onStopResize)"
+            x1="0"
+            hmi-bind:x2="{ ParamProps.Width }"
+            hmi-bind:y1="{ ParamProps.Height }"
+            hmi-bind:y2="{ ParamProps.Height }"
+            hmi-bind:stroke-width="{ LocalProps.SYS_HandleWidth }"
+            stroke="rgba(0,0,0,0)" />
+
+        <line id="LeftBorderLine" hmi-event:mouseEnter="url(#onSetCursorResizeEW)" hmi-event:mouseLeave="url(#onCursorResumeLeave)"
+            hmi-event:pan="url(#onSlideLeft)" hmi-event:down="url(#onStartResize)" hmi-event:up="url(#onStopResize)"
+            x1="0"
+            x2="0"
+            y1="0"
+            hmi-bind:y2="{ ParamProps.Height }"
+            hmi-bind:stroke-width="{ LocalProps.SYS_HandleWidth }"
+            stroke="rgba(0,0,0,0)" />
+
+        <line id="TopLeftBorderCorner" hmi-event:mouseEnter="url(#onSetCursorResizeNWSE)" hmi-event:mouseLeave="url(#onCursorResumeLeave)"
+            hmi-event:pan="url(#onSlideTopLeft)" hmi-event:down="url(#onStartResize)" hmi-event:up="url(#onStopResize)"
+            hmi-bind:x1="{{ - LocalProps.HandleWidthHalf }}"
+            hmi-bind:x2="{ LocalProps.HandleWidthHalf }"
+            hmi-bind:y1="{{ - LocalProps.HandleWidthHalf }}"
+            hmi-bind:y2="{ LocalProps.HandleWidthHalf }"
+            hmi-bind:stroke-width="{LocalProps.StrokeWidth}"
+            stroke="rgba(0,0,0,0)" />
+
+        <line id="TopRightCorner" hmi-event:mouseEnter="url(#onSetCursorResizeNESW)" hmi-event:mouseLeave="url(#onCursorResumeLeave)"
+            hmi-event:pan="url(#onSlideTopRight)" hmi-event:down="url(#onStartResize)" hmi-event:up="url(#onStopResize)"
+            hmi-bind:x1="{{ ParamProps.Width - LocalProps.HandleWidthHalf }}"
+            hmi-bind:x2="{LocalProps.CornerX}"
+            hmi-bind:y1="{ LocalProps.HandleWidthHalf }"
+            hmi-bind:y2="{{ - LocalProps.HandleWidthHalf }}"
+            hmi-bind:stroke-width="{LocalProps.StrokeWidth}"
+            stroke="rgba(0,0,0,0)" />
+
+        <line id="BottomRightCorner" hmi-event:mouseEnter="url(#onSetCursorResizeNWSE)" hmi-event:mouseLeave="url(#onCursorResumeLeave)"
+            hmi-event:pan="url(#onSlideBottomRight)" hmi-event:down="url(#onStartResize)" hmi-event:up="url(#onStopResize)"
+            hmi-bind:x1="{LocalProps.CornerX}"
+            hmi-bind:x2="{{ ParamProps.Width - LocalProps.HandleWidthHalf }}"
+            hmi-bind:y1="{LocalProps.CornerY}"
+            hmi-bind:y2="{{ ParamProps.Height - LocalProps.HandleWidthHalf  }}"
+            hmi-bind:stroke-width="{LocalProps.StrokeWidth}"
+            stroke="rgba(0,0,0,0)" />
+
+        <line id="BottomLeftCorner" hmi-event:mouseEnter="url(#onSetCursorResizeNESW)" hmi-event:mouseLeave="url(#onCursorResumeLeave)"
+            hmi-event:pan="url(#onSlideBottomLeft)" hmi-event:down="url(#onStartResize)" hmi-event:up="url(#onStopResize)"
+            hmi-bind:x1="{{ - LocalProps.HandleWidthHalf }}"
+            hmi-bind:x2="{ LocalProps.HandleWidthHalf }"
+            hmi-bind:y1="{LocalProps.CornerY}"
+            hmi-bind:y2="{{ ParamProps.Height - LocalProps.HandleWidthHalf }}"
+            hmi-bind:stroke-width="{LocalProps.StrokeWidth}"
+            stroke="rgba(0,0,0,0)" />
+      </g>
+    </g>
+
+  </g>
+
+</svg>

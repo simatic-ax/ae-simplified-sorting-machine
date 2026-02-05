@@ -1,0 +1,190 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     preserveAspectRatio="none">
+
+    <hmi:self type="item:HmiClock" displayName="Flat Clock" name="style.flat.clock" version="2.8" performanceClass="L" >
+        <hmi:focus focusVisual="local" />
+    </hmi:self>
+
+    <defs>
+        <hmi:localDef name="IsCompactMode"          type="boolean"  hmi-bind:value="{{ or( lt( HmiProps.Width, 100 ), lt( HmiProps.Height, 100 ) ) }}" />
+        <hmi:localDef name="ShowFocus"              type="boolean"  hmi-bind:value="{{ and( HmiProps.ShowFocusVisual, SysProps.HasFocus ) }}" />
+        
+        <hmi:localDef name="ArcSpacing"             type="number"   hmi-bind:value="{{ ( HmiProps.BorderWidth ? HmiProps.BorderWidth + 3 : 0 ) }}" />
+
+        <hmi:localDef name="TitleHeight"            type="number"   hmi-bind:value="{{ HmiProps.Title.Visible ? HmiProps.Title.Font.Size : 0 }}" />
+
+        <hmi:localDef name="DialTickColor"          type="string"   hmi-bind:value="{{ Converter.RGBA( HmiProps.DialTickColor ) }}" />
+        <hmi:localDef name="DialLabelColor"         type="string"   hmi-bind:value="{{ Converter.RGBA( HmiProps.DialLabelColor ) }}" />
+        <hmi:localDef name="DialBackColor"          type="string"   hmi-bind:value="{{ Converter.RGBA( HmiProps.DialBackColor ) }}" />
+        <hmi:localDef name="DialForeColor"          type="string"   value="rgba(126,145,160,0.15)" />
+        <hmi:localDef name="ClockHandColor"         type="string"   value="#7E91A0" />
+
+        <hmi:localDef name="MinWidthHeight"         type="number"   hmi-bind:value="{{ Converter.Min( HmiProps.Width, HmiProps.Height ) }}" />
+        <hmi:localDef name="Radius"                 type="number"   hmi-bind:value="{{ LocalProps.MinWidthHeight / 2 }}" />
+        <hmi:localDef name="DeltaWidth"             type="number"   hmi-bind:value="{{ ( HmiProps.Width  - LocalProps.MinWidthHeight ) / 2 }}" />
+        <hmi:localDef name="DeltaHeight"            type="number"   hmi-bind:value="{{ ( HmiProps.Height - LocalProps.MinWidthHeight ) / 2 }}" />
+
+        <hmi:localDef name="CenterX"                type="number"   hmi-bind:value="{{ LocalProps.DeltaWidth  + LocalProps.Radius }}" />
+        <hmi:localDef name="CenterY"                type="number"   hmi-bind:value="{{ LocalProps.DeltaHeight + LocalProps.Radius }}" />
+
+        <hmi:localDef name="DialRadius"             type="number"   hmi-bind:value="{{ LocalProps.Radius / 2 - LocalProps.ArcSpacing - 10 }}" />
+        <hmi:localDef name="TickOffset"             type="number"   hmi-bind:value="{{ ((LocalProps.Radius - 25) / 2) + 4 }}" />
+        
+        <hmi:localDef name="Time"                   type="number"   hmi-bind:value="{{ ( HmiProps.ComputedHours * 3600 + HmiProps.ComputedMinutes * 60 + HmiProps.ComputedSeconds ) * 1000 }}" />
+        <hmi:localDef name="TimeFormatString"       type="string"   hmi-bind:value="{{ HmiProps.ShowHours ? ( HmiProps.ShowMinutes ? ( HmiProps.ShowSeconds ? '{T,@HH:mm:ss}' : '{T,@HH:mm}' ) : ( HmiProps.ShowSeconds ? '{T,@HH::ss}' : '{T,@HH}' ) ) : ( HmiProps.ShowMinutes ? ( HmiProps.ShowSeconds ? '{T,@mm:ss}' : '{T,@mm}' ) : ( HmiProps.ShowSeconds ? '{T,@ss}' : '{T,@–}' ) ) }}" />
+    </defs>
+
+    <g>
+        <!-- background rectangle -->
+        <g id="ElementsGroup" hmi:if="{{ or( (Converter.Alpha( HmiProps.BackColor ) != 0), (Converter.Alpha( HmiProps.BorderColor ) != 0) ) }}" >
+
+            <rect id="ItemBGRect"
+                  hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+                  hmi-bind:y="{{ HmiProps.BorderWidth / 2 }}"
+                  hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth }}"
+                  hmi-bind:height="{{ HmiProps.Height - HmiProps.BorderWidth }}"
+                  hmi-bind:fill="{{ Converter.RGBA(HmiProps.BackColor) }}"
+                  hmi-bind:stroke="{{ Converter.RGBA( HmiProps.BorderColor ) }}"
+                  hmi-bind:stroke-width="{ HmiProps.BorderWidth }" />
+
+        </g>
+
+        <!-- Arc Dial for Background -->
+        <g id="DialBackground" hmi:if="{{ not( LocalProps.IsCompactMode ) }}">
+
+            <circle hmi-bind:fill="{ LocalProps.DialBackColor }"
+                    hmi-bind:cx="{ LocalProps.CenterX }"
+                    hmi-bind:cy="{ LocalProps.CenterY }"
+                    hmi-bind:r="{{ LocalProps.Radius}}" />
+
+            <circle hmi-bind:fill="{ LocalProps.DialForeColor }"
+                    hmi-bind:cx="{ LocalProps.CenterX }"
+                    hmi-bind:cy="{ LocalProps.CenterY }"
+                    hmi-bind:r="{{ LocalProps.Radius}}" />
+
+            <circle hmi-bind:fill="{ LocalProps.DialBackColor }"
+                    hmi-bind:cx="{ LocalProps.CenterX }"
+                    hmi-bind:cy="{ LocalProps.CenterY }"
+                    hmi-bind:r="{{ LocalProps.Radius - 25 }}"
+                    hmi-bind:stroke="{ LocalProps.DialTickColor }" />
+        </g>
+
+
+        <!-- Arc Dial -->
+        <g id="ArcDialNVE" hmi:if="{{ not( LocalProps.IsCompactMode ) }}">
+
+            <hmi-element:arcDial hmi-bind:center-x="{ LocalProps.CenterX }"
+                                 hmi-bind:center-y="{ LocalProps.CenterY }"
+                                 hmi-bind:radius="{ LocalProps.DialRadius }"
+                                 begin-angle="270"
+                                 angle-range="360">
+
+                <!-- Scale -->
+                <hmi-feature:scale begin-value="0"
+                                   end-value="12"
+                                   maximum-sections="12"
+                                   extend="none">
+
+                    <!-- Scale -->
+                    <hmi-feature:division count="4">
+                        <hmi-feature:division count="3">
+                            <hmi-feature:ticks hmi-bind:condition="{{ has( HmiProps.DialMode, HmiScaleMode.Ticks) }}"
+                                            position-filter="inner"
+                                            hmi-bind:offset="{ LocalProps.TickOffset }"
+                                            length="8"
+                                            hmi-bind:stroke="{ LocalProps.DialTickColor }" />
+
+                            <!-- Labels -->
+                            <hmi-feature:labels hmi-bind:condition="{{ has( HmiProps.DialMode, HmiScaleMode.Labels) }}"
+                                                alignment-mode="center"
+                                                position-filter="end"
+                                                hmi-bind:offset="{ LocalProps.TickOffset }"
+                                                hmi-bind:fill="{ LocalProps.DialLabelColor }"
+                                                output-format="{I}">
+
+
+                                <hmi-feature:font hmi-bind:scope="{ HmiProps.DialLabelFont }" />
+
+                            </hmi-feature:labels>
+                        </hmi-feature:division>
+                    </hmi-feature:division>
+
+
+                </hmi-feature:scale>
+            </hmi-element:arcDial>
+
+        </g>
+
+        <g id="TitleGroup" hmi:if="{{ LocalProps.TitleHeight != 0 }}">
+            <text text-anchor="middle"
+                  hmi-bind:x="{ LocalProps.CenterX }"
+                  hmi-bind:y="{{ LocalProps.CenterY }}"
+                  hmi-bind:fill="{{ Converter.RGBA( HmiProps.Title.ForeColor ) }}"
+                  hmi-bind:font-size="{ HmiProps.Title.Font.Size }"
+                  hmi-bind:font-style="{{ HmiProps.Title.Font.Italic ? 'italic' : 'normal' }}"
+                  hmi-bind:font-weight="{ HmiProps.Title.Font.Weight }"
+                  hmi-bind:font-family="{ HmiProps.Title.Font.Name }"
+                  hmi-bind:text-decoration="{{ Converter.TextDecoration( HmiProps.Title.Font ) }}">
+                <hmi:text hmi-bind:value="{ HmiProps.Title.Text }" />
+            </text>
+        </g>
+
+        <g id="ClockHand" hmi:if="{{ not( LocalProps.IsCompactMode ) }}" hmi-bind:transform="translate( {{ LocalProps.CenterX }},{{ LocalProps.CenterY }} )"
+           hmi-bind:fill="{ LocalProps.ClockHandColor }" hmi-bind:stroke="{ LocalProps.ClockHandColor }">
+            <line hmi:if="{ HmiProps.ShowHours }" hmi-bind:transform="rotate( {{ ( HmiProps.ComputedHours % 12 ) * 30 + HmiProps.ComputedMinutes * 0.5 }} )"
+                  stroke-width="4" x1="0" y1="0" x2="0" hmi-bind:y2="{{ -1.0 * ( (LocalProps.Radius - 25) * 0.65 ) }}" />
+
+            <line hmi:if="{ HmiProps.ShowMinutes }" hmi-bind:transform="rotate( {{ HmiProps.ComputedMinutes * 6 + HmiProps.ComputedSeconds * 0.1 }} )"
+                  stroke-width="2" x1="0" y1="0" x2="0" hmi-bind:y2="{{ -1.0 * ( (LocalProps.Radius - 25) * 0.85 ) }}" />
+
+            <line hmi:if="{ HmiProps.ShowSeconds }" hmi-bind:transform="rotate( {{ HmiProps.ComputedSeconds * 6 }} )"
+                  stroke-width="1" x1="0" y1="0" x2="0" hmi-bind:y2="{{ -1.0 * ( (LocalProps.Radius - 25) * 0.95 ) }}" />
+
+        </g>
+        
+        <g id="DigitalFormat"  hmi:if="{ LocalProps.IsCompactMode }">
+            
+            <rect id="DialBackgroundDigital" hmi-bind:fill="{ LocalProps.DialBackColor }"
+                    hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+                    hmi-bind:y="{{ HmiProps.BorderWidth / 2 }}"
+                    hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth }}"
+                    hmi-bind:height="{{ HmiProps.Height - HmiProps.BorderWidth }}"
+                    hmi-bind:stroke="{ LocalProps.DialTickColor }" 
+            />
+            <text id="ValueText" text-anchor="middle"
+                  hmi-bind:x="{{ HmiProps.Width  / 2 }}"
+                  hmi-bind:y="{{ (HmiProps.Height + (HmiProps.DialLabelFont.Size / 2)) / 2 }}"
+                  hmi-bind:fill="{ LocalProps.DialLabelColor }"
+                  hmi-bind:font-size="{ HmiProps.DialLabelFont.Size }"
+                  hmi-bind:font-style="{{ HmiProps.DialLabelFont.Italic ? 'italic' : 'normal' }}"
+                  hmi-bind:font-weight="{ HmiProps.DialLabelFont.Weight }"
+                  hmi-bind:font-family="{ HmiProps.DialLabelFont.Name }"
+                  hmi-bind:text-decoration="{{ Converter.TextDecoration( HmiProps.DialLabelFont ) }}">
+                <hmi:text hmi-bind:value="{{ Converter.FormatPattern( LocalProps.Time, LocalProps.TimeFormatString ) }}" />
+            </text>      
+        </g>
+        
+        <rect id="ItemRect_Used"
+        hmi:if="{ LocalProps.ShowFocus }"
+              fill-opacity="0"
+              hmi-bind:stroke="{{ Converter.RGBA( HmiProps.FocusColor ) }}"
+              x="1"
+              y="1"
+              hmi-bind:width="{{ HmiProps.Width - 2 }}"
+              hmi-bind:height="{{ HmiProps.Height - 2 }}"
+              stroke-width="2" />
+    </g>
+
+</svg>

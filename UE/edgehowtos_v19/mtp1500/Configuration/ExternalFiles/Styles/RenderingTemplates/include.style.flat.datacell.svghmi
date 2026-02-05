@@ -1,0 +1,61 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+               xmlns:hmi="http://svg.siemens.com/hmi/"
+               xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"
+               height="10" width="10" >
+  <hmi:self type="system:HmiDataCellSystemPart" displayName="DataCell" name="datacell" version="1.0.0" performanceClass="s">
+    <hmi:data type="cell-view"></hmi:data>
+    <hmi:paramDef name="Padding"      type="HmiPaddingPart" />
+  </hmi:self>
+
+  <defs>
+    <hmi:localDef name="Text"                    type="string"                   hmi-data-bind:value="{ Content.Data }" />
+    <hmi:localDef name="TextColor"               type="string"                   hmi-data-bind:value="{ Colors.Fore }" />
+    <hmi:localDef name="HorizontalTextAlignment" type="HmiHorizontalAlignment"   hmi-bind:value="{ HmiProps.Content.HorizontalTextAlignment }" />
+    <hmi:localDef name="VerticalTextAlignment"   type="HmiVerticalAlignment"     hmi-bind:value="{ HmiProps.Content.VerticalTextAlignment }" />
+    <hmi:localDef name="TextTrimming"            type="HmiTextTrimming"          hmi-bind:value="{ HmiProps.Content.TextTrimming }" />
+    <hmi:localDef name="InteriorWidth"           type="number"                   hmi-bind:value="{{ HmiProps.Width - ParamProps.Padding.Right - ParamProps.Padding.Left }}" />
+    <hmi:localDef name="InteriorHeight"          type="number"                   hmi-bind:value="{{ HmiProps.Height - ParamProps.Padding.Bottom }}" />
+
+
+    <hmi:localDef name="TextHeightFontSize"      type="number"                   hmi-bind:value="{ HmiProps.Font.Size }" />
+
+    <!-- x, y and baseline position of the text-->
+    <hmi:localDef name="TextAnchorX"             type="string"                   hmi-bind:value="{{ LocalProps.HorizontalTextAlignment == HmiHorizontalAlignment.Center ? 'middle' : LocalProps.HorizontalTextAlignment == HmiHorizontalAlignment.Left ? 'start' : 'end' }}" />
+    <hmi:localDef name="TextAnchorY"             type="string"                   hmi-bind:value="{{ LocalProps.VerticalTextAlignment == HmiVerticalAlignment.Center ? 'middle' : LocalProps.VerticalTextAlignment == HmiVerticalAlignment.Top ? 'start' : 'end' }}" />
+
+  </defs>
+  <g  opacity="1">
+    <rect id="TIFID_ItemBGRect2"
+                    x="0"
+                    y="0"
+                   hmi-bind:width="{ HmiProps.Width }"
+                   hmi-bind:height="{ HmiProps.Height }"
+                   hmi-data-bind:fill="{{ Converter.RGBA( Colors.Back ) }}"
+                   stroke-width="1"/>
+
+    <g id="TextGroup">
+      <text id="TextText"
+            hmi-bind:x="{{ floor( (LocalProps.TextAnchorX == 'start' ? ParamProps.Padding.Left : LocalProps.TextAnchorX == 'middle' ? (LocalProps.InteriorWidth / 2) :  LocalProps.InteriorWidth ) ) }}"
+            hmi-bind:y="{{ floor( (LocalProps.TextAnchorY == 'start' ? ( LocalProps.TextHeightFontSize + ParamProps.Padding.Top )
+                                                                : LocalProps.TextAnchorY == 'middle' ? ( ( LocalProps.InteriorHeight + LocalProps.TextHeightFontSize * 0.65 ) / 2 )
+                                                                                                     : ( LocalProps.InteriorHeight - LocalProps.TextHeightFontSize * 0.20 - 2     )  ) ) }}"
+            hmi-bind:fill="{{ Converter.RGBA( LocalProps.TextColor ) }}"
+            hmi-bind:font-size="{ HmiProps.Font.Size }"
+            hmi-bind:font-style="{{ HmiProps.Font.Italic ? 'italic' : 'normal' }}"
+            hmi-bind:font-weight="{ HmiProps.Font.Weight }"
+            hmi-bind:font-family="{ HmiProps.Font.Name }"
+            hmi-bind:text-decoration="{{ Converter.TextDecoration( HmiProps.Font ) }}"
+            hmi-bind:text-anchor="{ LocalProps.TextAnchorX }" >
+
+        <hmi:text hmi-bind:value="{{ LocalProps.TextTrimming == HmiTextTrimming.None ? LocalProps.Text : Converter.TextEllipsis( LocalProps.Text, LocalProps.InteriorWidth, HmiProps.Font ) }}" />
+      </text>
+    </g>
+
+  </g>
+</svg>

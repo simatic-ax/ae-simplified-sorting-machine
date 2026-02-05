@@ -1,0 +1,207 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2022. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"
+     xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+     preserveAspectRatio="none"
+     overflow="visible"
+     id="custom_BlockView">
+    <hmi:self type="system:HmiBlockSymbolSystemPart" displayName="Flat BlockSymbolSystemPart" name="include.style.flat.blockview">
+        <hmi:data type="block-details"></hmi:data>
+        <hmi:paramDef name="FocusColor"             type="string"                 />
+    </hmi:self>
+    <defs>
+        <hmi:localDef name="TitleTag"                   type="string"         hmi-data-bind:value="{ Content.TitleTag }" />
+        <hmi:localDef name="TitleHasTag"                type="boolean"        hmi-data-bind:value="{ Content.TitleHasTag }" />
+        <hmi:localDef name="TitleAddress"               type="string"         hmi-data-bind:value="{ Content.TitleAddress }" />
+        <hmi:localDef name="TitleAddressFore"           type="string"         hmi-data-bind:value="{ Content.TitleAddressFore }" />
+        <hmi:localDef name="TitleText"                  type="string"         hmi-data-bind:value="{ Content.TitleText }" />
+        <hmi:localDef name="TitleTextHeight"            type="number"         hmi-data-bind:value="{ Content.TitleTextHeight }" />
+        <hmi:localDef name="TitleHeight"                type="number"         hmi-data-bind:value="{ Content.TitleHeight }" />
+        <hmi:localDef name="TitleTagBackColor"          type="HmiColor"       hmi-data-bind:value="{ Content.TitleTagBackColor }" />
+        <hmi:localDef name="TitleTagForeColor"          type="HmiColor"       hmi-data-bind:value="{ Content.TitleTagForeColor }" />
+        <hmi:localDef name="TitleTextBackColor"         type="HmiColor"       hmi-data-bind:value="{ Content.TitleTextBackColor }" />
+        <hmi:localDef name="TitleTextForeColor"         type="HmiColor"       hmi-data-bind:value="{ Content.TitleTextForeColor }" />
+        <hmi:localDef name="HeaderAddress"              type="string"         hmi-data-bind:value="{ Content.HeaderAddress }" />
+        <hmi:localDef name="HeaderAddressFore"          type="string"         hmi-data-bind:value="{ Content.HeaderAddressFore }" />
+        <hmi:localDef name="HeaderText"                 type="string"         hmi-data-bind:value="{ Content.HeaderText }" />
+        <hmi:localDef name="HeaderHeight"               type="number"         hmi-data-bind:value="{ Content.HeaderHeight }" />
+        <hmi:localDef name="BlockWidth"                 type="number"         hmi-data-bind:value="{ Content.BlockWidth }" />
+        <hmi:localDef name="BlockHeight"                type="number"         hmi-data-bind:value="{ Content.BlockHeight }" />
+        <hmi:localDef name="IsHorizontalBlock"          type="boolean"        hmi-data-bind:value="{ Content.IsHorizontal }" />
+        <hmi:localDef name="ContentText"                type="string"         hmi-data-bind:value="{ Content.ContentText }" />
+        <hmi:localDef name="ContentHeight"              type="number"         hmi-data-bind:value="{ Content.ContentHeight }" />
+        <hmi:localDef name="LineColor"                  type="string"         hmi-data-bind:value="{ Content.LineColor }" />
+        <hmi:localDef name="HeaderFontSize"             type="string"         hmi-data-bind:value="{ Content.HeaderFontSize }" />
+        <hmi:localDef name="InActive"                   type="string"         hmi-data-bind:value="{ Content.InActive }" />
+        <hmi:localDef name="IsSelected"                 type="boolean"        hmi-data-bind:value="{ Content.IsSelected }" />
+        <hmi:localDef name="TitleFont"                  type="HmiFontPart"    hmi-bind:value="{ HmiProps.TitleFont }" />
+        <hmi:localDef name="ContentFont"                type="HmiFontPart"    hmi-bind:value="{ HmiProps.ContentFont }" />
+
+        <hmi:localDef name="TitleCharLen"               type="number"         hmi-bind:value="{{ floor( LocalProps.BlockWidth / Converter.TextWidth('X', HmiProps.ContentFont )) }}" />
+        <hmi:localDef name="ComputedTitleTag"           type="string"         hmi-bind:value="{{ Converter.TextEllipsis( LocalProps.TitleTag, LocalProps.TitleCharLen) }}" />
+        <hmi:localDef name="ComputedTitleAddress"       type="string"         hmi-bind:value="{{ Converter.TextEllipsis( LocalProps.TitleAddress, LocalProps.TitleCharLen) }}" />
+        <hmi:localDef name="ComputedHeaderAddress"      type="string"         hmi-bind:value="{{ Converter.TextEllipsis( LocalProps.HeaderAddress, LocalProps.TitleCharLen) }}" />
+        <hmi:localDef name="TitleTagWidth"              type="number"         hmi-bind:value="{{ Converter.TextWidth( LocalProps.ComputedTitleTag, HmiProps.ContentFont ) }}" />
+        <hmi:localDef name="SingleContentHeight"        type="number"         hmi-bind:value="{{ Converter.TextHeight( 'X', HmiProps.ContentFont) }}" />
+        <hmi:localDef name="Padding"                    type="number"         value="4" />
+        <hmi:localDef name="TextPadingHeight"           type="number"         hmi-bind:value="{{ LocalProps.SingleContentHeight + LocalProps.Padding/2 }}" />
+        
+        <hmi:localDef name="TextToSymbolPadding"        type="number"         value="10" />
+        <hmi:localDef name="ActualTitleTextWidth"       type="number"         hmi-bind:value="{{ Converter.TextWidth(LocalProps.TitleText, HmiProps.TitleFont, true ) + LocalProps.TextToSymbolPadding }}" />
+        <hmi:localDef name="TitleTextBeginYPos"         type="number"         hmi-bind:value="{{ -LocalProps.Padding/2 + (LocalProps.TitleAddress == '' ?  (( LocalProps.TitleHasTag ? LocalProps.TextPadingHeight : 0 ) - 2) : ( LocalProps.TitleHasTag ? 2 * LocalProps.TextPadingHeight : LocalProps.TextPadingHeight)) }}" />
+      
+        <hmi:localDef name="IsDashAllowed"              type="boolean"        hmi-data-bind:value="{ Content.IsDashAllowed }" />
+        <hmi:localDef name="DashTypeSolid"              type="string"         value="null" />
+        <hmi:localDef name="DashTypeDash"               type="string"         value="5" />
+        <hmi:localDef name="DashArray"                  type="string"         hmi-bind:value="{{ and( LocalProps.InActive, LocalProps.IsDashAllowed ) ? LocalProps.DashTypeDash: LocalProps.DashTypeSolid  }}" />
+        <hmi:localDef name="ParentBlockJustify"         type="string"         hmi-data-bind:value="{{ LocalProps.IsHorizontalBlock == true  ? 'start' : 'center' }}" />
+        <hmi:localDef name="HeaderYPos"                 type="number"         hmi-bind:value="{{ LocalProps.IsHorizontalBlock? LocalProps.TitleHeight + 2 : LocalProps.TitleHeight }}" />
+        <hmi:localDef name="UpdatedBlockWidth"          type="number"         hmi-bind:value="{{ LocalProps.IsHorizontalBlock? LocalProps.BlockWidth - 4 : LocalProps.BlockWidth }}" />
+        <hmi:localDef name="XPos"                       type="number"         hmi-bind:value="{{ LocalProps.IsHorizontalBlock? 2 : 0 }}" />
+
+    </defs>
+    <g hmi-flex:width="{ HmiProps.Width }" hmi-flex:height="{ HmiProps.Height }" hmi-flex:direction ="row"
+       hmi-flex:justifyContent="{ LocalProps.ParentBlockJustify }" >
+      <g hmi-flex:width="{ LocalProps.BlockWidth }" hmi-flex:height="{ LocalProps.BlockHeight }" hmi-flex:alignSelf="start">
+        <g>
+          <rect hmi:if="{{ not( eq( LocalProps.ComputedTitleTag, '')) }}"
+              hmi-bind:x="{{ LocalProps.BlockWidth / 2 - ( LocalProps.TitleTagWidth / 2 )}}"
+              hmi-bind:width="{ LocalProps.TitleTagWidth }"
+              hmi-bind:height="{ LocalProps.SingleContentHeight }"
+              hmi-bind:fill="{{ Converter.RGBA(LocalProps.TitleTagBackColor) }}" />
+          <text hmi-bind:x="{{ LocalProps.BlockWidth / 2 }}"
+              hmi-bind:y="{ LocalProps.Padding }"
+              hmi-bind:font-size="{ HmiProps.ContentFont.Size }"
+              hmi-bind:font-style="{{ HmiProps.ContentFont.Italic ? 'italic' : 'normal' }}"
+              hmi-bind:font-weight="{ HmiProps.ContentFont.Weight }" hmi-bind:font-family="{ HmiProps.ContentFont.Name }"
+              hmi-bind:fill="{{ Converter.RGBA( LocalProps.TitleTagForeColor ) }}"
+              text-anchor="middle" dominant-baseline="hanging">
+            <hmi:text hmi-bind:value="{ LocalProps.ComputedTitleTag }" />
+          </text>
+          <text hmi-bind:x="{{ LocalProps.BlockWidth / 2 }}"
+                hmi-bind:y="{{ LocalProps.Padding + ( LocalProps.TitleHasTag ? LocalProps.TextPadingHeight : 0 ) - 2 }}"
+                hmi-bind:font-size="{ HmiProps.TitleFont.Size }"
+                hmi-bind:font-style="{{ HmiProps.TitleFont.Italic ? 'italic' : 'normal' }}"
+                hmi-bind:font-weight="{ HmiProps.TitleFont.Weight }" hmi-bind:font-family="{ HmiProps.TitleFont.Name }"
+                hmi-bind:fill="{{ Converter.RGBA(LocalProps.TitleAddressFore) }}"
+                text-anchor="middle" dominant-baseline="hanging">
+            <hmi:text hmi-bind:value="{ LocalProps.ComputedTitleAddress }" />
+          </text>
+          <rect
+	          hmi:if="{{ not( eq( LocalProps.TitleTextBackColor, '')) }}"
+	          hmi-bind:width="{ LocalProps.ActualTitleTextWidth }"
+	          hmi-bind:height="{{ Converter.TextHeight( LocalProps.TitleText , HmiProps.TitleFont, true ) + LocalProps.Padding / 2 }}"
+	          hmi-bind:fill="{{ Converter.RGBA(LocalProps.TitleTextBackColor) }}"
+	          hmi-bind:x="{{ (LocalProps.BlockWidth/2) - (LocalProps.ActualTitleTextWidth/2)}}"
+	          hmi-bind:y="{ LocalProps.TitleTextBeginYPos }"/>
+          <hmi-element:textField
+                hmi-bind:start-y="{{ -LocalProps.Padding/2 + (LocalProps.TitleAddress == '' ?  ( LocalProps.TitleHasTag ? LocalProps.TextPadingHeight : 0 ) : ( LocalProps.TitleHasTag ? 2 * LocalProps.TextPadingHeight : LocalProps.TextPadingHeight)) }}"
+                hmi-bind:width="{ LocalProps.BlockWidth }"
+                hmi-bind:height="{ LocalProps.TitleTextHeight  }"
+                horizontal-text-alignment="center"
+                hmi-bind:value="{ LocalProps.TitleText }"
+                hmi-bind:fore-color="{{ Converter.RGBA( LocalProps.TitleTextForeColor ) }}"
+                target="LocalProps.TitleText"
+                output-format="{S}"
+                text-wrapping="word-wrap"
+                enabled="false"
+                read-only="true"
+                hmi-bind:horizontal-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}"
+                hmi-bind:vertical-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}">
+            <hmi-feature:font hmi-bind:scope="{ LocalProps.TitleFont }" />
+          </hmi-element:textField>
+        </g>
+        <rect
+              hmi-bind:width="{ LocalProps.UpdatedBlockWidth }"
+              hmi-bind:height="{ LocalProps.HeaderHeight }"
+              hmi-bind:stroke="{{ Converter.RGBA( HmiProps.BorderColor ) }}"
+              stroke-width="1"
+              hmi-bind:fill="{{ Converter.RGBA( HmiProps.HeaderBackColor ) }}"
+              hmi-bind:x="{ LocalProps.XPos }"
+              hmi-bind:y="{ LocalProps.HeaderYPos }"/>
+        <text hmi-bind:x="{{ LocalProps.BlockWidth / 2 }}"
+              hmi-bind:y="{{ LocalProps.HeaderYPos + LocalProps.Padding }}"
+              hmi-bind:font-size="{ HmiProps.ContentFont.Size }"
+              hmi-bind:font-style="{{ HmiProps.ContentFont.Italic ? 'italic' : 'normal' }}"
+              hmi-bind:font-weight="{ HmiProps.ContentFont.Weight }" hmi-bind:font-family="{ HmiProps.ContentFont.Name }"
+              hmi-bind:fill="{{ Converter.RGBA(LocalProps.HeaderAddressFore) }}"
+              text-anchor="middle" dominant-baseline="hanging">
+            <hmi:text hmi-bind:value="{ LocalProps.ComputedHeaderAddress }" />
+        </text>
+        <hmi-element:textField
+                     hmi-bind:width="{ LocalProps.UpdatedBlockWidth }"
+                     hmi-bind:height="{ LocalProps.HeaderHeight }"
+                     hmi-bind:start-y="{{ LocalProps.HeaderAddress == '' ? LocalProps.HeaderYPos : LocalProps.HeaderYPos + LocalProps.TextPadingHeight }}"
+                     horizontal-text-alignment="center"
+                     hmi-bind:vertical-text-alignment="{{ LocalProps.HeaderAddress == '' ? 'middle' : 'top'  }}"
+                     hmi-bind:value="{ LocalProps.HeaderText }"
+                     hmi-bind:fore-color="{{ Converter.RGBA( HmiProps.HeaderForeColor ) }}"
+                     target="LocalProps.HeaderText"
+                     multi-line="true"
+                     output-format="{S}"
+                     text-wrapping="word-wrap"
+                     enabled="false"
+                     read-only="true"
+                     hmi-bind:horizontal-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}"
+                     hmi-bind:vertical-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}">
+          <hmi-feature:font hmi-bind:scope="{ HmiProps.HeaderFont }" />
+        </hmi-element:textField>
+
+        <!--Content rectangle-->
+        <rect hmi:if="{{ gt(LocalProps.ContentHeight, 0) }}"
+             hmi-bind:width="{ LocalProps.UpdatedBlockWidth }"
+             hmi-bind:height="{ LocalProps.ContentHeight }"
+             hmi-bind:y="{{ LocalProps.HeaderYPos + LocalProps.HeaderHeight + 1 }}"
+             stroke-width="1"
+             hmi-bind:x="{ LocalProps.XPos }"
+             hmi-bind:stroke="{{ Converter.RGBA( HmiProps.BorderColor ) }}"
+             hmi-bind:fill="{{ Converter.RGBA( HmiProps.ContentBackColor ) }}" />
+
+        <g id="TIFID_TextFieldNVE" hmi:if="{{ LocalProps.ContentText != '' }}">
+          <hmi-element:textField
+              hmi-bind:start-y="{{ LocalProps.HeaderYPos + LocalProps.HeaderHeight + 1 }}"
+              hmi-bind:width="{ LocalProps.UpdatedBlockWidth }"
+              hmi-bind:height="{ LocalProps.ContentHeight }"
+              horizontal-text-alignment="center"
+              vertical-text-alignment="middle"
+              hmi-bind:value="{ LocalProps.ContentText }"
+              hmi-bind:fore-color="{{ Converter.RGBA( HmiProps.ContentForeColor ) }}"
+              target="LocalProps.ContentText"
+              output-format="{S}"
+              text-wrapping="word-wrap"
+              enabled="false"
+              read-only="true"
+              hmi-bind:horizontal-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}"
+              hmi-bind:vertical-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}">
+            <hmi-feature:font hmi-bind:scope="{ LocalProps.ContentFont }" />
+          </hmi-element:textField>
+        </g>
+
+        <rect hmi:if="{{ LocalProps.IsSelected }}"
+          hmi-bind:width="{ LocalProps.UpdatedBlockWidth }"
+          hmi-bind:x="{ LocalProps.XPos }"
+          hmi-bind:height="{ LocalProps.BlockHeight }"
+          stroke-width="5"
+          fill="none"
+          hmi-bind:stroke="{ ParamProps.FocusColor }" />
+
+        <rect hmi:if="{{ LocalProps.IsHorizontalBlock }}"
+           hmi-bind:width="{{ LocalProps.BlockWidth }}"
+           hmi-bind:height="{{ LocalProps.HeaderHeight + LocalProps.ContentHeight + 5 }}"
+           hmi-bind:y="{ LocalProps.TitleHeight }"
+           x="0"
+           stroke-width="2"
+           fill="none"
+           hmi-bind:stroke-dasharray="{ LocalProps.DashArray }"
+           hmi-bind:stroke="{ LocalProps.LineColor }" />
+      </g>
+    </g>
+</svg>

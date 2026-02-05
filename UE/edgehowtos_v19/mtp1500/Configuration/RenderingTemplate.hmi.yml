@@ -1,0 +1,29 @@
+RenderingTemplates:
+  CardboardBoxTightlySealedWithOSHA-Tape:
+    TemplateFile: CustomWidgets/CardboardBoxTightlySealedWithOSHA-Tape.svghmi
+  NoncontactThermometer:
+    TemplateFile: CustomWidgets/NoncontactThermometer.svghmi
+  AssemblyLineCrane:
+    TemplateFile : CustomWidgets/AssemblyLineCrane.svghmi
+  Conveyor4Side:
+    TemplateFile: CustomWidgets/Conveyor4Side.svghmi
+  BottomSmall:
+    TemplateFile: CustomWidgets/BottomSmall.svghmi
+  DigitalScale:
+    TemplateFile: CustomWidgets/DigitalScale.svghmi
+  BoilerHorizontalCutawayWithFire:
+    TemplateFile: CustomWidgets/BoilerHorizontalCutawayWithFire.svghmi
+  InfoAttentionDark:
+    TemplateFile: CustomWidgets/InfoAttentionDark.svghmi
+  InfoDangerDark:
+    TemplateFile: CustomWidgets/InfoDangerDark.svghmi
+  StatusOnDiagMDemand:
+    TemplateFile: CustomWidgets/StatusOnDiagMDemand.svghmi
+  StatusOnDiagMGood:
+    TemplateFile: CustomWidgets/StatusOnDiagMGood.svghmi
+  InfoErrorCriticalDark:
+    TemplateFile: CustomWidgets/InfoErrorCriticalDark.svghmi
+  InfoDecisionDark:
+    TemplateFile: CustomWidgets/InfoDecisionDark.svghmi
+  StatusOnDiagMFault:
+    TemplateFile: CustomWidgets/StatusOnDiagMFault.svghmi

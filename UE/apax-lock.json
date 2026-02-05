@@ -1,0 +1,102 @@
+{
+  "name": "edgehowtos_v19",
+  "version": "0.0.0",
+  "lockFileVersion": "2",
+  "installStrategy": "strict",
+  "root": {
+    "name": "edgehowtos_v19",
+    "version": "0.0.0",
+    "dependencies": {
+      "@ue/code.elements": "^3.2.1",
+      "@ue/open.elements": "^1.6.0"
+    }
+  },
+  "packages": {
+    "@ue/code.elements": {
+      "name": "@ue/code.elements",
+      "version": "3.2.1",
+      "integrity": "sha512-6fK1PbI/9OPWADlz5JDePljYpGPkv75LIFje4cRQT/JPMM8MWqjmyQuzyR6Ys/w0sjG2Rdi3LS0+qyo7fd+iZA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/code.elements/-/code.elements-3.2.1.tgz",
+      "dependencies": {
+        "@ue/code.elements-win-x64": "3.2.1",
+        "@ue/code.elements-linux-x64": "3.2.1"
+      }
+    },
+    "@ue/code.elements-linux-x64": {
+      "name": "@ue/code.elements-linux-x64",
+      "version": "3.2.1",
+      "integrity": "sha512-SffqP4xKnuD4uI7EjfRs0aVhHbLDUHUGwFdroLcyLtM7DDqAjP5bnMGA+zf6axkjhehxz5YHNFy2Co3uAIgscQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/code.elements-linux-x64/-/code.elements-linux-x64-3.2.1.tgz",
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {
+        "@ue/unified-cli-formatter": "^2.1.1"
+      }
+    },
+    "@ue/code.elements-win-x64": {
+      "name": "@ue/code.elements-win-x64",
+      "version": "3.2.1",
+      "integrity": "sha512-ugmeMilskLe2pzw8T5dDHAFaMg3WewI1FXu35JUy9pYXvLDro2Z3ySu4eJxJTGsZ+DSpYn4rnE038SCGz7SVFQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/code.elements-win-x64/-/code.elements-win-x64-3.2.1.tgz",
+      "os": [
+        "win32"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {
+        "@ue/unified-cli-formatter": "^2.1.1"
+      }
+    },
+    "@ue/open.elements": {
+      "name": "@ue/open.elements",
+      "version": "1.6.0",
+      "integrity": "sha512-1eeomz8mjAgn7kWXL3vigPizi9+olqH4DuOb2EpLsj+u+SIOdO8R2M9kWznmke+oh9GoelSSOYct7hM0IKKVJQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/open.elements/-/open.elements-1.6.0.tgz",
+      "dependencies": {
+        "@ue/code.elements": "^2.0.0 || ^3.0.0",
+        "@ue/unified-cli-formatter": "^2.1.0",
+        "@ue/open.elements-win-x64": "1.6.0",
+        "@ue/open.elements-linux-x64": "1.6.0"
+      }
+    },
+    "@ue/open.elements-linux-x64": {
+      "name": "@ue/open.elements-linux-x64",
+      "version": "1.6.0",
+      "integrity": "sha512-yF2X1jACd9fK2corjm8GMvFnbC23Hvjq1xd0+eEiH4tEpSplYPx2PV/UH1MBL3O1Xzg8U8cbrsapbBtG+P4uOA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/open.elements-linux-x64/-/open.elements-linux-x64-1.6.0.tgz",
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {}
+    },
+    "@ue/open.elements-win-x64": {
+      "name": "@ue/open.elements-win-x64",
+      "version": "1.6.0",
+      "integrity": "sha512-CovMm9a0wdMePBHrk18dyg3D7zteBq2jX0OoEaMjPPk3TM6tz5dj4cFCBn2TOc/qIWiE03uaNEIKUbRQFrJeQQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/open.elements-win-x64/-/open.elements-win-x64-1.6.0.tgz",
+      "os": [
+        "win32"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {}
+    },
+    "@ue/unified-cli-formatter": {
+      "name": "@ue/unified-cli-formatter",
+      "version": "2.1.4",
+      "integrity": "sha512-CrVE0MvSHsSurxMbg2m8qXgoSAvM53vIJEeInpG2Vn0QjOwu4Lfp43FUA0zsTSFaGWfTykswwHnxEK6k44tfVA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/unified-cli-formatter/-/unified-cli-formatter-2.1.4.tgz",
+      "dependencies": {}
+    }
+  },
+  "workspaces": {}
+}

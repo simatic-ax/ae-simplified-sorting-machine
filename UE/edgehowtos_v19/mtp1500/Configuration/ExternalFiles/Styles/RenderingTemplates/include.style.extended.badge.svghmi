@@ -1,0 +1,79 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2019. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:hmi="http://svg.siemens.com/hmi/"
+    xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+    xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+    preserveAspectRatio="none">
+
+    <hmi:self type="part:HmiBadgePart" displayName="ControlBar Extended Badge Part" name="custom.extended.system.part" version="1.0.1" performanceClass="L" >
+
+        <hmi:paramDef name="WidthMax"        type="number"      />
+		<hmi:paramDef name="Height"          type="number"      />
+        <hmi:paramDef name="Font"            type="HmiFontPart" />
+        <hmi:paramDef name="ButtonVisible"   type="boolean"     />
+
+    </hmi:self>
+
+    <defs>
+        <hmi:localDef name="SYS_BorderColor"      type="string"    value="#e1ebf4" />
+        <hmi:localDef name="SYS_BackColor"        type="string"    value="#009999" />
+        <hmi:localDef name="SYS_ForeColor"        type="string"    value="#e1ebf4" />
+        <hmi:localDef name="TextMaxChars"         type="number"    value="5" />
+        <hmi:localDef name="TextPadding"          type="number"    value="2" />
+        <hmi:localDef name="TextNone"             type="string"    value=" " />
+
+        <!-- Computation of numbers of Characters and font size to fit the text into the badge -->
+        <hmi:localDef name="BorderWidth"          type="number"    hmi-bind:value="{{ ParamProps.Height / 8 }}" />
+        <hmi:localDef name="Radius"               type="number"    hmi-bind:value="{{ ParamProps.Height / 2 }}" />
+        <hmi:localDef name="TextAreaMaxHeight"    type="number"    hmi-bind:value="{{ Converter.Max( ( ParamProps.Height - 2 * LocalProps.TextPadding ), ( LocalProps.Radius * 0.7 ) ) }}" />
+        <hmi:localDef name="TextAreaMaxWidth"     type="number"    hmi-bind:value="{{ Converter.Max( ( ParamProps.WidthMax - 2 * LocalProps.Radius ), LocalProps.TextAreaMaxHeight ) }}" />
+
+        <!-- Compute font size and TextWidth -->
+        <hmi:localDef name="Text"                 type="string"    hmi-bind:value="{{ HmiProps.Text != '' ? HmiProps.Text : LocalProps.TextNone }}" />
+        <hmi:localDef name="TextCharCapped"       type="string"    hmi-bind:value="{{ Converter.TextEllipsis( LocalProps.Text, LocalProps.TextMaxChars ) }}" />
+        <hmi:localDef name="TextCharCappedWidth"  type="number"    hmi-bind:value="{{ Converter.TextWidth( LocalProps.TextCharCapped, ParamProps.Font ) }}" />
+        <hmi:localDef name="TextHeight"           type="number"    hmi-bind:value="{{ Converter.TextHeight( LocalProps.TextCharCapped, ParamProps.Font ) }}" />
+        <hmi:localDef name="FontRelation"         type="number"    hmi-bind:value="{{ gt( LocalProps.TextCharCappedWidth, LocalProps.TextAreaMaxWidth ) ? ( Converter.Min( ( LocalProps.TextAreaMaxWidth / LocalProps.TextCharCappedWidth ), ( LocalProps.TextAreaMaxHeight / LocalProps.TextHeight ) ) ) :
+                                                                                    ( gt( LocalProps.TextHeight, LocalProps.TextAreaMaxHeight ) ? ( LocalProps.TextAreaMaxHeight / LocalProps.TextHeight ) :
+                                                                                    ( Converter.Min( ( LocalProps.TextAreaMaxWidth / LocalProps.TextCharCappedWidth ), ( LocalProps.TextAreaMaxHeight / LocalProps.TextHeight ) ) ) ) }}" />
+        <hmi:localDef name="TextAreaWidth"        type="number"    hmi-bind:value="{{ LocalProps.TextCharCappedWidth * LocalProps.FontRelation }}" />
+        <hmi:localDef name="Width"                type="number"    hmi-bind:value="{{ gt( LocalProps.TextAreaWidth, LocalProps.Radius * 1.4 ) ? ( LocalProps.TextAreaWidth + LocalProps.Radius * 2 ) : ( LocalProps.Radius * 2 ) }}" />
+        <hmi:localDef name="FontRelReciproke"     type="number"    hmi-bind:value="{{ eq( LocalProps.FontRelation, 0.0 ) ? 1.0 : ( 1.0 / LocalProps.FontRelation ) }}" />
+	  </defs>
+    <!--   end section: definitions -->
+
+    <!--   section: geometric elements     -->
+    <g id="TIFID_BadgeElements" hmi:if="{{ and( ParamProps.ButtonVisible, HmiProps.Visible ) }}">
+      <rect
+           hmi-bind:x="{{ ParamProps.WidthMax - LocalProps.Width }}"
+           hmi-bind:height="{ ParamProps.Height }"
+           hmi-bind:width="{ LocalProps.Width }"
+           hmi-bind:stroke="{ LocalProps.SYS_BorderColor }"
+           hmi-bind:stroke-width="{ LocalProps.BorderWidth }"
+           hmi-bind:fill="{ LocalProps.SYS_BackColor }"
+           hmi-bind:rx="{ LocalProps.Radius }"
+           hmi-bind:ry="{ LocalProps.Radius }">
+      </rect>
+
+    <text hmi-bind:transform="scale( { LocalProps.FontRelation }, { LocalProps.FontRelation } )"
+          hmi-bind:fill="{ LocalProps.SYS_ForeColor }"
+          hmi-bind:x="{{ LocalProps.FontRelReciproke * ( gt( LocalProps.TextAreaWidth, LocalProps.Radius * 1.4 ) ? ( ParamProps.WidthMax - LocalProps.Width + LocalProps.Radius ) : ( ParamProps.WidthMax - LocalProps.Width + ( LocalProps.Width - LocalProps.TextAreaWidth ) / 2 ) ) }}"
+          hmi-bind:y="{{ ( LocalProps.FontRelReciproke * ( ParamProps.Height / 2 ) ) * 1.5 }}"
+          hmi-bind:font-size="{ ParamProps.Font.Size }"
+          hmi-bind:font-style="{{ ParamProps.Font.Italic ? 'italic' : 'normal' }}"
+          hmi-bind:font-weight="{ ParamProps.Font.Weight }"
+          hmi-bind:font-family="{ ParamProps.Font.Name }"
+          hmi-bind:text-decoration="{{ Converter.TextDecoration( ParamProps.Font ) }}"
+          dominant-baseline="auto">
+      <hmi:text hmi-bind:value="{ LocalProps.TextCharCapped }" />
+    </text>
+
+    </g>
+
+    <!-- BE CAREFUL WHEN CHANGING ANYTHING BELOW THIS COMMENT !!! -->
+</svg>

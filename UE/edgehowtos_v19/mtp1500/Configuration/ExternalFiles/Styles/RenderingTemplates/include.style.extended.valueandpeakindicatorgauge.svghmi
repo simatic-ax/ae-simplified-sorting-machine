@@ -1,0 +1,33 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     overflow="visible">
+
+    <hmi:self type="custom" displayName="Custom Extended Value and Peak Indicator Part" name="custom.extended.valueandpeakindicator.part" version="1.0.1" performanceClass="L">
+
+        <hmi:paramDef name="SectionSize"        type="number" />
+        <hmi:paramDef name="Color"              type="string" />
+        <hmi:paramDef name="ScaleFactor"        type="number" />
+
+    </hmi:self>
+
+    <defs>
+    </defs>
+
+    <path id="ProcessValueIndicator_x32" display="inline" hmi-bind:transform="translate( {{ ( (1 - ParamProps.ScaleFactor) * ParamProps.SectionSize)/2 }}, {{ 1 - ( ParamProps.ScaleFactor - 1.0 ) * ParamProps.SectionSize }} ) scale( {{ ParamProps.ScaleFactor * ParamProps.SectionSize }} )"
+          d="M 0,1 L0.5,0 L1,1 z"
+          hmi-bind:fill="{ ParamProps.Color }" />
+
+
+
+</svg>

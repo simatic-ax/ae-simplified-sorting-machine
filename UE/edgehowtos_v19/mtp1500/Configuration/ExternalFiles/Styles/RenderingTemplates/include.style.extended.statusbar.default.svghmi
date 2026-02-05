@@ -1,0 +1,56 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2016. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     preserveAspectRatio="none">
+
+    <!-- Parameters passed from the root template -->
+    <hmi:self type="part:HmiStatusBarPart" displayName="Extended StatusBar Part" name="extended.statusbar.part" version="1.0.1" performanceClass="L" >
+
+        <hmi:paramDef name="Width"           type="number"  />
+        <hmi:paramDef name="Height"          type="number"  />
+        <hmi:paramDef name="ItemOperable"    type="boolean" />
+        <hmi:paramDef name="FocusColor"      type="string" />
+        <hmi:paramDef name="ShowFocusVisual" type="boolean" />
+    </hmi:self>
+
+    <defs>
+        <!-- Local definitions of this template -->
+        <!-- The height of the status bar currently is calculated by javascript code and passed to the template in its FontHeight property -->
+        <hmi:localDef name="BackColorDarker"    type="HmiColor"     hmi-bind:value="{{ Converter.Darker( HmiProps.BackColor, 0.2 ) }}" />
+
+        <linearGradient id="BgGradient_LighterDarker" gradientUnits="objectBoundingBox" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0.5" stop-opacity="1.0" hmi-bind:stop-opacity="{{ Converter.Alpha( HmiProps.BackColor         ) }}" hmi-bind:stop-color="{{ Converter.RGB( HmiProps.BackColor         ) }}" />
+            <stop offset="1.0" stop-opacity="1.0" hmi-bind:stop-opacity="{{ Converter.Alpha( LocalProps.BackColorDarker ) }}" hmi-bind:stop-color="{{ Converter.RGB( LocalProps.BackColorDarker ) }}" />
+        </linearGradient>
+    </defs>
+
+    <g hmi:if="{ HmiProps.Visible }" id="ItemBGPathStatusBar" >
+        <rect id="StatusBarBackground"
+            hmi-bind:width="{ ParamProps.Width }"
+            hmi-bind:height="{ ParamProps.Height }"
+            fill="url(#BgGradient_LighterDarker)"
+            stroke="none" />
+
+      <g id="TIFID_StatusBarElements">
+        <hmi:include template="include.style.extended.controlbarelement.default.svghmi" hmi-bind:forEach="{ HmiProps.Elements }"
+            hmi-bind:width="{ ParamProps.Width }"
+            hmi-bind:height="{ ParamProps.Height }">
+
+            <hmi:param name="BarPosition"           type="number"       value="1" />
+            <hmi:param name="ControlBarExtent"      type="number"       hmi-bind:value="{ ParamProps.Width }"        />
+            <hmi:param name="Font"                  type="HmiFontPart"  hmi-bind:value="{ HmiProps.Font }"           />
+            <hmi:param name="ControlBarOperable"    type="boolean"      hmi-bind:value="{{ and( HmiProps.Enabled, ParamProps.ItemOperable ) }}" />
+            <hmi:param name="FocusColor"            type="string"       hmi-bind:value="{ ParamProps.FocusColor }" />
+            <hmi:param name="ShowFocusVisual"       type="boolean"      hmi-bind:value="{ ParamProps.ShowFocusVisual }" />
+        </hmi:include>
+      </g>
+    </g>
+</svg>

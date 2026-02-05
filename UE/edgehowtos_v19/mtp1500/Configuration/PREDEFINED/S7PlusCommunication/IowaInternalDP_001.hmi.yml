@@ -1,0 +1,59 @@
+#Version: 2.0
+
+Internals:
+  Driver2:
+    StructureType: DriverCommon
+    ESOrigin: S7PlusCommunication # DFP generated - DO NOT REMOVE
+    .OV:
+      DataType: DTUSInt
+      Alarms:
+        DriverManagerOverloadAlarm:
+          ObjectType: HmiAnalogAlarm
+          ParentID: 18
+          AlarmClass: SystemAlarm
+          SourceType: TAG
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_30
+          AlarmParameterTags:
+          - Driver2#Name
+          - '@ServerMachineName_1#Value'
+          Condition: EQ
+          InitialConditionValue: 1
+          Area: System/HMI/DriverCommunication
+          ID: DriverManagerOverloadAlarm
+        DriverManagerOverloadWarning:
+          ObjectType: HmiAnalogAlarm
+          ParentID: 18
+          AlarmClass: SystemNotification
+          SourceType: TAG
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_31
+          AlarmParameterTags:
+          - Driver2#Name
+          - '@ServerMachineName_1#Value'
+          Condition: EQ
+          InitialConditionValue: 2
+          Area: System/HMI/DriverCommunication
+          ID: SystemDisconnectedAlarm
+  Conn_event_0_1_to_driver_2_1:
+    StructureType: ManagerConnections
+    ESOrigin: S7PlusCommunication # DFP generated - DO NOT REMOVE
+    .ManagerName:
+      DataType: DTString
+      InitialValue: S7PDriver_2
+    .ManagerConnected:
+      DataType: DTBool
+      Alarms:
+        DriverManagerAlarm:
+          ObjectType: HmiBinaryAlarm
+          ParentID: 6
+          AlarmClass: SystemAlarm
+          SourceType: TAG
+          SystemSeverity: 132
+          EventText: S7PlusAlarmTextLibrary.Entry_226
+          AlarmParameterTags:
+          - Conn_event_0_1_to_driver_2_1.ManagerName#Value
+          - '@ServerMachineName_1#Value'
+          ConditionPattern: 0
+          Area: System/HMI/DriverCommunication
+          ID: DriverManagerAlarm

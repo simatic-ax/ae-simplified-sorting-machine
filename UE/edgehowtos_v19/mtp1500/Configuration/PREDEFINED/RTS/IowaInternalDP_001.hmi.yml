@@ -1,0 +1,25 @@
+#Version: 2.0
+
+Internals:
+  Conn_event_0_1_to_api_22_1:
+    StructureType: ManagerConnections
+    ESOrigin: RTS # DFP generated - DO NOT REMOVE
+    .ManagerName:
+      DataType: DTString
+      InitialValue: VisualCoreService
+    .ManagerConnected:
+      DataType: DTBool
+      Alarms:
+        ClientDisconnectedAlarm:
+          ObjectType: HmiBinaryAlarm
+          ParentID: 6
+          AlarmClass: SystemAlarm
+          SourceType: TAG
+          SystemSeverity: 129
+          EventText: AlarmTextLibrary.Entry_22
+          AlarmParameterTags:
+          - Conn_event_0_1_to_api_22_1.ManagerName#Value
+          - '@ServerMachineName_1#Value'
+          ConditionPattern: 0
+          Area: System/HMI/RuntimeSystem
+          ID: VisualCoreSystemManagerDisconnectedAlarm

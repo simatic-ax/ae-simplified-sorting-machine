@@ -1,0 +1,415 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.2/dtd/svg12-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2021. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-types="http://svg.siemens.com/hmi/types/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     id="ItemRoot"
+     preserveAspectRatio="none"
+     overflow="visible">
+
+    <hmi:self type="system:HmiListContainerSystemPart" displayName="Extended ComboBox" name="style.extended.combobox" version="2.9" performanceClass="L" >
+        <hmi:focus focusVisual="local" />
+
+        <hmi:paramDef name="MaxListBoxViewCount"   type="number"         />
+        <hmi:paramDef name="Content"               type="HmiContentPart" />
+        <hmi:paramDef name="Font"                  type="HmiFontPart"    />
+        <hmi:paramDef name="Padding"               type="HmiPaddingPart" />
+        <hmi:paramDef name="Width"                 type="number"         />
+        <hmi:paramDef name="Height"                type="number"         />
+        <hmi:paramDef name="ShowFocus"             type="boolean"        />
+        <hmi:paramDef name="BorderWidth"           type="number"         />
+        <hmi:paramDef name="FocusColor"            type="HmiColor"       />
+        <hmi:paramDef name="BorderColor"           type="HmiColor"       />
+        <hmi:paramDef name="BackColor"             type="HmiColor"       />
+        <hmi:paramDef name="ForeColor"             type="HmiColor"       />
+        <hmi:paramDef name="SelectionForeColor"    type="HmiColor"       />
+        <hmi:paramDef name="SelectionBackColor"    type="HmiColor"       />
+        <hmi:paramDef name="CollapsedBackColor"    type="HmiColor"       />
+        <hmi:paramDef name="CollapsedForeColor"    type="HmiColor"       />
+        <hmi:paramDef name="AlternateBackColor"    type="HmiColor"       />
+        <hmi:paramDef name="GraphicWidth"          type="number"         />
+        <hmi:paramDef name="GraphicHeight"         type="number"         />
+        <hmi:paramDef name="Enabled"               type="boolean"        />
+        <hmi:paramDef name="Operability"           type="HmiOperability" />
+        <hmi:paramDef name="IOFieldType"           type="HmiIOFieldType" />
+        <hmi:paramDef name="ResourceList"          type="string"         />
+        <hmi:paramDef name="ResourceListDelay"     type="boolean"        />
+        <hmi:paramDef name="PropNameText"          type="string"         />
+        <hmi:paramDef name="PropNameGraphic"       type="string"         />
+        <hmi:paramDef name="PropNameGraphicWidth"  type="string"         />
+        <hmi:paramDef name="PropNameGraphicHeight" type="string"         />
+
+        <hmi:paramDef name="SendCommand"           type="boolean"        default="false" />
+        <hmi:paramDef name="CanOpenComboBox"       type="boolean"        default="true"  />
+        <hmi:paramDef name="SelectedIndex"         type="number"         two-way="true"  />
+
+    </hmi:self>
+
+    <defs>
+        <!-- variable with two ways binding  -->
+        <hmi:localDef name="Pressed"    type="number" value="0" />
+        <hmi:localDef name="MouseHover" type="number" value="0" />
+
+        <hmi:localDef name="ItemOperable"         type="boolean"  hmi-bind:value="{{ ParamProps.Operability == HmiOperability.Operable }}"   />
+        <hmi:localDef name="InputOutputMode"      type="boolean"  hmi-bind:value="{{ ParamProps.IOFieldType == HmiIOFieldType.InputOutput }}"/>
+        <hmi:localDef name="InputAllowed"         type="boolean"  hmi-bind:value="{{ and( LocalProps.ItemOperable, LocalProps.InputOutputMode ) }}"     />
+
+        <hmi:localDef name="BorderWidth"          type="number"   hmi-bind:value="{{ ParamProps.ShowFocus ? ( ParamProps.BorderWidth + 1 ) : ParamProps.BorderWidth }}"/>
+        <hmi:localDef name="BorderColor"          type="number"   hmi-bind:value="{{ ParamProps.ShowFocus ? ParamProps.FocusColor : ParamProps.BorderColor }}"         />
+        <!-- BorderColorAlphaMask: 0x01000000 -->
+        <!-- BorderPressedAlpha: 0x80000000 -->
+        <hmi:localDef name="BorderColorPressed"   type="number"   hmi-bind:value="{{ LocalProps.BorderColor % 0x01000000 + 0x80000000 }}"                              />
+
+        <hmi:localDef name="BackgroundRectWidth"  type="number"   hmi-bind:value="{{ ParamProps.Width  - 2 * ParamProps.BorderWidth }}"                                       />
+        <hmi:localDef name="BackgroundRectHeight" type="number"   hmi-bind:value="{{ ParamProps.Height - 2 * ParamProps.BorderWidth }}"                                       />
+        <hmi:localDef name="ContentPositionX"     type="number"   hmi-bind:value="{{ ParamProps.BorderWidth + ParamProps.Padding.Left }}"                                     />
+        <hmi:localDef name="ContentPositionY"     type="number"   hmi-bind:value="{{ ParamProps.BorderWidth + ParamProps.Padding.Top }}"                                      />
+        <hmi:localDef name="ContentWidth"         type="number"   hmi-bind:value="{{ LocalProps.BackgroundRectWidth - ParamProps.Padding.Left - ParamProps.Padding.Right }}"  />
+        <hmi:localDef name="ContentHeight"        type="number"   hmi-bind:value="{{ LocalProps.BackgroundRectHeight - ParamProps.Padding.Top  - ParamProps.Padding.Bottom }}"/>
+        <!-- Dropdown Button Width is static 30px -->
+        <hmi:localDef name="ButtonPositionX"      type="number"   hmi-bind:value="{{ ParamProps.Width - ParamProps.BorderWidth - 30 }}"/>
+
+        <hmi:localDef name="BackColor"            type="string"   hmi-bind:value="{{ Converter.RGB( ParamProps.BackColor ) }}"                                                   />
+        <hmi:localDef name="BackColorAlpha"       type="number"   hmi-bind:value="{{ Converter.Alpha( ParamProps.CollapsedBackColor ) }}"                                        />
+        <hmi:localDef name="DarkerBackColor"      type="HmiColor" hmi-bind:value="{{ Converter.Darker( ParamProps.CollapsedBackColor, ( LocalProps.MouseHover ? 0.2 : 0.1 ) ) }}"/>
+        <hmi:localDef name="Darker40BackColor"    type="HmiColor" hmi-bind:value="{{ Converter.Darker( ParamProps.CollapsedBackColor, 0.4 ) }}"                                  />
+        <hmi:localDef name="Darker40Color"        type="string"   hmi-bind:value="{{ Converter.RGB( LocalProps.Darker40BackColor ) }}"                                           />
+        <hmi:localDef name="DarkerColor"          type="string"   hmi-bind:value="{{ Converter.RGB( LocalProps.DarkerBackColor ) }}"                                             />
+        <hmi:localDef name="DarkerAlpha"          type="number"   hmi-bind:value="{{ Converter.Alpha( LocalProps.DarkerBackColor ) }}"                                           />
+
+        <!-- for expended list -->
+        <hmi:localDef name="SelectionAutoFactor"    type="number" hmi-bind:value="{{ and( ( ParamProps.Content.ContentMode == HmiContentMode.GraphicAndText ), or( ParamProps.Content.TextPosition == HmiTextPosition.Top, ParamProps.Content.TextPosition == HmiTextPosition.Bottom ) ) ? 1 - ParamProps.Content.SplitRatio : 1 }}" />
+        <hmi:localDef name="SelectionItemHeight"    type="number" hmi-bind:value="{{ ParamProps.Font.Size * 1.5 / LocalProps.SelectionAutoFactor + 10 }}" />
+        <hmi:localDef name="ScrollBarContentHeight" type="number" hmi-bind:value="{{ ParamProps.MaxListBoxViewCount * LocalProps.SelectionItemHeight }}"  />
+
+        <hmi:action id="onFocusLeaveComboBox"  hmi-bind:condition="{{ EventArgs.Trigger != HmiEventTrigger.Touch }}">
+            <hmi:setProperty name="LocalProps.Pressed"   type="number"   value="0"    />
+            <hmi:sendCommand name="RESTORE"              type="boolean"  value="true" hmi-bind:condition="{ ParamProps.SendCommand }" />
+        </hmi:action>
+
+    </defs>
+
+    <!-- the ComboBox begins here -->
+    <g id="ComboBox"
+        hmi-event:mouseLeave="url(#onFocusLeaveComboBox)"
+        hmi-event:focusLeave="url(#onFocusLeaveComboBox)"
+        hmi-bind:opacity="{{ LocalProps.ItemOperable ? 1.0 : 0.5  }}">
+
+        <hmi-element:listContainer
+            hmi-bind:width="{ ParamProps.Width }"
+            hmi-bind:height="{{ LocalProps.Pressed ? LocalProps.ScrollBarContentHeight + ParamProps.Height: ParamProps.Height }}"
+            hmi-bind:source="{ ParamProps.ResourceList }"
+            hmi-bind:delay="{{ and( ( LocalProps.Pressed == 0 ), ParamProps.ResourceListDelay ) }}" >
+
+            <hmi-feature:properties>
+                <hmi-feature:select hmi-bind:name="{ ParamProps.PropNameText }"          as="Text"          />
+                <hmi-feature:select hmi-bind:name="{ ParamProps.PropNameGraphic }"       as="Graphic"       />
+                <hmi-feature:select hmi-bind:name="{ ParamProps.PropNameGraphicWidth }"  as="GraphicWidth"  />
+                <hmi-feature:select hmi-bind:name="{ ParamProps.PropNameGraphicHeight }" as="GraphicHeight" />
+            </hmi-feature:properties>
+
+            <!-- ListContainer supports only a master where the collection has to be bound -->
+            <hmi:master-inline>
+
+                <hmi:param name="SelectedIndex"       type="number"         hmi-bind:value="{ ParamProps.SelectedIndex }"       />
+                <hmi:param name="Pressed"             type="number"         hmi-bind:value="{ LocalProps.Pressed }"             />
+                <hmi:param name="MouseHover"          type="number"         hmi-bind:value="{ LocalProps.MouseHover  }"         />
+                <hmi:param name="ItemOperable"        type="boolean"        hmi-bind:value="{ LocalProps.ItemOperable }"        />
+                <hmi:param name="InputOutputMode"     type="boolean"        hmi-bind:value="{ LocalProps.InputOutputMode }"     />
+                <hmi:param name="InputAllowed"        type="boolean"        hmi-bind:value="{ LocalProps.InputAllowed }"        />
+                <hmi:param name="SendCommand"         type="boolean"        hmi-bind:value="{ ParamProps.SendCommand }"         />
+                <hmi:param name="CanOpenComboBox"     type="boolean"        hmi-bind:value="{ ParamProps.CanOpenComboBox }"     />
+                <hmi:param name="Content"             type="HmiContentPart" hmi-bind:value="{ ParamProps.Content }"             />
+                <hmi:param name="Width"               type="number"         hmi-bind:value="{ ParamProps.Width }"               />
+                <hmi:param name="Height"              type="number"         hmi-bind:value="{ ParamProps.Height }"              />
+                <hmi:param name="ForeColor"           type="HmiColor"       hmi-bind:value="{ ParamProps.ForeColor }"           />
+                <hmi:param name="SelectionForeColor"  type="HmiColor"       hmi-bind:value="{ ParamProps.SelectionForeColor }"  />
+                <hmi:param name="SelectionBackColor"  type="HmiColor"       hmi-bind:value="{ ParamProps.SelectionBackColor }"  />
+                <hmi:param name="CollapsedBackColor"  type="HmiColor"       hmi-bind:value="{ ParamProps.CollapsedBackColor }"  />
+                <hmi:param name="CollapsedForeColor"  type="HmiColor"       hmi-bind:value="{ ParamProps.CollapsedForeColor }"  />
+                <hmi:param name="BackColor"           type="HmiColor"       hmi-bind:value="{ ParamProps.BackColor }"           />
+                <hmi:param name="AlternateBackColor"  type="HmiColor"       hmi-bind:value="{ ParamProps.AlternateBackColor }"  />
+                <hmi:param name="BorderColor"         type="HmiColor"       hmi-bind:value="{ LocalProps.BorderColor }"         />
+                <hmi:param name="FocusColor"          type="HmiColor"       hmi-bind:value="{ ParamProps.FocusColor }"          />
+                <hmi:param name="DarkerColor"         type="string"         hmi-bind:value="{ LocalProps.DarkerColor }"         />
+                <hmi:param name="Darker40Color"       type="string"         hmi-bind:value="{ LocalProps.Darker40Color }"       />
+                <hmi:param name="DarkerAlpha"         type="number"         hmi-bind:value="{ LocalProps.DarkerAlpha }"         />
+                <hmi:param name="BackColorAlpha"      type="number"         hmi-bind:value="{ LocalProps.BackColorAlpha }"      />
+                <hmi:param name="ShowFocus"           type="boolean"        hmi-bind:value="{ ParamProps.ShowFocus }"           />
+                <hmi:param name="BorderWidth"         type="number"         hmi-bind:value="{ ParamProps.BorderWidth }"         />
+                <hmi:param name="Font"                type="HmiFontPart"    hmi-bind:value="{ ParamProps.Font }"                />
+                <hmi:param name="SelectionItemHeight" type="number"         hmi-bind:value="{ LocalProps.SelectionItemHeight }" />
+
+                <!-- for scrollable area  -->
+                <hmi:param name="PaddingLeftPlusRightOffset" type="number" hmi-bind:value="{{ ( ParamProps.Padding.Left + ParamProps.Padding.Right ) / 2 }}" />
+                <hmi:param name="PaddingTopPlusBottom"       type="number" hmi-bind:value="{{ ParamProps.Padding.Top + ParamProps.Padding.Bottom }}"         />
+
+                <hmi:param name="BackgroundRectWidth"  type="number" hmi-bind:value="{ LocalProps.BackgroundRectWidth }"  />
+                <hmi:param name="BackgroundRectHeight" type="number" hmi-bind:value="{ LocalProps.BackgroundRectHeight }" />
+                <hmi:param name="ContentPositionX"     type="number" hmi-bind:value="{ LocalProps.ContentPositionX }"     />
+                <hmi:param name="ContentPositionY"     type="number" hmi-bind:value="{ LocalProps.ContentPositionY }"     />
+                <hmi:param name="ContentHeight"        type="number" hmi-bind:value="{ LocalProps.ContentHeight }"        />
+                <hmi:param name="BorderColorPressed"   type="number" hmi-bind:value="{ LocalProps.BorderColorPressed }"   />
+                <hmi:param name="ContentWidth"         type="number" hmi-bind:value="{ LocalProps.ContentWidth }"         />
+                <hmi:param name="MaxListBoxViewCount"  type="number" hmi-bind:value="{ ParamProps.MaxListBoxViewCount }"  />
+                <hmi:param name="ButtonPositionX"      type="number" hmi-bind:value="{ LocalProps.ButtonPositionX }"      />
+
+                <hmi:template>
+                    <svg id="list_SVG_1" overflow="visible"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:hmi="http://svg.siemens.com/hmi/"
+                        xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                        xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+                        xmlns:hmi-event="http://svg.siemens.com/hmi/event/">
+
+                        <hmi:self type="system:HmiListContainerSystemPart" name="lc-master" displayName="Content of the ListContainer master" >
+
+                            <hmi:paramDef name="SelectedIndex" type="number" two-way="true"/>
+                            <hmi:paramDef name="Pressed"       type="number" two-way="true"/>
+                            <hmi:paramDef name="MouseHover"    type="number" two-way="true"/>
+
+                            <hmi:paramDef name="ItemOperable"               type="boolean"        />
+                            <hmi:paramDef name="InputOutputMode"            type="boolean"        />
+                            <hmi:paramDef name="InputAllowed"               type="boolean"        />
+                            <hmi:paramDef name="SendCommand"                type="boolean"        />
+                            <hmi:paramDef name="CanOpenComboBox"            type="boolean"        />
+
+                            <hmi:paramDef name="Content"                    type="HmiContentPart" />
+                            <hmi:paramDef name="Width"                      type="number"         />
+                            <hmi:paramDef name="Height"                     type="number"         />
+
+                            <hmi:paramDef name="ForeColor"                  type="HmiColor"       />
+                            <hmi:paramDef name="BackColor"                  type="HmiColor"       />
+                            <hmi:paramDef name="SelectionForeColor"         type="HmiColor"       />
+                            <hmi:paramDef name="SelectionBackColor"         type="HmiColor"       />
+                            <hmi:paramDef name="CollapsedForeColor"         type="HmiColor"       />
+                            <hmi:paramDef name="CollapsedBackColor"         type="HmiColor"       />
+                            <hmi:paramDef name="AlternateBackColor"         type="HmiColor"       />
+                            <hmi:paramDef name="BorderColor"                type="HmiColor"       />
+                            <hmi:paramDef name="FocusColor"                 type="HmiColor"       />
+                            <hmi:paramDef name="DarkerColor"                type="string"         />
+                            <hmi:paramDef name="Darker40Color"              type="string"         />
+                            <hmi:paramDef name="DarkerAlpha"                type="number"         />
+                            <hmi:paramDef name="BackColorAlpha"             type="number"         />
+
+                            <hmi:paramDef name="BorderWidth"                type="number"         />
+                            <hmi:paramDef name="ShowFocus"                  type="boolean"        />
+                            <hmi:paramDef name="Font"                       type="HmiFontPart"    />
+                            <hmi:paramDef name="SelectionItemHeight"        type="number"         />
+                            <hmi:paramDef name="PaddingLeftPlusRightOffset" type="number"         />
+                            <hmi:paramDef name="PaddingTopPlusBottom"       type="number"         />
+                            <hmi:paramDef name="BackgroundRectWidth"        type="number"         />
+                            <hmi:paramDef name="BackgroundRectHeight"       type="number"         />
+                            <hmi:paramDef name="ContentPositionX"           type="number"         />
+                            <hmi:paramDef name="ContentPositionY"           type="number"         />
+                            <hmi:paramDef name="ContentHeight"              type="number"         />
+                            <hmi:paramDef name="BorderColorPressed"         type="number"         />
+                            <hmi:paramDef name="ContentWidth"               type="number"         />
+                            <hmi:paramDef name="MaxListBoxViewCount"        type="number"         />
+                            <hmi:paramDef name="ButtonPositionX"            type="number"         />
+
+                        </hmi:self>
+
+                        <defs>
+
+                            <hmi:localDef name="IsTextTrimmed"      type="boolean"  value="false" />
+
+                            <hmi:localDef name="ListBoxDocCount"    type="number"   hmi-bind:value="{{ Converter.CountItems( HmiProps.List ) }}" />
+                            <hmi:localDef name="ListBoxViewCount"   type="number"   hmi-bind:value="{{ Converter.Min( LocalProps.ListBoxDocCount, ParamProps.MaxListBoxViewCount ) }}" />
+                            <hmi:localDef name="LSTViewHeight"      type="number"   hmi-bind:value="{{ LocalProps.ListBoxViewCount * ParamProps.SelectionItemHeight + 2 * ParamProps.BorderWidth + ParamProps.PaddingTopPlusBottom }}" />
+                            <hmi:localDef name="BorderWidth"        type="number"   hmi-bind:value="{{ ParamProps.ShowFocus ? ( ParamProps.BorderWidth + 1 ) : ParamProps.BorderWidth }}" />
+                            <hmi:localDef name="BackColorRGB"       type="string"   hmi-bind:value="{{ Converter.RGB( ParamProps.CollapsedBackColor ) }}" />
+                            <hmi:localDef name="ItemRectWidth"      type="number"   hmi-bind:value="{{ ParamProps.Width - ParamProps.BorderWidth }}" />
+                            <hmi:localDef name="XRadius"            type="number"   hmi-bind:value="{{ Converter.Max( 1, 5 - ParamProps.BorderWidth ) }}"/>
+
+                            <clipPath id="LSTItemClipRect2">
+                                <rect id="LSTItemRect2"
+                                    hmi-bind:x="{ ParamProps.BorderWidth }"
+                                    hmi-bind:y="{ ParamProps.BorderWidth }"
+                                    hmi-bind:width="{ ParamProps.BackgroundRectWidth }"
+                                    hmi-bind:height="{ LocalProps.LSTViewHeight }"
+                                    hmi-bind:stroke-width="{ ParamProps.BorderWidth }"
+                                    hmi-bind:rx="{ LocalProps.XRadius }" />
+                            </clipPath>
+
+                            <!-- Graphical elements of this template -->
+                            <linearGradient id="BgGradient_LigtherDarker" gradientUnits="objectBoundingBox" x1="0%" x2="0%" y1="0%" y2="100%">
+                              <stop hmi-bind:stop-color="{ ParamProps.DarkerColor }"     offset="0.0"    hmi-bind:stop-opacity="{ ParamProps.DarkerAlpha }" />
+                              <stop hmi-bind:stop-color="{ LocalProps.BackColorRGB }"    offset="0.15"   hmi-bind:stop-opacity="{ ParamProps.BackColorAlpha }" />
+                              <stop hmi-bind:stop-color="{ LocalProps.BackColorRGB }"    offset="0.85"   hmi-bind:stop-opacity="{ ParamProps.BackColorAlpha }" />
+                              <stop hmi-bind:stop-color="{ ParamProps.DarkerColor }"     offset="1.0"    hmi-bind:stop-opacity="{ ParamProps.DarkerAlpha }" />
+                            </linearGradient>
+
+                            <!-- Gradient for combo button -->
+                            <linearGradient id="BtnComboGradient_LighterGray" x1="0%" y1="0%" x2="0%" y2="60%">
+                                <stop offset="10%" hmi-bind:stop-color="{ ParamProps.DarkerColor }"     hmi-bind:stop-opacity="{ ParamProps.DarkerAlpha }" />
+                                <stop offset="90%" hmi-bind:stop-color="{ ParamProps.Darker40Color }"   hmi-bind:stop-opacity="{ ParamProps.DarkerAlpha }" />
+                            </linearGradient>
+
+                            <!-- Adding ComboButtonWidth to border width to subtract added button width as well -->
+                            <clipPath id="ItemClipRect">
+                                <rect id="ItemRect"
+                                    hmi-bind:x="{{ ParamProps.BorderWidth / 2 }}"
+                                    hmi-bind:y="{{ ParamProps.BorderWidth / 2 }}"
+                                    hmi-bind:width="{ LocalProps.ItemRectWidth }"
+                                    hmi-bind:height="{{ ParamProps.Height - ParamProps.BorderWidth }}"
+                                    hmi-bind:stroke-width="{ LocalProps.BorderWidth }"
+                                    hmi-bind:rx="{{ Converter.Max( 1, 5 - LocalProps.BorderWidth ) }}" />
+                            </clipPath>
+
+                            <hmi:action id="onMouseEnter">
+                                <hmi:setProperty name="LocalProps.IsTextTrimmed" type="boolean" value="false" />
+                            </hmi:action>
+
+                            <hmi:action id="onMouseHover" hmi-bind:condition="{ ParamProps.InputAllowed }">
+                                <hmi:sendCommand name="SHOW_TOOLTIP" type="string" hmi-bind:value="{ HmiProps.Current.Text }" hmi-bind:condition="{{ and( ( HmiProps.Current.Text != '' ), LocalProps.IsTextTrimmed ) }}" />
+                                <hmi:setProperty name="ParamProps.MouseHover" type="number" value="1" />
+                            </hmi:action>
+
+                            <hmi:action id="onMouseDown" hmi-bind:condition="{ ParamProps.InputAllowed }">
+                                <hmi:setProperty name="ParamProps.MouseHover" type="number" value="0" />
+                            </hmi:action>
+
+                            <hmi:action id="onMouseTapped" hmi-bind:condition="{ ParamProps.InputAllowed }">
+                                <hmi:setProperty name="ParamProps.Pressed" type="number"  hmi-bind:value="{{ ParamProps.Pressed ? 0 : 1 }}" />
+                                <hmi:sendCommand name="MAXIMIZE"           type="boolean" value="true" hmi-bind:condition="{{ and ( ParamProps.SendCommand, ParamProps.Pressed == 1 ) }}"/>
+                                <hmi:sendCommand name="RESTORE"            type="boolean" value="true" hmi-bind:condition="{{ and ( ParamProps.SendCommand, ParamProps.Pressed == 0 ) }}"/>
+                            </hmi:action>
+
+                            <hmi:action id="onMouseLeave" >
+                                <hmi:setProperty name="ParamProps.MouseHover" type="number" value="0" hmi-bind:condition="{ ParamProps.InputAllowed }"/>
+                                <hmi:sendCommand name="HIDE_TOOLTIP" />
+                            </hmi:action>
+
+                        </defs>
+
+                        <!-- the collapsed part begins here -->
+                        <g id="TIFID_CollapsSymbolicIOField"
+                            hmi-event:mouseEnter="url(#onMouseEnter)"
+                            hmi-event:mouseHover="url(#onMouseHover)"
+                            hmi-event:down="url(#onMouseDown)"
+                            hmi-event:tapped="url(#onMouseTapped)"
+                            hmi-event:mouseLeave="url(#onMouseLeave)">
+
+                            <rect id="ItemBGRect" fill="url(#BgGradient_LigtherDarker)" stroke-width="0"
+                                hmi-bind:x="{ ParamProps.BorderWidth }"
+                                hmi-bind:y="{ ParamProps.BorderWidth }"
+                                hmi-bind:width="{ ParamProps.BackgroundRectWidth }"
+                                hmi-bind:height="{ ParamProps.BackgroundRectHeight }"
+                                hmi-bind:rx="{{ Converter.Max( 1, 5 - LocalProps.BorderWidth ) }}" />
+
+                            <g>
+                                <g id="TIFID_ComboboxButton" hmi:if="{ ParamProps.InputOutputMode }">
+                                    <rect id="ComboboxButtonRect" width="30" fill="url(#BtnComboGradient_LighterGray)" rx="4" ry="4"
+                                        hmi-bind:x="{ ParamProps.ButtonPositionX }"
+                                        hmi-bind:y="{ ParamProps.BorderWidth }"
+                                        hmi-bind:height="{ ParamProps.BackgroundRectHeight }"
+                                        hmi-bind:stroke="{ ParamProps.DarkerColor }" />
+                                    <path id="ComboboxButtonPath"
+                                        hmi-bind:d="M {{ ParamProps.ButtonPositionX+ 9 }} {{ ParamProps.Height/2-2 }}
+                                                    L {{ ParamProps.ButtonPositionX + 20 }} {{ ParamProps.Height/2-2 }}
+                                                    L {{ ParamProps.ButtonPositionX + 15 }} {{ ParamProps.Height/2+4 }} Z" />
+                                </g>
+                                <!-- To avoid clipping of button putting separate group for content -->
+                                <g clip-path="url(#ItemClipRect)">
+                                    <hmi:include template="include.style.extended.content.svghmi" hmi-bind:for="{ ParamProps.Content }"
+                                        hmi-bind:x="{ ParamProps.ContentPositionX }"
+                                        hmi-bind:y="{ ParamProps.ContentPositionY }"
+                                        hmi-bind:width="{{ ParamProps.InputOutputMode ? ParamProps.ContentWidth - 30 : ParamProps.ContentWidth }}"
+                                        hmi-bind:height="{ ParamProps.ContentHeight }">
+
+                                        <hmi:param name="Graphic"       type="HmiGraphic"  hmi-bind:value="{ HmiProps.Current.Graphic }"       />
+                                        <hmi:param name="GraphicWidth"  type="number"      hmi-bind:value="{ HmiProps.Current.GraphicWidth }"  />
+                                        <hmi:param name="GraphicHeight" type="number"      hmi-bind:value="{ HmiProps.Current.GraphicHeight }" />
+                                        <hmi:param name="Text"          type="string"      hmi-bind:value="{ HmiProps.Current.Text }"          />
+                                        <hmi:param name="Font"          type="HmiFontPart" hmi-bind:value="{ ParamProps.Font }"                />
+                                        <hmi:param name="TextColor"     type="HmiColor"    hmi-bind:value="{ ParamProps.CollapsedForeColor }"  />
+                                        <hmi:param name="IsTextTrimmed" type="boolean"     hmi-bind:value="{ LocalProps.IsTextTrimmed }"       />
+
+                                    </hmi:include>
+                                </g>
+                            </g>
+
+                            <rect id="ItemRect_Used1" fill-opacity="0"
+                                hmi-bind:stroke="{{ Converter.RGBA( or( ParamProps.Pressed, ParamProps.MouseHover ) ? ParamProps.BorderColorPressed : ParamProps.BorderColor ) }}"
+                                hmi-bind:x="{{ ParamProps.BorderWidth / 2 }}"
+                                hmi-bind:y="{{ ParamProps.BorderWidth / 2 }}"
+                                hmi-bind:width="{ LocalProps.ItemRectWidth }"
+                                hmi-bind:height="{{ ParamProps.Height - ParamProps.BorderWidth }}"
+                                hmi-bind:stroke-width="{ LocalProps.BorderWidth }"
+                                hmi-bind:rx="{{ Converter.Max( 1, 5 - LocalProps.BorderWidth ) }}" />
+
+                        </g>
+
+                        <!-- the expanded part begins here -->
+                        <g id="TIFID_ExpandedListBox" hmi:if="{{ and( ParamProps.Pressed, ParamProps.CanOpenComboBox ) }}"
+                            hmi-bind:transform="translate( 0, {{ ParamProps.Height  - ParamProps.BorderWidth }} )">
+                            <!-- ComboBoxListElement background -->
+                            <rect id="ItemLSTBGRect2"
+                                hmi-bind:x="{{ ParamProps.BorderWidth / 2 }}"
+                                hmi-bind:y="{{ ParamProps.BorderWidth / 2 }}"
+                                hmi-bind:width="{ LocalProps.ItemRectWidth }"
+                                hmi-bind:height="{ LocalProps.LSTViewHeight }"
+                                hmi-bind:fill="{{ Converter.RGB( ParamProps.BackColor ) }}"
+                                hmi-bind:stroke="{{ Converter.RGB( ParamProps.BorderColor ) }}"
+                                hmi-bind:stroke-width="{ ParamProps.BorderWidth }"
+                                hmi-bind:rx="{ LocalProps.XRadius }" />
+
+                            <g clip-path="url(#LSTItemClipRect2)">
+                                <g id="ID_GroupAllListItems" >
+
+                                    <!-- for each list entry -->
+                                    <hmi-element:scrollableArea
+                                        hmi-bind:start-x="{ ParamProps.ContentPositionX }"
+                                        hmi-bind:start-y="{ ParamProps.ContentPositionY }"
+                                        hmi-bind:width="{{ Layout.ActualWidth - ( 2 * ParamProps.BorderWidth ) - ParamProps.PaddingLeftPlusRightOffset }}"
+                                        hmi-bind:height="{{ LocalProps.LSTViewHeight - ParamProps.BorderWidth - ParamProps.PaddingTopPlusBottom }}"
+                                        hmi-bind:item-size="{ ParamProps.SelectionItemHeight }"
+                                        hmi-bind:items="{ HmiProps.List }"
+                                    >
+                                        <hmi:master-include template="include.style.extended.listcontainer.svghmi">
+                                            <hmi:param name="ListContainerSelectedIndex" type="number"         hmi-bind:value="{ HmiProps.SelectedIndex }"                />
+                                            <hmi:param name="SelectedIndex"              type="number"         hmi-bind:value="{ ParamProps.SelectedIndex }"              />
+                                            <hmi:param name="Pressed"                    type="number"         hmi-bind:value="{ ParamProps.Pressed }"                    />
+                                            <hmi:param name="ItemOperable"               type="boolean"        hmi-bind:value="{ ParamProps.ItemOperable }"               />
+                                            <hmi:param name="ForeColor"                  type="HmiColor"       hmi-bind:value="{ ParamProps.ForeColor }"                  />
+                                            <hmi:param name="SelectionForeColor"         type="HmiColor"       hmi-bind:value="{ ParamProps.SelectionForeColor }"         />
+                                            <hmi:param name="SelectionBackColor"         type="HmiColor"       hmi-bind:value="{ ParamProps.SelectionBackColor }"         />
+                                            <hmi:param name="BackColor"                  type="HmiColor"       hmi-bind:value="{ ParamProps.BackColor }"                  />
+                                            <hmi:param name="AlternateBackColor"         type="HmiColor"       hmi-bind:value="{ ParamProps.AlternateBackColor }"         />
+                                            <hmi:param name="Content"                    type="HmiContentPart" hmi-bind:value="{ ParamProps.Content }"                    />
+                                            <hmi:param name="Font"                       type="HmiFontPart"    hmi-bind:value="{ ParamProps.Font }"                       />
+                                            <hmi:param name="SelectionItemHeight"        type="number"         hmi-bind:value="{ ParamProps.SelectionItemHeight }"        />
+                                            <hmi:param name="PaddingLeftPlusRight"       type="number"         hmi-bind:value="{ ParamProps.PaddingLeftPlusRightOffset }" />
+                                        </hmi:master-include>
+                                    </hmi-element:scrollableArea>
+                                </g>
+                            </g>
+
+                            <rect id="ItemRect_Used2" fill="none"
+                                hmi-bind:x="{{ ParamProps.BorderWidth / 2 }}"
+                                hmi-bind:y="{{ ParamProps.BorderWidth / 2 }}"
+                                hmi-bind:width="{ LocalProps.ItemRectWidth }"
+                                hmi-bind:height="{ LocalProps.LSTViewHeight }"
+                                hmi-bind:stroke="{{ Converter.RGBA( or( ParamProps.Pressed, ParamProps.MouseHover ) ? ParamProps.BorderColorPressed : ParamProps.BorderColor ) }}"
+                                hmi-bind:stroke-width="{ ParamProps.BorderWidth }"
+                                hmi-bind:rx="{ LocalProps.XRadius }" />
+
+                        </g>
+
+                    </svg>
+                </hmi:template>
+            </hmi:master-inline>
+        </hmi-element:listContainer>
+
+    </g>
+
+
+ </svg>

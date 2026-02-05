@@ -1,0 +1,82 @@
+Devices:
+- Name: device_plc
+  Modules:
+  - Name: 'PLC_1'
+    TypeIdentifier:
+      OrderNumber: '6ES7 516-3AP03-0AB0'
+      Version: 'V4.0'
+    # Disclaimer:
+    # By default, user management is used to access the PLC.  and an access concept was created.
+    # The following AccessLevel "FullAccess" is only used because this is a simple example
+    AccessProtection:
+      AccessLevel: 'FullAccess'
+    # The parameters listed below are currently commented out because the services are disabled by default.
+    # This is due to the Enabled parameter being set to false in the default configuration.
+    Services:
+    - Type: 'OpcUaServer'
+      Enabled: True
+      Parameters:
+        # Possible values: NoSecurity | Basic256Sha256Sign | Basic256Sha256SignEncrypt
+        SecurityPolicies:
+          - 'NoSecurity'
+        # Port: 4840
+        AlarmsAndConditionsAcknowledgeActive: True
+        AlarmsAndConditionsEnable: True
+        # AlarmsAndConditionsActiveMultilingual: False
+    - Type: 'WebServer'
+      Enabled: True
+      Parameters:
+         HttpsOnly: True
+    Interfaces:
+    - Name: 'PROFINET_interface_1'
+      Label: 'X1'
+      Addresses:
+        Configured:
+        - IPv4: '192.168.0.1/24'
+        - ProfinetDeviceName: 'plc_1.profinet interface_1'
+
+    - Name: 'PROFINET_interface_2'
+      Label: 'X2'
+      Addresses:
+        Configured:
+        - IPv4: '192.168.1.1/24'
+        - ProfinetDeviceName: 'plc_1.profinet interface_2'
+    Ports:
+    - Name: 'Port_1'
+      Label: 'X1 P1'
+    - Name: 'Port_2'
+      Label: 'X1 P2'
+    Parameters:
+      CentralAlarmManagement: True
+      # Possible values: 0 - NoLicense | 1 - SimaticOpcUaS71500Small | 2 - SimaticOpcUaS71500Medium | 3 - SimaticOpcUaS71500Large
+      OpcUaPurchasedLicense: 2
+      # Possible values: 0 - NoLicense | 1 - Value1X | 2 - Value2X | 3 - Value3X | 4 - Value4X | 5 - Value5X
+    UserManagement:
+      Users:
+      # UserManagement parameters listed below are intended as a sample.
+      # It is essential to adjust these settings according to your specific requirements before using them in your project.
+      # To fully configure the user account, you must set a password for the user defined below. 
+      # Please refer to the 'User Management Access Control' section of user documentation for instructions on setting passwords.
+        - Name: 'User1'
+          AssignedRoles:
+          - 'Role1'
+      Roles:
+      # UserManagement parameters listed below are intended as a sample. 
+      # It is essential to adjust these settings according to your specific requirements before using them in your project.
+        - Name: 'Role1'
+          FunctionRights:
+          - 'ReadPlcVariables'
+          - 'WritePlcVariables'
+          - 'ReadFiles'
+          - 'QueryDiagnostics'
+          - 'FlashLed'
+          - 'AccessProtectionFullAccess'
+          - 'OpcUAServerAccess'
+          - 'OpcUAManageCertificates'
+
+
+# PortInterconnections:
+#   - Ports:
+#     - Ref: Device_1/PLC_1/Port_2
+#     - Ref: g220_drive/g220_drive/Port_1
+

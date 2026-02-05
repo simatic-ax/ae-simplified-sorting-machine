@@ -1,0 +1,98 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" id="SvgIncludeListContainer"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     preserveAspectRatio="none"
+     overflow="visible" >
+
+    <hmi:self type="part:HmiDynamicPropertyPart" displayName="Flat ListContainer" name="style.flat.listcontainer" version="2.9" performanceClass="L">
+
+        <hmi:paramDef name="ListContainerSelectedIndex" type="number"           two-way="true" />
+        <hmi:paramDef name="SelectedIndex"              type="number"           two-way="true" />
+        <hmi:paramDef name="Pressed"                    type="number"           two-way="true" />
+        <hmi:paramDef name="ItemOperable"               type="boolean"          />
+        <hmi:paramDef name="ForeColor"                  type="HmiColor"         />
+        <hmi:paramDef name="BackColor"                  type="HmiColor"         />
+        <hmi:paramDef name="AlternateBackColor"         type="HmiColor"         />
+        <hmi:paramDef name="SelectionForeColor"         type="HmiColor"         />
+        <hmi:paramDef name="SelectionBackColor"         type="HmiColor"         />
+        <hmi:paramDef name="Content"                    type="HmiContentPart"   />
+        <hmi:paramDef name="Font"                       type="HmiFontPart"      />
+        <hmi:paramDef name="SelectionItemHeight"        type="number"           />
+        <hmi:paramDef name="PaddingLeftPlusRight"       type="number"           />
+        <hmi:paramDef name="TextPaddingLeft"            type="number"           />
+
+    </hmi:self>
+
+    <defs>
+        <!-- Local definitions of this template -->
+        <hmi:localDef name="MouseHover"             type="number" value="0" />
+		<hmi:localDef name="Panning"				type="number" value="0" />
+
+        <hmi:localDef name="ContentAreaWidth"       type="number" hmi-bind:value="{{ Layout.ActualWidth - ParamProps.PaddingLeftPlusRight }}" />
+
+        <hmi:localDef name="BackColor"              type="string" hmi-bind:value="{{ eq( (HmiProps.$index % 2), 0) ? Converter.RGBA(ParamProps.BackColor) : Converter.RGBA(ParamProps.AlternateBackColor) }}" />
+        <hmi:localDef name="IsTextTrimmed"          type="boolean"  value="false" />
+        <!-- Action definitions of this template -->
+        <hmi:action id="onMouseHover" hmi-bind:condition="{ ParamProps.ItemOperable }" >
+	          <hmi:sendCommand name="SHOW_TOOLTIP"            type="string" hmi-bind:value="{ HmiProps.Text }" hmi-bind:condition="{{ and( (HmiProps.Text != ''), LocalProps.IsTextTrimmed) }}" />
+            <hmi:setProperty name="LocalProps.MouseHover"   type="number" value="1" />
+        </hmi:action>
+        <hmi:action id="onMouseDown" hmi-bind:condition="{ ParamProps.ItemOperable }" >
+            <hmi:setProperty name="LocalProps.MouseHover"                   type="number"   value="0" />
+        </hmi:action>
+        <hmi:action id="onMouseUp" hmi-bind:condition="{ ParamProps.ItemOperable }" >
+            <hmi:setProperty name="ParamProps.SelectedIndex"                type="number"   hmi-bind:value="{ HmiProps.$index }" hmi-bind:condition="{{ and( LocalProps.Panning == 0, or( EventArgs.Trigger==HmiEventTrigger.Left, EventArgs.Trigger==HmiEventTrigger.Touch )) }}" />
+            <hmi:setProperty name="ParamProps.ListContainerSelectedIndex"   type="number"   hmi-bind:value="{ HmiProps.$index }" hmi-bind:condition="{{ and( LocalProps.Panning == 0, or( EventArgs.Trigger==HmiEventTrigger.Left, EventArgs.Trigger==HmiEventTrigger.Touch )) }}" />
+            <hmi:setProperty name="ParamProps.Pressed"                      type="number"   value="0" hmi-bind:condition="{{ and( LocalProps.Panning == 0, or( EventArgs.Trigger==HmiEventTrigger.Left, EventArgs.Trigger==HmiEventTrigger.Touch )) }}" />
+            <hmi:setProperty name="LocalProps.Panning"   type="number" value="0" />
+            <hmi:setProperty name="LocalProps.MouseHover"   type="number" value="1" />
+        </hmi:action>
+        <hmi:action id="onMouseLeave" hmi-bind:condition="{ ParamProps.ItemOperable }" >
+            <hmi:setProperty name="LocalProps.MouseHover"   type="number" value="0" />
+            <hmi:sendCommand name="HIDE_TOOLTIP" />
+        </hmi:action>
+		<hmi:action id="onPan" hmi-bind:condition="{ ParamProps.ItemOperable }" >
+            <hmi:setProperty name="LocalProps.Panning"   type="number" value="1" />
+		</hmi:action>
+
+    </defs>
+
+    <g id="TIFID_SelectionItemRect"
+        hmi-event:down="url(#onMouseDown)" hmi-event:up="url(#onMouseUp)" hmi-event:mouseLeave="url(#onMouseLeave)" hmi-event:mouseHover="url(#onMouseHover)" hmi-event:pan="url(#onPan)" >
+
+        <rect id="CheckBoxAreaRect"
+              hmi-bind:width="{ LocalProps.ContentAreaWidth }"
+              hmi-bind:height="{ ParamProps.SelectionItemHeight }"
+              stroke="none"
+              hmi-bind:fill="{{ HmiProps.$index == ParamProps.ListContainerSelectedIndex ? Converter.RGBA(ParamProps.SelectionBackColor) : LocalProps.BackColor }}"
+              opacity="1" />
+
+        <hmi:include template="include.style.flat.content.svghmi" hmi-bind:for="{ ParamProps.Content }"
+                     hmi-bind:width="{ LocalProps.ContentAreaWidth }"
+                     hmi-bind:height="{ ParamProps.SelectionItemHeight }">
+
+            <hmi:param name="Graphic"         type="HmiGraphic"  hmi-bind:value="{ HmiProps.Graphic }" />
+            <hmi:param name="GraphicWidth"    type="number"      hmi-bind:value="{ HmiProps.GraphicWidth }" />
+            <hmi:param name="GraphicHeight"   type="number"      hmi-bind:value="{ HmiProps.GraphicHeight }" />
+            <hmi:param name="TextPaddingLeft" type="number"      hmi-bind:value="{ ParamProps.TextPaddingLeft }" />
+            <hmi:param name="Text"            type="string"      hmi-bind:value="{ HmiProps.Text }" />
+            <hmi:param name="Font"            type="HmiFontPart" hmi-bind:value="{ ParamProps.Font }" />
+            <hmi:param name="TextColor"       type="HmiColor"    hmi-bind:value="{{ HmiProps.$index == ParamProps.ListContainerSelectedIndex ? ParamProps.SelectionForeColor: ParamProps.ForeColor }}" />
+            <hmi:param name="IsTextTrimmed"   type="boolean"     hmi-bind:value="{ LocalProps.IsTextTrimmed }" />
+        </hmi:include>
+
+
+
+    </g>
+
+</svg>

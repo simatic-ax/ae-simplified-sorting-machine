@@ -1,0 +1,84 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2022. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     preserveAspectRatio="none"
+     id="custom_GraphOverviewContent"
+     data-tif-type="WSI:SvgGrid">
+
+  <hmi:self type="part:HmiDataGridViewPart" displayName="Extended Graph Overview Content" name="style.extended.graphoverviewcontent">
+    <hmi:paramDef name="WindowInnerWidth"       type="number"   />
+    <hmi:paramDef name="AlwaysShowRecent"       type="boolean"  />
+    <hmi:paramDef name="FocusColor"             type="string"   />
+    <hmi:paramDef name="ShowFocusVisual"        type="boolean"   />
+    <hmi:paramDef name="CaptionColor"           type="string" />
+    <hmi:paramDef name="Font"                   type="HmiFontPart" />
+    <hmi:paramDef name="HeightValue"            type="number"   />
+  </hmi:self>
+
+  <g id="Background">
+    <!--chnage x to Layout.ActualX-->
+   <hmi-element:table auto-scroll="false" hmi-bind:config="{ HmiProps }" hmi-bind:height="{{ ParamProps.HeightValue }}" hmi-bind:width="{ ParamProps.WindowInnerWidth }" start-x="0" start-y="2" horizontal-scrollbar-visibility="collapsed"
+                vertical-scrollbar-visibility="collapsed">
+
+      <hmi-feature:dataTemplates>
+        <hmi:master-inline>
+          <hmi:param name="Padding"   type="HmiPaddingPart"   hmi-bind:value="{ HmiProps.CellPadding }" />
+          <hmi:template>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xmlns:hmi="http://svg.siemens.com/hmi/"
+                  xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                  xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"
+                  height="10"
+                  width="10" >
+
+              <hmi:self type="system:HmiDataCellSystemPart" displayName="DataCell" name="datacell" version="1.0.0" performanceClass="s">
+                <hmi:data type="cell-view"></hmi:data>
+                <hmi:paramDef name="Padding"      type="HmiPaddingPart" />
+              </hmi:self>
+
+              <g>
+                <rect id="TIFID_ItemBGRect5"
+                      hmi-bind:width="{ HmiProps.Width }"
+                      hmi-bind:height="{ HmiProps.Height }"
+                      hmi-data-bind:fill="{{ Converter.RGBA( Colors.Back ) }}"
+                      stroke-width="1"/>
+
+                <hmi:include template="include.style.extended.content.svghmi" hmi-bind:for="{ HmiProps.Content }"
+                            hmi-bind:x="{ ParamProps.Padding.Left }"
+                            hmi-bind:y="{ ParamProps.Padding.Top }"
+                            hmi-bind:width="{{ HmiProps.Width - ParamProps.Padding.Left - ParamProps.Padding.Right }}"
+                            hmi-bind:height="{{ HmiProps.Height - ParamProps.Padding.Bottom }}">
+                  <hmi:param name="Graphic"         type="HmiGraphic"   hmi-data-bind:value="{ Content.Graphic.Url }"       />
+                  <hmi:param name="Text"            type="string"       hmi-data-bind:value="{ Content.Data }"              />
+                  <hmi:param name="Font"            type="HmiFontPart"  hmi-bind:value="{ HmiProps.Font }"                  />
+                  <hmi:param name="TextColor"       type="HmiColor"     hmi-data-bind:value="{ Colors.Fore }"               />
+                  <hmi:param name="GraphicWidth"    type="number"       hmi-data-bind:value="{ Content.Graphic.Width }"     />
+                  <hmi:param name="GraphicHeight"   type="number"       hmi-data-bind:value="{ Content.Graphic.Height }"    />
+                </hmi:include>
+              </g>
+            </svg>
+          </hmi:template>
+        </hmi:master-inline>
+      </hmi-feature:dataTemplates>
+
+      <hmi-feature:gridlines>
+        <hmi-feature:gridline
+              position-filter="begin inner end" expansion="inner header"
+              hmi-bind:stroke-width="{ HmiProps.GridLineWidth }"
+              hmi-bind:stroke="{{ HmiProps.GridLineVisibility == 0 ? 'rgba(0,0,0,0)' : Converter.RGBA(  HmiProps.GridLineColor ) }}"
+              orientation="row column">
+        </hmi-feature:gridline>
+      </hmi-feature:gridlines>
+    </hmi-element:table>
+  </g>
+</svg>

@@ -1,0 +1,177 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     preserveAspectRatio="none">
+
+    <hmi:self type="item:HmiIOField" displayName="Flat IOField" name="style.flat.iofield" version="2.9" performanceClass="L" >
+        <hmi:focus focusVisual="local" />
+    </hmi:self>
+
+    <defs>
+        <!-- Local definitions of this template -->
+        <hmi:localDef name="ColorAlphaMask"         type="number"   value="0x01000000" />
+        <hmi:localDef name="HoverAlpha"             type="number"   value="0xC0000000" />
+        <hmi:localDef name="DisabledAlpha"          type="number"   value="0x80000000" />
+
+        <hmi:localDef name="MouseHover"             type="number"   value="0" />
+        <hmi:localDef name="ShowFocus"              type="boolean"  hmi-bind:value="{{ and( HmiProps.ShowFocusVisual, SysProps.HasFocus ) }}" />
+
+        <hmi:localDef name="InputAllowed"           type="boolean"  hmi-bind:value="{{ and( HmiProps.Operability == HmiOperability.Operable, HmiProps.IOFieldType == HmiIOFieldType.InputOutput ) }}" />
+        <hmi:localDef name="ItemOperable"           type="boolean"  hmi-bind:value="{{ HmiProps.Operability == HmiOperability.Operable }}" />
+        <hmi:localDef name="ReadOnly"               type="boolean"  hmi-bind:value="{{ HmiProps.Opacity == 0 }}" />
+        <hmi:localDef name="OutputMode"             type="boolean"  hmi-bind:value="{{ or( not( LocalProps.InputAllowed ), LocalProps.ReadOnly ) }}" />
+
+        <hmi:localDef name="BorderColorHover"       type="HmiColor" hmi-bind:value="{{ HmiProps.BorderColor % LocalProps.ColorAlphaMask + LocalProps.HoverAlpha }}" />
+        <hmi:localDef name="BorderColorDisabled"    type="HmiColor" hmi-bind:value="{{ HmiProps.BorderColor % LocalProps.ColorAlphaMask + LocalProps.DisabledAlpha }}" />
+        <hmi:localDef name="BorderColorAlternate"   type="HmiColor" hmi-bind:value="{{ LocalProps.ItemOperable ? HmiProps.AlternateBorderColor : 0 }}" />
+        <hmi:localDef name="BorderColor"            type="string"   hmi-bind:value="{{ Converter.RGBA( LocalProps.ItemOperable ? ( LocalProps.MouseHover ? LocalProps.BorderColorHover : HmiProps.BorderColor) : LocalProps.BorderColorDisabled ) }}" />
+        <hmi:localDef name="BorderYAlternate"       type="number"   hmi-bind:value="{{ HmiProps.Height - HmiProps.BorderWidth / 2 }}" />
+        <hmi:localDef name="ThresholdColorFallback" type="HmiColor" hmi-bind:value="{{ HmiProps.BackColor }}" />
+        <hmi:localDef name="ThresholdColor"         type="HmiColor" hmi-bind:value="{{ Converter.ThresholdColorForValue( HmiProps.ProcessValue, HmiProps.Thresholds, LocalProps.ThresholdColorFallback ) }}" />
+
+        <hmi:localDef name="ForeColor"              type="string"   hmi-bind:value="{{ Converter.RGBA( LocalProps.ItemOperable ? HmiProps.ForeColor : HmiProps.ForeColor % LocalProps.ColorAlphaMask + LocalProps.DisabledAlpha ) }}" />
+        <hmi:localDef name="BackColorDisabled"      type="HmiColor" hmi-bind:value="{{ LocalProps.ThresholdColor % LocalProps.ColorAlphaMask + LocalProps.DisabledAlpha }}" />
+        <hmi:localDef name="BackColorHover"         type="HmiColor" hmi-bind:value="{{ LocalProps.ThresholdColor % LocalProps.ColorAlphaMask + LocalProps.HoverAlpha }}" />
+        <hmi:localDef name="BackColor"              type="string"   hmi-bind:value="{{ Converter.RGBA( LocalProps.ItemOperable ? ( LocalProps.MouseHover ? LocalProps.BackColorHover : LocalProps.ThresholdColor ) : LocalProps.BackColorDisabled ) }}" />
+
+        <hmi:localDef name="ContentWidth"           type="number"   hmi-bind:value="{{ HmiProps.Width  - (2 * HmiProps.BorderWidth) - HmiProps.Padding.Left - HmiProps.Padding.Right }}" />
+        <hmi:localDef name="ContentHeight"          type="number"   hmi-bind:value="{{ HmiProps.Height - (2 * HmiProps.BorderWidth) - HmiProps.Padding.Top - HmiProps.Padding.Bottom }}" />
+        <hmi:localDef name="ContentPositionX"       type="number"   hmi-bind:value="{{ HmiProps.BorderWidth + HmiProps.Padding.Left }}" />
+        <hmi:localDef name="ContentPositionY"       type="number"   hmi-bind:value="{{ HmiProps.BorderWidth + HmiProps.Padding.Top  }}" />
+
+        <!-- Output Mode: variables for OutputText (OT) -->
+        <hmi:localDef name="OT_Formatted" type="string" hmi-bind:value="{{ Converter.FormatPattern( HmiProps.ProcessValue, HmiProps.OutputFormat ) }}" />
+        <hmi:localDef name="OT_Content"   type="string" hmi-bind:value="{{ HmiProps.TextTrimming == HmiTextTrimming.None ? LocalProps.OT_Formatted : Converter.TextEllipsis( LocalProps.OT_Formatted, LocalProps.ContentWidth, HmiProps.Font ) }}" />
+        <hmi:localDef name="OT_AnchorX"   type="string" hmi-bind:value="{{ HmiProps.HorizontalTextAlignment == HmiHorizontalAlignment.Center ? 'middle' : HmiProps.HorizontalTextAlignment == HmiHorizontalAlignment.Left ? 'start' : 'end' }}" />
+        <hmi:localDef name="OT_AnchorY"   type="string" hmi-bind:value="{{ HmiProps.VerticalTextAlignment == HmiVerticalAlignment.Center ? 'middle' : HmiProps.VerticalTextAlignment == HmiVerticalAlignment.Top ? 'start' : 'end' }}" />
+        <hmi:localDef name="OT_PositionX" type="number" hmi-bind:value="{{ round( LocalProps.OT_AnchorX == 'start' ? HmiProps.BorderWidth + HmiProps.Padding.Left
+                                                                                                                   : LocalProps.OT_AnchorX == 'middle' ? HmiProps.Width / 2
+                                                                                                                   : HmiProps.Width - HmiProps.BorderWidth - HmiProps.Padding.Right ) }}" />
+        <!-- AnchorY in 'middle' with an optical corrector '-2'  -->
+        <hmi:localDef name="OT_PositionY" type="number" hmi-bind:value="{{ round( LocalProps.OT_AnchorY == 'start' ? HmiProps.BorderWidth + HmiProps.Padding.Top + HmiProps.Font.Size
+                                                                                                                   : LocalProps.OT_AnchorY == 'middle' ? ( HmiProps.Height + HmiProps.Font.Size ) / 2 - 2
+                                                                                                                   : HmiProps.Height - HmiProps.BorderWidth - HmiProps.Padding.Bottom ) }}" />
+
+        <!-- Actions of this template -->
+        <hmi:action id="onMouseHover" hmi-bind:condition="{ LocalProps.InputAllowed }" >
+            <hmi:setProperty name="LocalProps.MouseHover" type="number" value="1" />
+        </hmi:action>
+        <hmi:action id="onMouseDown" hmi-bind:condition="{ LocalProps.InputAllowed }" >
+            <hmi:setProperty name="LocalProps.MouseHover" type="number" value="0" />
+        </hmi:action>
+        <hmi:action id="onMouseUp" hmi-bind:condition="{ LocalProps.InputAllowed }" >
+            <hmi:setProperty name="LocalProps.MouseHover" type="number" value="0" />
+        </hmi:action>
+        <hmi:action id="onMouseLeave" hmi-bind:condition="{ LocalProps.InputAllowed }" >
+            <hmi:setProperty name="LocalProps.MouseHover" type="number" value="0" />
+        </hmi:action>
+
+        <!-- Graphical elements of this template -->
+        <clipPath id="ItemClipRect">
+            <rect id="ItemRect"
+                  hmi-bind:x="{ LocalProps.ContentPositionX }"
+                  hmi-bind:y="{ LocalProps.ContentPositionY }"
+                  hmi-bind:width="{ LocalProps.ContentWidth }"
+                  hmi-bind:height="{ LocalProps.ContentHeight }" />
+        </clipPath>
+
+    </defs>
+
+    <g id="ExtendedIOField"
+        hmi-event:mouseHover="url(#onMouseHover)"
+        hmi-event:down="url(#onMouseDown)"
+        hmi-event:up="url(#onMouseUp)"
+        hmi-event:mouseLeave="url(#onMouseLeave)"
+        hmi-bind:opacity="{{ LocalProps.ItemOperable ? 1.0 : 0.5}}">
+
+        <rect id="ItemBGRect"
+            stroke-width="0"
+            hmi-bind:x="{ HmiProps.BorderWidth }"
+            hmi-bind:y="{ HmiProps.BorderWidth }"
+            hmi-bind:width="{{ HmiProps.Width - 2 * HmiProps.BorderWidth }}"
+            hmi-bind:height="{{ HmiProps.Height - 2 * HmiProps.BorderWidth }}"
+            hmi-bind:fill="{ LocalProps.BackColor }" />
+
+        <rect id="ItemRect_Used"
+            fill-opacity="0"
+            hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+            hmi-bind:y="{{ HmiProps.BorderWidth / 2 }}"
+            hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth }}"
+            hmi-bind:height="{{ HmiProps.Height - HmiProps.BorderWidth }}"
+            hmi-bind:stroke="{{ LocalProps.BorderColor }}"
+            hmi-bind:stroke-width="{ HmiProps.BorderWidth }" />
+
+        <line id="ItemBorder"
+            x1="0"
+            hmi-bind:y1="{ LocalProps.BorderYAlternate }"
+            hmi-bind:x2="{ HmiProps.Width }"
+            hmi-bind:y2="{ LocalProps.BorderYAlternate }"
+            hmi-bind:stroke="{{ Converter.RGBA( LocalProps.BorderColorAlternate ) }}"
+            hmi-bind:stroke-width="{ HmiProps.BorderWidth }" />
+
+        <rect id="ItemFocusRect"
+            x="0"
+            y="0"
+            fill-opacity="0"
+            stroke-width="2"
+            hmi-bind:width="{ HmiProps.Width }"
+            hmi-bind:height="{ HmiProps.Height }"
+            hmi-bind:stroke="{{ Converter.RGBA( HmiProps.FocusColor ) }}"
+            hmi-bind:visibility="{{ LocalProps.ShowFocus ? 'visible' : 'hidden' }}" />
+
+        <!-- Output Mode: <text> only  -->
+        <g id="OutputModeText" clip-path="url(#ItemClipRect)" hmi:if="{ LocalProps.OutputMode }">
+            <text
+                hmi-bind:x="{ LocalProps.OT_PositionX }"
+                hmi-bind:y="{ LocalProps.OT_PositionY }"
+                hmi-bind:width="{ LocalProps.ContentWidth }"
+                hmi-bind:height="{ LocalProps.ContentHeight }"
+                hmi-bind:fill="{ LocalProps.ForeColor }"
+                hmi-bind:font-size="{ HmiProps.Font.Size }"
+                hmi-bind:font-style="{{ HmiProps.Font.Italic ? 'italic' : 'normal' }}"
+                hmi-bind:font-weight="{ HmiProps.Font.Weight }"
+                hmi-bind:font-family="{ HmiProps.Font.Name }"
+                hmi-bind:text-decoration="{{ Converter.TextDecoration( HmiProps.Font ) }}"
+                hmi-bind:text-anchor="{ LocalProps.OT_AnchorX }" >
+
+                <hmi:text hmi-bind:value="{ LocalProps.OT_Content }" />
+            </text>
+        </g>
+        <!-- Output/Input Mode: TextFieldNVE -->
+        <!--Used double curly braces for Hmi.ProcessValue as it needs to be evaluated as a string for Native RTPU.-->
+        <g id="TIFID_TextFieldNVE" clip-path="url(#ItemClipRect)" hmi:if="{{ not( LocalProps.OutputMode ) }}">
+            <hmi-element:textField
+                        target="HmiProps.ProcessValue"
+                        text-trimming="none"
+                        text-wrapping="no-wrap"
+                        multi-line="false"
+                        vertical-scrollbar-visibility="collapsed"
+                        horizontal-scrollbar-visibility="collapsed"
+                        hmi-bind:start-x="{ LocalProps.ContentPositionX }"
+                        hmi-bind:start-y="{ LocalProps.ContentPositionY }"
+                        hmi-bind:width="{ LocalProps.ContentWidth }"
+                        hmi-bind:height="{ LocalProps.ContentHeight }"
+                        hmi-bind:vertical-text-alignment="{ HmiProps.VerticalTextAlignment }"
+                        hmi-bind:horizontal-text-alignment="{ HmiProps.HorizontalTextAlignment }"
+                        hmi-bind:value="{{ HmiProps.ProcessValue }}"
+                        hmi-bind:fore-color="{ LocalProps.ForeColor }"
+                        hmi-bind:output-format="{ HmiProps.OutputFormat }"
+                        hmi-bind:enabled="{ LocalProps.InputAllowed }"
+                        hmi-bind:read-only="{ LocalProps.ReadOnly }">
+
+                <hmi-feature:inputBehavior hmi-bind:scope="{ HmiProps.InputBehavior }" />
+                <hmi-feature:font hmi-bind:scope="{ HmiProps.Font }" />
+            </hmi-element:textField>
+        </g>
+    </g>
+</svg>

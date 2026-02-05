@@ -1,0 +1,111 @@
+#Version: 2.0
+
+Screens:
+  03_MainNavigation:
+    Width: 240
+    Height: 1080
+    BackColor: 0xFF06081F
+    BackFillPattern: Solid
+    ScriptModules:
+      EventScripts:
+        ScriptLanguage: JavaScript
+        ScriptFile: Scripts\03_MainNavigation_EventScripts.js
+        Scripts:
+          txtMainNav1_OnTapped: 
+          txtMainNav2_OnTapped: 
+          txtMainNav3_OnTapped: 
+          txtMainNav4_OnTapped: 
+          _3_MainNavigation_OnLoaded: 
+    EventHandlers:
+      ScriptEventHandler1:
+        Event: Loaded
+        Type: Script
+        Script: '@local::EventScripts._3_MainNavigation_OnLoaded'
+    Layers:
+      Layer_0:
+        Items:
+          txtMainNav1:
+            ObjectType: TextBox
+            Top: 104
+            Left: 0
+            Height: 60
+            Width: 240
+            Text: GlobalTextLibrary.Entity_165
+            ForeColor: 0xFFDDDCDC
+            BackColor: 0xFF202035
+            RotationCenterX: 0
+            RotationCenterY: 0
+            HorizontalTextAlignment: Left
+            Font:
+              Description: GlobalFontLibrary.Entity_4
+            Padding:
+              Left: 30
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.txtMainNav1_OnTapped'
+          txtMainNav2:
+            ObjectType: TextBox
+            Top: 173
+            Left: 0
+            Height: 60
+            Width: 240
+            Text: GlobalTextLibrary.Entity_166
+            ForeColor: 0xFFDDDCDC
+            BackColor: 0xFF202035
+            RotationCenterX: 0
+            RotationCenterY: 0
+            HorizontalTextAlignment: Left
+            Font:
+              Description: GlobalFontLibrary.Entity_4
+            Padding:
+              Left: 30
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.txtMainNav2_OnTapped'
+          txtMainNav3:
+            ObjectType: TextBox
+            Top: 313
+            Left: 0
+            Height: 60
+            Width: 240
+            Text: GlobalTextLibrary.Entity_167
+            ForeColor: 0xFFDDDCDC
+            BackColor: 0xFF202035
+            RotationCenterX: 0
+            RotationCenterY: 0
+            HorizontalTextAlignment: Left
+            Font:
+              Description: GlobalFontLibrary.Entity_4
+            Padding:
+              Left: 30
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.txtMainNav3_OnTapped'
+          txtMainNav4:
+            ObjectType: TextBox
+            Top: 243
+            Left: 0
+            Height: 60
+            Width: 240
+            Text: GlobalTextLibrary.Entity_168
+            ForeColor: 0xFFDDDCDC
+            BackColor: 0xFF202035
+            RotationCenterX: 0
+            RotationCenterY: 0
+            HorizontalTextAlignment: Left
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_4
+            Padding:
+              Left: 30
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.txtMainNav4_OnTapped'

@@ -1,0 +1,131 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2020. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+               xmlns:hmi="http://svg.siemens.com/hmi/"
+               xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+               xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"
+               xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+               xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+               xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+               height="10" width="10">
+  <hmi:self type="system:HmiDataCellSystemPart" displayName="DataCell" name="datacell" version="1.0.0" performanceClass="s">
+    <hmi:data type="cell-view"></hmi:data>
+    <hmi:paramDef name="Padding"      type="HmiPaddingPart" />
+    <hmi:paramDef name="RowBackColor" type="HmiColor"       />
+    <hmi:paramDef name="RowForeColor" type="HmiColor"       />
+  </hmi:self>
+  <defs>
+    <hmi:localDef name="Text"                    type="string"                   hmi-data-bind:value="{ Content.Data }" />
+    <hmi:localDef name="TextColor"               type="HmiColor"                 hmi-data-bind:value="{ Colors.Fore }" />
+    <hmi:localDef name="BackColor"               type="HmiColor"                 hmi-data-bind:value="{ Colors.Back }" />
+    <hmi:localDef name="HorizontalTextAlignment" type="HmiHorizontalAlignment"   hmi-bind:value="{ HmiProps.Content.HorizontalTextAlignment }" />
+    <hmi:localDef name="VerticalTextAlignment"   type="HmiVerticalAlignment"     hmi-bind:value="{ HmiProps.Content.VerticalTextAlignment }" />
+    <hmi:localDef name="InteriorWidth"           type="number"                   hmi-bind:value="{{ HmiProps.Width - ParamProps.Padding.Right - ParamProps.Padding.Left }}" />
+    <hmi:localDef name="InteriorHeight"          type="number"                   hmi-bind:value="{{ HmiProps.Height - ParamProps.Padding.Bottom }}" />
+    <hmi:localDef name="RowID"                   type="number"                   hmi-data-bind:value="{ Content.RowID }" />
+    <hmi:localDef name="CurrentDepth"            type="number"                   hmi-data-bind:value="{ Content.CurrentDepth }" />
+    <hmi:localDef name="IsExpanded"              type="boolean"                  hmi-data-bind:value="{ Content.IsExpanded }" />
+    <hmi:localDef name="IsExpandable"            type="boolean"                  hmi-data-bind:value="{ Content.IsExpandable }" />
+    <hmi:localDef name="IsEditing"               type="boolean"                  hmi-data-bind:value="{ Content.IsEditing }" />
+    <hmi:localDef name="OutputFormat"            type="string"                   hmi-data-bind:value="{ Content.OutputFormat }" />
+    <hmi:localDef name="IsCurrentDepthValid"     type="boolean"                  hmi-bind:value="{{ gt( LocalProps.CurrentDepth, -1 ) }}" />
+    <hmi:localDef name="HasTextandExpandable"    type="boolean"                  hmi-bind:value="{{ and( LocalProps.Text, LocalProps.IsExpandable ) }}" />
+
+    <hmi:localDef name="TextHeightFontSize"      type="number"                   hmi-bind:value="{ HmiProps.Font.Size }" />
+
+    <!-- x, y and baseline position of the text-->
+    <hmi:localDef name="TextAnchorX"             type="string"                   hmi-bind:value="{{ LocalProps.HorizontalTextAlignment == HmiHorizontalAlignment.Center ? 'middle' : LocalProps.HorizontalTextAlignment == HmiHorizontalAlignment.Left ? 'start' : 'end' }}" />
+    <hmi:localDef name="TextAnchorY"             type="string"                   hmi-bind:value="{{ LocalProps.VerticalTextAlignment == HmiVerticalAlignment.Center ? 'middle' : LocalProps.VerticalTextAlignment == HmiVerticalAlignment.Top ? 'start' : 'end' }}" />
+    <hmi:localDef name="AdjustedWidth"           type="number"                   hmi-bind:value="{{ and( LocalProps.IsCurrentDepthValid, LocalProps.Text ) ? 20 * LocalProps.CurrentDepth : 0 }}"/>
+    <hmi:localDef name="AdjustedHeight"          type="number"                   hmi-bind:value="{{ floor( (LocalProps.TextAnchorY == 'start' ? ( LocalProps.TextHeightFontSize + ParamProps.Padding.Top )
+                                                                                     : LocalProps.TextAnchorY == 'middle' ? ( ( LocalProps.InteriorHeight + LocalProps.TextHeightFontSize * 0.65 ) / 2 )
+                                                                                     : ( LocalProps.InteriorHeight  - LocalProps.TextHeightFontSize * 0.20 - 2     )  ) ) }}"/>
+    <hmi:localDef name="OffsetExpanseIcon"       type="number"                   hmi-bind:value="{{ and( LocalProps.IsCurrentDepthValid, LocalProps.IsExpandable ) ? 20 : 0}}"/>
+    <hmi:localDef name="Graphic"                 type="string"                   hmi-data-bind:value="{ Content.Graphic.Url }"       />
+    <hmi:localDef name="GraphicWidth"            type="number"                   hmi-bind:value="{{ (HmiProps.Font.Size * 2) }}"     />
+    <hmi:localDef name="GraphicHeight"           type="number"                   hmi-bind:value="{{ (HmiProps.Font.Size * 2) }}"     />
+    <hmi:localDef name="HasGraphic"              type="boolean"                  hmi-bind:value="{{ LocalProps.Graphic != '' ? true: false }}"     />
+    <hmi:localDef name="AdjustedGraphicWidth"    type="number"                   hmi-bind:value="{{ LocalProps.AdjustedWidth + LocalProps.OffsetExpanseIcon + floor( ( LocalProps.TextAnchorX == 'start' ? (ParamProps.Padding.Left + ParamProps.Padding.Left - 19) : LocalProps.TextAnchorX == 'middle' ? ( HmiProps.Width - (ParamProps.Padding.Left * 2) ) :  LocalProps.InteriorWidth ) ) }}"/>
+    <hmi:localDef name="OffsetGraphicHeight"     type="number"                   hmi-bind:value="{{ abs(0.6 * HmiProps.Height )  }}" />
+
+    <!-- Action definitions of this template -->
+    <hmi:action id="onMouseDown" hmi-bind:condition ="{ LocalProps.HasTextandExpandable }">
+      <hmi:sendCommand hmi-bind:value="{{'RowID:' + LocalProps.RowID + ',IsExpanded:' + not(LocalProps.IsExpanded)}}"
+                       name="EXPAND_COLLAPSE">
+      </hmi:sendCommand>
+      <hmi:setCursor name="auto" value="element"></hmi:setCursor>
+      <hmi:setCursor name="pointer" value="element"></hmi:setCursor>
+    </hmi:action>
+    <hmi:action id="pointer">
+      <hmi:setCursor name="auto" value="element"></hmi:setCursor>
+      <hmi:setCursor name="pointer" value="element"></hmi:setCursor>
+    </hmi:action>
+    <hmi:action id="default">
+      <hmi:setCursor name="auto" value="element"></hmi:setCursor>
+    </hmi:action>
+  </defs>
+
+  <g  opacity="1">
+    <rect id="TIFID_ItemBGRect2"
+          hmi-bind:width="{ HmiProps.Width }"
+          hmi-bind:height="{ HmiProps.Height }"
+          hmi-bind:fill="{{ LocalProps.IsEditing ? 'rgba(255,255,255,1)' : Converter.RGBA( LocalProps.BackColor ) }}"/>
+
+    <g id="Picture" hmi:if="{{ LocalProps.HasGraphic }}">
+      <svg hmi-bind:y="{{ (LocalProps.AdjustedHeight + ParamProps.Padding.Top + ParamProps.Padding.Bottom ) - LocalProps.OffsetGraphicHeight}}"
+         hmi-bind:x="{{ LocalProps.AdjustedGraphicWidth }}"
+             hmi-bind:width="{ LocalProps.GraphicWidth }"
+             hmi-bind:height="{ LocalProps.GraphicHeight }">
+
+        <image hmi-bind--xlink:href="{ LocalProps.Graphic }"
+						 hmi-bind:width="{ LocalProps.GraphicWidth }"
+						 hmi-bind:height="{ LocalProps.GraphicHeight }" />
+      </svg>
+    </g>
+
+    <g id="TextGroup">
+      <svg id ="TIFID_onExpandCollapse"
+           hmi:if="{ LocalProps.HasTextandExpandable }"
+           hmi-bind:x="{{ ParamProps.Padding.Left + LocalProps.AdjustedWidth }}"
+           hmi-bind:y="{{ LocalProps.AdjustedHeight - 9 }}"
+           hmi-event:tapped="url(#onMouseDown)"
+           hmi-event:mouseEnter="url(#pointer)"
+           hmi-event:mouseHover="url(#pointer)"
+           hmi-event:mouseLeave="url(#default)">
+        <path d="M 0 12 L 10 6 L 0 0 z"
+              hmi-bind:fill="{{ Converter.RGBA( LocalProps.TextColor ) }}"
+              hmi-bind:transform="rotate( {{ LocalProps.IsExpanded ? 90 : 0}}, 6, 6)">
+        </path>
+      </svg>
+      <hmi-element:textField hmi-bind:start-x="{{ LocalProps.AdjustedWidth + LocalProps.OffsetExpanseIcon + floor( ( LocalProps.TextAnchorX == 'start' ? ParamProps.Padding.Left : LocalProps.TextAnchorX == 'middle' ? ( LocalProps.InteriorWidth / 2 ) :  LocalProps.InteriorWidth ) ) }}"
+                        hmi-bind:start-y="{ ParamProps.Padding.Top }"
+                        hmi-bind:fore-color="{{ LocalProps.IsEditing ? 'rgba(0,0,0,1)' : Converter.RGBA( LocalProps.TextColor ) }}"
+                        hmi-bind:width="{ HmiProps.Width }"
+                        hmi-bind:height="{  HmiProps.Height }"
+                        hmi-bind:vertical-text-alignment="{  HmiProps.Content.VerticalTextAlignment }"
+                        hmi-bind:horizontal-text-alignment="{ HmiProps.Content.HorizontalTextAlignment }"
+                        hmi-bind:value="{ LocalProps.Text }"
+                        hmi-bind:output-format="{ LocalProps.OutputFormat }"
+                        padding="0"
+                        hmi-bind:read-only="{{ LocalProps.IsEditing ? false : true }}"
+                        hmi-bind:enabled="{ HmiProps.Enabled }"
+                        target="LocalProps.Text"
+                        hmi-bind:horizontal-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}"
+                        hmi-bind:vertical-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}">
+        <hmi-feature:font hmi-bind:size="{ HmiProps.Font.Size }"
+                          hmi-bind:italic="{ HmiProps.Font.Italic }"
+                          hmi-bind:weight="{ HmiProps.Font.Weight }"
+                          hmi-bind:strike-out="{ HmiProps.Font.StrikeOut }"
+                          hmi-bind:underline="{ HmiProps.Font.Underline }"
+                          hmi-bind:name="{ HmiProps.Font.Name }" />
+
+      </hmi-element:textField>
+
+
+    </g>
+  </g>
+</svg>

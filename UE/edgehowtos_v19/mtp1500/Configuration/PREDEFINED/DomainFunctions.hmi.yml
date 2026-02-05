@@ -1,0 +1,93 @@
+#Version: 2.0
+
+DomainFunctions:
+  RuntimeSystem:
+    Active: True
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: True # PREDEFINED - please do NOT change/delete
+  AlarmService:
+    Active: True
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: True # PREDEFINED - please do NOT change/delete
+  UserInterfaceScripting:
+    Active: True
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: True # PREDEFINED - please do NOT change/delete
+    ComponentPath: Scripting
+    DBPRCV: 0.0.0.0
+  GlobalIDManagement:
+    Active: False
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  OpcUaCommunication:
+    Active: true
+    ManagerNumber: 3
+    ManagerType: DRV
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  TagLogging:
+    Active: False
+    ManagerNumber: 111
+    ManagerType: DATA
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  AlarmLogging:
+    Active: False
+    ManagerNumber: 222
+    ManagerType: DATA
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  ContextLogging:
+    Active: False
+    ManagerNumber: 127
+    ManagerType: DATA
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  S7Communication:
+    Active: False
+    ManagerNumber: 1
+    ManagerType: DRV
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  S7PlusCommunication:
+    Active: True
+    ManagerNumber: 2
+    ManagerType: DRV
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+    ComponentPath: S7Plus
+    DBPRCV: 0.0.0.0
+    ConnectionID:
+    - HMI_Connection_2
+  Distribution:
+    Active: False
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  SecureCommunication:
+    Active: False
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  ParameterControl:
+    Active: False
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+    ComponentPath: PACO
+    DBPRCV: 2.0.0.0
+  JobScheduler:
+    Active: False
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  RTS:
+    Active: True
+    ManagerNumber: 22
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+    ComponentPath: VCS
+    DBPRCV: 0.0.0.0
+  OpcUaServer:
+    Active: False
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete

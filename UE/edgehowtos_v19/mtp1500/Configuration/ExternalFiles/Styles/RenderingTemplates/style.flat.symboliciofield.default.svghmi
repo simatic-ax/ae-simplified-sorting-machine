@@ -1,0 +1,66 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.2/dtd/svg12-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-types="http://svg.siemens.com/hmi/types/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     preserveAspectRatio="none" id="ItemRoot"
+     overflow="visible">
+
+    <hmi:self type="item:HmiSymbolicIOField" displayName="Flat Symboliciofield" name="style.flat.symboliciofield" version="2.8" performanceClass="L" >
+        <hmi:focus focusVisual="local" />
+    </hmi:self>
+
+    <defs>
+        <!-- Local definitions of this template -->
+    </defs>
+
+    <hmi:include template="include.style.flat.combobox.svghmi"
+                x="0"
+                y="0"
+                hmi-bind:width="{ HmiProps.Width }"
+                hmi-bind:height="{ HmiProps.Height }" >
+
+        <hmi:param name="MaxListBoxViewCount"   type="number"                  value="7"                                                        />
+        <hmi:param name="Content"               type="HmiContentPart" hmi-bind:value="{ HmiProps.Content }"                                     />
+        <hmi:param name="Font"                  type="HmiFontPart"    hmi-bind:value="{ HmiProps.Font }"                                        />
+        <hmi:param name="Padding"               type="HmiPaddingPart" hmi-bind:value="{ HmiProps.Padding }"                                     />
+        <hmi:param name="Width"                 type="number"         hmi-bind:value="{ HmiProps.Width }"                                       />
+        <hmi:param name="Height"                type="number"         hmi-bind:value="{ HmiProps.Height }"                                      />
+        <hmi:param name="ShowFocus"             type="boolean"        hmi-bind:value="{{ and( HmiProps.ShowFocusVisual, HmiProps.HasFocus ) }}" />
+        <hmi:param name="BorderWidth"           type="number"         hmi-bind:value="{ HmiProps.BorderWidth }"                                 />
+        <hmi:param name="FocusColor"            type="HmiColor"       hmi-bind:value="{ HmiProps.FocusColor }"                                  />
+        <hmi:param name="BorderColor"           type="HmiColor"       hmi-bind:value="{ HmiProps.BorderColor }"                                 />
+        <hmi:param name="AlternateBorderColor"  type="HmiColor"       hmi-bind:value="{ HmiProps.AlternateBorderColor }"                        />
+        <hmi:param name="BackColor"             type="HmiColor"       hmi-bind:value="{ HmiProps.BackColor }"                                   />
+        <hmi:param name="ForeColor"             type="HmiColor"       hmi-bind:value="{ HmiProps.ForeColor }"                                   />
+        <hmi:param name="AlternateBackColor"    type="HmiColor"       hmi-bind:value="{ HmiProps.AlternateBackColor }"                          />
+        <hmi:param name="SelectionForeColor"    type="HmiColor"       hmi-bind:value="{ HmiProps.SelectionForeColor }"                          />
+        <hmi:param name="SelectionBackColor"    type="HmiColor"       hmi-bind:value="{ HmiProps.SelectionBackColor }"                          />
+        <hmi:param name="CollapsedBackColor"    type="HmiColor"       hmi-bind:value="{ HmiProps.BackColor }"                                   />
+        <hmi:param name="CollapsedForeColor"    type="HmiColor"       hmi-bind:value="{ HmiProps.ForeColor }"                                   />
+        <hmi:param name="GraphicWidth"          type="number"         hmi-bind:value="{ HmiProps.GraphicWidth }"                                />
+        <hmi:param name="GraphicHeight"         type="number"         hmi-bind:value="{ HmiProps.GraphicHeight }"                               />
+        <hmi:param name="Enabled"               type="boolean"        hmi-bind:value="{ HmiProps.Enabled }"                                     />
+        <hmi:param name="Operability"           type="HmiOperability" hmi-bind:value="{ HmiProps.Operability }"                                 />
+        <hmi:param name="IOFieldType"           type="HmiIOFieldType" hmi-bind:value="{ HmiProps.IOFieldType }"                                 />
+        <hmi:param name="ResourceList"          type="string"                  value="HmiTextGraphicList"                                       />
+        <hmi:param name="ResourceListDelay"     type="boolean"                 value="true"                                                     />
+        <hmi:param name="PropNameText"          type="string"                  value="Text"                                                     />
+        <hmi:param name="PropNameGraphic"       type="string"                  value="Graphic"                                                  />
+        <hmi:param name="PropNameGraphicWidth"  type="string"                  value="GraphicWidth"                                             />
+        <hmi:param name="PropNameGraphicHeight" type="string"                  value="GraphicHeight"                                            />
+        <hmi:param name="SendCommand"           type="boolean"                 value="true"                                                     />
+        <hmi:param name="SelectedIndex"         type="number"         hmi-bind:value="{ HmiProps.SelectedIndex }"                               />
+        <hmi:param name="CanOpenComboBox"       type="boolean"        hmi-bind:value="{ HmiProps.ExpandOnActivate }"                            />
+
+    </hmi:include>
+
+
+ </svg>

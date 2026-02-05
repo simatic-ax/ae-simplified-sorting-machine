@@ -1,0 +1,7 @@
+#Version: 2.0
+
+ScreenWindowLayouts:
+  MyScreenWindowLayout:
+    Members:
+      MyTopLevelScreenWindow:
+        Screen: 01_ScreenLayout

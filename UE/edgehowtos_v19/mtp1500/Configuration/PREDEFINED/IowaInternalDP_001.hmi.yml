@@ -1,0 +1,1026 @@
+#Version: 2.0
+
+Internals:
+  SystemEvents:
+    StructureType: SystemEvents
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    .ConnectionState:
+      DataType: DTRaw
+      Alarms:
+        PlcConnectionStateChangeInformation:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemInformation
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_111
+          Area: System/HMI/RuntimeSystem
+          ID: PlcConnectionStateChangeInformation
+    .ConfigurationError:
+      DataType: DTRaw
+      Alarms:
+        ConfigurationErrorInformation:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 6
+          AlarmClass: SystemInformation
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_112
+          Origin: '@S1%s@:@3%s@'
+          Area: System/HMI/RuntimeSystem
+          ID: ConfigurationErrorInformation
+    .DeltaActivationFailed:
+      DataType: DTRaw
+      Alarms:
+        DeltaActivationFailedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 7
+          AlarmClass: SystemAlarmWithoutClearEvent
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_7
+          Area: System/HMI/RuntimeSystem
+          ID: DeltaActivationFailedAlarm
+    .DeltaRollbackFailed:
+      DataType: DTRaw
+      Alarms:
+        DeltaRollbackFailedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 8
+          AlarmClass: SystemAlarmWithoutClearEvent
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_8
+          Area: System/HMI/RuntimeSystem
+          ID: DeltaRollbackFailedAlarm
+    .ConfigurationPersistFailed:
+      DataType: DTRaw
+      Alarms:
+        ConfigurationDataChangeFailedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 9
+          AlarmClass: SystemAlarmWithoutClearEvent
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_143
+          Area: System/HMI/RuntimeSystem
+          ID: ConfigurationDataChangeFailedAlarm
+    .RdfMergeFailed:
+      DataType: DTRaw
+      Alarms:
+        ConfigurationDataConsolidationFailedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 10
+          AlarmClass: SystemAlarmWithoutClearEvent
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_141
+          Area: System/HMI/RuntimeSystem
+          ID: ConfigurationDataConsolidationFailedAlarm
+    .DeltaListFileLocked:
+      DataType: DTRaw
+      Alarms:
+        DeltaCommitFailedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 11
+          AlarmClass: SystemAlarmWithoutClearEvent
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_142
+          Area: System/HMI/RuntimeSystem
+          ID: DeltaCommitFailedAlarm
+    .TimeLeapInformation:
+      DataType: DTRaw
+      Alarms:
+        TimeLeapInformation:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 12
+          AlarmClass: SystemInformation
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_9
+          Area: System/HMI/RuntimeSystem
+          ID: TimeLeapInformation
+    .OnlineBackupFailed:
+      DataType: DTRaw
+      Alarms:
+        OnlineBackupFailed:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 13
+          AlarmClass: SystemAlarmWithoutClearEvent
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_160
+          Area: System/HMI/RuntimeSystem
+          ID: OnlineBackupFailedAlarm
+    .DistSystemDiagnostics:
+      DataType: DTRaw
+      Alarms:
+        DistSystemConnectionFailedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 17
+          AlarmClass: SystemInformation
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_930
+          Area: System/HMI/RuntimeSystem
+          ID: DistSystemConnectionFailedAlarm
+    .StartupRuntimeRCDError:
+      DataType: DTRaw
+      Alarms:
+        StartupRuntimeRCDErrorAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 32
+          AlarmClass: SystemAlarmWithoutClearEvent
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_166
+          Area: System/HMI/RuntimeSystem
+          ID: StartupRuntimeRCDErrorAlarm
+    .LoggingOverloadError:
+      DataType: DTRaw
+      Alarms:
+        SystemOverloadAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 260
+          AlarmClass: SystemAlarm
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_6
+          Area: System/HMI/OverloadMonitoring
+          ID: SystemOverloadAlarm
+    .ValueChangedInformation:
+      DataType: DTRaw
+      Alarms:
+        ValueChangedInformation:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 772
+          AlarmClass: OperatorInputInformation
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_110
+          Area: System/HMI/RuntimeSystem
+          ID: ValueChangedInformation
+    .ValueChangeFailedInformation:
+      DataType: DTRaw
+      Alarms:
+        ValueChangeFailedInformation:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 773
+          AlarmClass: OperatorInputInformation
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_110
+          Area: System/HMI/RuntimeSystem
+          ID: ValueChangeFailedInformation
+    .NoCertificate:
+      DataType: DTRaw
+      Alarms:
+        NoCertificateAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 774
+          AlarmClass: SystemAlarmWithoutClearEvent
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_950
+          Area: System/HMI/RuntimeSystem
+          ID: NoCertificateAlarm
+    .SoonExpireCertificate:
+      DataType: DTRaw
+      Alarms:
+        SoonExpireCertificateAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 775
+          AlarmClass: SystemAlarmWithoutClearEvent
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_952
+          Area: System/HMI/RuntimeSystem
+          ID: SoonExpireCertificateAlarm
+    .ExpiredCertificate:
+      DataType: DTRaw
+      Alarms:
+        ExpiredCertificateAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 776
+          AlarmClass: SystemAlarmWithoutClearEvent
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_951
+          Area: System/HMI/RuntimeSystem
+          ID: ExpiredCertificateAlarm
+  ReduManager:
+    StructureType: ReduManager
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+  TagPersistencyHealth:
+    StructureType: StorageHealth
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    .HealthState:
+      DataType: DTUDInt
+      Alarms:
+        StorageSystemDisconnectedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - TagPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_19
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX1X
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemDisconnectedAlarm_TPER
+        StorageSystemSpaceExceededAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - TagPersistencyHealth.StorageName#Value
+          - TagPersistencyHealth.StoragePath#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_20
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemSpaceExceededAlarm_TPER
+        StorageSystemResourcesExceededAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - TagPersistencyHealth.StorageName#Value
+          - TagPersistencyHealth.StoragePath#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_21
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemResourcesExceededAlarm_TPER
+        StorageSystemWriteDataLostAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - TagPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_24
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemWriteDataLostAlarm_TPER
+        StorageSystemRedundancyLostAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 130
+          EventText: AlarmTextLibrary.Entry_25
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemRedundancyLostAlarm_TPER
+        StorageSystemPassiveSynchronizingNotification:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 132
+          EventText: AlarmTextLibrary.Entry_26
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXXX1XXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemPassiveSynchronizingNotification_TPER
+        StorageSystemFailoverFailedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_27
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXX1XXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemFailoverFailedAlarm_TPER
+        StorageSystemBackendDisconnectedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - TagPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 130
+          EventText: AlarmTextLibrary.Entry_109
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXX1XXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemBackendDisconnectedAlarm_TPER
+        StorageSystemWriteDataLostPassiveAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - TagPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 130
+          EventText: AlarmTextLibrary.Entry_126
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXX1XXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemWriteDataLostPassiveAlarm_TPER
+        LongtermStorageSystemDisconnectedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - TagPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_131
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXX1XXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: LongtermStorageSystemDisconnectedAlarm_TPER
+        LongtermStorageSystemSpaceExceededNotification:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - TagPersistencyHealth.StorageName#Value
+          - TagPersistencyHealth.StoragePath#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_132
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXX1XXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: LongtermStorageSystemSpaceExceededNotification_TPER
+        LongtermStorageSystemResourcesExceededNotification:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - TagPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_133
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXX1XXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: LongtermStorageSystemResourcesExceededNotification_TPER
+        LongtermStorageSystemRedundancyLostNotification:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_134
+          ConditionPattern: bXXXXXXXXXXXXXXXXXX1XXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: LongtermStorageSystemRedundancyLostNotification_TPER
+        LongtermStorageSystemPassiveSynchronizingNotification:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_135
+          ConditionPattern: bXXXXXXXXXXXXXXXXX1XXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: LongtermStorageSystemPassiveSynchronizingNotification_TPER
+        LongtermStorageSystemFailoverFailedNotification:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_136
+          ConditionPattern: bXXXXXXXXXXXXXXXX1XXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: LongtermStorageSystemFailoverFailedNotification_TPER
+        StorageSystemError:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - TagPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_153
+          ConditionPattern: bXXXXXXXXXXXXXXX1XXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemError_TPER
+        StorageSystemLocationUnavailableAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - TagPersistencyHealth.StorageName#Value
+          - TagPersistencyHealth.StoragePath#Value
+          - TagPersistencyHealth.AdditionalParameters.StorageLocationUnavailableTextListRef#Value
+          - TagPersistencyHealth.AdditionalParameters.StorageLocationUnavailableTextListIndex#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_161
+          ConditionPattern: bXXXXXXXXXXXXXX1XXXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemLocationUnavailableAlarm_TPER
+        StorageSystemIncompatibleSchemaVersionAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_167
+          ConditionPattern: bXXXXXXXXXXXXX1XXXXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemIncompatibleSchemaVersionAlarm_TPER
+        StorageSystemBackupFailed:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - TagPersistencyHealth.StorageName#Value
+          - TagPersistencyHealth.AdditionalParameters.BackupPath#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_169
+          ConditionPattern: bXXXXXXXXXXXX1XXXXXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemBackupFailed_TPER
+        StorageSystemCorruptedStorage:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - TagPersistencyHealth.StoragePath#Value
+          - TagPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_175
+          ConditionPattern: bXXXXXXXXXXX1XXXXXXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemCorruptedStorage_TPER
+        StorageApplicationSynchronizing:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_149
+          ConditionPattern: bX1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageApplicationSynchronizing_TPER
+        StorageApplicationSynchronizationFailure:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - TagPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_150
+          ConditionPattern: b1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageApplicationSynchronizationFailure_TPER
+    .StorageName:
+      DataType: DTString
+      InitialValue: TagPersistency Storage
+    .StorageApplication:
+      DataType: DTString
+      InitialValue: 'Host1: TagPersistency'
+    .AdditionalParameters.StorageLocationUnavailableTextListRef:
+      DataType: DTRef
+      InitialValue: ConfigErrorAlarmTextLibrary.TextList_9
+      ReferenceType: HmiTextList
+    .AdditionalParameters.StorageLocationUnavailableTextListIndex:
+      DataType: DTUDInt
+      InitialValue: 1
+  AlarmPersistencyHealth:
+    StructureType: StorageHealth
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    .HealthState:
+      DataType: DTUDInt
+      Alarms:
+        StorageSystemDisconnectedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - AlarmPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_19
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX1X
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemDisconnectedAlarm_APER
+        StorageSystemSpaceExceededAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - AlarmPersistencyHealth.StorageName#Value
+          - AlarmPersistencyHealth.StoragePath#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_20
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemSpaceExceededAlarm_APER
+        StorageSystemResourcesExceededAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - AlarmPersistencyHealth.StorageName#Value
+          - AlarmPersistencyHealth.StoragePath#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_21
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemResourcesExceededAlarm_APER
+        StorageSystemWriteDataLostAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - AlarmPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_24
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemWriteDataLostAlarm_APER
+        StorageSystemRedundancyLostAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 130
+          EventText: AlarmTextLibrary.Entry_25
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemRedundancyLostAlarm_APER
+        StorageSystemPassiveSynchronizingNotification:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 132
+          EventText: AlarmTextLibrary.Entry_26
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXXX1XXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemPassiveSynchronizingNotification_APER
+        StorageSystemFailoverFailedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_27
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXXX1XXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemFailoverFailedAlarm_APER
+        StorageSystemBackendDisconnectedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - AlarmPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 130
+          EventText: AlarmTextLibrary.Entry_109
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXXX1XXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemBackendDisconnectedAlarm_APER
+        StorageSystemWriteDataLostPassiveAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - AlarmPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 130
+          EventText: AlarmTextLibrary.Entry_126
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXXX1XXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemWriteDataLostPassiveAlarm_APER
+        LongtermStorageSystemDisconnectedAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - AlarmPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_131
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXXX1XXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: LongtermStorageSystemDisconnectedAlarm_APER
+        LongtermStorageSystemSpaceExceededNotification:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - AlarmPersistencyHealth.StorageName#Value
+          - AlarmPersistencyHealth.StoragePath#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_132
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXXX1XXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: LongtermStorageSystemSpaceExceededNotification_APER
+        LongtermStorageSystemResourcesExceededNotification:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - AlarmPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_133
+          ConditionPattern: bXXXXXXXXXXXXXXXXXXX1XXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: LongtermStorageSystemResourcesExceededNotification_APER
+        LongtermStorageSystemRedundancyLostNotification:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_134
+          ConditionPattern: bXXXXXXXXXXXXXXXXXX1XXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: LongtermStorageSystemRedundancyLostNotification_APER
+        LongtermStorageSystemPassiveSynchronizingNotification:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_135
+          ConditionPattern: bXXXXXXXXXXXXXXXXX1XXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: LongtermStorageSystemPassiveSynchronizingNotification_APER
+        LongtermStorageSystemFailoverFailedNotification:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_136
+          ConditionPattern: bXXXXXXXXXXXXXXXX1XXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: LongtermStorageSystemFailoverFailedNotification_APER
+        StorageSystemError:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - AlarmPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_153
+          ConditionPattern: bXXXXXXXXXXXXXXX1XXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemError_APER
+        StorageSystemLocationUnavailableAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - AlarmPersistencyHealth.StorageName#Value
+          - AlarmPersistencyHealth.StoragePath#Value
+          - AlarmPersistencyHealth.AdditionalParameters.StorageLocationUnavailableTextListRef#Value
+          - AlarmPersistencyHealth.AdditionalParameters.StorageLocationUnavailableTextListIndex#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_161
+          ConditionPattern: bXXXXXXXXXXXXXX1XXXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemLocationUnavailableAlarm_APER
+        StorageSystemIncompatibleSchemaVersionAlarm:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_167
+          ConditionPattern: bXXXXXXXXXXXXX1XXXXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemIncompatibleSchemaVersionAlarm_APER
+        StorageSystemBackupFailed:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - AlarmPersistencyHealth.StorageName#Value
+          - AlarmPersistencyHealth.AdditionalParameters.BackupPath#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_169
+          ConditionPattern: bXXXXXXXXXXXX1XXXXXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemBackupFailed_APER
+        StorageSystemCorruptedStorage:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - AlarmPersistencyHealth.StoragePath#Value
+          - AlarmPersistencyHealth.StorageName#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_175
+          ConditionPattern: bXXXXXXXXXXX1XXXXXXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageSystemCorruptedStorage_APER
+        StorageApplicationSynchronizing:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 128
+          EventText: AlarmTextLibrary.Entry_149
+          ConditionPattern: bX1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageApplicationSynchronizing_APER
+        StorageApplicationSynchronizationFailure:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          AlarmParameterTags:
+          - AlarmPersistencyHealth.StorageApplication#Value
+          - '@ServerMachineName_1#Value'
+          SourceType: TAG
+          SystemSeverity: 131
+          EventText: AlarmTextLibrary.Entry_150
+          ConditionPattern: b1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+          Area: System/Hmi/StorageSystem
+          ID: StorageApplicationSynchronizationFailure_APER
+    .StorageName:
+      DataType: DTString
+      InitialValue: AlarmPersistency Storage
+    .StorageApplication:
+      DataType: DTString
+      InitialValue: 'Host1: AlarmPersistency'
+    .AdditionalParameters.StorageLocationUnavailableTextListRef:
+      DataType: DTRef
+      InitialValue: ConfigErrorAlarmTextLibrary.TextList_9
+      ReferenceType: HmiTextList
+    .AdditionalParameters.StorageLocationUnavailableTextListIndex:
+      DataType: DTUDInt
+      InitialValue: 1
+  Conn_event_0_1_to_data_0_1:
+    StructureType: ManagerConnections
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    .ManagerName:
+      DataType: DTString
+      InitialValue: DataManager
+  Service_9a9f93d8-cba3-4934-be4d-19ca58855c43:
+    StructureType: ServiceConnections
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    .ActiveStubs:
+      DataType: DTDInt
+      Alarms:
+        SystemServiceAlarm:
+          ObjectType: HmiAnalogAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          SourceType: TAG
+          SystemSeverity: 130
+          EventText: AlarmTextLibrary.Entry_16
+          AlarmParameterTags:
+          - Service_9a9f93d8-cba3-4934-be4d-19ca58855c43.ServiceName#Value
+          - '@ServerMachineName_1#Value'
+          Condition: EQ
+          InitialConditionValue: 0
+          Area: System/HMI/RuntimeSystem
+          ID: SystemServiceAlarm
+    .ServiceName:
+      DataType: DTString
+      InitialValue: Localization
+  Service_13FD4D55-C0FB-441F-B610-9370F1566B63:
+    StructureType: ServiceConnections
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    .ActiveStubs:
+      DataType: DTDInt
+      Alarms:
+        SystemServiceAlarm:
+          ObjectType: HmiAnalogAlarm
+          ParentID: 2
+          AlarmClass: SystemAlarm
+          SourceType: TAG
+          SystemSeverity: 130
+          EventText: AlarmTextLibrary.Entry_16
+          AlarmParameterTags:
+          - Service_13FD4D55-C0FB-441F-B610-9370F1566B63.ServiceName#Value
+          - '@ServerMachineName_1#Value'
+          Condition: EQ
+          InitialConditionValue: 0
+          Area: System/HMI/RuntimeSystem
+          ID: SystemServiceAlarm
+    .ServiceName:
+      DataType: DTString
+      InitialValue: ConfigurationDataService
+  RangeViolations:
+    StructureType: RangeViolations
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    .HighLimitViolation:
+      DataType: DTBool
+      Alarms:
+        HighLimitViolationAlarm:
+          ObjectType: HmiBinaryAlarm
+          ParentID: 2
+          AlarmClass: Alarm
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_500
+          Area: System/HMI/RuntimeSystem
+          ID: HighLimitViolationAlarm
+    .LowLimitViolation:
+      DataType: DTBool
+      Alarms:
+        LowLimitViolationAlarm:
+          ObjectType: HmiBinaryAlarm
+          ParentID: 3
+          AlarmClass: Alarm
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_501
+          Area: System/HMI/RuntimeSystem
+          ID: LowLimitViolationAlarm
+  '@ScriptingSystemEvents':
+    StructureType: '@ScriptingSystemEvents'
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    .OperatorInputInformationText:
+      DataType: DTRaw
+      Alarms:
+        OperatorInputInformation:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 2
+          AlarmClass: OperatorInputInformation
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          ID: OperatorInputInformationAlarm
+          EventText: ScriptingAlarmTextLibrary.Entry_2
+          Area: '@8%s@'
+          Origin: '@S1%s@'
+    .SystemAlarmWithoutClearEventText:
+      DataType: DTRaw
+      Alarms:
+        SystemAlarmWithoutClearEvent:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 3
+          AlarmClass: SystemAlarmWithoutClearEvent
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          ID: SystemAlarmWithoutClearEventAlarm
+          EventText: ScriptingAlarmTextLibrary.Entry_2
+          Area: '@8%s@'
+          Origin: '@S1%s@'
+    .SystemInformationText:
+      DataType: DTRaw
+      Alarms:
+        SystemInformation:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 4
+          AlarmClass: SystemInformation
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          ID: SystemInformationAlarm
+          EventText: ScriptingAlarmTextLibrary.Entry_2
+          Area: '@8%s@'
+          Origin: '@S1%s@'
+    .OperatorInputInformation:
+      DataType: DTRaw
+      Alarms:
+        OperatorInputInformation:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 5
+          AlarmClass: OperatorInputInformation
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          ID: OperatorInputInformationAlarm
+          EventText: ScriptingAlarmTextLibrary.Entry_3
+          Area: '@8%s@'
+          Origin: '@S1%s@'
+    .SystemAlarmWithoutClearEvent:
+      DataType: DTRaw
+      Alarms:
+        SystemAlarmWithoutClearEvent:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 6
+          AlarmClass: SystemAlarmWithoutClearEvent
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          ID: SystemAlarmWithoutClearEventAlarm
+          EventText: ScriptingAlarmTextLibrary.Entry_3
+          Area: '@8%s@'
+          Origin: '@S1%s@'
+    .SystemInformation:
+      DataType: DTRaw
+      Alarms:
+        SystemInformation:
+          ObjectType: HmiDiscreteAlarm
+          ParentID: 7
+          AlarmClass: SystemInformation
+          SourceType: SYSTEM
+          SystemSeverity: 0
+          ID: SystemInformationAlarm
+          EventText: ScriptingAlarmTextLibrary.Entry_3
+          Area: '@8%s@'
+          Origin: '@S1%s@'

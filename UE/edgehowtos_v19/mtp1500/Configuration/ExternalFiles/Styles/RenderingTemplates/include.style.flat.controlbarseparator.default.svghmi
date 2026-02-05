@@ -1,0 +1,54 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:hmi="http://svg.siemens.com/hmi/"
+    xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+    xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+    xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+    xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+    xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+    preserveAspectRatio="none" >
+
+    <hmi:self type="part:HmiControlBarSeparatorPart" displayName="Extended ControlBarSeparator" name="extended.controlbarseparator.part" version="1.0.1" performanceClass="L">
+
+        <hmi:focus focusVisual="local" canFocus="true" />
+
+    </hmi:self>
+
+    <defs>
+        <!-- other ScrolbarElements use BackColor -->
+        <hmi:localDef name="BackColorRGB"         type="string"   hmi-bind:value="{{ Converter.RGBA( HmiProps.ForeColor ) }}" />
+        <hmi:localDef name="BackColorAlpha"       type="number"   hmi-bind:value="{{ Converter.Alpha( HmiProps.ForeColor ) }}" />
+        <hmi:localDef name="ContentPositionX"     type="number"   hmi-bind:value="{ HmiProps.Padding.Left }" />
+        <hmi:localDef name="ContentPositionY"     type="number"   hmi-bind:value="{ HmiProps.Padding.Top  }" />
+        <hmi:localDef name="ContentWidth"         type="number"   hmi-bind:value="{{ Layout.ActualWidth  - HmiProps.Padding.Left - HmiProps.Padding.Right }}" />
+        <hmi:localDef name="ContentHeight"        type="number"   hmi-bind:value="{{ Layout.ActualHeight - HmiProps.Padding.Top  - HmiProps.Padding.Bottom }}" />
+
+        <!-- Graphical elements of this template -->
+        <linearGradient id="BgGradient_Separator" gradientUnits="objectBoundingBox" x1="0%" x2="100%" y1="0%" y2="0%">
+            <stop offset="0.0" hmi-bind:stop-opacity="{{ LocalProps.BackColorAlpha * 0.5 }}" hmi-bind:stop-color="{ LocalProps.BackColorRGB }" />
+            <stop offset="0.4" hmi-bind:stop-opacity="{ LocalProps.BackColorAlpha }" 		 hmi-bind:stop-color="{ LocalProps.BackColorRGB }" />
+            <stop offset="0.6" hmi-bind:stop-opacity="{ LocalProps.BackColorAlpha }" 		 hmi-bind:stop-color="{ LocalProps.BackColorRGB }" />
+            <stop offset="1.0" hmi-bind:stop-opacity="{{ LocalProps.BackColorAlpha * 0.5 }}" hmi-bind:stop-color="{ LocalProps.BackColorRGB }" />
+        </linearGradient>
+
+    </defs>
+
+  <g id="TIFID_ControlBarElementSeparator">
+    <!-- 'Enabled' change in opacity is disabled here because the separator should always appear as non-transparent -->
+
+    <rect id="ItemBGRect_Separator"
+        hmi-bind:x="{ LocalProps.ContentPositionX }"
+        hmi-bind:y="{ LocalProps.ContentPositionY }"
+        hmi-bind:width="{ LocalProps.ContentWidth }"
+        hmi-bind:height="{ LocalProps.ContentHeight }"
+        fill="url(#BgGradient_Separator)"
+        stroke-width="0"
+        hmi-bind:rx="{{ Converter.Min( 5, Converter.Max( 0, ( le( Layout.ActualWidth, Layout.ActualHeight ) ? ( Layout.ActualWidth / 2 ) : ( Layout.ActualHeight / 2 ) ) ) ) }}"
+        hmi-bind:ry="{{ Converter.Min( 5, Converter.Max( 0, ( le( Layout.ActualWidth, Layout.ActualHeight ) ? ( Layout.ActualWidth / 2 ) : ( Layout.ActualHeight / 2 ) ) ) ) }}" />
+
+  </g>
+
+</svg>

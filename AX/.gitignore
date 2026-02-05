@@ -1,0 +1,9 @@
+.apax
+.env
+bin
+hwbin
+obj
+testresult
+src/import-scl
+SystemConstants
+hwc.gen

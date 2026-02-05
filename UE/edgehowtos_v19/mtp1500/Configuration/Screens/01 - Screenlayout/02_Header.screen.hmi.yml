@@ -1,0 +1,434 @@
+#Version: 2.0
+
+Screens:
+  02_Header:
+    Width: 1920
+    Height: 104
+    BackFillPattern: Solid
+    BackColor: 0xFF25253E
+    ScriptModules:
+      EventScripts:
+        ScriptLanguage: JavaScript
+        ScriptFile: Scripts\02_Header_EventScripts.js
+        Scripts:
+          btnTitleBar_OnDown: 
+          btnNavigation_OnDown: 
+          btnTitleBarIcon_OnDown: 
+      DynamicScripts:
+        ScriptLanguage: JavaScript
+        ScriptFile: Scripts\02_Header_DynamicScripts.js
+        Scripts:
+          ioDateTime_ProcessValue_Trigger: 
+    Layers:
+      Layer_0:
+        Items:
+          recTitleBarBackground:
+            ObjectType: Rectangle
+            Top: 0
+            Left: 0
+            Height: 48
+            Width: 1920
+            BackColor: 0xFF202035
+            BorderWidth: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+          btnTitleBar:
+            ObjectType: Button
+            Width: 592
+            Height: 44
+            Top: 2
+            Left: 18
+            Text: GlobalTextLibrary.Entity_158
+            ForeColor: 0xFFDDDCDC
+            BorderWidth: 0
+            BackColor: 0xF2F4FF
+            Enabled: True
+            ShowFocusVisual: False
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_27
+            Content:
+              SplitRatio: 0
+              HorizontalTextAlignment: Left
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Down
+                Type: Script
+                Script: '@local::EventScripts.btnTitleBar_OnDown'
+          btnNavigation:
+            ObjectType: Button
+            Width: 40
+            Height: 40
+            Top: 4
+            Left: 1872
+            BackColor: 0xF2F4FF
+            BorderWidth: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Graphic: GlobalGraphicLibrary.Menu
+            Enabled: True
+            Padding:
+              Left: 0
+              Top: 0
+              Right: 0
+              Bottom: 0
+            Content:
+              SplitRatio: 1
+              GraphicStretchMode: Fill
+              Spacing: 0
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Down
+                Type: Script
+                Script: '@local::EventScripts.btnNavigation_OnDown'
+          gvMachineStatus:
+            ObjectType: CustomWidgetContainer
+            ContainedType: StatusOnDiagMGood
+            Top: 57
+            Left: 736
+            Width: 36
+            Height: 36
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Visible: True
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: ServerInterfaces_Server_Interface_1_MachineStatus_error
+                Indirect: False
+                Direction: toProperty
+                Property: .#Visible
+                ValueConverter: '@local::ValueConverter_ErrorToVisibilityInverse'
+          gvMachineStatusFault:
+            ObjectType: CustomWidgetContainer
+            ContainedType: StatusOnDiagMFault
+            Top: 57
+            Left: 736
+            Width: 36
+            Height: 36
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Visible: False
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: ServerInterfaces_Server_Interface_1_MachineStatus_error
+                Indirect: False
+                Direction: toProperty
+                Property: .#Visible
+                ValueConverter: '@local::ValueConverter_ErrorToVisibility'
+          txtStateHeadline:
+            ObjectType: TextBox
+            Top: 55
+            Left: 306
+            Height: 24
+            Width: 160
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: GlobalTextLibrary.Entity_159
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_6
+          txtState:
+            ObjectType: TextBox
+            Top: 75
+            Left: 306
+            Height: 24
+            Width: 409
+            BackColor: Black 0%
+            BorderWidth: 0
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            ReadOnly: True
+            Enabled: True
+            Text: GlobalTextLibrary.Entity_160
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_7
+            Dynamics:
+              ResourceListDynamic1:
+                ObjectType: ResourceListDynamic
+                Tag: ServerInterfaces_Server_Interface_1_MachineStatus_status
+                ResourceList: '@Default.MachineStatusTextList'
+                Property: 02_Header.Layers.Layer_0.Items.txtState#Text
+      Layer_1:
+        Items:
+          lnStatusBarSeperator1:
+            ObjectType: Line
+            Top: 56
+            Left: 288
+            Height: 40
+            Width: 2
+            X2: 0
+            Y2: 40
+            LineWidth: 2
+            LineColor: 0xFFF0F0FF
+            AlternateLineColor: 0xFFF0F0FF
+            Enabled: True
+          lnStatusBarSeperator2:
+            ObjectType: Line
+            Top: 56
+            Left: 783
+            Height: 40
+            Width: 2
+            X2: 0
+            Y2: 40
+            LineWidth: 2
+            LineColor: 0xFFF0F0FF
+            AlternateLineColor: 0xFFF0F0FF
+            Enabled: True
+          lnStatusBarSeperator3:
+            ObjectType: Line
+            Top: 56
+            Left: 1103
+            Height: 40
+            Width: 2
+            X2: 0
+            Y2: 40
+            LineWidth: 2
+            LineColor: 0xFFF0F0FF
+            AlternateLineColor: 0xFFF0F0FF
+            Enabled: True
+          txtMachineStateHeadline:
+            ObjectType: TextBox
+            Top: 55
+            Left: 16
+            Height: 24
+            Width: 160
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: GlobalTextLibrary.Entity_161
+            Font:
+              Description: GlobalFontLibrary.Entity_6
+          txtOperatorHeadline:
+            ObjectType: TextBox
+            Top: 55
+            Left: 799
+            Height: 24
+            Width: 160
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: GlobalTextLibrary.Entity_162
+            Font:
+              Description: GlobalFontLibrary.Entity_6
+          txtDateTimeHeadline:
+            ObjectType: TextBox
+            Top: 56
+            Left: 1119
+            Height: 24
+            Width: 200
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: GlobalTextLibrary.Entity_163
+            Font:
+              Description: GlobalFontLibrary.Entity_6
+          txtioState:
+            ObjectType: TextBox
+            Top: 75
+            Left: 16
+            Height: 24
+            Width: 160
+            BackColor: Black 0%
+            BorderWidth: 0
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            ReadOnly: True
+            Enabled: True
+            Text: GlobalTextLibrary.Entity_164
+            Font:
+              Description: GlobalFontLibrary.Entity_7
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: ServerInterfaces_Server_Interface_1_ApplicationCommand_automatic
+                Indirect: False
+                Direction: toProperty
+                Property: 02_Header.Layers.Layer_1.Items.txtioState#ForeColor
+                ValueConverter: '@local::ValueConverter3'
+              ResourceListDynamic1:
+                ObjectType: ResourceListDynamic
+                Tag: ServerInterfaces_Server_Interface_1_ApplicationCommand_automatic
+                ResourceList: '@Default.MachineState'
+                Property: 02_Header.Layers.Layer_1.Items.txtioState#Text
+          ioOperator:
+            ObjectType: IOField
+            Top: 75
+            Left: 799
+            Height: 24
+            Width: 160
+            HorizontalTextAlignment: Left
+            BackColor: White 0%
+            BorderColor: 0x64646A
+            BorderWidth: 0
+            ForeColor: 0xFFDDDCDC
+            RotationCenterX: 0
+            RotationCenterY: 0
+            ProcessValue AS DInt: 0
+            Enabled: True
+            IOFieldType: Output
+            Font:
+              Description: GlobalFontLibrary.Entity_7
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: '@UserName'
+                Indirect: False
+                Direction: biDirectional
+                Property: 02_Header.Layers.Layer_1.Items.ioOperator#ProcessValue
+          ioDateTime:
+            ObjectType: IOField
+            Top: 75
+            Left: 1119
+            Height: 24
+            Width: 200
+            HorizontalTextAlignment: Left
+            BackColor: White 0%
+            BorderColor: 0x64646A
+            BorderWidth: 0
+            ForeColor: 0xFFDDDCDC
+            ProcessValue AS String: 30.12.2099  23:59:59
+            Enabled: True
+            OutputFormat: ''
+            IOFieldType: Output
+            Font:
+              Description: GlobalFontLibrary.Entity_7
+            Dynamics:
+              ScriptDynamic1:
+                ObjectType: ScriptDynamic
+                Script: '@local::DynamicScripts.ioDateTime_ProcessValue_Trigger'
+                Property: 02_Header.Layers.Layer_1.Items.ioDateTime#ProcessValue
+                Triggers:
+                  CyclicTrigger1:
+                    ObjectType: HmiCyclicTrigger
+                    Cycle: T1s
+    ValueConverters:
+      ValueConverter1:
+        ConditionType: Range
+        Default AS Color: 0xFF48494E
+        Entries:
+          RangeValueConverterEntry1:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 7
+            To AS DInt: 7
+            Flashing: False
+            Rate: Medium
+            Value AS Color: 0xFFDE3858
+            AlternateValue AS Color: Red
+          RangeValueConverterEntry2:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 1
+            To AS DInt: 4
+            Flashing: False
+            Rate: Medium
+            Value AS Color: 0xFF5ED1AD
+            AlternateValue AS Color: Red
+          RangeValueConverterEntry3:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 5
+            To AS DInt: 5
+            Flashing: False
+            Rate: Medium
+            Value AS Color: 0xFFFF9900
+            AlternateValue AS Color: Red
+          RangeValueConverterEntry4:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 6
+            To AS DInt: 6
+            Flashing: False
+            Rate: Medium
+            Value AS Color: 0xFF48494E
+            AlternateValue AS Color: Red
+      ValueConverter2:
+        ConditionType: Boolean
+        Entries:
+          Entry1:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: true
+            Flashing: False
+            Rate: Medium
+            Value AS String: StatusOnDiagMFault
+          Entry2:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: false
+            Flashing: False
+            Rate: Medium
+            Value AS String: StatusOnDiagMGood
+      ValueConverter3:
+        ConditionType: Boolean
+        Entries:
+          Entry1:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: false
+            Flashing: False
+            Rate: Medium
+            Value AS Color: 0xFFE8C100
+          Entry2:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: true
+            Flashing: False
+            Rate: Medium
+            Value AS Color: 0xFF21BA84
+      ValueConverter_ErrorToVisibility:
+        ConditionType: Boolean
+        Entries:
+          Entry1:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: true
+            Flashing: False
+            Rate: Medium
+            Value AS Bool: true
+          Entry2:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: false
+            Flashing: False
+            Rate: Medium
+            Value AS Bool: false
+      ValueConverter_ErrorToVisibilityInverse:
+        ConditionType: Boolean
+        Entries:
+          Entry1:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: true
+            Flashing: False
+            Rate: Medium
+            Value AS Bool: false
+          Entry2:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: false
+            Flashing: False
+            Rate: Medium
+            Value AS Bool: true

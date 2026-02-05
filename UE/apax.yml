@@ -1,0 +1,44 @@
+name: "edgehowtos_v19"
+version: 0.0.0-placeholder
+type: workspace
+installStrategy: overridable
+apaxVersion: 3.5.0
+variables:
+  DEVICE: "mtp1500"
+  DEVICE_IP: "192.168.0.3"
+  PROJECT: "edgehowtos_v19"
+scripts:
+  postinstall: "cd ./$PROJECT/$DEVICE && apax install && apax install-scripting-files && if [ \"$OSTYPE\" == \"linux-gnu\" ]; then ln -s -f ./.apax/packages/@ue/model-hmiscada-v19.0.0.2 ./Model; else if [ -d \"./Model\" ]; then rm -r ./Model; fi && cmd //C \"mklink /J .\\Model .\\.apax\\packages\\@ue\\model-hmiscada-v19.0.0.2\"; fi"
+
+  #Preparation of a delta download and delta download can be used if the device has already been downloaded to Runtime at least once,
+  #and if the changes that have been made since the last download do not require a full download.
+  delta:
+    - apax dm preparedownload $DEVICE --projectname $PROJECT --delta
+    - apax dm download $DEVICE --projectname $PROJECT --unsecure --delta
+
+  #Make a full download
+  fulldownload:
+    - apax dm preparedownload $DEVICE --projectname $PROJECT
+    #In case of first download ever, keep next line commented
+    - apax dm stopruntime $DEVICE --projectname $PROJECT --unsecure  || echo "Runtime already stopped"
+    - apax dm download $DEVICE --projectname $PROJECT --unsecure
+    - apax dm startruntime $DEVICE --projectname $PROJECT --unsecure
+
+  #Downloads the configuration project of a device to a portable archive
+  offline:
+    - apax dm preparedownload $DEVICE --projectname $PROJECT
+    - apax dm download $DEVICE --projectname $PROJECT --portable
+
+  #change device ip to localhost
+  changeip_local:
+    - apax dm setdeviceattributes $DEVICE --projectname $PROJECT --hostname localhost
+    
+  #change device ip to ipc
+  changeip_remote:
+    - apax dm setdeviceattributes $DEVICE --projectname $PROJECT --hostname $DEVICE_IP
+
+  #Update the Domain Functions
+  updatedomainf: apax dm updatedomainfunctions $DEVICE --projectname $PROJECT
+dependencies:
+  "@ue/code.elements": ^3.2.1
+  "@ue/open.elements": ^1.6.0

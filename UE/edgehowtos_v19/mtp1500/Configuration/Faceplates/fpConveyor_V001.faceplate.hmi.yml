@@ -1,0 +1,425 @@
+FaceplateTypes:
+  fpConveyor_V001:
+    ObjectType: FaceplateType
+    Width: 304
+    Height: 240
+    BackColor: Black 0%
+    ScriptModules:
+      EventScripts:
+        ScriptLanguage: JavaScript
+        ScriptFile: Scripts\fpConveyor_V001_EventScripts.js
+        Scripts:
+          btnMoveConveyor1Forward_OnDown:
+          btnMoveConveyor1Forward_OnUp:
+          btnMoveConveyor1Backward_OnDown:
+          btnMoveConveyor1Backward_OnUp:
+          btnMoveConveyor1Stop_OnDown:
+          btnMoveConveyor1Stop_OnUp:
+    LocalTags:
+      TagError:
+        ObjectType: LocalSimpleTag
+        DataType: Bool
+        IsPublic: True
+      TagStatus:
+        ObjectType: LocalSimpleTag
+        DataType: DInt
+        IsPublic: True
+      TagMoveForward:
+        ObjectType: LocalSimpleTag
+        DataType: Bool
+        IsPublic: True
+      TagMoveBackward:
+        ObjectType: LocalSimpleTag
+        DataType: Bool
+        IsPublic: True
+      TagStop:
+        ObjectType: LocalSimpleTag
+        DataType: Bool
+        IsPublic: True
+      AutomaticMode:
+        ObjectType: LocalSimpleTag
+        DataType: Bool
+        IsPublic: True
+    PropertyInterface:
+      Properties:
+        Members:
+          TagError:
+            ObjectType: FaceplateTagPropertyType
+            DataType: Bool
+          TagStatus:
+            ObjectType: FaceplateTagPropertyType
+            DataType: DInt
+          TagMoveForward:
+            ObjectType: FaceplateTagPropertyType
+            DataType: Bool
+          TagMoveBackward:
+            ObjectType: FaceplateTagPropertyType
+            DataType: Bool
+          TagStop:
+            ObjectType: FaceplateTagPropertyType
+            DataType: Bool
+          AutomaticMode:
+            ObjectType: FaceplateTagPropertyType
+            DataType: Bool
+          Title:
+            ObjectType: FaceplateSimplePropertyType
+            DataType: String
+            Default: Conveyor
+    Layers:
+      Layer_0:
+        Items:
+          recConveyor1:
+            ObjectType: Rectangle
+            Top: 0
+            Left: 0
+            Height: 240
+            Width: 304
+            RotationCenterX: 0
+            RotationCenterY: 0
+            BackColor: 0xFF202035
+            BorderWidth: 0
+            Enabled: True
+            TabIndex: 0
+            Corners:
+              BottomLeftRadius: 6
+              BottomRightRadius: 6
+              TopLeftRadius: 6
+              TopRightRadius: 6
+          LineConveyor1:
+            ObjectType: Line
+            Top: 40
+            Left: 0
+            Width: 304
+            Height: 0
+            X2: 304
+            Y2: 0
+            LineColor: 0xFFEFEFEF
+          txtHeadlineConveyor1:
+            ObjectType: TextBox
+            Top: 5
+            Left: 16
+            Height: 32
+            Width: 200
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+            Dynamics:
+              PropertyLink1:
+                ObjectType: PropertyLinkDynamic
+                Source: fpConveyor_V001.Properties.Title
+                Property: fpConveyor_V001.Layers.Layer_0.Items.txtHeadlineConveyor1#Text
+          gvHandbetrieb:
+            ObjectType: GraphicView
+            Top: 5
+            Left: 224
+            Height: 32
+            Width: 32
+            BackColor: 0xC8CDD7
+            Graphic: GlobalGraphicLibrary.Hand
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: '@local::AutomaticMode'
+                Indirect: False
+                Direction: toProperty
+                Property: fpConveyor_V001.Layers.Layer_0.Items.gvHandbetrieb#Visible
+                ValueConverter: '@local::ValueConverter_AutoModeToVisibility'
+          gvConveyor1ErrorGood:
+            ObjectType: CustomWidgetContainer
+            Top: 5
+            Left: 265
+            Height: 32
+            Width: 32
+            ContainedType: StatusOnDiagMGood
+            Visible: True
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: '@local::TagError'
+                Indirect: False
+                Direction: toProperty
+                Property: .#Visible
+                ValueConverter: '@local::ValueConverter_ErrorToVisibilityInverse'
+          gvConveyor1ErrorFault:
+            ObjectType: CustomWidgetContainer
+            Top: 5
+            Left: 265
+            Height: 32
+            Width: 32
+            ContainedType: StatusOnDiagMFault
+            Visible: False
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: '@local::TagError'
+                Indirect: False
+                Direction: toProperty
+                Property: .#Visible
+                ValueConverter: '@local::ValueConverter_ErrorToVisibility'
+          txtPara1Conveyor1:
+            ObjectType: TextBox
+            Top: 58
+            Left: 16
+            Height: 24
+            Width: 100
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: HmiScreenItemsTextLibrary.TextEntry_28 
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+            BorderColor: 0xFFDDDCDC
+          ioParameter1Conveyor1:
+            ObjectType: IOField
+            Width: 155
+            Height: 24
+            Top: 58
+            Left: 134
+            BorderWidth: 0
+            BackColor: 0xA1D1
+            HorizontalTextAlignment: Right
+            ForeColor: 0xFFDDDCDC
+            ProcessValue AS DInt: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            TabIndex: 0
+            IOFieldType: Output
+            OutputFormat: "{H}"
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: '@local::TagStatus'
+                Indirect: False
+                Direction: toProperty
+                Property: fpConveyor_V001.Layers.Layer_0.Items.ioParameter1Conveyor1#ProcessValue
+          txtMoveConveyor1Forward:
+            ObjectType: TextBox
+            Top: 88
+            Left: 16
+            Height: 36
+            Width: 272
+            BackColor: 0xFF1491EB
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Center
+            Text: HmiScreenItemsTextLibrary.TextEntry_30 
+            TabIndex: 0
+            BorderWidth: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_23
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: '@local::AutomaticMode'
+                Indirect: False
+                Direction: toProperty
+                Property: fpConveyor_V001.Layers.Layer_0.Items.txtMoveConveyor1Forward#Opacity
+                ValueConverter: '@local::ValueConverter_AutoModeToOpacity'
+          txtMoveConveyor1Backward:
+            ObjectType: TextBox
+            Top: 136
+            Left: 16
+            Height: 36
+            Width: 272
+            BackColor: 0xFF1491EB
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Center
+            Text: HmiScreenItemsTextLibrary.TextEntry_31
+            TabIndex: 0
+            BorderWidth: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_23
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: '@local::AutomaticMode'
+                Indirect: False
+                Direction: toProperty
+                Property: fpConveyor_V001.Layers.Layer_0.Items.txtMoveConveyor1Backward#Opacity
+                ValueConverter: '@local::ValueConverter_AutoModeToOpacity'
+          txtMoveConveyor1Stop:
+            ObjectType: TextBox
+            Top: 183
+            Left: 16
+            Height: 36
+            Width: 272
+            BackColor: 0xFFFF1F57
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Center
+            Text: HmiScreenItemsTextLibrary.TextEntry_32
+            TabIndex: 0
+            BorderWidth: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_23
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: '@local::AutomaticMode'
+                Indirect: False
+                Direction: toProperty
+                Property: fpConveyor_V001.Layers.Layer_0.Items.txtMoveConveyor1Stop#Opacity
+                ValueConverter: '@local::ValueConverter_AutoModeToOpacity'
+      Layer_1:
+        Items:
+          btnMoveConveyor1Forward:
+            ObjectType: Button
+            Top: 88
+            Left: 16
+            Height: 36
+            Width: 272
+            BackColor: Black 0%
+            BorderWidth: 0
+            ForeColor: 0x00000000
+            ShowFocusVisual: False
+            Content:
+              SplitRatio: 1
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Down
+                Type: Script
+                Script: '@local::EventScripts.btnMoveConveyor1Forward_OnDown'
+              ScriptEventHandler2:
+                Event: Up
+                Type: Script
+                Script: '@local::EventScripts.btnMoveConveyor1Forward_OnUp'
+          btnMoveConveyor1Backward:
+            ObjectType: Button
+            Top: 136
+            Left: 16
+            Height: 36
+            Width: 272
+            BackColor: Black 0%
+            BorderWidth: 0
+            ForeColor: 0x00000000
+            ShowFocusVisual: False
+            Content:
+              SplitRatio: 1
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Down
+                Type: Script
+                Script: '@local::EventScripts.btnMoveConveyor1Backward_OnDown'
+              ScriptEventHandler2:
+                Event: Up
+                Type: Script
+                Script: '@local::EventScripts.btnMoveConveyor1Backward_OnUp'
+          btnMoveConveyor1Stop:
+            ObjectType: Button
+            Top: 183
+            Left: 16
+            Height: 36
+            Width: 272
+            BackColor: Black 0%
+            BorderWidth: 0
+            ForeColor: 0x00000000
+            ShowFocusVisual: False
+            Content:
+              SplitRatio: 1
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Down
+                Type: Script
+                Script: '@local::EventScripts.btnMoveConveyor1Stop_OnDown'
+              ScriptEventHandler2:
+                Event: Up
+                Type: Script
+                Script: '@local::EventScripts.btnMoveConveyor1Stop_OnUp'
+    ValueConverters:
+      ValueConverter1:
+        ConditionType: Boolean
+        Entries:
+          Entry1:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: true
+            Flashing: False
+            Rate: Medium
+            Value AS String: StatusOnDiagMFault
+          Entry2:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: false
+            Flashing: False
+            Rate: Medium
+            Value AS String: StatusOnDiagMGood
+      ValueConverter_AutoModeToOpacity:
+        ConditionType: Boolean
+        Entries:
+          Entry1:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: true
+            Flashing: False
+            Rate: Medium
+            Value AS Real: 0.5
+          Entry2:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: false
+            Flashing: False
+            Rate: Medium
+            Value AS Real: 1.0
+      ValueConverter_AutoModeToVisibility:
+        ConditionType: Boolean
+        Entries:
+          Entry1:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: true
+            Flashing: False
+            Rate: Medium
+            Value AS Bool: false
+          Entry2:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: false
+            Flashing: False
+            Rate: Medium
+            Value AS Bool: true
+      ValueConverter_ErrorToVisibility:
+        ConditionType: Boolean
+        Entries:
+          Entry1:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: true
+            Flashing: False
+            Rate: Medium
+            Value AS Bool: true
+          Entry2:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: false
+            Flashing: False
+            Rate: Medium
+            Value AS Bool: false
+      ValueConverter_ErrorToVisibilityInverse:
+        ConditionType: Boolean
+        Entries:
+          Entry1:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: true
+            Flashing: False
+            Rate: Medium
+            Value AS Bool: false
+          Entry2:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: false
+            Flashing: False
+            Rate: Medium
+            Value AS Bool: true
+
+
+

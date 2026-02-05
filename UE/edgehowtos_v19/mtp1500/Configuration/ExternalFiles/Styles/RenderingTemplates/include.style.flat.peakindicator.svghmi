@@ -1,0 +1,33 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     overflow="visible">
+
+    <hmi:self type="custom" displayName="Custom Flat Peak Indicator Part" name="custom.flat.peakindicator.part" version="1.0.1" performanceClass="L">
+
+        <hmi:paramDef name="IndicatorOffset"	type="number" />
+        <hmi:paramDef name="ScaleOrientation"   type="HmiOrientation" />
+        <hmi:paramDef name="IndicatorForeColor" type="HmiColor" />
+
+    </hmi:self>
+
+    <defs>
+    </defs>
+
+    <g id="PeakValueIndicator"
+       hmi-bind:transform="translate({{ ParamProps.ScaleOrientation == HmiOrientation.Horizontal ? 9 : ParamProps.IndicatorOffset }},{{ ParamProps.ScaleOrientation == HmiOrientation.Horizontal ? ParamProps.IndicatorOffset : 0 }}) rotate({{ ParamProps.ScaleOrientation == HmiOrientation.Horizontal ? 90 : 0 }})">
+        <path d="M 0,0 l 11,4.5 l -11,4.5 z"
+              hmi-bind:fill="{{ Converter.RGBA( ParamProps.IndicatorForeColor ) }}" />
+    </g>
+
+</svg>

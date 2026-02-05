@@ -1,0 +1,128 @@
+#Version: 2.0
+
+Screens:
+  Template_Stop_Runtime:
+    Width: 320
+    Height: 248
+    BackColor: 0xFFF0F2F3
+    ScriptModules:
+      EventScripts:
+        ScriptLanguage: JavaScript
+        ScriptFile: Scripts\Template_Stop_Runtime_EventScripts.js
+        Scripts:
+          txtCancel_OnTapped: 
+          txtStopRt_OnTapped: 
+          Template_Stop_Runtime_OnLoaded: 
+    EventHandlers:
+      ScriptEventHandler1:
+        Event: Loaded
+        Type: Script
+        Script: '@local::EventScripts.Template_Stop_Runtime_OnLoaded'
+    Layers:
+      Layer_0:
+        Items:
+          recPopupTitleBackground:
+            ObjectType: Rectangle
+            Top: 0
+            Left: 0
+            Height: 40
+            Width: 320
+            BackColor: 0xFF00A1D1
+            BorderWidth: 0
+          txtPopupTitle:
+            ObjectType: TextBox
+            Top: 0
+            Left: 16
+            Height: 40
+            Width: 263
+            BackColor: 0xA1D1
+            ForeColor: White
+            RotationCenterX: 0
+            RotationCenterY: 0
+            HorizontalTextAlignment: Left
+            Text: GlobalTextLibrary.Entity_171
+            Font:
+              Description: GlobalFontLibrary.Entity_4
+          txtCancel:
+            ObjectType: TextBox
+            Top: 192
+            Left: 16
+            Height: 40
+            Width: 288
+            BackColor: 0xFFCDD3D7
+            ForeColor: 0xFF48494E
+            Text: GlobalTextLibrary.Entity_172
+            Font:
+              Description: GlobalFontLibrary.Entity_7
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.txtCancel_OnTapped'
+          txtDescription:
+            ObjectType: TextBox
+            Top: 56
+            Left: 16
+            Height: 56
+            Width: 288
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFF48494E
+            HorizontalTextAlignment: Center
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            TextWrapping: WordWrap
+            Text: GlobalTextLibrary.Entity_173
+            Font:
+              Description: GlobalFontLibrary.Entity_28
+          txtStopRt:
+            ObjectType: TextBox
+            Top: 136
+            Left: 16
+            Height: 40
+            Width: 288
+            BackColor: 0xFFFC3858
+            ForeColor: White
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Text: GlobalTextLibrary.Entity_174
+            Font:
+              Description: GlobalFontLibrary.Entity_7
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.txtStopRt_OnTapped'
+      Layer_1:
+      Layer_2:
+      Layer_3:
+      Layer_4:
+      Layer_5:
+      Layer_6:
+      Layer_7:
+      Layer_8:
+      Layer_9:
+      Layer_10:
+      Layer_11:
+      Layer_12:
+      Layer_13:
+      Layer_14:
+      Layer_15:
+      Layer_16:
+      Layer_17:
+      Layer_18:
+      Layer_19:
+      Layer_20:
+      Layer_21:
+      Layer_22:
+      Layer_23:
+      Layer_24:
+      Layer_25:
+      Layer_26:
+      Layer_27:
+      Layer_28:
+      Layer_29:
+      Layer_30:
+      Layer_31: 

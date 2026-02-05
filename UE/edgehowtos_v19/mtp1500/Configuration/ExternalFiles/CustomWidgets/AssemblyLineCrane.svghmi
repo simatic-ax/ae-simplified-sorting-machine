@@ -1,0 +1,118 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.4/dtd/svg14-hmi.dtd">
+<!-- SIMATIC WINCC Copyright (C) Siemens AG 2022. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     viewBox="0 0 271.78 739.02"
+     preserveAspectRatio="none">
+	<hmi:self type="Widget" name="AssemblyLineCrane" displayName="AssemblyLineCrane" version="1.4.0" performanceClass="L" >
+		<hmi:paramDef name="BasicColor" type="HmiColor" default="0xFF575757" />
+		<hmi:paramDef name="PositionVertical" type="number" default="100" />
+		
+  </hmi:self>
+  
+  <defs>
+  <hmi:localDef type="number" hmi-bind:value="{{Converter.Bounds(ParamProps.PositionVertical/100, 0.0, 1.0)}}" name="NormalizedValuePositionVertical" />
+  </defs>
+<g id="Ebene_1-2">
+<g id="Assembly_Line_Crane">
+<g id="Trolley">
+<g id="Position_Max">
+<g id="Suspension" hmi-bind:transform="scale(1,{{0.515+LocalProps.NormalizedValuePositionVertical*0.485}})">
+<g id="Left">
+<rect x="15.89" y="27.96" width="10" height="515.59" fill="#8c8c91" stroke="#4d4d4d" stroke-miterlimit="10"/>
+<line x1="20.89" y1="541.74" x2="20.89" y2="29.76" fill="none" stroke="#646567" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+</g>
+<g id="Right">
+<rect x="245.89" y="27.96" width="10" height="515.59" fill="#8c8c91" stroke="#4d4d4d" stroke-miterlimit="10"/>
+<line x1="250.89" y1="541.74" x2="250.89" y2="29.76" fill="none" stroke="#646567" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+</g>
+</g>
+<g id="Cage" hmi-bind:transform="translate(0,{{-249.9+LocalProps.NormalizedValuePositionVertical*249.9}})">
+<rect x="130.89" y="602.24" width="10" height="250" transform="translate(-591.35,863.13) rotate(-90)" fill="#8c8c91" stroke="#4d4d4d" stroke-miterlimit="10"/>
+<line x1="259.42" y1="727.24" x2="12.37" y2="727.24" fill="none" stroke="#646567" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+<rect x="130.89" y="410.24" width="10" height="250" transform="translate(-399.35,671.13) rotate(-90)" fill="#8c8c91" stroke="#4d4d4d" stroke-miterlimit="10"/>
+<line x1="259.42" y1="535.24" x2="12.37" y2="535.24" fill="none" stroke="#646567" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+<linearGradient id="Unbenannter_Verlauf_195" x1="8.89" y1="621.42" x2="32.89" y2="621.42" gradientUnits="userSpaceOnUse">
+			  <stop offset="0" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.659))}}" />
+              <stop offset=".1" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.441))}}" />
+              <stop offset=".24" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.498))}}" />
+              <stop offset=".52" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.588))}}" />
+              <stop offset=".78" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.641))}}" />
+              <stop offset="1" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.659))}}" />
+</linearGradient>
+<path d="m24.89,738.65h-8c-4.42,0-8-3.58-8-8v-205.09c0-.9.15-1.79.45-2.64l6.55-18.72h10s6.55,18.72,6.55,18.72c.3.85.45,1.74.45,2.64v205.09c0,4.42-3.58,8-8,8Z" fill="url(#Unbenannter_Verlauf_195)" stroke="#404040" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+<circle cx="20.89" cy="535.24" r="4" fill="#404040" stroke="#8c8c91" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+<circle cx="20.89" cy="520.54" r="4" fill="#404040" stroke="#8c8c91" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+<linearGradient id="Unbenannter_Verlauf_195-2" x1="238.89" x2="262.89" y1="621.42" y2="621.42" gradientUnits="userSpaceOnUse">
+			  <stop offset="0" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.659))}}" />
+              <stop offset=".1" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.441))}}" />
+              <stop offset=".24" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.498))}}" />
+              <stop offset=".52" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.588))}}" />
+              <stop offset=".78" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.641))}}" />
+              <stop offset="1" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.659))}}" />
+</linearGradient>
+<path d="m254.89,738.65h-8c-4.42,0-8-3.58-8-8v-205.09c0-.9.15-1.79.45-2.64l6.55-18.72h10s6.55,18.72,6.55,18.72c.3.85.45,1.74.45,2.64v205.09c0,4.42-3.58,8-8,8Z" fill="url(#Unbenannter_Verlauf_195-2)" stroke="#404040" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+<circle cx="250.89" cy="535.24" r="4" fill="#404040" stroke="#8c8c91" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+<circle cx="250.89" cy="520.54" r="4" fill="#404040" stroke="#8c8c91" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+<circle cx="20.89" cy="727.24" r="4" fill="#404040" stroke="#8c8c91" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+<circle cx="250.89" cy="727.24" r="4" fill="#404040" stroke="#8c8c91" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+</g>
+</g>
+
+<g id="Trolley_Top">
+<linearGradient id="Unbenannter_Verlauf_195-5" x1="10.89" y1="20.38" x2="260.89" y2="20.38" gradientUnits="userSpaceOnUse">
+			  <stop offset="0" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.659))}}" />
+              <stop offset=".1" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.441))}}" />
+              <stop offset=".24" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.498))}}" />
+              <stop offset=".52" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.588))}}" />
+              <stop offset=".78" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.641))}}" />
+              <stop offset="1" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.659))}}" />
+</linearGradient>
+<rect x="10.89" y=".38" width="250" height="40" rx="4" ry="4" fill="url(#Unbenannter_Verlauf_195-5)" stroke="#404040" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+<linearGradient id="Unbenannter_Verlauf_195-6" x1="5.89" y1="20.38" x2="265.89" y2="20.38" gradientUnits="userSpaceOnUse">
+			  <stop offset="0" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.659))}}" />
+              <stop offset=".1" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.441))}}" />
+              <stop offset=".24" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.498))}}" />
+              <stop offset=".52" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.588))}}" />
+              <stop offset=".78" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.641))}}" />
+              <stop offset="1" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.659))}}" />
+</linearGradient>
+<rect x="5.89" y="4.88" width="260" height="31" rx="2" ry="2" fill="url(#Unbenannter_Verlauf_195-6)" stroke="#404040" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+<linearGradient id="Unbenannter_Verlauf_210" x1="6.89" y1="27.96" x2="264.89" y2="27.96" gradientUnits="userSpaceOnUse">
+<stop offset="0" stop-color="#b3b3b3"/>
+<stop offset=".1" stop-color="#e6e6e6"/>
+<stop offset=".59" stop-color="#e4e4e4"/>
+<stop offset=".77" stop-color="#ddd"/>
+<stop offset=".89" stop-color="#d1d1d1"/>
+<stop offset=".93" stop-color="#ccc"/>
+<stop offset="1" stop-color="#8c8c91"/>
+</linearGradient>
+<rect x="6.89" y="23.96" width="258" height="8" fill="url(#Unbenannter_Verlauf_210)"/>
+<polygon points="34.7,31.87 25.25,23.87 6.25,23.87 15.7,31.87 34.7,31.87" fill="#404040"/>
+<polygon points="73.13,31.87 63.68,23.87 44.67,23.87 54.12,31.87 73.13,31.87" fill="#404040"/>
+<polygon points="111.55,31.87 102.1,23.87 83.1,23.87 92.55,31.87 111.55,31.87" fill="#404040"/>
+<polygon points="149.98,31.87 140.53,23.87 121.52,23.87 130.97,31.87 149.98,31.87" fill="#404040"/>
+<polygon points="188.4,31.87 178.95,23.87 159.95,23.87 169.4,31.87 188.4,31.87" fill="#404040"/>
+<polygon points="226.82,31.87 217.38,23.87 198.37,23.87 207.82,31.87 226.82,31.87" fill="#404040"/>
+<polygon points="265.25,31.87 255.8,23.87 236.8,23.87 246.25,31.87 265.25,31.87" fill="#404040"/>
+<linearGradient id="Unbenannter_Verlauf_195-7" x1=".38" y1="33.87" x2="271.41" y2="33.87" gradientUnits="userSpaceOnUse">
+			  <stop offset="0" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.659))}}" />
+              <stop offset=".1" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.441))}}" />
+              <stop offset=".24" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.498))}}" />
+              <stop offset=".52" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.588))}}" />
+              <stop offset=".78" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.641))}}" />
+              <stop offset="1" hmi-bind:stop-color="{{Converter.RGBA(Converter.Lighter(ParamProps.BasicColor, 0.659))}}" />
+</linearGradient>
+<rect x=".37" y="31.87" width="271.03" height="4" rx="2" ry="2" fill="url(#Unbenannter_Verlauf_195-7)" stroke="#404040" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75"/>
+</g>
+</g>
+</g>
+</g>
+</svg>

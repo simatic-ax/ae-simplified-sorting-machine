@@ -1,0 +1,471 @@
+#Version: 2.0
+
+AlarmClasses:
+  SystemNotification:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_1
+    Priority: Low4
+    StateMachine: RaiseClear
+    ID: 59
+    RaisedStateBackColor: LightBlue
+    AcknowledgedStateBackColor: LightBlue
+    AcknowledgedClearedStateBackColor: LightBlue
+    ClearedStateBackColor: LightBlue
+    NormalStateBackColor: White
+    RaisedStateTextColor: Black
+    AcknowledgedStateTextColor: Black
+    AcknowledgedClearedStateTextColor: Black
+    ClearedStateTextColor: Black
+    NormalStateTextColor: Black
+    RaisedStateFlashing: false
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: false
+    ClearedStateFlashing: false
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    RaisedStateBackColorRef: SystemAlarmColors.NotificationBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    ClearedStateBackColorRef: SystemAlarmColors.NotificationBackColor
+    ClearedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    DisplayName:
+      en-US: System notification
+  SystemInformation:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_2
+    Priority: Low1
+    StateMachine: Raise
+    ID: 58
+    RaisedStateBackColor: Gainsboro
+    AcknowledgedStateBackColor: Gainsboro
+    AcknowledgedClearedStateBackColor: Gainsboro
+    ClearedStateBackColor: Gainsboro
+    NormalStateBackColor: White
+    RaisedStateTextColor: Black
+    AcknowledgedStateTextColor: Black
+    AcknowledgedClearedStateTextColor: Black
+    ClearedStateTextColor: Black
+    NormalStateTextColor: Black
+    RaisedStateFlashing: false
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: false
+    ClearedStateFlashing: false
+    RaisedStateBackColorRef: SystemAlarmColors.InformationBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    DisplayName:
+      en-US: System information
+  SystemAlarmWithoutClearEvent:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_4
+    Priority: High12
+    StateMachine: RaiseRequiresAcknowledgement
+    ID: 29
+    RaisedStateBackColor: Red
+    AcknowledgedStateBackColor: Red
+    AcknowledgedClearedStateBackColor: Red
+    ClearedStateBackColor: Red
+    NormalStateBackColor: White
+    RaisedStateTextColor: White
+    AcknowledgedStateTextColor: White
+    AcknowledgedClearedStateTextColor: White
+    ClearedStateTextColor: White
+    NormalStateTextColor: Black
+    RaisedStateFlashing: true
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: false
+    ClearedStateFlashing: true
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    RaisedStateBackColorRef: SystemAlarmColors.AlarmBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    ClearedStateBackColorRef: SystemAlarmColors.AlarmBackColor
+    ClearedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    DisplayName:
+      en-US: System alarm without clear event
+  SystemWarningWithoutClearEvent:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_6
+    Priority: Medium8
+    StateMachine: RaiseRequiresAcknowledgement
+    ID: 28
+    RaisedStateBackColor: Yellow
+    AcknowledgedStateBackColor: Yellow
+    AcknowledgedClearedStateBackColor: Yellow
+    ClearedStateBackColor: Yellow
+    NormalStateBackColor: White
+    RaisedStateTextColor: Black
+    AcknowledgedStateTextColor: Black
+    AcknowledgedClearedStateTextColor: Black
+    ClearedStateTextColor: Black
+    NormalStateTextColor: Black
+    RaisedStateFlashing: true
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: false
+    ClearedStateFlashing: true
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    RaisedStateBackColorRef: SystemAlarmColors.WarningBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    ClearedStateBackColorRef: SystemAlarmColors.WarningBackColor
+    ClearedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    DisplayName:
+      en-US: System warning without clear event
+  SystemAlarm:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_9
+    Priority: High12
+    StateMachine: RaiseClearRequiresAcknowledgement
+    ID: 61
+    RaisedStateBackColor: Red
+    AcknowledgedStateBackColor: Red
+    AcknowledgedClearedStateBackColor: Red
+    ClearedStateBackColor: Red
+    NormalStateBackColor: White
+    RaisedStateTextColor: White
+    AcknowledgedStateTextColor: White
+    AcknowledgedClearedStateTextColor: White
+    ClearedStateTextColor: White
+    NormalStateTextColor: Black
+    RaisedStateFlashing: true
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: false
+    ClearedStateFlashing: true
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    RaisedStateBackColorRef: SystemAlarmColors.AlarmBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    ClearedStateBackColorRef: SystemAlarmColors.AlarmBackColor
+    ClearedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    AcknowledgedStateBackColorRef: SystemAlarmColors.AlarmBackColor
+    AcknowledgedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    DisplayName:
+      en-US: System alarm
+  SystemWarning:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_11
+    Priority: Medium8
+    StateMachine: RaiseClearRequiresAcknowledgement
+    ID: 60
+    RaisedStateBackColor: Yellow
+    AcknowledgedStateBackColor: Yellow
+    AcknowledgedClearedStateBackColor: Yellow
+    ClearedStateBackColor: Yellow
+    NormalStateBackColor: White
+    RaisedStateTextColor: Black
+    AcknowledgedStateTextColor: Black
+    AcknowledgedClearedStateTextColor: Black
+    ClearedStateTextColor: Black
+    NormalStateTextColor: Black
+    RaisedStateFlashing: true
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: false
+    ClearedStateFlashing: true
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    RaisedStateBackColorRef: SystemAlarmColors.WarningBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    ClearedStateBackColorRef: SystemAlarmColors.WarningBackColor
+    ClearedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    AcknowledgedStateBackColorRef: SystemAlarmColors.WarningBackColor
+    AcknowledgedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    DisplayName:
+      en-US: System warning
+  Information:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_13
+    Priority: Low1
+    StateMachine: Raise
+    ID: 50
+    RaisedStateBackColor: Gainsboro
+    AcknowledgedStateBackColor: Gainsboro
+    AcknowledgedClearedStateBackColor: Gainsboro
+    ClearedStateBackColor: Gainsboro
+    NormalStateBackColor: White
+    RaisedStateTextColor: Black
+    AcknowledgedStateTextColor: Black
+    AcknowledgedClearedStateTextColor: Black
+    ClearedStateTextColor: Black
+    NormalStateTextColor: Black
+    RaisedStateFlashing: false
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: false
+    ClearedStateFlashing: false
+    RaisedStateBackColorRef: SystemAlarmColors.InformationBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    DisplayName:
+      en-US: Information
+  Notification:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_14
+    Priority: Low4
+    StateMachine: RaiseClear
+    ID: 51
+    RaisedStateBackColor: LightBlue
+    AcknowledgedStateBackColor: LightBlue
+    AcknowledgedClearedStateBackColor: LightBlue
+    ClearedStateBackColor: LightBlue
+    NormalStateBackColor: White
+    RaisedStateTextColor: Black
+    AcknowledgedStateTextColor: Black
+    AcknowledgedClearedStateTextColor: Black
+    ClearedStateTextColor: Black
+    NormalStateTextColor: Black
+    RaisedStateFlashing: false
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: false
+    ClearedStateFlashing: false
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    RaisedStateBackColorRef: SystemAlarmColors.NotificationBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    ClearedStateBackColorRef: SystemAlarmColors.NotificationBackColor
+    ClearedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    DisplayName:
+      en-US: Notification
+  Alarm:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_17
+    Priority: High12
+    StateMachine: RaiseClearRequiresAcknowledgement
+    ID: 53
+    RaisedStateBackColor: Red
+    AcknowledgedStateBackColor: Red
+    AcknowledgedClearedStateBackColor: Red
+    ClearedStateBackColor: Red
+    NormalStateBackColor: White
+    RaisedStateTextColor: White
+    AcknowledgedStateTextColor: White
+    AcknowledgedClearedStateTextColor: White
+    ClearedStateTextColor: White
+    NormalStateTextColor: Black
+    RaisedStateFlashing: true
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: false
+    ClearedStateFlashing: true
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    RaisedStateBackColorRef: SystemAlarmColors.AlarmBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    ClearedStateBackColorRef: SystemAlarmColors.AlarmBackColor
+    ClearedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    AcknowledgedStateBackColorRef: SystemAlarmColors.AlarmBackColor
+    AcknowledgedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    DisplayName:
+      en-US: Alarm
+  Critical:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_21
+    Priority: Highest
+    StateMachine: RaiseClearRequiresAcknowledgement
+    ID: 54
+    RaisedStateBackColor: DarkRed
+    AcknowledgedStateBackColor: DarkRed
+    AcknowledgedClearedStateBackColor: DarkRed
+    ClearedStateBackColor: DarkRed
+    NormalStateBackColor: White
+    RaisedStateTextColor: White
+    AcknowledgedStateTextColor: White
+    AcknowledgedClearedStateTextColor: White
+    ClearedStateTextColor: White
+    NormalStateTextColor: Black
+    RaisedStateFlashing: true
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: false
+    ClearedStateFlashing: true
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    RaisedStateBackColorRef: SystemAlarmColors.CriticalBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    ClearedStateBackColorRef: SystemAlarmColors.CriticalBackColor
+    ClearedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    AcknowledgedStateBackColorRef: SystemAlarmColors.CriticalBackColor
+    AcknowledgedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    AcknowledgedClearedStateBackColorRef: SystemAlarmColors.CriticalBackColor
+    AcknowledgedClearedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    DisplayName:
+      en-US: Critical
+  WarningWithReset:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_22
+    Priority: Medium8
+    StateMachine: RaiseClearRequiresAcknowledgementAndReset
+    ID: 55
+    RaisedStateBackColor: Yellow
+    AcknowledgedStateBackColor: Yellow
+    AcknowledgedClearedStateBackColor: Yellow
+    ClearedStateBackColor: Yellow
+    NormalStateBackColor: White
+    RaisedStateTextColor: Black
+    AcknowledgedStateTextColor: Black
+    AcknowledgedClearedStateTextColor: Black
+    ClearedStateTextColor: Black
+    NormalStateTextColor: Black
+    RaisedStateFlashing: true
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: true
+    ClearedStateFlashing: true
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    RaisedStateBackColorRef: SystemAlarmColors.WarningBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    ClearedStateBackColorRef: SystemAlarmColors.WarningBackColor
+    ClearedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    AcknowledgedStateBackColorRef: SystemAlarmColors.WarningBackColor
+    AcknowledgedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    AcknowledgedClearedStateBackColorRef: SystemAlarmColors.WarningBackColor
+    AcknowledgedClearedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    DisplayName:
+      en-US: Warning with reset
+  Warning:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_18
+    Priority: Medium8
+    StateMachine: RaiseClearRequiresAcknowledgement
+    ID: 52
+    RaisedStateBackColor: Yellow
+    AcknowledgedStateBackColor: Yellow
+    AcknowledgedClearedStateBackColor: Yellow
+    ClearedStateBackColor: Yellow
+    NormalStateBackColor: White
+    RaisedStateTextColor: Black
+    AcknowledgedStateTextColor: Black
+    AcknowledgedClearedStateTextColor: Black
+    ClearedStateTextColor: Black
+    NormalStateTextColor: Black
+    RaisedStateFlashing: true
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: false
+    ClearedStateFlashing: true
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    RaisedStateBackColorRef: SystemAlarmColors.WarningBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    ClearedStateBackColorRef: SystemAlarmColors.WarningBackColor
+    ClearedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    AcknowledgedStateBackColorRef: SystemAlarmColors.WarningBackColor
+    AcknowledgedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    AcknowledgedClearedStateBackColorRef: SystemAlarmColors.WarningBackColor
+    AcknowledgedClearedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    DisplayName:
+      en-US: Warning
+  AlarmWithReset:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_19
+    Priority: High12
+    StateMachine: RaiseClearRequiresAcknowledgementAndReset
+    ID: 56
+    RaisedStateBackColor: Red
+    AcknowledgedStateBackColor: Red
+    AcknowledgedClearedStateBackColor: Red
+    ClearedStateBackColor: Red
+    NormalStateBackColor: White
+    RaisedStateTextColor: White
+    AcknowledgedStateTextColor: White
+    AcknowledgedClearedStateTextColor: White
+    ClearedStateTextColor: White
+    NormalStateTextColor: Black
+    RaisedStateFlashing: true
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: true
+    ClearedStateFlashing: true
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    RaisedStateBackColorRef: SystemAlarmColors.AlarmBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    ClearedStateBackColorRef: SystemAlarmColors.AlarmBackColor
+    ClearedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    AcknowledgedStateBackColorRef: SystemAlarmColors.AlarmBackColor
+    AcknowledgedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    DisplayName:
+      en-US: Alarm with reset
+  CriticalWithReset:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_23
+    Priority: Highest
+    StateMachine: RaiseClearRequiresAcknowledgementAndReset
+    ID: 57
+    RaisedStateBackColor: DarkRed
+    AcknowledgedStateBackColor: DarkRed
+    AcknowledgedClearedStateBackColor: DarkRed
+    ClearedStateBackColor: DarkRed
+    NormalStateBackColor: White
+    RaisedStateTextColor: White
+    AcknowledgedStateTextColor: White
+    AcknowledgedClearedStateTextColor: White
+    ClearedStateTextColor: White
+    NormalStateTextColor: Black
+    RaisedStateFlashing: true
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: true
+    ClearedStateFlashing: true
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    RaisedStateBackColorRef: SystemAlarmColors.CriticalBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    ClearedStateBackColorRef: SystemAlarmColors.CriticalBackColor
+    ClearedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    AcknowledgedStateBackColorRef: SystemAlarmColors.CriticalBackColor
+    AcknowledgedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    AcknowledgedClearedStateBackColorRef: SystemAlarmColors.CriticalBackColor
+    AcknowledgedClearedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    DisplayName:
+      en-US: Critical with reset
+  OperatorInputInformation:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_20
+    Priority: Low1
+    StateMachine: Raise
+    ID: 30
+    RaisedStateBackColor: Gainsboro
+    AcknowledgedStateBackColor: Gainsboro
+    AcknowledgedClearedStateBackColor: Gainsboro
+    ClearedStateBackColor: Gainsboro
+    NormalStateBackColor: White
+    RaisedStateTextColor: Black
+    AcknowledgedStateTextColor: Black
+    AcknowledgedClearedStateTextColor: Black
+    ClearedStateTextColor: Black
+    NormalStateTextColor: Black
+    RaisedStateFlashing: false
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: false
+    ClearedStateFlashing: false
+    RaisedStateBackColorRef: SystemAlarmColors.InformationBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.BlackAlarmTextColor
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    DisplayName:
+      en-US: Operator input information
+  OperatorInputRequest:
+    ESOrigin: PREDEFINED # DFP generated - DO NOT REMOVE
+    Symbol: AlarmClassSymbolTextLibrary.Entry_25
+    Priority: Low5
+    StateMachine: RaiseClearRequiresAcknowledgement
+    ID: 31
+    RaisedStateBackColor: MediumBlue
+    AcknowledgedStateBackColor: MediumBlue
+    AcknowledgedClearedStateBackColor: MediumBlue
+    ClearedStateBackColor: MediumBlue
+    NormalStateBackColor: White
+    RaisedStateTextColor: White
+    AcknowledgedStateTextColor: White
+    AcknowledgedClearedStateTextColor: White
+    ClearedStateTextColor: White
+    NormalStateTextColor: Black
+    RaisedStateFlashing: true
+    AcknowledgedStateFlashing: false
+    AcknowledgedClearedStateFlashing: false
+    ClearedStateFlashing: true
+    NormalStateBackColorRef: SystemAlarmColors.NormalStateBackColor
+    NormalStateTextColorRef: SystemAlarmColors.NormalStateTextColor
+    RaisedStateBackColorRef: SystemAlarmColors.OperatorInputRequestBackColor
+    RaisedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    ClearedStateBackColorRef: SystemAlarmColors.OperatorInputRequestBackColor
+    ClearedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    AcknowledgedStateBackColorRef: SystemAlarmColors.OperatorInputRequestBackColor
+    AcknowledgedStateTextColorRef: SystemAlarmColors.WhiteAlarmTextColor
+    DisplayName:
+      en-US: Operator input request

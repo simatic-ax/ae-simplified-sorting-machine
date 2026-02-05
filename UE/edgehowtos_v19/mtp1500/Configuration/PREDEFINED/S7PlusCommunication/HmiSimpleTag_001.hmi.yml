@@ -1,0 +1,49 @@
+#Version: 2.0
+
+SimpleTags:
+  S7P_HMI_Connection_2_CentralAlarm:
+    DataType: Bool
+    ESOrigin: S7PlusCommunication # DFP generated - DO NOT REMOVE
+    Address: 0001:AL_FT
+    Connection: S7P_HMI_Connection_2
+    AcquisitionMode: ExternAlert
+    ControllerDataType: Undefined
+    ManagerNumber: 2
+    Alarms:
+      CentralAlarm:
+        ObjectType: HmiBinaryAlarm
+        ParentID: 1
+        AlarmClass: Notification
+        SourceType: CONTROLLER
+        SystemSeverity: 0
+        ConditionPattern: 1
+        MultiInstance: true
+        EventText: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText1: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText2: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText3: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText4: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText5: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText6: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText7: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText8: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText9: S7PlusAlarmTextLibrary.Entry_30
+        InfoText: S7PlusAlarmTextLibrary.Entry_30
+        Area: System/HMI/DriverCommunication
+        Origin: '@S1%s@:HMI_Connection_2'
+  '@S7P_HMI_Connection_2_PLC_OpState':
+    DataType: DInt
+    ESOrigin: S7PlusCommunication # DFP generated - DO NOT REMOVE
+    Address: 0001:ST:0.0.0
+    Connection: S7P_HMI_Connection_2
+    AcquisitionMode: OnChange
+    ControllerDataType: S7PTransOpStateType
+    ManagerNumber: 2
+  '@S7P_HMI_Connection_2_PLC_OpStateCtrl':
+    DataType: DInt
+    ESOrigin: S7PlusCommunication # DFP generated - DO NOT REMOVE
+    Address: 0001:ST:0.1.0
+    Connection: S7P_HMI_Connection_2
+    AcquisitionMode: OnChange
+    ControllerDataType: S7PTransOpStateCtrlType
+    ManagerNumber: 2

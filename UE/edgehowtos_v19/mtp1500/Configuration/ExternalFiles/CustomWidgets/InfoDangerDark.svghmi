@@ -1,0 +1,33 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.4/dtd/svg14-hmi.dtd">
+<!-- SIMATIC WINCC Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     viewBox="0 0 300 300"
+     preserveAspectRatio="none">
+
+	<hmi:self type="widget" displayName="InfoDangerDark" name="extended.InfoDangerDark" version="1.0.1" performanceClass="L">
+		<hmi:paramDef name="BasicColor"         type="HmiColor"  default="0xFFF11A3E"  />
+		<hmi:paramDef name="ContrastColor"      type="HmiColor"  default="0xFFFFFFFF"  />
+    </hmi:self>
+
+     <defs>
+       <hmi:localDef name="Color" type="HmiColor" hmi-bind:value="{{ParamProps.BasicColor}}"  />
+     </defs>
+  <linearGradient id="Button_1_" gradientUnits="userSpaceOnUse" x1="67.1533" y1="50.6191" x2="275.33" y2="299.233">
+    <stop offset="0" hmi-bind:stop-color="{{Converter.RGBA(Converter.Darker(ParamProps.BasicColor, 0.000))}}" />
+    <stop offset="1" hmi-bind:stop-color="{{Converter.RGBA(Converter.Darker(ParamProps.BasicColor, 0.350))}}" />
+  </linearGradient>
+  <circle id="Button" fill="url(#Button_1_)" hmi-bind:stroke="{{Converter.RGBA(ParamProps.BasicColor)}}" stroke-width="0.75" stroke-miterlimit="10" cx="150" cy="149.6" r="148" />
+  <linearGradient id="Warning-Icon_1_" gradientUnits="userSpaceOnUse" x1="130.5273" y1="158.7134" x2="322.5269" y2="328.0464">
+    <stop offset="0" hmi-bind:stop-color="{{Converter.RGBA(Converter.Darker(ParamProps.ContrastColor, 0.000))}}" />
+    <stop offset="1" hmi-bind:stop-color="{{Converter.RGBA(Converter.Darker(ParamProps.ContrastColor, 0.450))}}" />
+  </linearGradient>
+  <path id="Warning-Icon" fill="url(#Warning-Icon_1_)" hmi-bind:stroke="{{Converter.RGBA(ParamProps.BasicColor)}}" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M254.2,225.4L152.6,34c-0.5-1-1.5-1.5-2.6-1.5s-2.1,0.6-2.6,1.5L45.8,225.4c-0.5,0.9-0.5,2,0.1,2.9c0.5,0.9,1.5,1.4,2.5,1.4h203.3  c1,0,2-0.5,2.5-1.4C254.7,227.4,254.7,226.3,254.2,225.4z M162,209.6H138v-23.9H162V209.6z M162,173.7H138V96H162V173.7z" />
+</svg>

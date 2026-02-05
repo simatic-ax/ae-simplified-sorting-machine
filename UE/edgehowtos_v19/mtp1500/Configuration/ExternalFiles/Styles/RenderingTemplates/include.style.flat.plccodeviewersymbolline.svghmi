@@ -1,0 +1,125 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2022. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:hmi="http://svg.siemens.com/hmi/"
+    xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+    xmlns:hmi-types="http://svg.siemens.com/hmi/types/"
+    xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+    xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+    xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+    xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/">
+
+  <hmi:self type="part:HmiDynamicPropertyPart" name="include.style.flat.plccodeviewersymbolline" displayName="Symbol line" >
+    <hmi:paramDef name="FocusColor"                 type="HmiColor"/>
+    <hmi:paramDef name="ForeColor"                  type="HmiColor"/>
+    <hmi:paramDef name="BackColor"                  type="HmiColor"/>
+    <hmi:paramDef name="Font"                       type="HmiFontPart"/>
+    <hmi:paramDef name="Width"                      type="number"/>
+    <hmi:paramDef name="Height"                     type="number"/>
+  </hmi:self>
+  <defs>
+    <hmi:localDef name="PropNameText"                   type="string"         value="Text"/>
+    <hmi:localDef name="PropNameBorderColor"            type="string"         value="BorderColor" />
+    <hmi:localDef name="PropNameBorderWidth"            type="string"         value="BorderWidth" />
+    <hmi:localDef name="PropNameBackColor"              type="string"         value="BackColor" />
+    <hmi:localDef name="PropNameForeColor"              type="string"         value="ForeColor" />
+    <hmi:localDef name="PropNameWidth"                  type="string"         value="Width" />
+  </defs>
+  <g id="ElementsGroup" >
+    <rect
+        y="0"
+        hmi-bind:height="{{ Layout.ActualHeight }}"
+        hmi-bind:width="{{ Layout.ActualWidth }}"
+        hmi-bind:fill="{{ Converter.RGBA(ParamProps.BackColor) }}"
+        hmi-bind:stroke="{{ Converter.RGBA(Converter.Lighter(ParamProps.BackColor, 0.1)) }}"
+        stroke-width="2"
+    >
+    </rect>
+    <hmi-element:listContainer source="1" hmi-bind:width="{ Layout.ActualWidth }" hmi-bind:height="{ Layout.ActualHeight }">
+      <hmi-feature:properties>
+        <hmi-feature:select hmi-bind:name="{ LocalProps.PropNameText }"             as="Text" />
+        <hmi-feature:select hmi-bind:name="{ LocalProps.PropNameBorderColor }"      as="BorderColor" />
+        <hmi-feature:select hmi-bind:name="{ LocalProps.PropNameWidth }"            as="Width" />
+      </hmi-feature:properties>
+      <hmi:master-inline>
+        <hmi:param name="Font"              type="HmiFontPart"     hmi-bind:value="{ ParamProps.Font }" />
+        <hmi:param name="ForeColor"         type="HmiColor"        hmi-bind:value="{ ParamProps.ForeColor }" />
+        <hmi:param name="BackColor"         type="HmiColor"        hmi-bind:value="{ ParamProps.BackColor }"/>
+        <hmi:param name="FocusColor"        type="HmiColor"        hmi-bind:value="{ ParamProps.FocusColor }"/>
+        <hmi:param name="Height"            type="number"          hmi-bind:value="{ ParamProps.Height }"/>
+        <hmi:template>
+          <svg id="TIFID_List_Symbol_Line" data-tif-type="WSI:SymbolLine"
+              xmlns="http://www.w3.org/2000/svg" xmlns:hmi="http://svg.siemens.com/hmi/"
+              xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+              xmlns:hmi-types="http://svg.siemens.com/hmi/types/"
+              xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/" overflow="visible">
+            <hmi:self type="system:HmiListContainerSystemPart" name="lc-master" displayName="Content of the ListContainer master" >
+              <hmi:paramDef name="Font"             type="HmiFontPart"  />
+              <hmi:paramDef name="ForeColor"        type="HmiColor"     />
+              <hmi:paramDef name="BackColor"        type="HmiColor"     />
+              <hmi:paramDef name="FocusColor"       type="HmiColor"     />
+              <hmi:paramDef name="Height"           type="number"       />
+            </hmi:self>
+            <hmi:inline hmi-bind:forEach="{ HmiProps.List }" x="0" y="0" hmi-flex:width="{ Layout.ActualWidth }" hmi-flex:direction="row" hmi-flex:wrap="false">
+              <hmi:param name="Font"                type="HmiFontPart"      hmi-bind:value="{ ParamProps.Font }" />
+              <hmi:param name="FocusColor"          type="HmiColor"         hmi-bind:value="{ ParamProps.FocusColor }"/>
+              <hmi:param name="ForeColor"           type="HmiColor"         hmi-bind:value="{ ParamProps.ForeColor }" />
+              <hmi:param name="BackColor"           type="HmiColor"         hmi-bind:value="{ ParamProps.BackColor }"/>
+              <hmi:param name="SelectedIndex"       type="number"           hmi-bind:value="{ HmiProps.SelectedIndex }" />
+              <hmi:param name="Height"              type="number"           hmi-bind:value="{ ParamProps.Height }"/>
+              <hmi:template>
+                <svg id="TIFID_List_Symbol_Line_Content" data-tif-type="WSI:SymbolLineContent"
+                      xmlns="http://www.w3.org/2000/svg" xmlns:hmi="http://svg.siemens.com/hmi/"
+                      xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                      xmlns:hmi-types="http://svg.siemens.com/hmi/types/"
+                      xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+                      xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+                      hmi-flex:minHeight="{ParamProps.Height}"
+                      hmi-flex:grow="{HmiProps.Width}"
+                      hmi-flex:shrink="{{ 3 - HmiProps.Width}}"
+                >
+                  <hmi:self type="part:HmiDynamicPropertyPart" name="lc-master" displayName="Content of the ListContainer master" >
+                    <hmi:paramDef name="Font"             type="HmiFontPart" />
+                    <hmi:paramDef name="FocusColor"       type="HmiColor" />
+                    <hmi:paramDef name="ForeColor"        type="HmiColor" />
+                    <hmi:paramDef name="BackColor"        type="HmiColor"  />
+                    <hmi:paramDef name="GridLineColor"    type="HmiColor"  />
+                    <hmi:paramDef name="SelectedIndex"    type="number"  two-way="true" />
+                    <hmi:paramDef name="Height"           type="number"  />
+                  </hmi:self>
+                  <defs>
+                    <hmi:localDef name="TextStartX"         type="number"      hmi-bind:value="{{10}}"  />
+                    <hmi:localDef name="TextStartY"         type="number"      hmi-bind:value="{{ (Layout.ActualHeight - ParamProps.Font.Size) / 2 + ParamProps.Font.Size / 2 }}"  />
+                    <hmi:localDef name="BackColor"          type="HmiColor"    hmi-bind:value="{ ParamProps.BackColor }" />
+                    <hmi:localDef name="ForeColor"          type="HmiColor"    hmi-bind:value="{ ParamProps.ForeColor }" />
+                    <hmi:localDef name="TextWidth" type="number" hmi-bind:value="{{ Layout.ActualWidth - 20 }}" />
+                    <hmi:localDef name="CurrentText" type="string" hmi-bind:value="{{ Converter.TextEllipsis(HmiProps.Text, LocalProps.TextWidth, ParamProps.Font ) }}" />
+                    <hmi:action id="onMouseEnter">
+                        <hmi:sendCommand name="SHOW_TOOLTIP" type="string" hmi-bind:value="{{ HmiProps.Text }}" hmi-bind:condition="{{ gt(Converter.TextWidth(HmiProps.Text, ParamProps.Font), (LocalProps.TextWidth)) }}" />
+                    </hmi:action>
+                    <hmi:action id="onMouseLeave">
+                        <hmi:sendCommand name="HIDE_TOOLTIP" />
+                    </hmi:action>
+                  </defs>
+                  <text
+                    hmi-event:mouseEnter="url(#onMouseEnter)"
+                    hmi-event:mouseLeave="url(#onMouseLeave)"
+                    hmi-bind:fill="{{ Converter.RGBA(LocalProps.ForeColor) }}"
+                    hmi-bind:font-size="{ ParamProps.Font.Size }"
+                    hmi-bind:font-weight="{ ParamProps.Font.Weight }"
+                    hmi-bind:font-family="{ ParamProps.Font.Name }"
+                    hmi-bind:x="{ LocalProps.TextStartX }"
+                    hmi-bind:y="{ LocalProps.TextStartY }"
+                    dominant-baseline="middle"
+                  >
+                    <hmi:text hmi-bind:value="{ LocalProps.CurrentText }" />
+                  </text>
+                </svg>
+              </hmi:template>
+            </hmi:inline>
+          </svg>
+        </hmi:template>
+      </hmi:master-inline>
+    </hmi-element:listContainer>
+  </g>
+</svg>

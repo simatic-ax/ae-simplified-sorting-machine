@@ -1,0 +1,143 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2022. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:hmi="http://svg.siemens.com/hmi/"
+    xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+    xmlns:hmi-types="http://svg.siemens.com/hmi/types/"
+    xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+    xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+    xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+    xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/">
+
+  <hmi:self type="part:HmiDynamicPropertyPart" name="style.extended.graphoverviewstep" displayName="Content of the Steps" >
+    <hmi:paramDef name="FocusColor"                 type="HmiColor"/>
+    <hmi:paramDef name="ForeColor"                  type="HmiColor"/>
+    <hmi:paramDef name="BackColor"                  type="HmiColor"/>
+    <hmi:paramDef name="Font"                       type="HmiFontPart"/>
+    <hmi:paramDef name="GridLineColor"              type="HmiColor"/>
+    <hmi:paramDef name="OperationMode"              type="boolean"/>
+    <hmi:paramDef name="AmountOfSteps"              type="number"/>
+    <hmi:paramDef name="Width"                      type="number"/>
+    <hmi:paramDef name="Height"                     type="number"/>
+  </hmi:self>
+  <defs>
+    <hmi:localDef name="PropNameText"                   type="string"         value="Text"/>
+    <hmi:localDef name="VertPos"                        type="number"         value="0"/>
+    <hmi:localDef name="CurrentStep"                    type="string"         value="CurrentStep"/>
+    <hmi:localDef name="LastStep"                    	  type="string"         value="LastStep"/>
+    <hmi:localDef name="SupervisionError"               type="string"         value="SupervisionError"/>
+    <hmi:localDef name="InterlockError"                 type="string"         value="InterlockError"/>
+    <hmi:localDef name="PropNameBorderColor"            type="string"         value="BorderColor" />
+    <hmi:localDef name="PropNameBorderWidth"            type="string"         value="BorderWidth" />
+    <hmi:localDef name="PropNameBackColor"              type="string"         value="BackColor" />
+    <hmi:localDef name="PropNameForeColor"              type="string"         value="ForeColor" />
+    <hmi:localDef name="PropNameTitleBgColor"           type="string"         value="TitleBgColor" />
+    <hmi:localDef name="PropNameTitleForeColor"         type="string"         value="TitleForeColor" />
+    <hmi:localDef name="PropSpacePaddingItem"           type="string"         value="SpacePaddingItem" />
+    <hmi:localDef name="StepWidth"                      type="string"         value="StepWidth" />
+    <hmi:localDef name="EmptyList"                      type="string"         value="EmptyList" />
+  </defs>
+  <g id="ElementsGroup" >
+    <hmi-element:listContainer source="1" hmi-bind:width="{ Layout.ActualWidth }" hmi-bind:height="{ Layout.ActualHeight }">
+      <hmi-feature:properties>
+        <hmi-feature:select hmi-bind:name="{ LocalProps.PropNameText }"             as="Text" />
+        <hmi-feature:select hmi-bind:name="{ LocalProps.CurrentStep }"              as="CurrentStep" />
+        <hmi-feature:select hmi-bind:name="{ LocalProps.LastStep }"                 as="LastStep" />
+        <hmi-feature:select hmi-bind:name="{ LocalProps.InterlockError }"           as="InterlockError" />
+        <hmi-feature:select hmi-bind:name="{ LocalProps.SupervisionError }"         as="SupervisionError" />
+        <hmi-feature:select hmi-bind:name="{ LocalProps.PropNameTitleBgColor }"     as="TitleBgColor" />
+        <hmi-feature:select hmi-bind:name="{ LocalProps.PropNameTitleForeColor }"   as="TitleForeColor" />
+        <hmi-feature:select hmi-bind:name="{ LocalProps.PropNameBorderColor }"      as="BorderColor" />
+        <hmi-feature:select hmi-bind:name="{ LocalProps.StepWidth }"                as="StepWidth" />
+        <hmi-feature:select hmi-bind:name="{ LocalProps.EmptyList }"                as="EmptyList" />
+      </hmi-feature:properties>
+      <hmi:master-inline>
+        <hmi:param name="Font"              type="HmiFontPart"     hmi-bind:value="{ ParamProps.Font }" />
+        <hmi:param name="ForeColor"         type="HmiColor"        hmi-bind:value="{ ParamProps.ForeColor }" />
+        <hmi:param name="GridLineColor"     type="HmiColor"        hmi-bind:value="{ ParamProps.GridLineColor }"/>
+        <hmi:param name="BackColor"         type="HmiColor"        hmi-bind:value="{ ParamProps.BackColor }"/>
+        <hmi:param name="FocusColor"        type="HmiColor"        hmi-bind:value="{ ParamProps.FocusColor }"/>
+        <hmi:param name="Height"            type="number"          hmi-bind:value="{ ParamProps.Height }"/>
+        <hmi:template>
+          <svg id="TIFID_List_Steps_Data" data-tif-type="WSI:StepData"
+              xmlns="http://www.w3.org/2000/svg" xmlns:hmi="http://svg.siemens.com/hmi/"
+              xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+              xmlns:hmi-types="http://svg.siemens.com/hmi/types/"
+              xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/" overflow="visible">
+            <hmi:self type="system:HmiListContainerSystemPart" name="lc-master" displayName="Content of the ListContainer master" >
+              <hmi:paramDef name="Font"             type="HmiFontPart"  />
+              <hmi:paramDef name="ForeColor"        type="HmiColor"     />
+              <hmi:paramDef name="GridLineColor"    type="HmiColor"     />
+              <hmi:paramDef name="BackColor"        type="HmiColor"     />
+              <hmi:paramDef name="FocusColor"       type="HmiColor"     />
+              <hmi:paramDef name="Height"           type="number"       />
+            </hmi:self>
+            <hmi:inline hmi-bind:forEach="{ HmiProps.List }" x="0" y="0" hmi-flex:direction="row" hmi-flex:wrap="true">
+              <hmi:param name="Font"                type="HmiFontPart"      hmi-bind:value="{ ParamProps.Font }" />
+              <hmi:param name="FocusColor"          type="HmiColor"         hmi-bind:value="{ ParamProps.FocusColor }"/>
+              <hmi:param name="ForeColor"           type="HmiColor"         hmi-bind:value="{ ParamProps.ForeColor }" />
+              <hmi:param name="BackColor"           type="HmiColor"         hmi-bind:value="{ ParamProps.BackColor }"/>
+              <hmi:param name="GridLineColor"       type="HmiColor"         hmi-bind:value="{ ParamProps.GridLineColor }"/>
+              <hmi:param name="SelectedIndex"       type="number"           hmi-bind:value="{ HmiProps.SelectedIndex }" />
+              <hmi:param name="Height"              type="number"           hmi-bind:value="{ ParamProps.Height }"/>
+              <hmi:template>
+                <svg id="TIFID_List_Step_Content" data-tif-type="WSI:StepContent"
+                      xmlns="http://www.w3.org/2000/svg" xmlns:hmi="http://svg.siemens.com/hmi/"
+                      xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                      xmlns:hmi-types="http://svg.siemens.com/hmi/types/"
+                      xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+                      xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+                      hmi-flex:minWidth="{{ eq(HmiProps.LastStep, true) ? 150 : (eq(HmiProps.EmptyList, true) ? HmiProps.StepWidth : 50) }}"
+                      hmi-flex:minHeight="60"
+                      hmi-flex:maxHeight="100">
+                  <hmi:self type="part:HmiDynamicPropertyPart" name="lc-master" displayName="Content of the ListContainer master" >
+                    <hmi:paramDef name="Font"             type="HmiFontPart" />
+                    <hmi:paramDef name="FocusColor"       type="HmiColor" />
+                    <hmi:paramDef name="ForeColor"        type="HmiColor" />
+                    <hmi:paramDef name="BackColor"        type="HmiColor"  />
+                    <hmi:paramDef name="GridLineColor"    type="HmiColor"  />
+                    <hmi:paramDef name="SelectedIndex"    type="number"  two-way="true" />
+                    <hmi:paramDef name="Height"           type="number"  />
+                  </hmi:self>
+                  <defs>
+                    <hmi:localDef name="Size"                    type="number"     value="14"  />
+                    <hmi:localDef name="Weight"                  type="number"     value="200"  />
+                    <hmi:localDef name="FName"                   type="string"     value="Arial" />
+                    <hmi:localDef name="Supervision"             type="number"     value="4294321223" />
+                    <hmi:localDef name="Interlock"               type="number"     value="4294936898 " />
+                    <hmi:localDef name="RectHeight"              type="number"     hmi-bind:value="{{ParamProps.Height}}"  />
+                    <hmi:localDef name="EmptyStepWidth"          type="number"     hmi-bind:value="{{(eq(HmiProps.EmptyList, true) ? HmiProps.StepWidth : 50 )}}"  />
+                    <hmi:localDef name="RectWidth"               type="number"     hmi-bind:value="{{ eq(HmiProps.LastStep, true) ? 150 : LocalProps.EmptyStepWidth }}" />
+                    <hmi:localDef name="TextCharWidth"           type="number"     hmi-bind:value="{{ Converter.TextWidth( HmiProps.Text, ParamProps.Font, true) }}" />
+                    <hmi:localDef name="IsMultiline"             type="boolean"    hmi-bind:value="{{ gt(LocalProps.TextCharWidth, 75) ? true: false }}" />
+                    <hmi:localDef name="TextStartX"              type="number"     hmi-bind:value="{{ (LocalProps.RectWidth/2) -  (LocalProps.TextCharWidth/2) }}" />
+                    <hmi:localDef name="TextStartY"              type="number"     hmi-bind:value="{{ LocalProps.RectHeight/2 + 5 }}"  />
+                    <hmi:localDef name="isSelectedStep"          type="boolean"    hmi-bind:value="{{ and(eq(ParamProps.SelectedIndex,HmiProps.$index), not(eq(HmiProps.EmptyList, true))) ? true: false }}" />
+                    <hmi:localDef name="RectBorder"              type="HmiColor"   hmi-bind:value="{{ LocalProps.isSelectedStep ? ParamProps.FocusColor: ParamProps.GridLineColor}}"  />
+                    <hmi:localDef name="RectBorderWidth"         type="number"     hmi-bind:value="{{ LocalProps.isSelectedStep ? 4: 1}}" />
+                    <hmi:localDef name="StepBackColor"           type="HmiColor"   hmi-bind:value="{{ eq(HmiProps.SupervisionError, true)? LocalProps.Supervision: (eq(HmiProps.InterlockError, true) ? LocalProps.Interlock: ParamProps.BackColor)}}" />
+                  </defs>
+                  <rect hmi:if="{{ not(eq(HmiProps.EmptyList, true)) }}" hmi-bind:height="{{ LocalProps.RectHeight }}" hmi-bind:width="{{ LocalProps.RectWidth }}" hmi-bind:fill="{{Converter.RGBA(LocalProps.StepBackColor)}}"
+                    hmi-bind:stroke-width="{ LocalProps.RectBorderWidth }" hmi-bind:stroke="{{ LocalProps.RectBorder }}"></rect>
+                  <path hmi:if="{{ and(eq(HmiProps.LastStep, false), eq(HmiProps.EmptyList, true)) }}" hmi-bind:d="M0,0 L{{LocalProps.RectWidth}},0 L{{LocalProps.RectWidth}},{{LocalProps.RectHeight}} L0,{{LocalProps.RectHeight}} L0,0"
+                    hmi-bind:stroke-width="{ LocalProps.RectBorderWidth }" fill="none" hmi-bind:stroke="{{ LocalProps.RectBorder }}"/>
+                  <path hmi:if="{{ eq(HmiProps.LastStep, true) }}" hmi-bind:d="M0,0 L{{LocalProps.RectWidth}},0 L{{LocalProps.RectWidth}},{{LocalProps.RectHeight}} L0,{{LocalProps.RectHeight}} L0,0"
+                    hmi-bind:stroke-width="{ LocalProps.RectBorderWidth }" fill="none" hmi-bind:stroke="{{ LocalProps.RectBorder }}"/>
+                    <text 
+                      hmi-bind:fill="{{ParamProps.ForeColor}}"
+                      hmi-bind:font-size="{ ParamProps.Font.Size }"
+                      hmi-bind:font-weight="{ ParamProps.Font.Weight }"
+                      hmi-bind:font-family="{ ParamProps.Font.Name }"
+                      hmi-bind:x="{{ LocalProps.TextStartX  }}"
+                      hmi-bind:y="{ LocalProps.TextStartY }">
+                      <hmi:text hmi-bind:value="{ HmiProps.Text }" />
+                    </text>
+                  </svg>
+              </hmi:template>
+            </hmi:inline>
+          </svg>
+        </hmi:template>
+      </hmi:master-inline>
+    </hmi-element:listContainer>
+  </g>
+</svg>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     preserveAspectRatio="none">
+
+    <hmi:self type="custom" displayName="Custom Extended Text Part" name="custom.extended.text.part" version="1.0.1" performanceClass="L">
+
+        <hmi:paramDef name="Text"                       type="string"                   />
+        <hmi:paramDef name="Font"                       type="HmiFontPart"              />
+        <hmi:paramDef name="TextColor"                  type="HmiColor"                 />
+        <hmi:paramDef name="HorizontalTextAlignment"    type="HmiHorizontalAlignment"   />
+        <hmi:paramDef name="VerticalTextAlignment"      type="HmiVerticalAlignment"     />
+
+    </hmi:self>
+
+    <defs>
+        <!-- Local definitions of this template -->
+        <hmi:localDef name="TextHeightFontSize"         type="number" hmi-bind:value="{ ParamProps.Font.Size }" />
+        <!-- x, y and baseline position of the text-->
+        <hmi:localDef name="TextAnchorX"                type="string" hmi-bind:value="{{ ParamProps.HorizontalTextAlignment == HmiHorizontalAlignment.Center ? 'middle' : ParamProps.HorizontalTextAlignment == HmiHorizontalAlignment.Left ? 'start' : 'end' }}" />
+        <hmi:localDef name="TextAnchorY"                type="string" hmi-bind:value="{{ ParamProps.VerticalTextAlignment == HmiVerticalAlignment.Center ? 'middle' : ParamProps.VerticalTextAlignment == HmiVerticalAlignment.Top ? 'start' : 'end' }}" />
+
+    </defs>
+
+    <g id="TextGroup">
+        <text id="TextText"
+              hmi-bind:x="{{ floor( (LocalProps.TextAnchorX == 'start' ? 0 : LocalProps.TextAnchorX == 'middle' ? (Layout.ActualWidth / 2) :  Layout.ActualWidth ) ) }}"
+              hmi-bind:y="{{ floor( (LocalProps.TextAnchorY == 'start' ? ( LocalProps.TextHeightFontSize )
+                                                                : LocalProps.TextAnchorY == 'middle' ? ( ( Layout.ActualHeight + LocalProps.TextHeightFontSize * 0.65 ) / 2 )
+                                                                                                     : ( Layout.ActualHeight - LocalProps.TextHeightFontSize * 0.20 - 2     )  ) ) }}"
+              hmi-bind:fill="{{ Converter.RGBA( ParamProps.TextColor ) }}"
+              hmi-bind:font-size="{ ParamProps.Font.Size }"
+              hmi-bind:font-style="{{ ParamProps.Font.Italic ? 'italic' : 'normal' }}"
+              hmi-bind:font-weight="{ ParamProps.Font.Weight }"
+              hmi-bind:font-family="{ ParamProps.Font.Name }"
+              hmi-bind:text-decoration="{{ Converter.TextDecoration( ParamProps.Font ) }}"
+              hmi-bind:text-anchor="{ LocalProps.TextAnchorX }" >
+            
+            <hmi:text hmi-bind:value="{ ParamProps.Text }" />
+        </text>
+    </g>
+</svg>

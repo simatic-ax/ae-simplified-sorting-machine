@@ -1,0 +1,230 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"
+     xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+     preserveAspectRatio="none">
+
+    <hmi:self type="system:HmiLogicSymbolSystemPart" displayName="Flat HmiLogicSymbolSystemPart" name="include.style.flat.logicview">
+        <hmi:data type="logic-details"></hmi:data>
+    </hmi:self>
+    <defs>
+      <hmi:localDef name="HeaderTag"                     type="string"         hmi-data-bind:value="{ Content.HeaderTag }" />
+      <hmi:localDef name="HeaderAddress"                 type="string"         hmi-data-bind:value="{ Content.HeaderAddress }" />
+      <hmi:localDef name="HeaderAddressForeColor"        type="string"         hmi-data-bind:value="{ Content.HeaderAddressForeColor }" />
+      <hmi:localDef name="HeaderText"                    type="string"         hmi-data-bind:value="{ Content.HeaderText }" />
+      <hmi:localDef name="FooterTag"                     type="string"         hmi-data-bind:value="{ Content.FooterTag }" />
+      <hmi:localDef name="FooterAddress"                 type="string"         hmi-data-bind:value="{ Content.FooterAddress }" />
+      <hmi:localDef name="FooterAddressForeColor"        type="string"         hmi-data-bind:value="{ Content.FooterAddressForeColor }" />
+      <hmi:localDef name="FooterText"                    type="string"         hmi-data-bind:value="{ Content.FooterText }" />
+      <hmi:localDef name="HeaderBackColor"               type="HmiColor"       hmi-data-bind:value="{ Content.HeaderBackColor }" />
+      <hmi:localDef name="HeaderForeColor"               type="HmiColor"       hmi-data-bind:value="{ Content.HeaderForeColor }" />
+      <hmi:localDef name="HeaderOperandBackColor"        type="HmiColor"       hmi-data-bind:value="{ Content.HeaderOperandBackColor }" />
+      <hmi:localDef name="HeaderOperandForeColor"        type="HmiColor"       hmi-data-bind:value="{ Content.HeaderOperandForeColor }" />
+      <hmi:localDef name="FooterOperandBackColor"        type="HmiColor"       hmi-data-bind:value="{ Content.FooterOperandBackColor }" />
+      <hmi:localDef name="FooterOperandForeColor"        type="HmiColor"       hmi-data-bind:value="{ Content.FooterOperandForeColor }" />
+      <hmi:localDef name="FooterBackColor"               type="HmiColor"       hmi-data-bind:value="{ Content.FooterBackColor }" />
+      <hmi:localDef name="FooterForeColor"               type="HmiColor"       hmi-data-bind:value="{ Content.FooterForeColor }" />
+      <hmi:localDef name="ContentText"                   type="string"         hmi-data-bind:value="{ Content.ContentText }" />
+      <hmi:localDef name="SymbolHeight"                  type="number"         hmi-data-bind:value="{ Content.ContentHeight }" />
+      <hmi:localDef name="SymbolWidth"                   type="number"         hmi-data-bind:value="{ Content.ContentWidth }" />
+      <hmi:localDef name="Stroke"                        type="string"         hmi-data-bind:value="{ Content.Stroke }" />
+      <hmi:localDef name="StrokeWidth"                   type="number"         hmi-data-bind:value="{ Content.StrokeWidth }" />
+      <hmi:localDef name="InActiveStroke"                type="string"         hmi-data-bind:value="{ Content.InActiveStroke }" />
+      <hmi:localDef name="Type"                          type="string"         hmi-data-bind:value="{ Content.Type }" />
+      <hmi:localDef name="ActiveStatus"                  type="number"         hmi-data-bind:value="{ Content.ActiveStatus }" />
+      <hmi:localDef name="IsDashAllowed"                 type="boolean"        hmi-data-bind:value="{ Content.IsDashAllowed }" />
+      <hmi:localDef name="DashTypeSolid"                 type="string"         value="null" />
+      <hmi:localDef name="DashTypeDash"                  type="string"         value="5" />
+      <hmi:localDef name="Padding"                       type="number"         value="4" /> 
+      <hmi:localDef name="StartXVal"                     type="number"         value="6" />
+      <hmi:localDef name="TextToSymbolPadding"           type="number"         value="10" />
+      <hmi:localDef name="HeaderTextWidth"               type="number"         value="98" />
+      <hmi:localDef name="VerticalLineStrokeWidth"       type="number"         value="2" />   
+      <hmi:localDef name="SymbolHalfWidth"               type="number"         hmi-bind:value="{{ HmiProps.Width / 2 }}" />
+      <hmi:localDef name="SymbolContentHalfWidth"        type="number"         hmi-bind:value="{{ LocalProps.SymbolWidth / 2 }}" />
+      <hmi:localDef name="ActualHeaderTextWidth"         type="number"         hmi-bind:value="{{ Converter.TextWidth(LocalProps.HeaderText, HmiProps.HeaderFont, true ) + LocalProps.TextToSymbolPadding }}" />
+      <hmi:localDef name="ActualFooterTextWidth"         type="number"         hmi-bind:value="{{ Converter.TextWidth(LocalProps.FooterText, HmiProps.HeaderFont, true ) + LocalProps.TextToSymbolPadding }}" />
+      <hmi:localDef name="HeaderBeginYPos"               type="number"         hmi-bind:value="{{ ( HmiProps.Height / 2 ) - ( LocalProps.SymbolHeight / 2 ) - LocalProps.Padding }}" />
+      <hmi:localDef name="FooterBeginYPos"               type="number"         hmi-bind:value="{{ ( HmiProps.Height / 2 ) + ( LocalProps.SymbolHeight / 2 ) + LocalProps.Padding }}" />
+
+      <hmi:localDef name="HeaderAddressYPos"             type="number"         hmi-bind:value="{{ LocalProps.HeaderBeginYPos - Converter.TextHeight( LocalProps.HeaderText, HmiProps.HeaderFont, true ) - LocalProps.Padding }}" />
+      <hmi:localDef name="FooterTextYPos"                type="number"         hmi-bind:value="{{ not( eq( LocalProps.FooterAddress, '')) ? ( LocalProps.FooterBeginYPos + Converter.TextHeight( 'X', HmiProps.HeaderFont )) : LocalProps.FooterBeginYPos }}" />
+      <hmi:localDef name="HeaderTagYPos"                 type="number"         hmi-bind:value="{{ LocalProps.HeaderAddressYPos - Converter.TextHeight( 'X', HmiProps.HeaderFont ) - LocalProps.Padding }}" />
+      <hmi:localDef name="HeaderTextCharLen"             type="number"         hmi-bind:value="{{ floor(LocalProps.HeaderTextWidth / Converter.TextWidth('X', HmiProps.HeaderFont )) }}" />
+      <hmi:localDef name="BlockSystemPart"               type="HmiBlockSymbolSystemPart"   hmi-bind:value="{{ Converter.GetDefaultValue( 'HmiBlockSymbolSystemPart' ) }}" />
+      <hmi:localDef name="ComputedHeaderTag"             type="string"         hmi-bind:value="{{ Converter.TextEllipsis( LocalProps.HeaderTag, LocalProps.HeaderTextCharLen) }}" />
+      <hmi:localDef name="ComputedFooterTag"             type="string"         hmi-bind:value="{{ Converter.TextEllipsis( LocalProps.FooterTag, LocalProps.HeaderTextCharLen) }}" />
+      <hmi:localDef name="ComputedHeaderTagWidth"        type="number"         hmi-bind:value="{{ Converter.TextWidth( LocalProps.ComputedHeaderTag, HmiProps.HeaderFont ) }}" />
+      <hmi:localDef name="ComputedFooterTagWidth"        type="number"         hmi-bind:value="{{ Converter.TextWidth( LocalProps.ComputedFooterTag, HmiProps.HeaderFont ) }}" />
+      <hmi:localDef name="IsSymbolInActive"              type="boolean"       hmi-bind:value="{{ or ( or( or (LocalProps.ActiveStatus == 1, LocalProps.ActiveStatus == 2), LocalProps.ActiveStatus == 6 ),LocalProps.ActiveStatus == 7) }}" />
+      
+    </defs>
+
+
+    <g hmi-flex:width="{ HmiProps.Width }" hmi-flex:height="{ HmiProps.Height }" hmi-flex:direction ="column" hmi-flex:justifyContent="center" >
+      <g hmi-flex:grow="0">
+        <!-- Calculations needs to be checked -->
+        <line hmi-bind:x2="{{ LocalProps.SymbolHalfWidth - LocalProps.SymbolContentHalfWidth }}" 
+              hmi-bind:stroke="{{ or( or ( LocalProps.ActiveStatus == 1,LocalProps.ActiveStatus == 3), LocalProps.ActiveStatus == 6)  ? LocalProps.InActiveStroke : LocalProps.Stroke }}" 
+              hmi-bind:stroke-width ="{ LocalProps.StrokeWidth }"
+              hmi-bind:stroke-dasharray =" {{ and( or( or( LocalProps.ActiveStatus == 1,LocalProps.ActiveStatus == 3), LocalProps.ActiveStatus == 6), LocalProps.IsDashAllowed) ? LocalProps.DashTypeDash : LocalProps.DashTypeSolid }} "/>
+
+        <line hmi:if="{{ LocalProps.Type == 'input' }}" hmi-bind:x1="{{ (LocalProps.SymbolHalfWidth - LocalProps.SymbolContentHalfWidth ) }}"
+              hmi-bind:y1="{{ -(LocalProps.SymbolHeight)/2 }}"
+              hmi-bind:x2="{{ (LocalProps.SymbolHalfWidth - LocalProps.SymbolContentHalfWidth ) }}"
+              hmi-bind:y2="{{ LocalProps.SymbolHeight/2 }}"
+              hmi-bind:stroke="{{ LocalProps.IsSymbolInActive ? LocalProps.InActiveStroke : LocalProps.Stroke }}"
+              hmi-bind:stroke-dasharray="{{ and( LocalProps.IsSymbolInActive, LocalProps.IsDashAllowed) ? LocalProps.DashTypeDash : LocalProps.DashTypeSolid }}"
+              hmi-bind:stroke-width="{ LocalProps.VerticalLineStrokeWidth }" />
+      
+        <line hmi:if="{{ LocalProps.Type == 'input' }}" hmi-bind:x1="{{ (LocalProps.SymbolHalfWidth + LocalProps.SymbolContentHalfWidth ) }}"
+              hmi-bind:y1="{{ -(LocalProps.SymbolHeight/2) }}"
+              hmi-bind:x2="{{ (LocalProps.SymbolHalfWidth + LocalProps.SymbolContentHalfWidth ) }}"
+              hmi-bind:y2="{{ LocalProps.SymbolHeight/2 }}"
+              hmi-bind:stroke="{{ LocalProps.IsSymbolInActive ? LocalProps.InActiveStroke : LocalProps.Stroke }}"
+              hmi-bind:stroke-dasharray="{{ and( LocalProps.IsSymbolInActive, LocalProps.IsDashAllowed) ? LocalProps.DashTypeDash : LocalProps.DashTypeSolid }}"
+              hmi-bind:stroke-width="{ LocalProps.VerticalLineStrokeWidth }" />
+
+        <path hmi:if="{{ LocalProps.Type == 'output' }}" 
+              hmi-bind:d="M{{ (LocalProps.SymbolHalfWidth - LocalProps.SymbolContentHalfWidth + 2 ) }} {{ -(LocalProps.SymbolHeight / 2) }}  C {{ (LocalProps.SymbolHalfWidth - (LocalProps.SymbolWidth/2)  - 2) }} {{ -(LocalProps.SymbolHeight / 2) + 5 }} {{ (LocalProps.SymbolHalfWidth - (LocalProps.SymbolWidth/2)  - 2) }} {{ (LocalProps.SymbolHeight / 2) - 5 }} {{ (LocalProps.SymbolHalfWidth - (LocalProps.SymbolWidth/2) + 2 ) }} {{ (LocalProps.SymbolHeight / 2) }}" 
+              hmi-bind:stroke="{{ LocalProps.IsSymbolInActive ? LocalProps.InActiveStroke : LocalProps.Stroke }}"
+              hmi-bind:stroke-width="{ LocalProps.VerticalLineStrokeWidth }" fill="none" 
+              hmi-bind:stroke-dasharray="{{ and( LocalProps.IsSymbolInActive, LocalProps.IsDashAllowed) ? LocalProps.DashTypeDash : LocalProps.DashTypeSolid }}"></path>
+        <hmi-element:textField 
+            hmi-bind:start-x="{{(LocalProps.SymbolHalfWidth - LocalProps.SymbolContentHalfWidth + (LocalProps.VerticalLineStrokeWidth / 2))}}"
+            hmi-bind:start-y="{{-(LocalProps.SymbolHeight/2)}}"
+            hmi-bind:width="{ LocalProps.SymbolWidth }"
+            hmi-bind:height="{ LocalProps.SymbolHeight }"
+            vertical-text-alignment="middle"
+            horizontal-text-alignment="center"
+            hmi-bind:value="{ LocalProps.ContentText }"
+            target="LocalProps.ContentText"
+            output-format="{S}"
+            multi-line="true"
+            enabled="false"
+            read-only="true"
+            hmi-bind:fore-color="{{ LocalProps.IsSymbolInActive ? LocalProps.InActiveStroke : LocalProps.Stroke }}"                           
+            hmi-bind:horizontal-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}"
+            hmi-bind:vertical-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}">
+          <hmi-feature:font hmi-bind:scope="{ HmiProps.ContentFont }" />
+        </hmi-element:textField>
+        <path hmi:if="{{ LocalProps.Type == 'output' }}" 
+              hmi-bind:d="M{{ (LocalProps.SymbolHalfWidth + LocalProps.SymbolContentHalfWidth - 2 ) }} {{ -(LocalProps.SymbolHeight / 2) }}  C {{ (LocalProps.SymbolHalfWidth + (LocalProps.SymbolWidth/2)  + 2) }} {{ -(LocalProps.SymbolHeight / 2) + 5 }} {{ (LocalProps.SymbolHalfWidth + (LocalProps.SymbolWidth/2)  + 2) }} {{ (LocalProps.SymbolHeight / 2) - 5 }} {{ (LocalProps.SymbolHalfWidth + (LocalProps.SymbolWidth/2) - 2 ) }} {{ (LocalProps.SymbolHeight / 2) }}"
+              hmi-bind:stroke="{{ LocalProps.IsSymbolInActive ? LocalProps.InActiveStroke : LocalProps.Stroke }}"
+              hmi-bind:stroke-width="{ LocalProps.VerticalLineStrokeWidth }" fill="none"
+              hmi-bind:stroke-dasharray="{{ and( LocalProps.IsSymbolInActive,LocalProps.IsDashAllowed) ? LocalProps.DashTypeDash : LocalProps.DashTypeSolid }}"></path>
+
+        <line hmi-bind:x1="{{ (LocalProps.SymbolHalfWidth + LocalProps.SymbolContentHalfWidth +( LocalProps.VerticalLineStrokeWidth/2)) }}" hmi-bind:x2="{ HmiProps.Width }" 
+              hmi-bind:stroke="{{  or( or( or( LocalProps.ActiveStatus == 0, LocalProps.ActiveStatus == 4), LocalProps.ActiveStatus == 6 ), LocalProps.ActiveStatus == 7) ? LocalProps.Stroke : LocalProps.InActiveStroke }}" 
+              hmi-bind:stroke-dasharray="{{ or( or( or ( LocalProps.ActiveStatus == 0, LocalProps.ActiveStatus == 4), LocalProps.ActiveStatus == 6 ), LocalProps.ActiveStatus == 7) ? LocalProps.DashTypeSolid : ( LocalProps.IsDashAllowed ? LocalProps.DashTypeDash : LocalProps.DashTypeSolid ) }}"
+              hmi-bind:stroke-width ="{ LocalProps.StrokeWidth }" />
+      </g>
+    </g>
+    <g>	
+     <rect hmi:if="{{ not( eq( LocalProps.ComputedHeaderTag, '')) }}"
+          hmi-bind:x="{{ HmiProps.Width / 2 - ( LocalProps.ComputedHeaderTagWidth / 2 )}}" 
+          hmi-bind:y="{{ (LocalProps.HeaderAddress == '' ? LocalProps.HeaderAddressYPos  : LocalProps.HeaderTagYPos) - (Converter.TextHeight( 'X' , HmiProps.HeaderFont ) - LocalProps.Padding / 2) }}"
+          hmi-bind:width="{ LocalProps.ComputedHeaderTagWidth }"
+          hmi-bind:height="{{ Converter.TextHeight( 'X' , HmiProps.HeaderFont ) }}"
+          hmi-bind:fill="{{ Converter.RGBA(LocalProps.HeaderBackColor) }}" />
+     <text hmi-bind:x="{{ HmiProps.Width / 2 }}"
+          hmi-bind:y="{{ LocalProps.HeaderAddress == '' ? LocalProps.HeaderAddressYPos : LocalProps.HeaderTagYPos }}"
+          hmi-bind:font-size="{ HmiProps.HeaderFont.Size }"
+          hmi-bind:font-style="{{ HmiProps.HeaderFont.Italic ? 'italic' : 'normal' }}"
+          hmi-bind:font-weight="{ HmiProps.HeaderFont.Weight }" hmi-bind:font-family="{ HmiProps.HeaderFont.Name }"
+          hmi-bind:fill="{{ Converter.RGBA( LocalProps.HeaderForeColor ) }}"
+          text-anchor="middle">
+        <hmi:text hmi-bind:value="{ LocalProps.ComputedHeaderTag }" />
+     </text>
+        <text hmi-bind:x="{{ HmiProps.Width / 2 }}"
+            hmi-bind:y="{ LocalProps.HeaderAddressYPos }"
+            hmi-bind:font-size="{ HmiProps.HeaderFont.Size }"
+            hmi-bind:font-style="{{ HmiProps.HeaderFont.Italic ? 'italic' : 'normal' }}"
+            hmi-bind:font-weight="{ HmiProps.HeaderFont.Weight }" hmi-bind:font-family="{ HmiProps.HeaderFont.Name }"
+            hmi-bind:fill="{ LocalProps.HeaderAddressForeColor }"
+            text-anchor="middle">
+            <hmi:text hmi-bind:value="{{ Converter.TextEllipsis( LocalProps.HeaderAddress, LocalProps.HeaderTextCharLen) }}" />
+        </text>
+	    <rect
+	          hmi:if="{{ not( eq( LocalProps.HeaderOperandBackColor, '')) }}"
+	          hmi-bind:width="{ LocalProps.ActualHeaderTextWidth }"
+	          hmi-bind:height="{{ Converter.TextHeight( LocalProps.HeaderText , HmiProps.HeaderFont, true ) + LocalProps.Padding / 2 }}"
+	          hmi-bind:fill="{{ Converter.RGBA(LocalProps.HeaderOperandBackColor) }}"
+	          hmi-bind:x="{{ LocalProps.StartXVal + (LocalProps.HeaderTextWidth - LocalProps.ActualHeaderTextWidth)/2 }}"
+	          hmi-bind:y="{{  LocalProps.HeaderBeginYPos - Converter.TextHeight(  LocalProps.HeaderText , HmiProps.HeaderFont, true ) }}"/>
+	  
+        <hmi-element:textField
+              hmi-bind:start-x="{ LocalProps.StartXVal }"
+              hmi-bind:width="{ LocalProps.HeaderTextWidth }"
+              hmi-bind:height="{{ HmiProps.Height / 2 - LocalProps.SymbolHeight / 2 }}"
+              hmi-bind:padding="{ LocalProps.Padding }"
+              vertical-text-alignment="bottom"
+              horizontal-text-alignment="center"
+              hmi-bind:value="{ LocalProps.HeaderText }"
+              hmi-bind:fore-color="{{ LocalProps.HeaderOperandForeColor != '' ? Converter.RGBA( LocalProps.HeaderOperandForeColor ) : Converter.RGBA( LocalProps.HeaderForeColor ) }}"
+              target="LocalProps.HeaderText"
+              output-format="{S}"
+              multi-line="true"
+              enabled="false"
+              read-only="true"
+              hmi-bind:horizontal-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}"
+              hmi-bind:vertical-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}">
+            <hmi-feature:font hmi-bind:scope="{ HmiProps.HeaderFont }" />
+         </hmi-element:textField>
+
+        <text hmi-bind:x="{{ HmiProps.Width / 2 }}"
+            hmi-bind:y="{ LocalProps.FooterBeginYPos }"
+            hmi-bind:font-size="{ HmiProps.HeaderFont.Size }"
+            hmi-bind:font-style="{{ HmiProps.HeaderFont.Italic ? 'italic' : 'normal' }}"
+            hmi-bind:font-weight="{ HmiProps.HeaderFont.Weight }" hmi-bind:font-family="{ HmiProps.HeaderFont.Name }"
+            hmi-bind:fill="{ LocalProps.FooterAddressForeColor }"
+            text-anchor="middle" dominant-baseline="hanging">
+            <hmi:text hmi-bind:value="{{ Converter.TextEllipsis( LocalProps.FooterAddress, LocalProps.HeaderTextCharLen) }}" />
+        </text>
+        <rect
+            hmi:if="{{ not( eq( LocalProps.FooterOperandBackColor, '')) }}"
+		    hmi-bind:width="{ LocalProps.ActualFooterTextWidth }"
+		    hmi-bind:height="{{ Converter.TextHeight( LocalProps.FooterText , HmiProps.HeaderFont, true ) + LocalProps.Padding / 2 }}"
+		    hmi-bind:fill="{{ Converter.RGBA(LocalProps.FooterOperandBackColor) }}"
+		    hmi-bind:x="{{ LocalProps.StartXVal + (LocalProps.HeaderTextWidth - LocalProps.ActualFooterTextWidth)/2 }}"
+		    hmi-bind:y="{ LocalProps.FooterTextYPos }" />
+      <hmi-element:textField
+            hmi-bind:start-x="{ LocalProps.StartXVal }"
+            hmi-bind:start-y="{{ LocalProps.FooterTextYPos != null ? LocalProps.FooterTextYPos : 0 }}"
+            hmi-bind:width="{ LocalProps.HeaderTextWidth }"
+            hmi-bind:height="{{ ( HmiProps.Height / 2) - (LocalProps.SymbolHeight / 2) }}"
+            vertical-text-alignment="top"
+            horizontal-text-alignment="center"
+            hmi-bind:value="{ LocalProps.FooterText }"
+            hmi-bind:fore-color="{{ LocalProps.FooterOperandForeColor != '' ? Converter.RGBA( LocalProps.FooterOperandForeColor ) : Converter.RGBA( LocalProps.FooterForeColor ) }}"
+            target="LocalProps.HeaderText"
+            output-format="{S}"
+            multi-line="true"
+            enabled="false"
+            read-only="true"
+            hmi-bind:horizontal-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}"
+            hmi-bind:vertical-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}">
+        <hmi-feature:font hmi-bind:scope="{ HmiProps.HeaderFont }" />
+     </hmi-element:textField>
+     <rect hmi:if="{{ not( eq( LocalProps.ComputedFooterTag, '')) }}"
+           hmi-bind:x="{{ HmiProps.Width / 2 - ( LocalProps.ComputedFooterTagWidth / 2 ) }}" 
+           hmi-bind:y="{{ LocalProps.FooterTextYPos + Converter.TextHeight( LocalProps.FooterText, HmiProps.HeaderFont, true ) + LocalProps.Padding }}"
+           hmi-bind:width="{ LocalProps.ComputedFooterTagWidth }"
+           hmi-bind:height="{{ Converter.TextHeight( 'X' , HmiProps.HeaderFont ) }}"
+           hmi-bind:fill="{{ Converter.RGBA(LocalProps.FooterBackColor) }}" />
+     <text hmi-bind:x="{{ HmiProps.Width / 2 }}"
+           hmi-bind:y="{{ LocalProps.FooterTextYPos + Converter.TextHeight( LocalProps.FooterText, HmiProps.HeaderFont, true ) + LocalProps.Padding * 2 }}"
+           hmi-bind:font-size="{ HmiProps.HeaderFont.Size }"
+           hmi-bind:font-style="{{ HmiProps.HeaderFont.Italic ? 'italic' : 'normal' }}"
+           hmi-bind:font-weight="{ HmiProps.HeaderFont.Weight }" hmi-bind:font-family="{ HmiProps.HeaderFont.Name }"
+           hmi-bind:fill="{{ Converter.RGBA( LocalProps.FooterForeColor ) }}"
+           text-anchor="middle" dominant-baseline="hanging">
+        <hmi:text hmi-bind:value="{ LocalProps.ComputedFooterTag }" />
+     </text>
+    </g>
+</svg>

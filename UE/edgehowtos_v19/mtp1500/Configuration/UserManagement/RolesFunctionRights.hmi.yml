@@ -1,0 +1,76 @@
+#Version: 2.0
+# All Function rights
+FunctionRightContainers:
+  ## Default system functional rights - please do NOT change/delete
+  ProjectFunctionRights:
+    FunctionRights:
+      HMI_Operate:
+        Description: Read write function rights
+      HMI_Observe:
+        Description: Observe function rights
+      HMI_UserManagement:
+        Description: User Management
+      HMI_MonitorOnly:
+        Description: Activate HMI Monitor Client
+      HMI_ActivateRemoteControl:
+        Description: Remote access
+      HMI_WebAccessObserveOnly:
+        Description: Remote access - Monitor only
+      ODKRT_GlobalAccess:
+        Description: Openness Runtime - Read and write access
+      OPCUAServer_GlobalAccess:
+        Description: OPC UA - Read and write access
+      GraphQL_ReadAccess:
+        Description: GraphQL read access
+      GraphQL_ReadAndWriteAccess:
+        Description: GraphQL read and write access
+  ## Configure user defined functional rights
+      HMI_UserdefinedFunctionright:
+        Description: User defined function right
+#
+#
+# For more information, see: https://docu.simatic-ue.siemens.io/learn/documentation/reference/winccml/webpage_docs/winccml-reference/LanguageReferenceFiles/Output/8_FUNCTIONRIGHTCONTAINER/
+
+
+# Roles
+Roles:
+  ## Default system Roles - please do NOT change/delete
+  HMI Operate:
+    FunctionRights:
+      - ProjectFunctionRights.HMI_Operate
+      - ProjectFunctionRights.HMI_Observe
+  HMI Monitor:
+    FunctionRights:
+      - ProjectFunctionRights.HMI_Observe
+      - ProjectFunctionRights.HMI_WebAccessObserveOnly
+  HMI Monitor Client:
+    FunctionRights:
+      - ProjectFunctionRights.HMI_MonitorOnly
+  HMI Administrator:
+    FunctionRights:
+      - ProjectFunctionRights.HMI_UserManagement
+      - ProjectFunctionRights.HMI_Observe
+      - ProjectFunctionRights.HMI_Operate
+      - ProjectFunctionRights.HMI_ActivateRemoteControl
+      - ProjectFunctionRights.HMI_WebAccessObserveOnly
+      - ProjectFunctionRights.ODKRT_GlobalAccess
+      - ProjectFunctionRights.OPCUAServer_GlobalAccess
+      - ProjectFunctionRights.GraphQL_ReadAccess
+      - ProjectFunctionRights.GraphQL_ReadAndWriteAccess
+  ## Configure user defined Roles
+  HMI_Userdefinedrole:
+    FunctionRights:
+      - ProjectFunctionRights.HMI_UserdefinedFunctionright
+## Pre defined system parameters # Donot modify / delete
+AccessControl:
+  LocalAccessControl:
+    DisplayName:
+      invariant: Internal use
+      en-US: the local AccessControl object
+SecurityAreas:
+  MySecurityArea:
+    Description: Internalsecurity
+#
+#
+# For more information, see: https://docu.simatic-ue.siemens.io/learn/documentation/reference/winccml/webpage_docs/winccml-reference/LanguageReferenceFiles/Output/0FFF_UMCROLE/
+

@@ -1,0 +1,60 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     preserveAspectRatio="none">
+
+    <hmi:self type="custom" displayName="Custom Flat Text Field" name="custom.flat.text.field" version="1.0.1" performanceClass="L">
+
+        <hmi:paramDef name="InputAllowed"               type="boolean"                                  />
+        <hmi:paramDef name="Text"                       type="string"                   two-way="false" />
+        <hmi:paramDef name="Font"                       type="HmiFontPart"                              />
+        <hmi:paramDef name="TextColor"                  type="HmiColor"                                 />
+        <hmi:paramDef name="HorizontalTextAlignment"    type="HmiHorizontalAlignment"                   />
+        <hmi:paramDef name="VerticalTextAlignment"      type="HmiVerticalAlignment"                     />
+        <hmi:paramDef name="TextTrimming"   		    type="HmiTextTrimming"   		                />
+	    <hmi:paramDef name="TextWrapping"  				type="HmiTextWrapping"                          />
+        <hmi:paramDef name="MultiLine"                  type="boolean"                                  />
+        <hmi:paramDef name="Enabled"                    type="boolean"                                  />
+        <hmi:paramDef name="ReadOnly"                   type="boolean"                                  />
+        <hmi:paramDef name="TargetName"                 type="string"                                   />
+
+    </hmi:self>
+
+    <defs>
+
+    </defs>
+
+    <g id="TextBehind">
+		<hmi-element:textField
+			start-x="0"
+			start-y="0"
+			hmi-bind:width="{ Layout.ActualWidth }"
+			hmi-bind:height="{ Layout.ActualHeight }"
+			hmi-bind:horizontal-text-alignment="{ ParamProps.HorizontalTextAlignment }"
+			hmi-bind:vertical-text-alignment="{ ParamProps.VerticalTextAlignment }"
+			hmi-bind:value="{ ParamProps.Text }"
+            hmi-bind:fore-color="{{ Converter.RGBA( ParamProps.TextColor ) }}"
+            hmi-bind:target="{ ParamProps.TargetName }"
+            output-format="{S}"
+			hmi-bind:enabled="{ ParamProps.InputAllowed }"
+            hmi-bind:multi-line="{ ParamProps.MultiLine }"
+			hmi-bind:text-trimming="{ ParamProps.TextTrimming }"
+			hmi-bind:text-wrapping="{ ParamProps.TextWrapping }"
+			hmi-bind:read-only="{ ParamProps.ReadOnly }" >
+
+            <hmi-feature:inputBehavior clear-on-activate="false" />
+            <hmi-feature:font hmi-bind:scope="{ ParamProps.Font }" />
+
+        </hmi-element:textField>
+    </g>
+</svg>

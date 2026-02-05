@@ -1,0 +1,130 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     preserveAspectRatio="none">
+
+    <hmi:self type="part:HmiSelectionItemPart" displayName="Custom Extended RadioButton Part" name="extended.custom.radiobutton.part" version="1.0.1" performanceClass="L">
+
+        <hmi:paramDef name="ItemOperable"               type="boolean"          />
+        <hmi:paramDef name="ForeColor"                  type="HmiColor"         />
+        <hmi:paramDef name="BackColor"                  type="HmiColor"         />
+        <hmi:paramDef name="BorderColor"                type="HmiColor"         />
+        <hmi:paramDef name="FocusColor"                 type="HmiColor"         />
+        <hmi:paramDef name="BorderWidth"                type="number"           />
+        <hmi:paramDef name="Content"                    type="HmiContentPart"   />
+        <hmi:paramDef name="Font"                       type="HmiFontPart"      />
+        <hmi:paramDef name="SelectorPosition"           type="number"           />
+        <hmi:paramDef name="SelectionItemHeight"        type="number"           />
+        <hmi:paramDef name="SelectionItemDefaultHeight" type="number"           />
+
+    </hmi:self>
+
+    <defs>
+        <!-- Local definitions of this template -->
+        <hmi:localDef name="FixBorderColor"         type="number" value="0xFF64646A" />
+
+        <hmi:localDef name="BorderColorAlphaMask"   type="number" value="0x01000000" />
+        <hmi:localDef name="BorderPressedAlpha"     type="number" value="0x80000000" />
+
+        <hmi:localDef name="MouseHover"             type="number" value="0" />
+        <hmi:localDef name="InnerPadding"           type="number" hmi-bind:value="{{ floor( ParamProps.SelectionItemHeight * 0.2 ) }}" />
+
+        <hmi:localDef name="BorderColorPressed"     type="number" hmi-bind:value="{{ LocalProps.FixBorderColor % LocalProps.BorderColorAlphaMask + LocalProps.BorderPressedAlpha }}" />
+
+        <!-- Take the SelctionItemHeight also for the SelctionItemWidth -->
+
+	<hmi:localDef name="IsItemTextMultiline"    type="boolean" hmi-bind:value="{{Converter.IsMultiline(HmiProps.Text)}}"/>
+        <hmi:localDef name="CheckBoxAreaWidth"      type="number" hmi-bind:value="{{ ParamProps.SelectionItemHeight - 2 * LocalProps.InnerPadding }}" />
+        <hmi:localDef name="CheckBoxAreaHeight"     type="number" hmi-bind:value="{{ ParamProps.SelectionItemHeight - 2 * LocalProps.InnerPadding }}" />
+        <hmi:localDef name="CheckBoxPosX"           type="number" hmi-bind:value="{{ ParamProps.SelectorPosition == HmiHorizontalAlignment.Left ? 0 : Layout.ActualWidth - LocalProps.CheckBoxAreaWidth - 2 * LocalProps.InnerPadding }}" />
+
+        <hmi:localDef name="ContentAreaWidth"       type="number" hmi-bind:value="{{ Layout.ActualWidth - LocalProps.CheckBoxAreaWidth - 3 * LocalProps.InnerPadding }}" />
+        <hmi:localDef name="ContentPosX"            type="number" hmi-bind:value="{{ ParamProps.SelectorPosition != HmiHorizontalAlignment.Left ? LocalProps.InnerPadding : Layout.ActualWidth - LocalProps.ContentAreaWidth - LocalProps.InnerPadding }}" />
+
+        <hmi:localDef name="BackColorDarker" type="HmiColor" hmi-bind:value="{{ Converter.Darker( ParamProps.BackColor, 0.4 ) }}" />
+        <hmi:localDef name="BackColorHover" type="HmiColor" hmi-bind:value="{{ Converter.Darker( ParamProps.BackColor, 0.6 ) }}" />
+
+        <hmi:localDef name="GradientColor2" type="HmiColor" hmi-bind:value="{{ LocalProps.MouseHover ? LocalProps.BackColorHover : LocalProps.BackColorDarker }}" />
+
+        <!-- Action definitions of this template -->
+        <hmi:action id="onMouseHover" hmi-bind:condition="{ ParamProps.ItemOperable }" >
+            <hmi:setProperty name="LocalProps.MouseHover" type="number" value="1" />
+        </hmi:action>
+        <hmi:action id="onMouseDown" hmi-bind:condition="{ ParamProps.ItemOperable }" >
+            <hmi:setProperty name="LocalProps.MouseHover" type="number" value="0" />
+        </hmi:action>
+        <hmi:action id="onMouseUp" hmi-bind:condition="{ ParamProps.ItemOperable }" >
+            <hmi:setProperty name="LocalProps.MouseHover" type="number" value="1" />
+        </hmi:action>
+        <hmi:action id="onMouseTapped" hmi-bind:condition="{ ParamProps.ItemOperable }" >
+            <hmi:setProperty name="HmiProps.IsSelected" type="boolean" value="true" hmi-bind:condition="{{ or( EventArgs.Trigger==HmiEventTrigger.Left, EventArgs.Trigger==HmiEventTrigger.Touch ) }}" />
+        </hmi:action>
+        <hmi:action id="onMouseLeave" hmi-bind:condition="{ ParamProps.ItemOperable }" >
+            <hmi:setProperty name="LocalProps.MouseHover" type="number" value="0" />
+        </hmi:action>
+
+        <!-- Graphical definitions of this template -->
+        <linearGradient id="BgGradient" gradientUnits="objectBoundingBox"
+                        x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0.0" hmi-bind:stop-opacity="{{ Converter.Alpha( ParamProps.BackColor ) }}"      hmi-bind:stop-color="{{ Converter.RGB( ParamProps.BackColor ) }}" />
+            <stop offset="1.0" hmi-bind:stop-opacity="{{ Converter.Alpha( LocalProps.GradientColor2 ) }}" hmi-bind:stop-color="{{ Converter.RGB( LocalProps.GradientColor2 ) }}" />
+        </linearGradient>
+
+    </defs>
+
+    <g hmi-bind:transform="translate(0, {{  HmiProps.$index * ParamProps.SelectionItemHeight }} )" hmi-bind:opacity="{{ ParamProps.ItemOperable ? 1.0 : 0.5 }}">
+
+        <g id="CheckBox" hmi-bind:transform="translate( { LocalProps.CheckBoxPosX } ,0)">
+
+            <circle id="RadioBox"
+                    hmi-bind:cx="{{ LocalProps.InnerPadding + LocalProps.CheckBoxAreaWidth * 0.5 }}"
+                    hmi-bind:cy="{{ LocalProps.InnerPadding + LocalProps.CheckBoxAreaHeight * 0.5 }}"
+                    hmi-bind:r="{{ LocalProps.CheckBoxAreaWidth * 0.4 }}"
+                    fill="url(#BgGradient)"
+                    hmi-bind:stroke="{{ Converter.RGBA( or( HmiProps.IsSelected, LocalProps.MouseHover ) ? LocalProps.BorderColorPressed : LocalProps.FixBorderColor ) }}"
+                    hmi-bind:stroke-width="{ ParamProps.BorderWidth }" />
+
+            <g id="CheckMark" hmi:if="{{ HmiProps.IsSelected }}">
+                <circle hmi-bind:cx="{{ LocalProps.InnerPadding + LocalProps.CheckBoxAreaWidth * 0.5 }}"
+                        hmi-bind:cy="{{ LocalProps.InnerPadding + LocalProps.CheckBoxAreaHeight * 0.5 }}"
+                        hmi-bind:r="{{ LocalProps.CheckBoxAreaWidth * 0.2 }}"
+                        fill="black"
+                        hmi-bind:stroke="{{ Converter.RGBA( or( HmiProps.IsSelected, LocalProps.MouseHover ) ? LocalProps.BorderColorPressed : LocalProps.FixBorderColor ) }}"
+                        hmi-bind:stroke-width="{ ParamProps.BorderWidth }" />
+            </g>
+        </g>
+
+        <hmi:include template="include.style.extended.content.svghmi" hmi-bind:for="{ ParamProps.Content }"
+                     hmi-bind:x="{ LocalProps.ContentPosX }"
+                     hmi-bind:y="{{ and(LocalProps.IsItemTextMultiline, ParamProps.SelectionItemDefaultHeight == 0) ?  LocalProps.InnerPadding / 2 : LocalProps.InnerPadding }}"
+                     hmi-bind:width="{ LocalProps.ContentAreaWidth }"
+                     hmi-bind:height="{{ and(LocalProps.IsItemTextMultiline, ParamProps.SelectionItemDefaultHeight == 0)  ? LocalProps.CheckBoxAreaHeight + LocalProps.InnerPadding : LocalProps.CheckBoxAreaHeight }}">
+
+            <hmi:param name="Graphic"       type="HmiGraphic"  hmi-bind:value="{ HmiProps.Graphic }" />
+            <hmi:param name="GraphicWidth"  type="number"      hmi-bind:value="{ HmiProps.GraphicWidth }" />
+            <hmi:param name="GraphicHeight" type="number"      hmi-bind:value="{ HmiProps.GraphicHeight }" />
+            <hmi:param name="Text"          type="string"      hmi-bind:value="{ HmiProps.Text }" />
+            <hmi:param name="Font"          type="HmiFontPart" hmi-bind:value="{ ParamProps.Font }" />
+            <hmi:param name="TextColor"     type="HmiColor"    hmi-bind:value="{ ParamProps.ForeColor }" />
+
+        </hmi:include>
+
+        <rect id="TIFID_SelectionItemRect" hmi-event:mouseHover="url(#onMouseHover)" hmi-event:down="url(#onMouseDown)" hmi-event:up="url(#onMouseUp)" hmi-event:tapped="url(#onMouseTapped)" hmi-event:mouseLeave="url(#onMouseLeave)"
+              hmi-bind:width="{ Layout.ActualWidth }"
+              hmi-bind:height="{ ParamProps.SelectionItemHeight }"
+              stroke="none"
+              fill="rgba(123,123,123,0)" />
+
+    </g>
+
+</svg>

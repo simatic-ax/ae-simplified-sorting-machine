@@ -1,0 +1,90 @@
+#Version: 2.0
+
+Screens:
+  01_ScreenLayout:
+    Width: 1920
+    Height: 1080
+    BackColor: White
+    HorizontalAlignment: Center
+    VerticalAlignment: Center
+    ScriptModules:
+      EventScripts:
+        ScriptLanguage: JavaScript
+        ScriptFile: Scripts\01_ScreenLayout_EventScripts.js
+        Scripts:
+          _1_ScreenLayout_OnLoaded: 
+          btnHideMainNavigation_OnTapped: 
+    EventHandlers:
+      ScriptEventHandler1:
+        Event: Loaded
+        Type: Script
+        Script: '@local::EventScripts._1_ScreenLayout_OnLoaded'
+    Layers:
+      Layer_0:
+        Items:
+          swHeader:
+            ObjectType: ScreenWindow
+            Top: 0
+            Left: 0
+            Height: 104
+            Width: 1920
+            InteractiveZooming: False
+            Adaption: None
+            WindowFlags: None
+            Screen: 02_Header
+      Layer_1:
+        Items:
+          swContent:
+            ObjectType: ScreenWindow
+            Top: 104
+            Left: 0
+            Height: 976
+            Width: 1920
+            InteractiveZooming: False
+            Adaption: None
+            WindowFlags: None
+            Screen: Root navigation level
+      Layer_2:
+      Layer_3:
+      Layer_4:
+        Items:
+          btnHideMainNavigation:
+            ObjectType: Button
+            Top: 0
+            Left: 0
+            Height: 1080
+            Width: 1920
+            Visible: False
+            Opacity: 1
+            BackColor: White 0%
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.btnHideMainNavigation_OnTapped'
+      Layer_5:
+        Items:
+          swMainNavigation:
+            ObjectType: ScreenWindow
+            Top: 0
+            Left: 1680
+            Height: 1080
+            Width: 240
+            InteractiveZooming: False
+            Adaption: ScreenToWindow
+            Visible: False
+            WindowFlags: None
+            Screen: 03_MainNavigation
+      Layer_6:
+        Items:
+          recBackground:
+            ObjectType: Rectangle
+            Width: 1920
+            Height: 1080
+            Top: 0
+            Left: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            BorderWidth: 0
+            BackColor: 0xD948494E
+            Visible: False

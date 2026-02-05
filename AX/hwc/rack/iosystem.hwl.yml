@@ -1,0 +1,6 @@
+IoSystems:
+  - Name: "profinet_io_system"
+    ControllerInterfaces:
+      - Ref: device_plc/PLC_1/PROFINET_interface_1
+    DeviceInterfaces:
+      - Ref: device_drive_g220/g220_drive/PN-IO

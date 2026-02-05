@@ -1,0 +1,1 @@
+type ScreenItemType<T>=HmiScreenItemBase;

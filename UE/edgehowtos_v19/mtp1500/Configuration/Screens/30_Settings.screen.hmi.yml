@@ -1,0 +1,103 @@
+#Version: 2.0
+Screens:
+  30_Settings:
+    Width: 1920
+    Height: 976
+    BackColor: 0xFF3E435A
+    ScriptModules:
+      EventScripts:
+        ScriptLanguage: JavaScript
+        ScriptFile: Scripts\30_Settings_EventScripts.js
+        Scripts:
+          _0_Settings_OnLoaded: 
+    Layers:
+      Layer_0:
+        Items:
+          recSimControl:
+            ObjectType: Rectangle
+            Top: 16
+            Left: 16
+            Height: 304
+            Width: 304
+            RotationCenterX: 0
+            RotationCenterY: 0
+            BackColor: 0xFF202035
+            BorderWidth: 0
+            Enabled: True
+            TabIndex: 0
+            Corners:
+              BottomLeftRadius: 6
+              BottomRightRadius: 6
+              TopLeftRadius: 6
+              TopRightRadius: 6
+          lnSimControl1:
+            ObjectType: Line
+            Top: 56
+            Left: 16
+            Width: 304
+            Height: 0
+            X2: 304
+            Y2: 0
+            LineColor: 0xFFEFEFEF
+          txtParameter1:
+            ObjectType: TextBox
+            Top: 21
+            Left: 32
+            Height: 32
+            Width: 200
+            BorderWidth: 0
+            BackColor: 0xDDDCDC
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: HmiScreenItemsTextLibrary.TextEntry_49
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+
+          FaceplateContainer_1:
+            ObjectType: FaceplateContainer
+            Left: 32
+            ContainedType: fpBtnWithState_V001
+            Top: 80
+            Height: 36
+            Width: 272
+            .Properties.Text:
+              Value: Simulation Mode
+            .Properties.StatusTag:
+              Tag: ServerInterfaces_Server_Interface_1_ApplicationCommand_simulationMode
+      Layer_2:
+      Layer_3:
+      Layer_4:
+      Layer_5:
+      Layer_6:
+      Layer_7:
+      Layer_8:
+      Layer_9:
+      Layer_10:
+      Layer_11:
+      Layer_12:
+      Layer_13:
+      Layer_14:
+      Layer_15:
+      Layer_16:
+      Layer_17:
+      Layer_18:
+      Layer_19:
+      Layer_20:
+      Layer_21:
+      Layer_22:
+      Layer_23:
+      Layer_24:
+      Layer_25:
+      Layer_26:
+      Layer_27:
+      Layer_28:
+      Layer_29:
+      Layer_30:
+      Layer_31:
+
+ 

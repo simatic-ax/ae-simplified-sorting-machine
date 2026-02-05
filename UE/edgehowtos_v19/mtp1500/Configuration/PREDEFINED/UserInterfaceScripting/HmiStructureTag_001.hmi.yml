@@ -1,0 +1,20 @@
+#Version: 2.0
+
+StructureTags:
+  '@UserInterfaceScriptingState':
+    StructureType: '@ScriptingState'
+    ESOrigin: UserInterfaceScripting # DFP generated - DO NOT REMOVE
+    .DebuggerEnabled:
+      DataType: DTBool
+      Alarms:
+        ScriptDebuggerEnabledNotification:
+          ObjectType: HmiBinaryAlarm
+          ParentID: 2
+          AlarmClass: SystemNotification
+          SourceType: TAG
+          SystemSeverity: 0
+          ID: UserInterfaceScriptingDebuggerEnabledAlarm
+          EventText: ScriptingAlarmTextLibrary.Entry_1
+          ConditionPattern: 1
+          Area: System/HMI/UserInterface/Scripting
+          Origin: '@S1%s@'

@@ -1,0 +1,45 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+
+     preserveAspectRatio="none">
+
+    <hmi:self type="system:HmiHeaderCellSystemPart" displayName="Extended HeaderCell" name="style.extended.headercell" version="2.9" performanceClass="s">
+        <hmi:data type="header-view"></hmi:data>
+    </hmi:self>
+
+    <g id="RowHeaderGroup" opacity="1">
+        <rect id="RowHeaderRect"
+              hmi-bind:x="{ HmiProps.Left }"
+              hmi-bind:y="{ HmiProps.Top }"
+              hmi-bind:width="{ HmiProps.Width }"
+              hmi-bind:height="{ HmiProps.Height }"
+              hmi-data-bind:fill="{ Colors.Back }"
+              stroke-width="1"
+              hmi-bind:FontSize="{{HmiProps.Font.Size}}" />
+        <hmi:include template="include.style.extended.text.svghmi"
+                     hmi-bind:x="{ HmiProps.Left }"
+                     hmi-bind:y="{ HmiProps.Top }"
+                     hmi-bind:width="{ HmiProps.Width }"
+                     hmi-bind:height="{ HmiProps.Height }">
+            <hmi:param name="Text" type="string" hmi-data-bind:value="{ Content.Index }" />
+            <hmi:param name="Font" type="HmiFontPart" hmi-bind:value="{ HmiProps.Font }" />
+            <hmi:param name="TextColor" type="HmiColor" hmi-data-bind:value="{ Colors.Fore }" />
+            <hmi:param name="HorizontalTextAlignment" hmi-bind:value="{ HmiProps.Content.HorizontalTextAlignment }" />
+            <hmi:param name="VerticalTextAlignment" value="1" />
+
+        </hmi:include>
+    </g>
+
+</svg>

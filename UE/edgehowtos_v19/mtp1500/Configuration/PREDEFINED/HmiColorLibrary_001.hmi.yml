@@ -1,0 +1,140 @@
+#Version: 2.0
+
+ColorLibraries:
+  SystemColors:
+    ESOrigin: PREDEFINED
+    Type: Color
+    Languages:
+    - invariant
+    DefaultLanguage: invariant
+    Entries:
+      Green:
+        Color:
+        - Green
+      Lime:
+        Color:
+        - Lime
+      Yellow:
+        Color:
+        - Yellow
+      Red:
+        Color:
+        - Red
+      Maroon:
+        Color:
+        - Maroon
+      Blue:
+        Color:
+        - Blue
+      Silver:
+        Color:
+        - Silver
+      Gray:
+        Color:
+        - Gray
+      White:
+        Color:
+        - White
+      Black:
+        Color:
+        - Black
+      Olive:
+        Color:
+        - Olive
+      Cyan:
+        Color:
+        - Aqua
+      Aqua:
+        Color:
+        - Aqua
+      Teal:
+        Color:
+        - Teal
+      Navy:
+        Color:
+        - Navy
+      Magenta:
+        Color:
+        - Fuchsia
+      Fuchsia:
+        Color:
+        - Fuchsia
+      Purple:
+        Color:
+        - Purple
+      Orange:
+        Color:
+        - Orange
+      OrangeRed:
+        Color:
+        - OrangeRed
+      LightPink:
+        Color:
+        - LightPink
+      Pink:
+        Color:
+        - HotPink
+      Brown:
+        Color:
+        - Brown
+      Gold:
+        Color:
+        - Gold
+      YellowGreen:
+        Color:
+        - YellowGreen
+      InformationColor:
+        Color:
+        - Gainsboro
+      NotificationColor:
+        Color:
+        - LightBlue
+      WarningColor:
+        Color:
+        - Yellow
+      ErrorColor:
+        Color:
+        - Red
+      CriticalColor:
+        Color:
+        - DarkRed
+      RequestColor:
+        Color:
+        - MediumBlue
+  SystemAlarmColors:
+    ESOrigin: PREDEFINED
+    Type: Color
+    Languages:
+    - invariant
+    DefaultLanguage: invariant
+    Entries:
+      BlackAlarmTextColor:
+        Color:
+        - Black
+      WhiteAlarmTextColor:
+        Color:
+        - White
+      InformationBackColor:
+        Color:
+        - Gainsboro
+      NotificationBackColor:
+        Color:
+        - LightBlue
+      WarningBackColor:
+        Color:
+        - Yellow
+      AlarmBackColor:
+        Color:
+        - Red
+      CriticalBackColor:
+        Color:
+        - DarkRed
+      OperatorInputRequestBackColor:
+        Color:
+        - MediumBlue
+      NormalStateTextColor:
+        Color:
+        - Black
+      NormalStateBackColor:
+        Color:
+        - White

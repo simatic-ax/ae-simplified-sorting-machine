@@ -1,0 +1,147 @@
+# General information
+name: "sortingmachine"
+version: 0.0.0-placeholder
+type: app
+# Description for your application example or app
+description: Application example for box sorting machine. Sorting is done by separating the boxes by color.
+# Targets to be compiled with 'apax build'
+targets:
+  - "1500"
+  - llvm # Because of the use of Sina, no llvm can be used as target and PLCSIM needs to be used
+  # Catalog:
+catalogs:
+  "@ax/simatic-ax": ^2510.0.0
+
+dependencies:
+  "@ax/simatic-alarming": ^5.1.0
+  "@ax/system": ^10.2.7
+  "@ax/system-edgedetection": ^10.2.7
+  "@ax/simatic-crypto": ^4.0.15
+  "@simatic-ax/sinamics-drive-functions": ^2.0.0 # Need to use external Registry
+  # Dependencies
+devDependencies:
+  "@ax/sdk": ^2510.3.0
+  "@ax/certificate-management": ^2.0.0
+
+registries:
+  default: https://registry.npmjs.org/
+  '@simatic-ax': 'https://npm.pkg.github.com/'
+
+# Project variables
+variables:
+  # Folder where to find the compiled HW artifacts
+  HW_BIN_FOLDER: ./bin/hw
+
+  # Folder where to find the compiled SW artifacts
+  SW_BIN_FOLDER: "./bin/1500"
+  APAX_BUILD_ARGS:
+    - --debug # Enable debug information for value debugging
+
+  # Choose your target RT, here : any S7-1500 PLC
+  # IP address must match with the IP address of your target device
+  # The IP address in the .vscode/launch.json must be equal  
+  IP_ADDRESS: "192.168.0.1"
+  DRIVE_IP_ADDRESS: "192.168.0.2"
+  INPUT_HWC: --input hwc/hw_templates --input hwc/rack
+
+  # The master password to protect the confidential configuration data on the PLC
+  # DISCLAIMER: Storing and publishing passwords in readable form is not a best practice.
+  # It has been added as variable to this document so that it can be used in the following scripts.
+  # You should remove it from this document after running the scripts before making your project available to others.
+  # Alternatively, you can completely dispense with the scripts contained in this document and enter all relevant commands directly in the terminal.
+  # Another alternative is to create the variables as environment variables in your local host system. You can then remove the definition from this document and still use the prepared scripts.
+  # Please use a password that is case sensitive (1 big and 1 small letter), a special character and a number.
+  MASTER_PW: "VeryGoodPassword123++"
+
+  # The locations of the certificate files
+  TLS_CONNECT_CERTFILE: "certificate/reference_x509.crt"
+  TLS_IMPORT_CERTFILE: "certificate/containerWithPublicAndPrivateKeys_x509.p12"
+
+  # The password (or passphrase) to access containerWithPublicAndPrivateKeys_x509.p12 used when importing the certificate
+  # DISCLAIMER: Storing and publishing passwords in readable form is not a best practice.
+  CERT_PASSPHRASE: "MyPasswordThatIInsertByCreationOfProject"
+
+  # The name of the PLC as specified in the PLC configuration
+  # The name should be specified before creating the PLC's security file, as the file are assigned using the PLC name.
+  PLC_NAME: "PLC_1"
+
+  DRIVE_NAME: "Drive_1"
+
+  # The user names as specified in the PLC configuration
+  USER_NAME: "User1"
+
+  # DISCLAIMER: Storing and publishing passwords in readable form is not recommended
+  USER_PASSWORD: "Siemens1!"
+
+  # Unit Testing in PLC
+  # Unit Test PLC IP
+  AXUNIT_TARGET_IP: "192.168.0.1"
+  #AXUNIT_PLC_USERNAME: "User1"
+
+  # Unit Test PLC Certificate
+  AXUNIT_PLC_CERTIFICATEFILE: "certificate/reference_x509.crt"
+  #Unit Test PLC User name AXUNIT_PLC_USERNAME 
+
+  AX_SortMacTest_IPADDRESS: 192.168.0.1
+  AX_SortMacTest_PLCINFO: "6ES7 516-3AP03-0AB0,V4.0,S7-1516,project=AX,PLC_1"
+  AX_SortMacTest_USERNAME: User1
+  AX_SortMacTest_CERT: "QmFnIEF0dHJpYnV0ZXMNCiAgICBsb2NhbEtleUlEOiBBNiBCMCAzMCAwOCBGNCBENiBDQSA5QiBBOCAwMCBCNSA1RCAzMyBENSAxNCA5MCBDRCA3NSA1NyA1MyANCnN1YmplY3Q9U1Q9U3RhdGVOYW1lLCBMPUNpdHlOYW1lLCBPPUNvbXBhbnlOYW1lLCBPVT1Db21wYW55U2VjdGlvbk5hbWUsIENOPUNvbW1vbk5hbWVPckhvc3RuYW1lDQppc3N1ZXI9U1Q9U3RhdGVOYW1lLCBMPUNpdHlOYW1lLCBPPUNvbXBhbnlOYW1lLCBPVT1Db21wYW55U2VjdGlvbk5hbWUsIENOPUNvbW1vbk5hbWVPckhvc3RuYW1lDQotLS0tLUJFR0lOIENFUlRJRklDQVRFLS0tLS0NCk1JSUQyekNDQXNPZ0F3SUJBZ0lVVUFSV1RBU05YYjRUVlliQjY0TG9wVndoVjN3d0RRWUpLb1pJaHZjTkFRRUwNCkJRQXdlVEVTTUJBR0ExVUVDQXdKVTNSaGRHVk9ZVzFsTVJFd0R3WURWUVFIREFoRGFYUjVUbUZ0WlRFVU1CSUcNCkExVUVDZ3dMUTI5dGNHRnVlVTVoYldVeEd6QVpCZ05WQkFzTUVrTnZiWEJoYm5sVFpXTjBhVzl1VG1GdFpURWQNCk1Cc0dBMVVFQXd3VVEyOXRiVzl1VG1GdFpVOXlTRzl6ZEc1aGJXVXdIaGNOTWpVeE1ESTVNVFV4T0RBeFdoY04NCk1qWXhNREk1TVRVeE9EQXhXakI1TVJJd0VBWURWUVFJREFsVGRHRjBaVTVoYldVeEVUQVBCZ05WQkFjTUNFTnANCmRIbE9ZVzFsTVJRd0VnWURWUVFLREF0RGIyMXdZVzU1VG1GdFpURWJNQmtHQTFVRUN3d1NRMjl0Y0dGdWVWTmwNClkzUnBiMjVPWVcxbE1SMHdHd1lEVlFRRERCUkRiMjF0YjI1T1lXMWxUM0pJYjNOMGJtRnRaVENDQVNJd0RRWUoNCktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0NnZ0VCQU11MEJEWVRPdFJyakhIVnNxeUFoenlXMXFpcU1kTkoNCnRGcDVOZkxWditPTWhFemRYWitHTlp1M01vd3BLNVNUTzAxRVg2eFF5bmdDVXl6TzI0OWlKcW93NHZwL2YwYXcNCkxXVU5lemRoRzNUU2o4NW0zdGZLc3F2ZjdvelZMWFpsY2ZRNGx0RzRTTS9LMWZOQS9HTFBqUS9DRlNBeHV2UkYNCi9xbGVOZTI3K1IyZmxMWG1sUHVUUmN1UllzcXRnL2grdFZyc1Fsa25KVTBBNEdUWHRYK2d1Mm9oWmhMUmZUcFINCkhIMnYzZ1ZmNUZaK0FzTlJRMUFiU2gvTlBUVjJWUERMRmkxalZKbE04WEphT1R6YXB3dDg4TkR1Zk9rdUJxS0kNCnl2SkhYVFBKVk5Nam1tV0h2Z3M0T0licDBFS3BuVHZPdUc1T0NyYURvU3ZsVnpnUjBhQ1hqMXNDQXdFQUFhTmINCk1Ga3dDUVlEVlIwVEJBSXdBREFPQmdOVkhROEJBZjhFQkFNQ0F2UXdIUVlEVlIwbEJCWXdGQVlJS3dZQkJRVUgNCkF3RUdDQ3NHQVFVRkJ3TUNNQjBHQTFVZERnUVdCQlFSSWJONExBZWsxSEdlUGd2K21JVTluSkc1dWpBTkJna3ENCmhraUc5dzBCQVFzRkFBT0NBUUVBWGx2WkswNk83bklEemN1OERDMEJGRDh1NzBKSjI5TTNiL0xpSDhrU1JUMGENCjZtMXNZbktHaWRhWWtWM3pPLy96bHJUYjdxYk5XUFFta2o5VDJZakFROWQvbG8rOGdFdlZOdjdCRnZwNWFETG8NCmJ5OWxOUGh4eGpCNmkwc2JkVnpXR1AvT2VQc0ozaFAxWFRqaVg1T3pqRVJXQktWckMvdVZxeUtNUEdQOTZKNy8NCnVYOCtJK3ZhZkxjOXVvOEgyZENLMTFxTEFpY0xwc3d5WnZDZWw4ZGwzRi93MVc3dndudm5pTUxsZHkyS2FFTVoNCkJPWWtlb1VRaHlNN2Ywd0RyQThCN0dpYzVEZVVOY3ZDYkhwNXlSbVEyZG1oR1d2RFg1Z2FJcjhjUXhJaytpSjANCi92YytiL2ZYUGV1WjcrbGdhN0s0c2tnaHVNMEd6L2ZiZGNTVjF4M3o2Zz09DQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tDQo="
+  # Apax scripts
+scripts:
+  ############### Inital runs for PLC / PLC Name changes ###########################
+  # The bash function provide the easy creation of certificates via open ssl and then moves the certificate to the certificate folder. 
+  # In order to call the script, the access level must be authorized at the beginning.
+  create_certificate:
+    - chmod +x certificate/createCertificateViaOpenSSL.sh
+    - certificate/createCertificateViaOpenSSL.sh $CERT_PASSPHRASE
+    - echo "Make sure that the CERT_PASSPHRASE variable retains the value that was last used to generate the certificate files when you import certificates later."
+  # Creates a file for the PLC's security configuration
+  setup_certificates:
+    - apax hwc setup-secure-communication --module-name $PLC_NAME $INPUT_HWC --master-password $MASTER_PW
+    - apax hwc import-certificate --module-name $PLC_NAME $INPUT_HWC --certificate $TLS_IMPORT_CERTFILE --passphrase $CERT_PASSPHRASE --purpose "TLS"
+    - apax hwc import-certificate --module-name $PLC_NAME $INPUT_HWC --certificate $TLS_IMPORT_CERTFILE --passphrase $CERT_PASSPHRASE --purpose "OpcUaServer"
+    - apax hwc import-certificate --module-name $PLC_NAME $INPUT_HWC --certificate $TLS_IMPORT_CERTFILE --passphrase $CERT_PASSPHRASE --purpose WebServer
+
+  # Adds a user for the PLC
+  hwc_add_user: hwc manage-users  --module-name $PLC_NAME $INPUT_HWC set-password --username $USER_NAME --password $USER_PASSWORD
+
+  # Install GSD files
+  install_gsd:
+    - apax hwc install-gsd --input ./hwc/gsd # will be installed globally
+    - apax hwc get-supported-devices > hwc/hw_catalog.txt # overview of all supported hw-devices (installed GSDs + HW-support packages)
+
+  # Generate Template for GSD file
+  hw_generate_config_templates:
+    - apax hwc generate-template-file --gsd-file-name "GSDML-V2.42-SIEMENS-SINAMICS_G220-20240814.XML" --gsd-id "IDD_G220-V6.4" --output hwc/hw_templates/g220_im_v64.hwl.yml
+    - apax hwc generate-template-file --gsd-file-name "GSDML-V2.42-SIEMENS-SINAMICS_G220-20240814.XML" --gsd-id "IDM_DRVSPD" --output hwc/hw_templates/g220_drvspd.hwl.yml
+    - apax hwc generate-template-file --gsd-file-name "GSDML-V2.42-SIEMENS-SINAMICS_G220-20240814.XML" --gsd-id "IDM_DRVPOS" --output hwc/hw_templates/g220_drvpos.hwl.yml
+
+  # Setup needed before hw_compile possible
+  setup_hw_certificates_and_user:
+    - apax setup_certificates
+    - apax hwc_add_user
+    - apax install_gsd
+
+  ##################################################################################
+  # Compiles the hardware description (input: sources) to generate specific data (output: binaries) and updates the IO and HwIdent mapping (SystemConstants)
+  hw_compile: hwc compile $INPUT_HWC --output $HW_BIN_FOLDER
+  # Loads the target-specific hardware data (binaries) onto the PLC
+  hw_load: hwld load --input $HW_BIN_FOLDER/$PLC_NAME --target $IP_ADDRESS --accept-security-disclaimer --certificate $TLS_CONNECT_CERTFILE --master-password $MASTER_PW
+  # Load Drive hwc to drive
+  drive_load: hwld load --input $HW_BIN_FOLDER/$PLC_NAME --target $DRIVE_IP_ADDRESS --accept-security-disclaimer # --certificate $TLS_CONNECT_CERTFILE # --master-password $MASTER_PW
+  # Calls 'apax load' to download the builded program to the target. An 'apax build' might be required upfront
+  load: sld load --input $SW_BIN_FOLDER --target $IP_ADDRESS --restart --accept-security-disclaimer --log debug -C $TLS_CONNECT_CERTFILE
+  # Builds and downloads the application to the target PLC
+  dlplc:
+    - apax build
+    - apax load
+  # Compiles the hardware and software, then loads them onto the PLC
+  compile_and_load_all:
+    - apax hw_compile
+    - apax hw_load
+    - apax dlplc
+
+  monitor:
+    - apax mon --target $IP_ADDRESS --certificate $TLS_IMPORT_CERTFILE --password $MASTER_PW --input ./variables.mon --continuous
+
+

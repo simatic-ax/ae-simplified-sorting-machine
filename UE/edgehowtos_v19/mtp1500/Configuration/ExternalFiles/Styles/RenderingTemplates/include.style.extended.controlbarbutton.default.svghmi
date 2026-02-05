@@ -1,0 +1,181 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:hmi="http://svg.siemens.com/hmi/"
+    xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+    xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+    xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+    preserveAspectRatio="none">
+
+    <hmi:self type="part:HmiControlBarButtonPart" displayName="Extended ControlBarButton" name="extended.controlbarbutton.part" version="1.0.1" performanceClass="L">
+
+        <hmi:paramDef name="Font"                 type="HmiFontPart" />
+        <hmi:paramDef name="ControlBarExtent"     type="number" />
+        <hmi:paramDef name="BarPosition"          type="number" />
+        <hmi:paramDef name="ControlBarOperable"   type="boolean" />
+        <hmi:paramDef name="FocusColor"           type="string" />
+        <hmi:paramDef name="ShowFocusVisual"      type="boolean" />
+
+        <hmi:focus focusVisual="local" canFocus="true" />
+
+    </hmi:self>
+
+    <defs>
+        <hmi:localDef name="MouseHover"           type="number"   value="0" />
+        <hmi:localDef name="Pressed"              type="number"   value="0" />
+
+        <hmi:localDef name="ShowFocus"            type="boolean"  hmi-bind:value="{{ and( ParamProps.ShowFocusVisual, SysProps.HasFocus ) }}" />
+
+        <hmi:localDef name="BorderColorAlphaMask" type="number"   value="0x01000000" />
+        <hmi:localDef name="BorderPressedAlpha"   type="number"   value="0x80000000" />
+        <hmi:localDef name="BorderColorPressed"   type="string"   hmi-bind:value="{{ Converter.RGBA( ( HmiProps.BorderColor % LocalProps.BorderColorAlphaMask ) + LocalProps.BorderPressedAlpha ) }}" />
+        <hmi:localDef name="BorderColor"          type="string"   hmi-bind:value="{{ Converter.RGBA( HmiProps.BorderColor ) }}" />
+
+        <hmi:localDef name="BackColorDarker"      type="HmiColor" hmi-bind:value="{{ Converter.Darker( HmiProps.BackColor, 0.4 ) }}" />
+        <hmi:localDef name="BackColorHover"       type="HmiColor" hmi-bind:value="{{ Converter.Darker( HmiProps.BackColor, 0.6 ) }}" />
+        <hmi:localDef name="ElementPositionX"     type="number"   hmi-bind:value="{{ or( ( ParamProps.BarPosition == 0 ), ( ParamProps.BarPosition == 1 ) ) ? HmiProps.Offset : ( ( ParamProps.BarPosition == 3 ) ? HmiProps.Height : 0 ) }}" />
+        <hmi:localDef name="ElementPositionY"     type="number"   hmi-bind:value="{{ or( ( ParamProps.BarPosition == 0 ), ( ParamProps.BarPosition == 1 ) ) ? HmiProps.Margin.Top : ( ( ParamProps.BarPosition == 3 ) ? ( HmiProps.Offset + HmiProps.Margin.Left ) : ( ParamProps.ControlBarExtent - HmiProps.Offset - HmiProps.Margin.Right  ) ) }}" />
+        <hmi:localDef name="ContentPositionX"     type="number"   hmi-bind:value="{{ HmiProps.BorderWidth + HmiProps.Padding.Left }}" />
+        <hmi:localDef name="ContentPositionY"     type="number"   hmi-bind:value="{{ HmiProps.BorderWidth + HmiProps.Padding.Top  }}" />
+        <hmi:localDef name="ContentWidth"         type="number"   hmi-bind:value="{{ HmiProps.Width  - ( 2 * HmiProps.BorderWidth ) - HmiProps.Padding.Left - HmiProps.Padding.Right }}" />
+        <hmi:localDef name="ContentHeight"        type="number"   hmi-bind:value="{{ HmiProps.Height - ( 2 * HmiProps.BorderWidth ) - HmiProps.Padding.Top  - HmiProps.Padding.Bottom }}" />
+        <hmi:localDef name="RotationAngle"        type="number"   hmi-bind:value="{{ ( ParamProps.BarPosition == 3 ) ? 90 : ( ( ParamProps.BarPosition == 2 ) ? -90 : 0 ) }}" />
+
+        <hmi:localDef name="GradientColor1"       type="HmiColor" hmi-bind:value="{{ LocalProps.Pressed ? LocalProps.BackColorDarker : HmiProps.BackColor }}" />
+        <hmi:localDef name="GradientColor2"       type="HmiColor" hmi-bind:value="{{ LocalProps.Pressed ? HmiProps.BackColor : ( LocalProps.MouseHover ? LocalProps.BackColorHover : LocalProps.BackColorDarker ) }}" />
+
+        <hmi:localDef name="BadgeExtentMin"       type="number"   value="6" />
+        <hmi:localDef name="BadgeHeight"          type="number"   hmi-bind:value="{{ Converter.Max( 2 * HmiProps.Height / 5, LocalProps.BadgeExtentMin ) }}" />
+        <hmi:localDef name="BadgeOffset"          type="number"   hmi-bind:value="{{ Converter.Min( LocalProps.BadgeHeight / 3, 3 ) }}" />
+        <hmi:localDef name="BadgePadding"         type="number"   value="3" />
+
+        <hmi:localDef name="ButtonOperable"       type="boolean"  hmi-bind:value="{{ and( HmiProps.Enabled, HmiProps.Operability == HmiOperability.Operable ) }}" />
+        <hmi:localDef name="Operable"             type="boolean"  hmi-bind:value="{{ and( ParamProps.ControlBarOperable, LocalProps.ButtonOperable ) }}" />
+        <hmi:localDef name="BorderWidthHalf"      type="boolean"  hmi-bind:value="{{  HmiProps.BorderWidth / 2 }}" />
+        <hmi:localDef name="BadgePadingXY"        type="boolean"  hmi-bind:value="{{ -1 * LocalProps.BadgePadding }}" />
+
+      <!-- definitions of actions -->
+        <hmi:action id="onMouseHover" hmi-bind:condition="{ LocalProps.Operable }" >
+            <hmi:setProperty name="LocalProps.MouseHover"     type="number" value="1" />
+        </hmi:action>
+
+        <!-- Because trigger cannot be dynamic, we must duplicate the actions for the trigger and extend the condition -->
+        <hmi:action id="onMouseDown" hmi-bind:condition="{ LocalProps.Operable }" >
+            <hmi:setProperty name="LocalProps.Pressed"        type="number" value="1" />
+            <hmi:setProperty name="LocalProps.MouseHover"     type="number" value="0" />
+            <hmi:sendCommand name="BUTTON_PRESSED"            type="number" hmi-bind:value="{ HmiProps.Mapping }" />
+        </hmi:action>
+        <hmi:action id="onMouseDown_Sim" trigger="accept" hmi-bind:condition="{ LocalProps.Operable }">
+            <hmi:sendCommand name="BUTTON_PRESSED" 			  type="number" hmi-bind:value="{ HmiProps.Mapping }" />
+        </hmi:action>
+
+        <!-- Because trigger cannot be dynamic, we must duplicate the actions for the trigger and extend the condition -->
+        <hmi:action id="onMouseUp" hmi-bind:condition="{ LocalProps.Operable }" >
+            <hmi:setProperty name="LocalProps.Pressed"    	type="number" value="0" />
+            <hmi:setProperty name="LocalProps.MouseHover" 	type="number" value="1" />
+        </hmi:action>
+        <hmi:action id="onMouseUp_Sim" trigger="accept" hmi-bind:condition="{ LocalProps.Operable }">
+            <hmi:sendCommand name="BUTTON_RELEASED" 		  type="number" hmi-bind:value="{ HmiProps.Mapping }" />
+        </hmi:action>
+         <hmi:action id="onMouseTapped" hmi-bind:condition="{ LocalProps.Operable }" >
+            <hmi:sendCommand name="BUTTON_RELEASED"       	type="number" hmi-bind:value="{ HmiProps.Mapping }" />
+        </hmi:action>
+
+        <hmi:action id="onMouseEnter" >
+            <hmi:sendCommand name="BUTTON_ENTER"          type="number" hmi-bind:value="{ HmiProps.Mapping }" />
+        </hmi:action>
+        <hmi:action id="onMouseLeave" >
+            <hmi:setProperty name="LocalProps.Pressed"    type="number" value="0" hmi-bind:condition="{ LocalProps.Operable }" />
+            <hmi:setProperty name="LocalProps.MouseHover" type="number" value="0" hmi-bind:condition="{ LocalProps.Operable }" />
+            <hmi:sendCommand name="BUTTON_LEAVE"          type="number" hmi-bind:value="{ HmiProps.Mapping }" />
+        </hmi:action>
+
+        <!-- Graphical elements of this template -->
+        <linearGradient id="BgGradient_LighterDarker" gradientUnits="objectBoundingBox" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0.0" hmi-bind:stop-opacity="{{ Converter.Alpha(  LocalProps.GradientColor1 ) }}" hmi-bind:stop-color="{{ Converter.RGB(  LocalProps.GradientColor1 ) }}" />
+            <stop offset="1.0" hmi-bind:stop-opacity="{{ Converter.Alpha(  LocalProps.GradientColor2 ) }}" hmi-bind:stop-color="{{ Converter.RGB(  LocalProps.GradientColor2 ) }}" />
+        </linearGradient>
+
+        <clipPath id="ItemClipRectCBB">
+        <rect id="ItemRect"
+            hmi-bind:width="{ HmiProps.Width }"
+            hmi-bind:height="{ HmiProps.Height }"
+            hmi-bind:stroke-width="{ HmiProps.BorderWidth }"
+            rx="5" />
+        </clipPath>
+
+    </defs>
+
+    <g id="TIFID_ControlBarElement" clip-path="url(#ItemClipRectCBB)" hmi:if="{ HmiProps.Visible }"
+        hmi-bind:opacity="{{ LocalProps.Operable ? 1.0 : 0.5  }}"
+        hmi-bind:transform="rotate( {{ LocalProps.RotationAngle }},{{ LocalProps.ElementPositionX }},{{ LocalProps.ElementPositionY }} ) translate( {{ LocalProps.ElementPositionX }},{{ LocalProps.ElementPositionY  }} )"
+        hmi-event:mouseHover="url(#onMouseHover)"
+        hmi-event:down="url(#onMouseDown)"
+        hmi-event:up="url(#onMouseUp)"
+        hmi-event:tapped="url(#onMouseTapped)"
+        hmi-event:mouseEnter="url(#onMouseEnter)"
+        hmi-event:mouseLeave="url(#onMouseLeave)">
+
+        <rect id="ItemBGRect"
+            hmi-bind:x="{ HmiProps.BorderWidth }"
+            hmi-bind:y="{ HmiProps.BorderWidth }"
+            hmi-bind:width="{{ HmiProps.Width - 2 * HmiProps.BorderWidth }}"
+            hmi-bind:height="{{ HmiProps.Height - 2 * HmiProps.BorderWidth }}"
+            fill="url(#BgGradient_LighterDarker)"
+            stroke-width="0"
+            hmi-bind:rx="{{ Converter.Max( 1, 5 - HmiProps.BorderWidth ) }}" />
+
+        <hmi:include template="include.style.extended.content.svghmi" hmi-bind:for="{ HmiProps.Content }"
+            hmi-bind:x="{ LocalProps.ContentPositionX }"
+            hmi-bind:y="{ LocalProps.ContentPositionY }"
+            hmi-bind:width="{ LocalProps.ContentWidth }"
+            hmi-bind:height="{ LocalProps.ContentHeight }">
+
+            <hmi:param name="Graphic"       type="HmiGraphic"  hmi-bind:value="{ HmiProps.Graphic }" />
+            <hmi:param name="Text"          type="string"      hmi-bind:value="{ HmiProps.Text }" />
+            <hmi:param name="Font"          type="HmiFontPart" hmi-bind:value="{ ParamProps.Font }" />
+            <hmi:param name="TextColor"     type="HmiColor"    hmi-bind:value="{ HmiProps.ForeColor }" />
+            <hmi:param name="GraphicWidth"  type="number"      hmi-bind:value="{ HmiProps.GraphicWidth }" />
+            <hmi:param name="GraphicHeight" type="number"      hmi-bind:value="{ HmiProps.GraphicHeight }" />
+
+        </hmi:include>
+
+        <rect id="ItemRect_Used"
+            fill-opacity="0"
+            hmi-bind:stroke="{{ LocalProps.ShowFocus ? ParamProps.FocusColor : ( or( LocalProps.Pressed, LocalProps.MouseHover ) ? LocalProps.BorderColorPressed : LocalProps.BorderColor ) }}"
+            hmi-bind:x="{LocalProps.BorderWidthHalf}"
+            hmi-bind:y="{LocalProps.BorderWidthHalf}"
+            hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth }}"
+            hmi-bind:height="{{ HmiProps.Height - HmiProps.BorderWidth }}"
+            hmi-bind:stroke-width="{{ HmiProps.BorderWidth + ( LocalProps.ShowFocus ? 4 : 0 ) }}"
+            rx="5" />
+    </g>
+
+  <!-- Badge inclusion -->
+
+    <g hmi:if="{ HmiProps.Badge.Visible }"  hmi-bind:transform="rotate( {{ LocalProps.RotationAngle }},{{ LocalProps.ElementPositionX }},{{ LocalProps.ElementPositionY }} ) translate( {{ LocalProps.ElementPositionX + LocalProps.BadgeOffset }},{{ LocalProps.ElementPositionY - LocalProps.BadgeOffset }})"
+        hmi-bind:opacity="{{ LocalProps.Operable ? 1.0 : 0.5  }}"
+        hmi-event:mouseHover="url(#onMouseHover)"
+        hmi-event:down="url(#onMouseDown)"
+        hmi-event:up="url(#onMouseUp)"
+        hmi-event:tapped="url(#onMouseTapped)"
+        hmi-event:mouseEnter="url(#onMouseEnter)"
+        hmi-event:mouseLeave="url(#onMouseLeave)">
+
+        <hmi:include template="include.style.extended.badge.svghmi" hmi-bind:for="{ HmiProps.Badge }"
+            hmi-bind:x="{LocalProps.BadgePadingXY}"
+            hmi-bind:y="{LocalProps.BadgePadingXY}"
+            hmi-bind:width="{{ HmiProps.Width + 2 * LocalProps.BadgePadding }}"
+            hmi-bind:height="{{ LocalProps.BadgeHeight + 2 * LocalProps.BadgePadding }}">
+
+            <hmi:param name="WidthMax"    		type="number"       hmi-bind:value="{ HmiProps.Width }" />
+            <hmi:param name="Height"      		type="number"       hmi-bind:value="{ LocalProps.BadgeHeight }"  />
+            <hmi:param name="Font"        		type="HmiFontPart"  hmi-bind:value="{ ParamProps.Font }"  />
+            <hmi:param name="ButtonVisible"     type="boolean"      hmi-bind:value="{ HmiProps.Visible }" />
+
+        </hmi:include>
+    </g>
+
+</svg>

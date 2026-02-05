@@ -1,0 +1,68 @@
+#Version: 2.0
+FaceplateTypes:
+  Faceplate_NewBoxTrigger:
+    ObjectType: FaceplateType
+    Width: 272
+    Height: 36
+    BackColor: 0xFF1491EB
+    DisplayName: GlobalTextLibrary.Entity_129
+    EventEnum: ''
+    Layers:
+      Layer_0:
+      Layer_1:
+    ScriptModules:
+      EventScripts:
+        ScriptLanguage: JavaScript
+        ScriptFile: Scripts\Faceplate_NewBoxTrigger_EventScripts.js
+        Scripts:
+          fpNewBoxTrigger_OnDown:
+          fpNewBoxTrigger_OnUp:
+    PropertyInterface:
+      Properties:
+        ObjectType: FaceplateInterfacePropertyCollectionType
+        Members:
+          Text:
+            ObjectType: FaceplateSimplePropertyType
+            DataType: String
+            Default AS String: New Box
+          ControlTag:
+            ObjectType: FaceplateSimplePropertyType
+            DataType: Bool
+            Default: false
+    Items:
+      txtBackground:
+        ObjectType: TextBox
+        Top: 0
+        Left: 0
+        Height: 36
+        Width: 272
+        BackColor: 0xFF1491EB
+        ForeColor: 0xFFDDDCDC
+        BorderWidth: 0
+        HorizontalTextAlignment: Center
+        Font:
+          Description: GlobalFontLibrary.Entity_23
+        Text: '@Self.Properties.Text'
+        Layer: Faceplate_NewBoxTrigger.Layers.Layer_0
+      btnOverlay:
+        ObjectType: Button
+        Top: 0
+        Left: 0
+        Height: 36
+        Width: 272
+        BackColor: Black 0%
+        BorderWidth: 0
+        ForeColor: 0x00000000
+        ShowFocusVisual: False
+        Layer: Faceplate_NewBoxTrigger.Layers.Layer_1
+        Content:
+          SplitRatio: 1
+        EventHandlers:
+          ScriptEventHandler1:
+            Event: Down
+            Type: Script
+            Script: '@local::EventScripts.fpNewBoxTrigger_OnDown'
+          ScriptEventHandler2:
+            Event: Up
+            Type: Script
+            Script: '@local::EventScripts.fpNewBoxTrigger_OnUp'

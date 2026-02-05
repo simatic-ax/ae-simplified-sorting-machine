@@ -1,0 +1,130 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     preserveAspectRatio="none">
+
+    <hmi:self type="item:HmiListBox" displayName="Extended ListBox" name="style.extended.listbox" version="2.8" performanceClass="L" >
+        <hmi:focus focusVisual="local" />
+    </hmi:self>
+
+    <defs>
+        <!-- Local definitions of this template -->
+        <hmi:localDef name="ScrollBarPart"              type="HmiScrollBarSystemPart"   hmi-bind:value="{{ Converter.GetDefaultValue( 'HmiScrollBarSystemPart' ) }}" />
+
+        
+        <hmi:localDef name="ScrollBarPosition"          type="number"   value="0" />
+        <hmi:localDef name="ShowFocus"                  type="boolean"  hmi-bind:value="{{ and( HmiProps.ShowFocusVisual, SysProps.HasFocus ) }}" />
+        <hmi:localDef name="BorderWidth"                type="number"   hmi-bind:value="{{ LocalProps.ShowFocus ? ( HmiProps.BorderWidth + 2 ) : HmiProps.BorderWidth }}" />
+
+        <hmi:localDef name="CheckBoxCount"              type="number"   hmi-bind:value="{{ Converter.CountItems(HmiProps.SelectionItems) }}" />
+        <hmi:localDef name="SelectionAutoFactor"        type="number"   hmi-bind:value="{{ and( ( HmiProps.Content.ContentMode == HmiContentMode.GraphicAndText ), or( HmiProps.Content.TextPosition == HmiTextPosition.Top, HmiProps.Content.TextPosition == HmiTextPosition.Bottom ) ) ? 1 - HmiProps.Content.SplitRatio : 1 }}" />
+        <hmi:localDef name="SelectionAutoHeight"        type="number"   hmi-bind:value="{{ HmiProps.Font.Size * 2.0 / LocalProps.SelectionAutoFactor }}" />
+        <hmi:localDef name="SelectionItemHeight"        type="number"   hmi-bind:value="{{ HmiProps.SelectionItemHeight == 0 ? LocalProps.SelectionAutoHeight : HmiProps.SelectionItemHeight }}" />
+
+        <hmi:localDef name="ContentPositionX"           type="number"   hmi-bind:value="{{ HmiProps.BorderWidth + HmiProps.Padding.Left }}" />
+        <hmi:localDef name="ContentPositionY"           type="number"   hmi-bind:value="{{ HmiProps.BorderWidth + HmiProps.Padding.Top  }}" />
+
+        <hmi:localDef name="ViewHeight"                 type="number"   hmi-bind:value="{{ HmiProps.Height - (2 * HmiProps.BorderWidth) - HmiProps.Padding.Top  - HmiProps.Padding.Bottom }}" />
+        <hmi:localDef name="ContentHeight"              type="number"   hmi-bind:value="{{ LocalProps.CheckBoxCount * LocalProps.SelectionItemHeight }}" />
+        <hmi:localDef name="ScrollBarWidth"             type="number"   hmi-bind:value="{{ gt( LocalProps.ContentHeight, LocalProps.ViewHeight ) ? 13 : 0 }}" />
+        <hmi:localDef name="ScrollBarContentHeight"     type="number"   hmi-bind:value="{{ HmiProps.Height - ( 2 * HmiProps.BorderWidth + HmiProps.Padding.Top + HmiProps.Padding.Bottom ) }}" />
+        <hmi:localDef name="ScrollBarContentPositionX"  type="number"   hmi-bind:value="{{ HmiProps.Width - HmiProps.BorderWidth - HmiProps.Padding.Right - LocalProps.ScrollBarWidth }}" />
+
+        <hmi:localDef name="ItemOperable"               type="boolean"  hmi-bind:value="{{ HmiProps.Operability == HmiOperability.Operable }}" />
+
+        <clipPath id="ExtendedListBoxClipRect">
+            <rect id="rectTemp"
+                  hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+                  hmi-bind:y="{{ HmiProps.BorderWidth + HmiProps.Padding.Top }}"
+                  hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth }}"
+                  hmi-bind:height="{{ HmiProps.Height - 2 * HmiProps.BorderWidth - HmiProps.Padding.Bottom - HmiProps.Padding.Top }}"
+                  fill="none"
+                  hmi-bind:stroke="{{ Converter.RGBA(HmiProps.BorderColor) }}"
+                  hmi-bind:stroke-width="{ HmiProps.BorderWidth }"/>
+        </clipPath>
+
+    </defs>
+
+    <g id="ElementsGroup">
+
+        <g id="ExtendedListBox" hmi-bind:opacity="{{ LocalProps.ItemOperable ? 1.0 : 0.5 }}">
+
+            <rect id="ItemRect"
+                  hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+                  hmi-bind:y="{{ HmiProps.BorderWidth / 2 }}"
+                  hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth }}"
+                  hmi-bind:height="{{ HmiProps.Height - HmiProps.BorderWidth }}"
+                  hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}"
+                  stroke-width="0" />
+
+            <g clip-path="url(#ExtendedListBoxClipRect)">
+                <g hmi:if="{{ LocalProps.CheckBoxCount != 0 }}" id="SelectionItem_0"
+                   hmi-bind:transform="translate(0, {{ LocalProps.ScrollBarPosition * -1.0 }} )">
+
+                    <hmi:include template="include.style.extended.listbox.svghmi" hmi-bind:forEach="{ HmiProps.SelectionItems }"
+                                 hmi-bind:x="{ LocalProps.ContentPositionX }"
+                                 hmi-bind:y="{ LocalProps.ContentPositionY }"
+                                 hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth*2 }}"
+                                 hmi-bind:height="{ LocalProps.ContentHeight }">
+
+                        <hmi:param name="ItemOperable"           type="boolean"         hmi-bind:value="{ LocalProps.ItemOperable }" />
+                        <hmi:param name="ForeColor"              type="HmiColor"        hmi-bind:value="{ HmiProps.ForeColor }" />
+                        <hmi:param name="BackColor"              type="HmiColor"        hmi-bind:value="{ HmiProps.BackColor }" />
+                        <hmi:param name="AlternateBackColor"     type="HmiColor"        hmi-bind:value="{ HmiProps.AlternateBackColor }" />
+                        <hmi:param name="FocusColor"             type="HmiColor"        hmi-bind:value="{ HmiProps.FocusColor }" />
+                        <hmi:param name="Content"                type="HmiContentPart"  hmi-bind:value="{ HmiProps.Content }" />
+                        <hmi:param name="Font"                   type="HmiFontPart"     hmi-bind:value="{ HmiProps.Font }" />
+                        <hmi:param name="SelectionItemHeight"    type="number"          hmi-bind:value="{ LocalProps.SelectionItemHeight }" />
+                        <hmi:param name="PaddingLeftPlusRight"   type="number"          hmi-bind:value="{{ HmiProps.Padding.Left + HmiProps.Padding.Right }}" />
+
+                    </hmi:include>
+                </g>
+            </g>
+
+            <rect id="ItemRect_Used"
+                  hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+                  hmi-bind:y="{{ HmiProps.BorderWidth / 2 }}"
+                  hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth }}"
+                  hmi-bind:height="{{ HmiProps.Height - HmiProps.BorderWidth }}"
+                  fill="none"
+                  hmi-bind:stroke="{{ Converter.RGBA( LocalProps.ShowFocus ? HmiProps.FocusColor : HmiProps.BorderColor ) }}"
+                  hmi-bind:stroke-width="{ LocalProps.BorderWidth }" />
+
+        </g>
+
+        <g hmi:if="{{ gt( LocalProps.ContentHeight, LocalProps.ViewHeight ) }}" id="ScrollBarForExpandedListBox">
+
+          <hmi:include template="include.style.extended.scrollbarstandalone.svghmi"
+              hmi-bind:width="{ HmiProps.Width }"
+              hmi-bind:height="{ HmiProps.Height }" >
+
+            <hmi:param name="BackColor"           type="HmiColor"         hmi-bind:value="{ LocalProps.ScrollBarPart.BackColor }" />
+            <hmi:param name="ThumbBackColor"      type="HmiColor"         hmi-bind:value="{ LocalProps.ScrollBarPart.ThumbBackColor }"/>
+            <hmi:param name="Orientation"         type="HmiOrientation"   hmi-bind:value="{{ HmiOrientation.Vertical }}"            />
+            <hmi:param name="Width"               type="number"           hmi-bind:value="{ LocalProps.ScrollBarWidth }"            />
+            <hmi:param name="Height"              type="number"           hmi-bind:value="{ LocalProps.ScrollBarContentHeight }"    />
+            <hmi:param name="BeginValue"          type="number"           value="0"                                                 />
+            <hmi:param name="EndValue"            type="number"           hmi-bind:value="{ LocalProps.ContentHeight }"             />
+            <hmi:param name="CurrentValue"        type="number"           hmi-bind:value="{ LocalProps.ScrollBarPosition }"         />
+            <hmi:param name="VisibleValueRange"   type="number"           hmi-bind:value="{ LocalProps.ViewHeight }"                />
+            <hmi:param name="Thickness"           type="number"           hmi-bind:value="{{ LocalProps.ScrollBarWidth - 4 }}"      />
+            <hmi:param name="SmallStepValueRange" type="number"           hmi-bind:value="{ LocalProps.CheckBoxCount }"             />
+            <hmi:param name="BorderWidth"         type="number"           hmi-bind:value="{ HmiProps.BorderWidth }"                 />
+            <hmi:param name="OffsetX"             type="number"           hmi-bind:value="{ LocalProps.ScrollBarContentPositionX }" />
+            <hmi:param name="OffsetY"             type="number"           hmi-bind:value="{ LocalProps.ContentPositionY }"          />
+
+            </hmi:include>
+        </g>
+    </g>
+
+</svg>

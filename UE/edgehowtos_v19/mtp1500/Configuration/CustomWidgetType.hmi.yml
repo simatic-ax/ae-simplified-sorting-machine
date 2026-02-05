@@ -1,0 +1,163 @@
+#Version: 2.0
+
+CustomWidgetTypes:
+  CardboardBoxTightlySealedWithOSHA-Tape:
+    RenderingTemplate: CardboardBoxTightlySealedWithOSHA-Tape
+    PropertyInterface:
+      Properties:
+        Members:
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          ContrastColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+  NoncontactThermometer:
+    RenderingTemplate: NoncontactThermometer
+    PropertyInterface:
+      Properties:
+        Members:
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+  AssemblyLineCrane:
+    RenderingTemplate: AssemblyLineCrane
+    PropertyInterface:
+      Properties:
+        Members:
+          PositionVertical:
+            ObjectType: CustomPropertyType
+            DataType: DInt
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+  Conveyor4Side:
+    RenderingTemplate: Conveyor4Side
+    PropertyInterface:
+      Properties:
+        Members:
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+  BottomSmall:
+    RenderingTemplate: BottomSmall
+    PropertyInterface:
+      Properties:
+        Members:
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+  DigitalScale:
+    RenderingTemplate: DigitalScale
+    PropertyInterface:
+      Properties:
+        Members:
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          ContrastColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+  BoilerHorizontalCutawayWithFire:
+    RenderingTemplate: BoilerHorizontalCutawayWithFire
+    PropertyInterface:
+      Properties:
+        Members:
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          PipeColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          FlameBasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          FlameContrastColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          FlameBorderColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          FlameSize:
+            ObjectType: CustomPropertyType
+            DataType: DInt
+          Cutaway:
+            ObjectType: CustomPropertyType
+            DataType: Bool
+  InfoAttentionDark:
+    RenderingTemplate: InfoAttentionDark
+    PropertyInterface:
+      Properties:
+        Members:
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          ContrastColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+  InfoDangerDark:
+    RenderingTemplate: InfoDangerDark
+    PropertyInterface:
+      Properties:
+        Members:
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          ContrastColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+  StatusOnDiagMDemand:
+    RenderingTemplate: StatusOnDiagMDemand
+    PropertyInterface:
+      Properties:
+        Members:
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          ContrastColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+  StatusOnDiagMGood:
+    RenderingTemplate: StatusOnDiagMGood
+    PropertyInterface:
+      Properties:
+        Members:
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          ContrastColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+  InfoErrorCriticalDark:
+    RenderingTemplate: InfoErrorCriticalDark
+    PropertyInterface:
+      Properties:
+        Members:
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          ContrastColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+  InfoDecisionDark:
+    RenderingTemplate: InfoDecisionDark
+    PropertyInterface:
+      Properties:
+        Members:
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          ContrastColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+  StatusOnDiagMFault:
+    RenderingTemplate: StatusOnDiagMFault
+    PropertyInterface:
+      Properties:
+        Members:
+          BasicColor:
+            ObjectType: CustomPropertyType
+            DataType: Color
+          ContrastColor:
+            ObjectType: CustomPropertyType
+            DataType: Color

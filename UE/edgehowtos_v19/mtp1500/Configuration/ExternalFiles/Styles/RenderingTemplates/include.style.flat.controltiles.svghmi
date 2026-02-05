@@ -1,0 +1,43 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2022. All Rights Reserved. -->
+
+<svg id="TIFID_MatrixView_Content"  data-tif-type="WSI:matrixViewContent"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+  xmlns:hmi="http://svg.siemens.com/hmi/"
+  xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+  xmlns:hmi-types="http://svg.siemens.com/hmi/types/"
+  xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+  xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+  xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+  xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+  hmi-flex:grow="1"
+  hmi-flex:minWidth="{ParamProps.TileMinWidth}"
+  hmi-flex:minHeight="{ ParamProps.TileMinHeight }" 
+  hmi-flex:marginLeft="8" hmi-flex:marginTop="8">
+  <hmi:self type="part:HmiDynamicPropertyPart" name="style.flat.tilescontent" displayName="Content of the tileview" >
+    <hmi:paramDef name="Font"                      type="HmiFontPart"            />
+    <hmi:paramDef name="Width"                    type="number"                  />
+    <hmi:paramDef name="TileMinWidth"              type="number"                 />
+    <hmi:paramDef name="TileMinHeight"             type="number"                 />
+    <hmi:paramDef name="TileWidth"                 type="number"                 />
+  </hmi:self>
+   <defs>
+    <hmi:localDef name="TextCharWidth"           type="number"     hmi-bind:value="{{ Converter.TextWidth( HmiProps.Text, ParamProps.Font, false) }}" />
+    <hmi:localDef name="AvailableSpace"          type="number"     hmi-bind:value="{{ ParamProps.TileWidth - LocalProps.TextCharWidth }}" />
+  </defs>
+  <rect 	  
+    hmi-bind:width="{ ParamProps.TileWidth }"
+    hmi-bind:height="{ Layout.ActualHeight }" 
+    hmi-bind:fill="{{ Converter.RGBA (HmiProps.BackColor) }}">
+  </rect>
+  <text 
+    hmi-bind:fill="{{ Converter.RGBA (HmiProps.ForeColor) }}"
+    hmi-bind:font-size="{ ParamProps.Font.Size }"
+    hmi-bind:font-weight="{ ParamProps.Font.Weight }"
+    hmi-bind:font-family="{ ParamProps.Font.Name }"
+    hmi-bind:x="{{ LocalProps.AvailableSpace/2 }}"
+    hmi-bind:y="{{ Layout.ActualHeight/2 + 5 }}">
+    <hmi:text hmi-bind:value="{ HmiProps.Text }" />
+  </text> 
+</svg>

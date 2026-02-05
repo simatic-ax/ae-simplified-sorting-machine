@@ -1,0 +1,193 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2022. All Rights Reserved. -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:hmi="http://svg.siemens.com/hmi/"
+    xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+    xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+    preserveAspectRatio="none"
+    overflow="visible" >
+
+    <hmi:self type="item:HmiProcessDiagnosisGraphOverviewControl" displayName="Extended GraphOverviewControl" name="style.extended.processdiagnosisgraphoverviewcontrol" version="2.9" performanceClass="L"  >
+        <hmi:focus focusVisual="local" />
+    </hmi:self>
+
+    <defs>
+        <!-- System definitions of this template -->
+        <hmi:localDef name="SYS_WindowBorderColor"          type="number"       value="0xFF91939A" />
+        <hmi:localDef name="SYS_WindowBorderWidth"          type="number"       value="2"   />
+        <hmi:localDef name="SYS_RX"                         type="number"       value="5"   />
+        <hmi:localDef name="SYS_CaptionHeight"              type="number"       value="30"  />
+        
+        <hmi:localDef name="MinimumWidth"                   type="number"       value="100" />
+        <hmi:localDef name="MinimumHeight"                  type="number"       value="60"  />
+
+        <hmi:localDef name="ShowFocus"                      type="boolean"      hmi-bind:value="{{ and( HmiProps.ShowFocusVisual, SysProps.HasFocus ) }}" />
+        <hmi:localDef name="ShowCaption"                    type="boolean"      hmi-bind:value="{{ has( HmiProps.WindowFlags, HmiWindowFlag.ShowCaption ) }}" />
+        <hmi:localDef name="CaptionHeight"                  type="number"       hmi-bind:value="{{ LocalProps.ShowCaption ? LocalProps.SYS_CaptionHeight : 0 }}" />
+        <hmi:localDef name="CaptionColor"                   type="number"       hmi-bind:value="{{ LocalProps.ShowFocus ? HmiProps.FocusColor : HmiProps.CaptionColor}}" />
+        <hmi:localDef name="WindowBorderColor"              type="number"       hmi-bind:value="{{ LocalProps.ShowFocus ? HmiProps.FocusColor : LocalProps.SYS_WindowBorderColor }}" />
+        <hmi:localDef name="WindowBorderWidth"              type="number"       hmi-bind:value="{{ has( HmiProps.WindowFlags, HmiWindowFlag.ShowBorder ) ? LocalProps.SYS_WindowBorderWidth : 0 }}" />
+        <hmi:localDef name="WindowInnerWidth"               type="number"       hmi-bind:value="{{ HmiProps.Width - 2 * LocalProps.WindowBorderWidth }}" />
+        <hmi:localDef name="CaptionHeightPadding"           type="number"       hmi-bind:value="{{ LocalProps.WindowBorderWidth + LocalProps.CaptionHeight }}" />
+        <hmi:localDef name="PaddedWindowBorderWidth"        type="number"       hmi-bind:value="{{ 2 * LocalProps.WindowBorderWidth }}" />
+        <hmi:localDef name="WindowHeightWithoutCaption"     type="number"       hmi-bind:value="{{ HmiProps.Height - LocalProps.CaptionHeightPadding }}" />
+        
+       <!-- Definition of ToolBar properties -->
+        <hmi:localDef name="TestToolBar"                    type="number"       hmi-bind:value="{ HmiProps.ToolBar.Height }" />
+        <hmi:localDef name="TestToolBarHeight"              type="number"       hmi-bind:value="{{ ( LocalProps.TestToolBar == null ) ? 0 : HmiProps.ToolBar.Height }}" />
+        <hmi:localDef name="HasToolBar"                     type="boolean"      hmi-bind:value="{{ ( LocalProps.TestToolBar == null ) ? false : true }}" />
+        <hmi:localDef name="ToolBarHeight"                  type="number"       hmi-bind:value="{{ ( LocalProps.HasToolBar ) ? LocalProps.TestToolBarHeight : 0 }}" />
+        <hmi:localDef name="ToolBarPosition"                type="number"       value="1" />
+        <hmi:localDef name="ToolBarVisibility"              type="boolean"      hmi-bind:value="{{ LocalProps.HasToolBar ? HmiProps.ToolBar.Visible : false }}" />
+        <hmi:localDef name="ToolBarElementsCount"           type="number"       hmi-bind:value="{{ Converter.CountVisibleItems( HmiProps.ToolBar.Elements )}}" />
+        <hmi:localDef name="HasToolBarElements"             type="boolean"      hmi-bind:value="{{ LocalProps.HasToolBar ? ( LocalProps.ToolBarElementsCount ? true : false ) : false }}" />
+        <hmi:localDef name="ToolBarVisible"                 type="boolean"      hmi-bind:value="{{ ( not( and( LocalProps.ToolBarVisibility, LocalProps.HasToolBarElements ) ) ) ? false : ( or ( ( LocalProps.WindowInnerWidth == 0 ), ( LocalProps.ToolBarHeight == 0 ) ) ? false : true ) }}" />
+        <hmi:localDef name="ActualToolBarWidth"             type="number"       hmi-bind:value="{{ LocalProps.ToolBarVisible ? ( (LocalProps.ToolBarElementsCount * 42) + (le(LocalProps.ToolBarElementsCount, 2) ? 20 : (LocalProps.ToolBarElementsCount * 7))) : 0 }}" />
+
+        <!-- Definition of StatusBar properties -->
+        <hmi:localDef name="HasStatusBar"                   type="boolean"      hmi-bind:value="{{ HmiProps.StatusBar.Visible }}" />
+        <hmi:localDef name="StatusBarHeight"                type="number"       hmi-bind:value="{{ LocalProps.HasStatusBar ? HmiProps.StatusBar.Height : 0 }}" />
+        <hmi:localDef name="StatusBarWidth"                 type="number"       hmi-bind:value="{{ HmiProps.Width - 2 * LocalProps.WindowBorderWidth }}" />
+        <hmi:localDef name="StatusBarTop"                   type="number"       hmi-bind:value="{{ HmiProps.Height - LocalProps.StatusBarHeight }}" />
+        <hmi:localDef name="StatusBarLeft"                  type="number"       hmi-bind:value="{{ LocalProps.WindowBorderWidth }}" />
+        <hmi:localDef name="StatusBarFont"                  type="HmiFontPart"  hmi-bind:value="{{ HmiProps.StatusBar.Font }}" />
+        <hmi:localDef name="StatusBarTextX"                 type="number"       value="15" />
+        <hmi:localDef name="StatusBarTextY"                 type="number"       hmi-bind:value="{{ LocalProps.StatusBarTop + (LocalProps.StatusBarHeight - LocalProps.StatusBarFont.Size) / 2 + LocalProps.StatusBarFont.Size / 2  }}" />
+
+        <!-- Position and Extent related properties of the content -->
+        <hmi:localDef name="SmallHeight"                    type="number"       value = "77" />
+        <hmi:localDef name="MediumHeight"                   type="number"       value = "120" />
+        <hmi:localDef name="ErrorIcon"                      type="string"       hmi-bind:value="{ HmiProps.Icon }" />
+        <hmi:localDef name="SingleLineViewer"               type="boolean"      hmi-bind:value="{{ le(LocalProps.WindowHeightWithoutCaption, LocalProps.SmallHeight ) ? true : false }}" />
+        <hmi:localDef name="ListcontainerHeight"            type="number"       hmi-bind:value="{{ lt(LocalProps.WindowHeightWithoutCaption, LocalProps.MediumHeight ) ? ( LocalProps.WindowHeightWithoutCaption/2 ): 60 }} " />
+        <hmi:localDef name="FocusColor"                     type="string"       hmi-bind:value="{{ Converter.RGBA( HmiProps.FocusColor ) }}" />
+        <hmi:localDef name="BackColor"                      type="string"       hmi-bind:value="{{ Converter.RGBA( HmiProps.BackColor ) }}" />
+        <hmi:localDef name="ForeColor"                      type="string"       hmi-bind:value="{{ Converter.RGBA( HmiProps.ForeColor ) }}" />
+        <hmi:localDef name="GridLineColor"                  type="string"       hmi-bind:value="{{ Converter.RGBA( HmiProps.GridLineColor ) }}" />
+        <hmi:localDef name="StepListWidth"                  type="number"       hmi-bind:value="{{ LocalProps.WindowInnerWidth - LocalProps.ActualToolBarWidth }}" />
+        <hmi:localDef name="Grid_Y"                         type="number"       hmi-bind:value="{{ le(LocalProps.WindowHeightWithoutCaption, LocalProps.SmallHeight ) ? (LocalProps.CaptionHeightPadding - LocalProps.SYS_WindowBorderWidth): (LocalProps.CaptionHeightPadding + LocalProps.ListcontainerHeight - LocalProps.SYS_WindowBorderWidth) }}"  />
+        <hmi:localDef name="Grid_Width"                     type="number"       hmi-bind:value="{{ or(LocalProps.SingleLineViewer, ge(LocalProps.WindowHeightWithoutCaption, LocalProps.MediumHeight ) ) ? (LocalProps.WindowInnerWidth) : (LocalProps.StepListWidth) }}"  />
+        <hmi:localDef name="GridHeight"                     type="number"       hmi-bind:value="{{ (le(LocalProps.WindowHeightWithoutCaption, LocalProps.SmallHeight ) ? LocalProps.WindowHeightWithoutCaption : (LocalProps.WindowHeightWithoutCaption - LocalProps.ListcontainerHeight)) - LocalProps.StatusBarHeight }}"/>
+
+        <clipPath id="WindowClipRect">
+            <rect id="ItemRect"
+                  hmi-bind:width="{ HmiProps.Width }"
+                  hmi-bind:height="{ HmiProps.Height }"
+                  stroke="none"
+                  hmi-bind:rx="{ LocalProps.SYS_RX }" />
+        </clipPath>
+        <clipPath id="StepClipRect">
+            <rect id="StepRect" hmi-bind:width="{LocalProps.StepListWidth}" height="67"
+                hmi-bind:fill="{ LocalProps.BackColor }" hmi-bind:x="{ LocalProps.WindowBorderWidth }"
+                hmi-bind:y="{ LocalProps.CaptionHeightPadding }"
+                stroke="none"/>
+        </clipPath>
+    </defs>
+
+    <g id="ElementsGroup" clip-path="url(#WindowClipRect)">
+        <!-- Background -->
+        <rect id="BackGroundRect"
+              hmi-bind:width="{ HmiProps.Width }"
+              hmi-bind:height="{ HmiProps.Height }"
+              hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}"
+              stroke="none"
+              hmi-bind:rx="{ LocalProps.SYS_RX }" />
+        
+        <!-- StepData -->
+        <g id="StepsGroup" clip-path="url(#StepClipRect)" hmi:if="{{ not(LocalProps.SingleLineViewer) }}">
+            <hmi:include template="include.style.extended.graphoverviewstep.svghmi" hmi-bind:for="{{ HmiProps.GraphOverview }}"
+                        hmi-bind:x="{ LocalProps.WindowBorderWidth }" hmi-bind:y="{ LocalProps.CaptionHeightPadding }"
+                        hmi-bind:width="{LocalProps.StepListWidth}" hmi-bind:height="{{LocalProps.ListcontainerHeight}}">
+
+                <hmi:param name="FocusColor"                type="HmiColor"     hmi-bind:value="{ LocalProps.FocusColor }" />
+                <hmi:param name="ForeColor"                 type="HmiColor"     hmi-bind:value="{ LocalProps.ForeColor }" />
+                <hmi:param name="BackColor"                 type="HmiColor"     hmi-bind:value="{ HmiProps.BackColor }" />
+                <hmi:param name="Font"                      type="HmiFontPart"  hmi-bind:value="{ HmiProps.Font }" />
+                <hmi:param name="GridLineColor"             type="HmiColor"     hmi-bind:value="{ LocalProps.GridLineColor }" />
+                <hmi:param name="OperationMode"             type="boolean"      hmi-bind:value="{ HmiProps.OperationMode }" />
+                <hmi:param name="Width"                     type="number"       hmi-bind:value="{ LocalProps.StepListWidth }" />
+                <hmi:param name="Height"                    type="number"       hmi-bind:value="{{ LocalProps.ListcontainerHeight}}" />
+            </hmi:include>
+        </g>
+
+        <!-- ToolBar -->
+        <g hmi:if="{{ and(LocalProps.HasToolBar, not(LocalProps.SingleLineViewer)) }}" id="ToolBar">
+            <hmi:include template="include.style.extended.toolbar.default.svghmi" hmi-bind:for="{ HmiProps.ToolBar }"
+                            hmi-bind:x="{{LocalProps.StepListWidth + 2}}"
+                            hmi-bind:y="{{lt(LocalProps.WindowHeightWithoutCaption, 120 ) ? (((LocalProps.WindowHeightWithoutCaption/2) - 35) + LocalProps.SYS_CaptionHeight) : (LocalProps.CaptionHeightPadding - 4) }}"
+                            hmi-bind:width="{ LocalProps.ActualToolBarWidth }"
+                            hmi-bind:height="{{ LocalProps.ToolBarHeight }}">
+
+                <hmi:param name="Width"             type="number"       hmi-bind:value="{ LocalProps.ActualToolBarWidth}"/>
+                <hmi:param name="Height"            type="number"       hmi-bind:value="{{ LocalProps.ToolBarHeight }}" />
+                <hmi:param name="BarPosition"       type="number"       hmi-bind:value="{ LocalProps.ToolBarPosition }" />
+                <hmi:param name="ItemOperable"      type="boolean"      hmi-bind:value="{ HmiProps.Enabled }" />
+                <hmi:param name="FocusColor"        type="string"       hmi-bind:value="{ LocalProps.FocusColor }" />
+                <hmi:param name="ShowFocusVisual"   type="boolean"      hmi-bind:value="{ HmiProps.ShowFocusVisual }"   />
+            </hmi:include>
+        </g>
+
+        <!-- Grid Content -->
+        <g>
+            <hmi:include template="include.style.extended.graphoverviewcontent.svghmi"  hmi-bind:for="{{ HmiProps.GraphOverview }}"
+                        hmi-bind:x="{ LocalProps.WindowBorderWidth }"
+                        hmi-bind:y="{{ LocalProps.Grid_Y }}"
+                        hmi-bind:width ="{{ LocalProps.Grid_Width }}"
+                        hmi-bind:height="{{ LocalProps.GridHeight }}" >
+
+                <hmi:param name="FocusColor"                type="string"       hmi-bind:value="{ LocalProps.FocusColor }" />
+                <hmi:param name="ShowFocusVisual"           type="boolean"      hmi-bind:value="{ HmiProps.ShowFocusVisual }" />
+                <hmi:param name="WindowInnerWidth"          type="number"       hmi-bind:value="{ LocalProps.Grid_Width }" />
+                <hmi:param name="CaptionColor"              type="string"       hmi-bind:value="{ HmiProps.CaptionColor }" />
+                <hmi:param name="Font"                      type="HmiFontPart"  hmi-bind:value="{ HmiProps.Font }" />
+                <hmi:param name="ResourceList"              type="string"       value="" />
+                <hmi:param name="PropNameText"              type="string"       value="Name" />
+                <hmi:param name="HeightValue"              	type="number"       hmi-bind:value="{{ LocalProps.GridHeight }}" />
+            </hmi:include>
+        </g>
+
+        <!-- Status Bar -->
+        <g hmi:if="{ LocalProps.HasStatusBar }" id="StatusBarElement">
+            <hmi:include template="include.style.extended.statusbar.default.svghmi" hmi-bind:for="{ HmiProps.StatusBar }"
+                       hmi-bind:x="{ LocalProps.WindowBorderWidth }"
+                       hmi-bind:y="{ LocalProps.StatusBarTop }"
+                       hmi-bind:width="{ LocalProps.StatusBarWidth }"
+                       hmi-bind:height="{ LocalProps.StatusBarHeight }">
+
+                    <hmi:param name="Width"           type="number"   hmi-bind:value="{ LocalProps.StatusBarWidth }"  />
+                    <hmi:param name="Height"          type="number"   hmi-bind:value="{ LocalProps.StatusBarHeight }" />
+                    <hmi:param name="ItemOperable"    type="boolean"  hmi-bind:value="{ HmiProps.Enabled }"           />
+                    <hmi:param name="FocusColor"      type="string"   hmi-bind:value="{ LocalProps.FocusColor }"      />
+                    <hmi:param name="ShowFocusVisual" type="boolean"  hmi-bind:value="{ HmiProps.ShowFocusVisual }"   />
+
+            </hmi:include>
+        </g>
+    </g>
+    <!-- Frame -->
+    <hmi:include template="include.style.extended.hmiwindowframe.default.svghmi"
+                    x="0"
+                    y="0"
+                    hmi-bind:width="{ HmiProps.Width }"
+                    hmi-bind:height="{ HmiProps.Height }" >
+
+        <hmi:param name="Top"               type="number"           hmi-bind:value="{ HmiProps.Top }"                   />
+        <hmi:param name="Left"              type="number"           hmi-bind:value="{ HmiProps.Left }"                  />
+        <hmi:param name="Width"             type="number"           hmi-bind:value="{ HmiProps.Width }"                 />
+        <hmi:param name="Height"            type="number"           hmi-bind:value="{ HmiProps.Height }"                />
+        <hmi:param name="WindowFlags"       type="HmiWindowFlag"    hmi-bind:value="{ HmiProps.WindowFlags }"           />
+        <hmi:param name="MinimumWidth"      type="number"           hmi-bind:value="{ LocalProps.MinimumWidth }"        />
+        <hmi:param name="MinimumHeight"     type="number"           hmi-bind:value="{ LocalProps.MinimumHeight }"       />
+        <hmi:param name="Icon"              type="HmiGraphic"       hmi-bind:value="{ LocalProps.ErrorIcon }"           />
+        <hmi:param name="Caption"           type="HmiTextPart"      hmi-bind:value="{ HmiProps.Caption }"               />
+        <hmi:param name="CaptionColor"      type="HmiColor"         hmi-bind:value="{ LocalProps.CaptionColor }"        />
+        <hmi:param name="ShowCaption"       type="boolean"          hmi-bind:value="{ LocalProps.ShowCaption }"         />
+        <hmi:param name="CaptionHeight"     type="number"           hmi-bind:value="{ LocalProps.CaptionHeight }"       />
+        <hmi:param name="WindowBorderWidth" type="number"           hmi-bind:value="{ LocalProps.WindowBorderWidth }"   />
+        <hmi:param name="WindowBorderColor" type="HmiColor"         hmi-bind:value="{ LocalProps.WindowBorderColor }"   />
+        <hmi:param name="RX"                type="number"           hmi-bind:value="{ LocalProps.SYS_RX }"              />
+        <hmi:param name="ItemOperable"      type="boolean"          hmi-bind:value="{ HmiProps.Enabled }"               />
+        <hmi:param name="WindowState"       type="number"           hmi-bind:value="{ HmiProps.WindowState }" />
+    </hmi:include>
+</svg>

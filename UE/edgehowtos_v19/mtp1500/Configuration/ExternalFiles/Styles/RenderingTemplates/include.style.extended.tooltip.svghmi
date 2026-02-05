@@ -1,0 +1,72 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-flex="http://svg.siemens.com/hmi/flex/"
+     pointer-events="none">
+    <hmi:self type="system:HmiTooltipSystemPart" displayName="Extended Tooltip" name="style.extended.tooltip" version="2.9" performanceClass="s">
+    </hmi:self>
+
+    <defs>
+        <hmi:localDef name="TextHeight"             type="number"   hmi-bind:value="{{ Converter.TextHeight( HmiProps.Text, HmiProps.Font, true ) + 25 }}"/>
+        <hmi:localDef name="TextWidth"              type="number"   hmi-bind:value="{{ Converter.TextWidth( HmiProps.Text, HmiProps.Font, true ) + 30 }}"/>        
+        <hmi:localDef name="IsTextWidthExceeding"   type="boolean"  hmi-bind:value="{{ gt( LocalProps.TextWidth, HmiProps.Width ) }}"/>
+        <hmi:localDef name="IsTextHeightExceeding"  type="boolean"  hmi-bind:value="{{ gt( LocalProps.TextHeight, HmiProps.Height ) }}"/>
+        <hmi:localDef name="TooltipWidth"           type="number"   hmi-bind:value="{{ LocalProps.IsTextWidthExceeding ? HmiProps.Width : LocalProps.TextWidth }}"/>
+        <hmi:localDef name="TooltipHeight"          type="number"   hmi-bind:value="{{ LocalProps.IsTextHeightExceeding ? HmiProps.Height : LocalProps.TextHeight }}"/>
+        <hmi:localDef name="Left"                   type="number"   hmi-bind:value="{{ eq( HmiProps.HorizontalAlignment, HmiHorizontalAlignment.Left ) ? 0 : ( HmiProps.Width - LocalProps.TooltipWidth ) }}"/>
+        <hmi:localDef name="Top"                    type="number"   hmi-bind:value="{{ eq( HmiProps.VerticalAlignment, HmiVerticalAlignment.Top ) ? 0 : ( HmiProps.Height - LocalProps.TooltipHeight ) }}"/>
+        <hmi:localDef name="WidthMinusBuffer"       type="number"   hmi-bind:value="{{ LocalProps.TooltipWidth - 4 }}"/>
+        <hmi:localDef name="HeightMinusBuffer"      type="number"   hmi-bind:value="{{ LocalProps.TooltipHeight - 4 }}"/>
+    </defs>
+    <g hmi-flex:width="{ HmiProps.Width }" hmi-flex:height="{ HmiProps.Height }" hmi-flex:justifyContent="start">
+        <g opacity="1" hmi-flex:alignSelf="start">
+            <!--3D Background rect-->
+            <rect hmi-bind:x="{{ 4 + LocalProps.Left }}"
+                    hmi-bind:y="{{ 4 + LocalProps.Top }}"
+                    rx="10"
+                    opacity="0.2"
+                    stroke-width="2"
+                    hmi-bind:width="{ LocalProps.WidthMinusBuffer }"
+                    hmi-bind:height="{ LocalProps.HeightMinusBuffer }"
+                    fill="black"/>
+            <!--Background rect-->
+            <rect hmi-bind:x="{ LocalProps.Left }"
+                    hmi-bind:y="{ LocalProps.Top }"
+                    rx="10"
+                    opacity="1"
+                    stroke-width="2"
+                    hmi-bind:width="{ LocalProps.WidthMinusBuffer }"
+                    hmi-bind:height="{ LocalProps.HeightMinusBuffer }"
+                    hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}"/>
+            <!--Trend indicator image-->
+            <image width="40"
+                    height="20"
+                    hmi-bind--xlink:href="{ HmiProps.Graphic }"/>
+            <g>
+                <hmi-element:textField  hmi-bind:start-x="{{ 10 + LocalProps.Left }}"
+                                        hmi-bind:start-y="{{ ( HmiProps.Graphic == '' ? 0 : 18 ) + LocalProps.Top }}"
+                                        hmi-bind:width="{ LocalProps.WidthMinusBuffer }"
+                                        hmi-bind:height="{ LocalProps.HeightMinusBuffer }"
+                                        hmi-bind:vertical-text-alignment="{ HmiProps.Content.VerticalTextAlignment }"
+                                        hmi-bind:horizontal-text-alignment="{ HmiProps.Content.HorizontalTextAlignment }"
+                                        hmi-bind:value="{ HmiProps.Text }"
+                                        hmi-bind:fore-color="{{ Converter.RGBA( HmiProps.ForeColor ) }}"
+                                        output-format=""
+                                        enabled="false"
+                                        read-only="true"
+                                        multi-line="true"
+                                        hmi-bind:text-trimming="{{ LocalProps.IsTextWidthExceeding ? HmiTextTrimming.CharacterEllipsis : HmiTextTrimming.None }}">
+                    <hmi-feature:font hmi-bind:scope="{ HmiProps.Font }" />
+                </hmi-element:textField>
+            </g>
+        </g>
+    </g>
+</svg>

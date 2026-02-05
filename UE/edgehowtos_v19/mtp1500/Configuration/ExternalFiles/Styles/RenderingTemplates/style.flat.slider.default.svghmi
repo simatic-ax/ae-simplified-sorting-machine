@@ -1,0 +1,547 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2016. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     preserveAspectRatio="none">
+
+  <hmi:self type="item:HmiSlider" displayName="Flat Slider" name="style.flat.slider" version="2.9" performanceClass="L"  >
+    <hmi:focus focusVisual="local" />
+  </hmi:self>
+
+  <defs>
+    <hmi:localDef name="IsMultilineTitle"       type="boolean"  hmi-bind:value="{{ Converter.IsMultiline( HmiProps.Title.Text ) }}" />
+
+    <hmi:localDef name="NumberString"           type="string"   value="0123456789" />
+    <hmi:localDef name="ScaleFontHeight"        type="number"   hmi-bind:value="{{ Converter.TextHeight( LocalProps.NumberString, HmiProps.StraightScale.LabelFont )  }}" />
+
+    <hmi:localDef name="TitleFontHeight"        type="number"   hmi-bind:value="{{ Converter.TextHeight( HmiProps.Title.Text, HmiProps.Title.Font )  }}" />
+
+    <hmi:localDef name="OperatorControl"        type="boolean"  value="false" />
+    <hmi:localDef name="NewProcessValue"        type="number"   value="0" />
+
+    <hmi:localDef name="ShowFocus"              type="boolean"  hmi-bind:value="{{ and( HmiProps.ShowFocusVisual, SysProps.HasFocus ) }}" />
+    <hmi:localDef name="IsScaleHorizontal"      type="boolean"  hmi-bind:value="{{ HmiProps.StraightScale.Orientation == HmiOrientation.Horizontal }}" />
+    <hmi:localDef name="IndicatorSize"          type="number"   value="54" />
+    <hmi:localDef name="IsCompactMode"          type="boolean"  hmi-bind:value="{{ LocalProps.IsScaleHorizontal ? or( lt( HmiProps.Width, 100 ), lt( HmiProps.Height, 30 ) ) : or( lt( HmiProps.Width, 30 ), lt( HmiProps.Height, 100 ) ) }}" />
+
+    <hmi:localDef name="BarSpacing"             type="number"   value="0" />
+    <hmi:localDef name="BarTickGap"             type="number"   value="2" />
+    <hmi:localDef name="LabelOffset"            type="number"   hmi-bind:value="{{  - HmiProps.StraightScale.LabelFont.Size }}" />
+    <hmi:localDef name="PeakIndicatorOffset"    type="number"   hmi-bind:value="{{ LocalProps.IsCompactMode ? 0 : -3 }}" />
+
+    <hmi:localDef name="OriginValue"            type="number"   hmi-bind:value="{{ HmiProps.RelativeToOrigin ? Converter.Min( HmiProps.StraightScale.BeginValue, HmiProps.StraightScale.EndValue ) + HmiProps.OriginValue / 100 * abs( HmiProps.StraightScale.EndValue - HmiProps.StraightScale.BeginValue ) : HmiProps.OriginValue }}" />
+
+    <hmi:localDef name="BorderColor"            type="number"   hmi-bind:value="{{ LocalProps.ShowFocus ? HmiProps.FocusColor : HmiProps.BorderColor }}" />
+    <hmi:localDef name="TitleHeight"            type="number"   hmi-bind:value="{{ HmiProps.Title.Visible ? ( LocalProps.IsMultilineTitle ? ( LocalProps.TitleFontHeight * 2 ) : ( LocalProps.TitleFontHeight ) ) : 0 }}" />
+    <hmi:localDef name="LabelHeight"            type="number"   hmi-bind:value="{{ HmiProps.Label.Visible ? HmiProps.Label.Font.Size  : 0 }}" />
+
+    <hmi:localDef name="TrendIndicatorWidth"    type="number"   hmi-bind:value="{{ HmiProps.ShowTrendIndicator ? 14 : 0 }}" />
+    <hmi:localDef name="TrendIndicatorHeight"   type="number"   hmi-bind:value="{{ HmiProps.ShowTrendIndicator ? 20 : 0 }}" />
+    <hmi:localDef name="TrendIndicatorPadding"  type="number"   hmi-bind:value="{{ HmiProps.ShowTrendIndicator ? 10 : 0 }}" />
+    <hmi:localDef name="TrendIndicatorOffset"   type="number"   value="10" />
+    <hmi:localDef name="TrendIndicatorSpacing"  type="number"   hmi-bind:value="{{ LocalProps.TrendIndicatorWidth + LocalProps.TrendIndicatorPadding }}" />
+    <hmi:localDef name="Padding"                type="number"   value="10" />
+
+    <hmi:localDef name="IOFieldWidth"           type="number"   hmi-bind:value="{{ and(eq(HmiProps.ShowValue, false), eq(LocalProps.IsCompactMode, false)) ? 0 : LocalProps.IsCompactMode ? ( HmiProps.Width - 2 * HmiProps.BorderWidth - ( LocalProps.TrendIndicatorPadding / 2 ) - LocalProps.TrendIndicatorWidth - ( LocalProps.IsScaleHorizontal ? 2 : 42 ) ) : ( ( LocalProps.IsScaleHorizontal ? 0.25 * HmiProps.Width - 10 : HmiProps.Width ) - LocalProps.TrendIndicatorSpacing ) }}" />
+    <hmi:localDef name="IOFieldHeight"          type="number"   hmi-bind:value="{{ and(eq(HmiProps.ShowValue, false), eq(LocalProps.IsCompactMode, false)) ? 0 : LocalProps.IsCompactMode ? ( ( LocalProps.IsScaleHorizontal ? HmiProps.Height - 2 * HmiProps.BorderWidth - LocalProps.TitleHeight - 42 : HmiProps.Height - 2 * HmiProps.BorderWidth - LocalProps.TitleHeight - 2 ) ) : (gt((HmiProps.Font.Size + 4), 40) ? (HmiProps.Font.Size + 4) : 40) }}" />
+
+    <hmi:localDef name="ScaleX"                 type="number"   hmi-bind:value="{{ LocalProps.IsCompactMode ? ( HmiProps.BorderWidth + 1 ) : ( LocalProps.IsScaleHorizontal ? 20 : 0.75 * HmiProps.Width - 50 ) }}" />
+    <hmi:localDef name="ScaleWidth"             type="number"   hmi-bind:value="{{ LocalProps.IsCompactMode ? ( LocalProps.IsScaleHorizontal ? HmiProps.Width - 2 * HmiProps.BorderWidth - 2 : HmiProps.Width - 2 * HmiProps.BorderWidth - 42 ) : ( LocalProps.IsScaleHorizontal ? (eq(HmiProps.ShowValue, false) ? 1 : 0.75) * HmiProps.Width - (eq(HmiProps.ShowValue, false) ? 40 : 20) : 0.25 * HmiProps.Width ) }}" />
+    <hmi:localDef name="ScaleHeight"            type="number"   hmi-bind:value="{{ LocalProps.IsCompactMode ? ( LocalProps.IsScaleHorizontal ? HmiProps.Height - 2 * HmiProps.BorderWidth - LocalProps.TitleHeight - 42 : HmiProps.Height - 2 * HmiProps.BorderWidth - LocalProps.TitleHeight - 2 ) : ( LocalProps.IsScaleHorizontal ? HmiProps.Height - LocalProps.TitleHeight - LocalProps.LabelHeight - 50 - LocalProps.ScaleFontHeight : HmiProps.Height - LocalProps.TitleHeight - LocalProps.LabelHeight - LocalProps.IOFieldHeight - 40 ) }}" />
+    <hmi:localDef name="ScaleY"                 type="number"   hmi-bind:value="{{ LocalProps.IsCompactMode ? ( HmiProps.BorderWidth + LocalProps.TitleHeight + 1 ) : ( LocalProps.IsScaleHorizontal ? ( LocalProps.TitleHeight + LocalProps.ScaleFontHeight ) : LocalProps.TitleHeight + 20 ) }}" />
+
+    <hmi:localDef name="RibbonWidth"            type="number"   hmi-bind:value="{{ LocalProps.IsScaleHorizontal ? LocalProps.ScaleHeight : LocalProps.ScaleWidth }}" />
+
+    <hmi:localDef name="IOFieldX"               type="number"   hmi-bind:value="{{ and(eq(HmiProps.ShowValue, false), eq(LocalProps.IsCompactMode, false)) ? 0 : LocalProps.IsCompactMode ? LocalProps.ScaleX : ( LocalProps.IsScaleHorizontal ? LocalProps.ScaleX + LocalProps.ScaleWidth + LocalProps.Padding : 0 ) }}" />
+    <hmi:localDef name="IOFieldY"               type="number"   hmi-bind:value="{{ and(eq(HmiProps.ShowValue, false), eq(LocalProps.IsCompactMode, false)) ? 0 : LocalProps.IsCompactMode ? LocalProps.ScaleY : ( LocalProps.IsScaleHorizontal ? LocalProps.ScaleY : LocalProps.ScaleY + LocalProps.ScaleHeight + 20 ) }}" />
+
+    <hmi:localDef name="TrendIndicatorX"        type="number"   hmi-bind:value="{{ HmiProps.Width - LocalProps.TrendIndicatorWidth - HmiProps.BorderWidth - ( LocalProps.IsCompactMode ?  ( LocalProps.IsScaleHorizontal ? 0 : 42 ) : 0 ) }}" />
+    <hmi:localDef name="TrendIndicatorY"        type="number"   hmi-bind:value="{{ LocalProps.IOFieldY + ( LocalProps.IsCompactMode ? ( LocalProps.IsScaleHorizontal ? LocalProps.IOFieldHeight / 4 : LocalProps.IOFieldHeight / 3 ) : LocalProps.TrendIndicatorOffset ) }}" />
+
+    <hmi:localDef name="ThresholdFallbackColor" type="number"   hmi-bind:value="{ HmiProps.NormalRangeColor }" />
+    <hmi:localDef name="ProcessValueColorRaw"   type="number"   hmi-bind:value="{{ Converter.ThresholdColorForValue( HmiProps.ProcessValue, HmiProps.Thresholds, LocalProps.ThresholdFallbackColor ) }}" />
+    <hmi:localDef name="ProcessValueColor"      type="string"   hmi-bind:value="{{ Converter.RGBA( LocalProps.ProcessValueColorRaw ) }}" />
+    <hmi:localDef name="IOFieldTextColor"       type="string"   hmi-bind:value="{{ LocalProps.IsCompactMode ? Converter.RGBA( HmiProps.ProcessValueIndicatorForeColor ) : LocalProps.ProcessValueColor }}" />
+
+    <hmi:localDef name="ScaleSurchargeCalc"     type="number"   hmi-bind:value="{{ LocalProps.IndicatorSize / 2 }}" />
+    <hmi:localDef name="ScaleSurcharge"         type="number"   hmi-bind:value="{{ or ( or( HmiProps.ProcessValueIndicatorMode == HmiProcessIndicatorMode.DetailedIndicator, HmiProps.ProcessValueIndicatorMode == HmiProcessIndicatorMode.BarWithDetailedIndicator ) ,
+                                                                                            has( HmiProps.StraightScale.ScaleMode, HmiScaleMode.Labels ) ) ? LocalProps.ScaleSurchargeCalc : 0 }}" />
+    <hmi:localDef name="StraightDialLength"     type="number"   hmi-bind:value="{{ ( LocalProps.IsScaleHorizontal ? LocalProps.ScaleWidth : LocalProps.ScaleHeight ) - 2 * ( LocalProps.BarSpacing + LocalProps.ScaleSurcharge ) }}" />
+
+    <hmi:localDef name="ItemOperable"           type="boolean"  hmi-bind:value="{{ HmiProps.Operability == HmiOperability.Operable }}" />
+
+    <hmi:localDef name="TitleCompactCheckedWidth"    type="number"   hmi-bind:value="{{ and( LocalProps.IsCompactMode, not( LocalProps.IsScaleHorizontal) ) ? HmiProps.Width - 40 : HmiProps.Width }}" />
+
+
+    <!-- section: action definitions -->
+    <hmi:action id="down" hmi-bind:condition="{ LocalProps.ItemOperable }" >
+      <hmi:setProperty name="LocalProps.NewProcessValue" type="number" hmi-bind:value="{ HmiProps.ProcessValue }" />
+      <hmi:setProperty name="LocalProps.OperatorControl" type="boolean" value="true" />
+    </hmi:action>
+
+    <hmi:action id="dragged" hmi-bind:condition="{ LocalProps.ItemOperable }" >
+      <hmi:call method="set" name="LocalProps.NewProcessValue" hmi-bind:condition="{ LocalProps.OperatorControl }" />
+      <hmi:setProperty name="HmiProps.ProcessValue" type="number" hmi-bind:value="{ LocalProps.NewProcessValue }" hmi-bind:condition="{{ and( HmiProps.WriteDuringChange, LocalProps.OperatorControl ) }}" />
+    </hmi:action>
+
+    <hmi:action id="up" hmi-bind:condition="{ LocalProps.ItemOperable }" >
+      <hmi:setProperty name="HmiProps.ProcessValue"      type="number" hmi-bind:value="{ LocalProps.NewProcessValue }" hmi-bind:condition="{ LocalProps.OperatorControl }" />
+      <hmi:setProperty name="LocalProps.OperatorControl" type="boolean" value="false" />
+    </hmi:action>
+
+    <hmi:action id="increaseProcessValue" hmi-bind:condition="{{ and( LocalProps.ItemOperable, LocalProps.IsCompactMode ) }}" >
+      <hmi:setProperty name="HmiProps.ProcessValue"      type="number" hmi-bind:value="{{ HmiProps.ProcessValue + 1 }}" />
+    </hmi:action>
+
+    <hmi:action id="decreaseProcessValue" hmi-bind:condition="{{ and( LocalProps.ItemOperable, LocalProps.IsCompactMode ) }}" >
+      <hmi:setProperty name="HmiProps.ProcessValue"      type="number" hmi-bind:value="{{ HmiProps.ProcessValue - 1 }}" />
+    </hmi:action>
+
+  </defs>
+
+  <g id="ElementsGroup" hmi-bind:opacity="{{ LocalProps.ItemOperable ? 1.0 : 0.5 }}">
+    <!-- item rect -->
+    <rect id="ItemRect"
+        hmi:if="{{ and( not( LocalProps.IsCompactMode ), (or( LocalProps.ShowFocus, or( (Converter.Alpha( HmiProps.BackColor ) != 0), (Converter.Alpha( HmiProps.BorderColor ) != 0) ) ) ) ) }}"
+        hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+        hmi-bind:y="{{ HmiProps.BorderWidth / 2 }}"
+        hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth }}"
+        hmi-bind:height="{{ HmiProps.Height - HmiProps.BorderWidth }}"
+        hmi-bind:stroke="{{ Converter.RGBA( LocalProps.BorderColor ) }}"
+        hmi-bind:stroke-width="{ HmiProps.BorderWidth }"
+        hmi-bind:fill="{{ Converter.RGBA( HmiProps.BackColor ) }}" />
+
+    <g id="TitleGroup" hmi:if="{{ LocalProps.TitleHeight != 0 }}">
+      <g id="SingleLineTitle" hmi:if="{{ not(LocalProps.IsMultilineTitle) }}">
+        <text hmi-bind:fill="{{ Converter.RGBA( HmiProps.Title.ForeColor ) }}"
+          hmi-bind:x="{{ HmiProps.Width / 2 }}"
+          hmi-bind:y="{ LocalProps.TitleHeight }"
+          hmi-bind:font-size="{ HmiProps.Title.Font.Size }"
+          hmi-bind:font-style="{{ HmiProps.Title.Font.Italic ? 'italic' : 'normal' }}"
+          hmi-bind:font-weight="{ HmiProps.Title.Font.Weight }"
+          hmi-bind:font-family="{ HmiProps.Title.Font.Name }"
+          hmi-bind:text-decoration="{{ Converter.TextDecoration( HmiProps.Title.Font ) }}"
+          text-anchor="middle"
+          dominant-baseline="auto">
+          <hmi:text hmi-bind:value="{ HmiProps.Title.Text }" />
+        </text>
+      </g>
+      <g id="MultiLineTitle" hmi:if="{ LocalProps.IsMultilineTitle }">
+          <hmi-element:textField
+                start-x="0"
+                start-y="0"
+                hmi-bind:width="{ LocalProps.TitleCompactCheckedWidth }"
+                hmi-bind:height="{ LocalProps.TitleHeight }"
+
+                hmi-bind:value="{ HmiProps.Title.Text }"
+                hmi-bind:fore-color="{{ Converter.RGBA( HmiProps.Title.ForeColor ) }}"
+                horizontal-text-alignment="center"
+                vertical-text-alignment="top"
+                read-only="true"
+                output-format="{S}"
+
+                horizontal-scrollbar-visibility="collapsed"
+                vertical-scrollbar-visibility="collapsed"
+                text-trimming="character-ellipsis"
+                text-wrapping="no-wrap"
+                multi-line="true">
+            <hmi-feature:inputBehavior clear-on-activate="false" />
+            <hmi-feature:font hmi-bind:scope="{ HmiProps.Title.Font }" />
+          </hmi-element:textField>
+      </g>
+    </g>
+
+    <g id="LabelGroup" hmi:if="{{ and( not( LocalProps.IsCompactMode ), LocalProps.LabelHeight != 0) }}">
+      <text hmi-bind:fill="{{ Converter.RGBA( HmiProps.Label.ForeColor ) }}"
+          hmi-bind:x="{{ HmiProps.Width / 2 }}"
+          hmi-bind:y="{{ HmiProps.Height - LocalProps.LabelHeight / 2 }}"
+          hmi-bind:font-size="{ HmiProps.Label.Font.Size }"
+          hmi-bind:font-style="{{ HmiProps.Label.Font.Italic ? 'italic' : 'normal' }}"
+          hmi-bind:font-weight="{ HmiProps.Label.Font.Weight }"
+          hmi-bind:font-family="{ HmiProps.Label.Font.Name }"
+          hmi-bind:text-decoration="{{ Converter.TextDecoration( HmiProps.Label.Font ) }}"
+          text-anchor="middle"
+          dominant-baseline="middle" >
+        <hmi:text hmi-bind:value="{ HmiProps.Label.Text }" />
+      </text>
+    </g>
+
+    <g id="BarGroup" hmi-bind:transform="translate( {{ LocalProps.ScaleX }} , {{ LocalProps.ScaleY }})">
+
+      <!-- background  -->
+      <rect id="BarBackGroundRect"
+            hmi-bind:x="{ LocalProps.BarSpacing }"
+            hmi-bind:y="{ LocalProps.BarSpacing }"
+            hmi-bind:width="{{ LocalProps.ScaleWidth }}"
+            hmi-bind:height="{{ LocalProps.ScaleHeight }}"
+            hmi-bind:fill="{{ Converter.RGBA( HmiProps.ScaleForeColor ) }}" />
+
+      <g id="StraightDialGroupA">
+        <hmi-element:straightDial hmi-bind:start-x="{{ LocalProps.BarSpacing + ( LocalProps.IsScaleHorizontal ? LocalProps.ScaleSurcharge : 0 ) }}"
+                                  hmi-bind:start-y="{{ LocalProps.BarSpacing + ( LocalProps.IsScaleHorizontal ? 0 : LocalProps.ScaleSurcharge ) }}"
+                                  hmi-bind:length="{ LocalProps.StraightDialLength }"
+                                  hmi-bind:orientation="{ HmiProps.StraightScale.Orientation }"
+                                  hmi-bind:begin-surcharge="{ LocalProps.ScaleSurcharge }"
+                                  hmi-bind:end-surcharge="{ LocalProps.ScaleSurcharge }">
+
+          <hmi-feature:scale hmi-bind:begin-value="{ HmiProps.StraightScale.BeginValue }"
+                             hmi-bind:end-value="{ HmiProps.StraightScale.EndValue }"
+                             hmi-bind:type="{ HmiProps.StraightScale.ScalingType }"
+                             hmi-bind:maximum-sections="{{ Converter.Max( 5, HmiProps.StraightScale.DivisionCount ) }}"
+                             hmi-bind:extend="{{ HmiProps.StraightScale.AutoScaling ? 'both' : 'none' }}">
+
+            <!-- forward scale e.g. BeginValue lt EndValue -->
+            <hmi-feature:range hmi-bind:condition="{{ lt( HmiProps.StraightScale.BeginValue, HmiProps.StraightScale.EndValue ) }}"
+                               hmi-bind:begin-value="{{ le( LocalProps.OriginValue, HmiProps.StraightScale.BeginValue ) ? 'scale-begin' : ge( LocalProps.OriginValue, HmiProps.StraightScale.EndValue ) ? 'scale-end' : Converter.FormatPattern( LocalProps.OriginValue, '{I}' ) }}"
+                               hmi-bind:end-value="{ HmiProps.ProcessValue }">
+
+              <hmi-feature:ribbons hmi-bind:condition="{{ or( HmiProps.ProcessValueIndicatorMode == HmiProcessIndicatorMode.Bar, HmiProps.ProcessValueIndicatorMode == HmiProcessIndicatorMode.BarWithDetailedIndicator ) }}"
+                                   hmi-bind:offset="{{ LocalProps.RibbonWidth / 2 }}"
+                                   hmi-bind:stroke-width="{ LocalProps.RibbonWidth }"
+                                   hmi-bind:stroke="{ LocalProps.ProcessValueColor }" />
+              <hmi-feature:ticks hmi-bind:condition="{{ not( LocalProps.IsCompactMode ) }}"
+                                 position-filter="begin"
+                                 stroke-width="1"
+                                 hmi-bind:stroke="{{ Converter.RGBA( HmiProps.StraightScale.TickColor ) }}"
+                                 hmi-bind:length="{ LocalProps.RibbonWidth }" />
+            </hmi-feature:range>
+
+            <!-- revers scale e.g. BeginValue gt EndValue -->
+            <hmi-feature:range hmi-bind:condition="{{ gt( HmiProps.StraightScale.BeginValue, HmiProps.StraightScale.EndValue ) }}"
+                               hmi-bind:begin-value="{{ ge( LocalProps.OriginValue, HmiProps.StraightScale.BeginValue ) ? 'scale-begin' : le( LocalProps.OriginValue, HmiProps.StraightScale.EndValue ) ? 'scale-end' : Converter.FormatPattern( LocalProps.OriginValue, '{I}' ) }}"
+                               hmi-bind:end-value="{ HmiProps.ProcessValue }">
+
+              <hmi-feature:ribbons hmi-bind:condition="{{ or( HmiProps.ProcessValueIndicatorMode == HmiProcessIndicatorMode.Bar, HmiProps.ProcessValueIndicatorMode == HmiProcessIndicatorMode.BarWithDetailedIndicator ) }}"
+                                   hmi-bind:offset="{{ LocalProps.RibbonWidth / 2 }}"
+                                   hmi-bind:stroke-width="{ LocalProps.RibbonWidth }"
+                                   hmi-bind:stroke="{ LocalProps.ProcessValueColor }" />
+              <hmi-feature:ticks hmi-bind:condition="{{ not( LocalProps.IsCompactMode ) }}"
+                                 position-filter="begin"
+                                 stroke-width="1"
+                                 hmi-bind:stroke="{{ Converter.RGBA( HmiProps.StraightScale.TickColor ) }}"
+                                 hmi-bind:length="{ LocalProps.RibbonWidth }" />
+            </hmi-feature:range>
+            <!-- AutoScaling true -->
+            <hmi-feature:autoMeasure hmi-bind:condition="{ HmiProps.StraightScale.AutoScaling }">
+
+              <!-- Ticks -->
+              <hmi-feature:division hmi-bind:condition="{{ and( not( LocalProps.IsCompactMode ), has( HmiProps.StraightScale.ScaleMode, HmiScaleMode.Ticks )) }}"
+                                    hmi-bind:count="{ HmiProps.StraightScale.SubDivisionCount }">
+
+                <hmi-feature:ticks hmi-bind:offset="{ LocalProps.BarTickGap }"
+                                   hmi-bind:position-filter="{{ has( HmiProps.StraightScale.ScaleMode, HmiScaleMode.Labels ) ? 'inner' : 'regular' }}"
+                                   hmi-bind:length="{{ LocalProps.RibbonWidth / 2 - LocalProps.BarTickGap }}"
+                                   hmi-bind:stroke="{{ Converter.RGBA( HmiProps.StraightScale.TickColor ) }}"
+                                   stroke-width="1" />
+
+                <hmi-feature:ticks hmi-bind:offset="{ LocalProps.BarTickGap }"
+                                   hmi-bind:position-filter="{{ 'begin end' }}"
+                                   hmi-bind:length="{{ LocalProps.RibbonWidth / 2 - LocalProps.BarTickGap }}"
+                                   hmi-bind:stroke="{{ Converter.RGBA( HmiProps.StraightScale.TickColor ) }}"
+                                   stroke-width="2" />
+              </hmi-feature:division>
+
+              <hmi-feature:labels hmi-bind:condition="{{ and( not( LocalProps.IsCompactMode ), has( HmiProps.StraightScale.ScaleMode, HmiScaleMode.Labels )) }}"
+                                  hmi-bind:offset="{ LocalProps.LabelOffset }"
+                                  hmi-bind:fill="{{ Converter.RGBA( HmiProps.StraightScale.LabelColor ) }}"
+                                  hmi-bind:alignment="{{ LocalProps.IsScaleHorizontal ? '0 -1' : '1 0' }}"
+                                  hmi-bind:output-format="{ HmiProps.StraightScale.OutputFormat }" >
+                <hmi-feature:font hmi-bind:scope="{ HmiProps.StraightScale.LabelFont }" />
+              </hmi-feature:labels>
+            </hmi-feature:autoMeasure>
+
+            <!-- AutoScaling false -->
+            <hmi-feature:division hmi-bind:condition="{{ and( not( LocalProps.IsCompactMode ), not( HmiProps.StraightScale.AutoScaling )) }}"
+                                  hmi-bind:count="{ HmiProps.StraightScale.DivisionCount }">
+              <!-- Ticks -->
+              <hmi-feature:division hmi-bind:condition="{{ has( HmiProps.StraightScale.ScaleMode, HmiScaleMode.Ticks ) }}"
+                                    hmi-bind:count="{ HmiProps.StraightScale.SubDivisionCount }">
+
+                <hmi-feature:ticks hmi-bind:offset="{ LocalProps.BarTickGap }"
+                                   hmi-bind:position-filter="{{ 'inner end' }}"
+                                   hmi-bind:length="{{ LocalProps.RibbonWidth / 2 - LocalProps.BarTickGap }}"
+                                   hmi-bind:stroke="{{ Converter.RGBA( HmiProps.StraightScale.TickColor ) }}" />
+              </hmi-feature:division>
+
+              <hmi-feature:labels hmi-bind:condition="{{ has( HmiProps.StraightScale.ScaleMode, HmiScaleMode.Labels ) }}"
+                                  hmi-bind:offset="{ LocalProps.LabelOffset }"
+                                  hmi-bind:fill="{{ Converter.RGBA( HmiProps.StraightScale.LabelColor ) }}"
+                                  hmi-bind:alignment="{{ LocalProps.IsScaleHorizontal ? '0 -1' : '1 0' }}"
+                                  hmi-bind:output-format="{ HmiProps.StraightScale.OutputFormat }">
+                <hmi-feature:font hmi-bind:scope="{ HmiProps.StraightScale.LabelFont }" />
+              </hmi-feature:labels>
+            </hmi-feature:division>
+            <!-- Min peak value indicator -->
+            <hmi-feature:marker hmi-bind:value="{ HmiProps.ComputedMinPeakValue }" hmi-bind:condition="{{ has( HmiProps.PeakIndicators, HmiPeakIndicator.Low ) }}">
+
+              <hmi-feature:poleMarkers hmi-bind:alignment-horizontal="{{ LocalProps.IsScaleHorizontal ? 0.0 : -1.0 }}"
+                                       hmi-bind:alignment-vertical="{{ LocalProps.IsScaleHorizontal ? -1.0 :  0.0 }}"
+                                       hmi-bind:content-width="{{ LocalProps.IsScaleHorizontal ? 9 : 11 }}"
+                                       hmi-bind:content-height="{{ LocalProps.IsScaleHorizontal ? 11 : 9 }}">
+
+                <!-- Sub template for the Min peak value indicator -->
+                <hmi:master-include template="include.style.flat.peakindicator.svghmi" >
+
+                  <hmi:param name="IndicatorOffset"       type="number"           hmi-bind:value="{ LocalProps.PeakIndicatorOffset }" />
+                  <hmi:param name="ScaleOrientation"      type="HmiOrientation"   hmi-bind:value="{ HmiProps.StraightScale.Orientation }" />
+                  <hmi:param name="IndicatorForeColor"    type="HmiColor"         hmi-bind:value="{ HmiProps.Title.ForeColor }" />
+
+                </hmi:master-include>
+
+              </hmi-feature:poleMarkers>
+
+            </hmi-feature:marker>
+
+            <!-- Max peak value indicator -->
+            <hmi-feature:marker hmi-bind:value="{ HmiProps.ComputedMaxPeakValue }" hmi-bind:condition="{{ has( HmiProps.PeakIndicators, HmiPeakIndicator.High ) }}">
+
+              <hmi-feature:poleMarkers hmi-bind:alignment-horizontal="{{ LocalProps.IsScaleHorizontal ? 0.0 : -1.0 }}"
+                                       hmi-bind:alignment-vertical="{{ LocalProps.IsScaleHorizontal ? -1.0 :  0.0 }}"
+                                       hmi-bind:content-width="{{ LocalProps.IsScaleHorizontal ? 9 : 11 }}"
+                                       hmi-bind:content-height="{{ LocalProps.IsScaleHorizontal ? 11 : 9 }}">
+
+                <!-- Sub template for the Max peak value indicator -->
+                <hmi:master-include template="include.style.flat.peakindicator.svghmi" >
+
+                  <hmi:param name="IndicatorOffset"       type="number"           hmi-bind:value="{ LocalProps.PeakIndicatorOffset }" />
+                  <hmi:param name="ScaleOrientation"      type="HmiOrientation"   hmi-bind:value="{ HmiProps.StraightScale.Orientation }" />
+                  <hmi:param name="IndicatorForeColor"    type="HmiColor"         hmi-bind:value="{ HmiProps.Title.ForeColor }" />
+
+                </hmi:master-include>
+
+              </hmi-feature:poleMarkers>
+
+            </hmi-feature:marker>
+
+            <!-- process value indicator -->
+            <hmi-feature:marker hmi-bind:value="{{ LocalProps.OperatorControl ? LocalProps.NewProcessValue : HmiProps.ProcessValue }}">
+
+              <hmi-feature:poleMarkers hmi-bind:condition="{{ not( LocalProps.IsCompactMode ) }}"
+                                       hmi-event:up="url(#up)" hmi-event:down="url(#down)" hmi-event:pan="url(#dragged)"
+                                       hmi-bind:offset="{{ LocalProps.RibbonWidth - 14 }}"
+                                       alignment-horizontal="0"
+                                       alignment-vertical="0"
+                                       hmi-bind:content-width="{  LocalProps.IndicatorSize }"
+                                       hmi-bind:content-height="{ LocalProps.IndicatorSize }" >
+
+                <!-- Sub template for the process value indicator -->
+                <hmi:master-inline>
+
+                  <hmi:param name="IsScaleHorizontal"                 type="boolean"              hmi-bind:value="{ LocalProps.IsScaleHorizontal }"               />
+                  <hmi:param name="ProcessValueIndicatorForeColor"    type="HmiColor"             hmi-bind:value="{ HmiProps.ProcessValueIndicatorForeColor }"    />
+                  <hmi:param name="ProcessValueIndicatorBackColor"    type="HmiColor"             hmi-bind:value="{ HmiProps.ProcessValueIndicatorBackColor }"    />
+                  <hmi:param name="AlternateBorderColor"              type="HmiColor"             hmi-bind:value="{ HmiProps.AlternateBorderColor }"              />
+
+                                    <hmi:template>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                         xmlns:hmi="http://svg.siemens.com/hmi/"
+                         xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                         xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+                         xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+                         xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+                         xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+                         overflow="visible">
+
+                      <hmi:self type="custom" displayName="PVIndicator" name="extended.pvindicator" version="1.0.0" performanceClass="s">
+                        <hmi:paramDef name="IsScaleHorizontal"              type="boolean"              />
+                        <hmi:paramDef name="ProcessValueIndicatorForeColor" type="HmiColor"             />
+                        <hmi:paramDef name="ProcessValueIndicatorBackColor" type="HmiColor"             />
+                        <hmi:paramDef name="AlternateBorderColor"           type="HmiColor"             />
+                      </hmi:self>
+
+                      <defs>
+                      </defs>
+
+                      <g id="TIFID_ProcessIndicatorGroup" hmi-bind:fill="{{ Converter.RGBA( ParamProps.ProcessValueIndicatorBackColor ) }}"
+                         hmi-bind:transform="translate({{ ParamProps.IsScaleHorizontal ? 0 : 18 }},{{ ParamProps.IsScaleHorizontal ? 18 : 0 }})">
+
+                        <path hmi:if="{{ ParamProps.IsScaleHorizontal == 1 }}" hmi-bind:fill="{{ Converter.RGBA( ParamProps.AlternateBorderColor ) }}"  d="M 27,0 l 9,18 l -18,0 z" />
+                        <path hmi:if="{{ ParamProps.IsScaleHorizontal == 0 }}" hmi-bind:fill="{{ Converter.RGBA( ParamProps.AlternateBorderColor ) }}"  d="M 0,27 l 18,-9 l 0,18 z" />
+
+
+                        <g hmi-bind:transform="translate({{ ParamProps.IsScaleHorizontal ? 0 : 17 }},{{ ParamProps.IsScaleHorizontal ? 17 : 0 }})">
+                          <circle r="27" cx="27" cy="27" stroke-width="2"
+                                  hmi-bind:stroke="{{ Converter.RGBA( ParamProps.AlternateBorderColor ) }}"
+                                  hmi-bind:fill="{{ Converter.RGBA( ParamProps.ProcessValueIndicatorBackColor ) }}" />
+
+                          <g hmi-bind:transform="translate({{ ParamProps.IsScaleHorizontal ? 54  : 0 }}) rotate({{ ParamProps.IsScaleHorizontal ? 90 : 0 }})">
+                            <path hmi-bind:fill="{{ Converter.RGBA( ParamProps.ProcessValueIndicatorForeColor ) }}"
+                                  d="M 27,8 l 10,10 l -2,2 l -8,-6 l -8,6 l -2,-2 z" />
+                            <path hmi-bind:fill="{{ Converter.RGBA( ParamProps.ProcessValueIndicatorForeColor ) }}"
+                                  d="M 27,48 l -10,-10 l 2,-2 l 8,6 l 8,-6 l 2,2 z" />
+                          </g>
+                        </g>
+
+                      </g>
+
+                    </svg>
+                  </hmi:template>
+                </hmi:master-inline>
+
+              </hmi-feature:poleMarkers>
+              <hmi-feature:poleMarkers hmi-bind:condition="{ LocalProps.IsCompactMode }"
+                                       hmi-bind:offset="{{ LocalProps.RibbonWidth - 14 }}"
+                                       alignment-horizontal="0"
+                                       alignment-vertical="0"
+                                       content-width="36"
+                                       content-height="36" >
+                <hmi:master-inline>
+
+                                    <hmi:param name="IsScaleHorizontal"                 type="boolean"              hmi-bind:value="{ LocalProps.IsScaleHorizontal }"       />
+                                    <hmi:param name="IndicatorColor"                    type="HmiColor"             hmi-bind:value="{ HmiProps.StraightScale.TickColor }"   />
+
+                                    <hmi:template>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                         xmlns:hmi="http://svg.siemens.com/hmi/"
+                         xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+                         xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+                         xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+                         xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+                         xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+                         overflow="visible">
+
+                      <hmi:self type="custom" displayName="PVIndicator" name="extended.pvindicator" version="1.0.0" performanceClass="s">
+                        <hmi:paramDef name="IsScaleHorizontal"              type="boolean"  />
+                        <hmi:paramDef name="IndicatorColor"                 type="HmiColor" />
+                      </hmi:self>
+
+                      <defs>
+                      </defs>
+
+                      <g hmi-bind:transform="translate({{ ParamProps.IsScaleHorizontal ? -9 : 18 }},{{ ParamProps.IsScaleHorizontal ? 18 : -9 }})">
+                        <path hmi:if="{{ ParamProps.IsScaleHorizontal == 1 }}" hmi-bind:fill="{{ Converter.RGBA( ParamProps.IndicatorColor ) }}"  d="M 27,0 l 9,18 l -18,0 z" />
+                        <path hmi:if="{{ ParamProps.IsScaleHorizontal == 0 }}" hmi-bind:fill="{{ Converter.RGBA( ParamProps.IndicatorColor ) }}"  d="M 0,27 l 18,-9 l 0,18 z" />
+                      </g>
+                    </svg>
+                  </hmi:template>
+                </hmi:master-inline>
+              </hmi-feature:poleMarkers>
+            </hmi-feature:marker>
+          </hmi-feature:scale>
+        </hmi-element:straightDial>
+      </g>
+    </g>
+    <g id="IOFieldGroup" hmi:if="{{ or(eq(HmiProps.ShowValue, true), eq(LocalProps.IsCompactMode, true)) }}">
+      <rect id="ItemBorder"
+        hmi:if="{ LocalProps.IsCompactMode }"
+        hmi-bind:x="{{ HmiProps.BorderWidth / 2 }}"
+        hmi-bind:y="{{ HmiProps.BorderWidth / 2 + LocalProps.TitleHeight }}"
+        hmi-bind:width="{{ HmiProps.Width - HmiProps.BorderWidth }}"
+        hmi-bind:height="{{ HmiProps.Height - HmiProps.BorderWidth - LocalProps.TitleHeight }}"
+        hmi-bind:stroke="{{ Converter.RGBA( HmiProps.BorderColor ) }}"
+        hmi-bind:stroke-width="{ HmiProps.BorderWidth }"
+        fill-opacity="0" />
+
+      <hmi:inline hmi-bind:x="{ LocalProps.IOFieldX }"
+                  hmi-bind:y="{ LocalProps.IOFieldY }"
+                  hmi-bind:width="{ LocalProps.IOFieldWidth }"
+                  hmi-bind:height="{ LocalProps.IOFieldHeight }">
+
+        <hmi:param name="Text"                    	type="string"                 	hmi-bind:value="{{ LocalProps.OperatorControl ? LocalProps.NewProcessValue : HmiProps.ProcessValue }}"  />
+        <hmi:param name="Font"                    	type="HmiFontPart"            	hmi-bind:value="{ HmiProps.Font }"                                                                      />
+        <hmi:param name="TextColor"               	type="string"                   hmi-bind:value="{ LocalProps.IOFieldTextColor }"                                                        />                                                  />
+        <hmi:param name="Enabled"                 	type="boolean"                	hmi-bind:value="{{ or( HmiProps.ShowValue, LocalProps.IsCompactMode ) }}"                               />
+        <hmi:param name="TargetName"              	type="string"                 	value="HmiProps.ProcessValue"                                                                           />
+        <hmi:param name="Width"                    	type="number"                 	hmi-bind:value="{ LocalProps.IOFieldWidth }"                                                            />
+        <hmi:param name="Height"                   	type="number"                 	hmi-bind:value="{ LocalProps.IOFieldHeight }"                                                           />
+        <hmi:param name="OutputFormat"              type="string"                   hmi-bind:value="{ HmiProps.OutputFormat }"                                                              />
+
+        <hmi:template>
+          <svg xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+              xmlns:hmi="http://svg.siemens.com/hmi/"
+              xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+              xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+              xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+              xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+              preserveAspectRatio="none">
+
+            <hmi:self type="custom" displayName="Custom Flat Text Field" name="custom.flat.text.field" version="1.0.1" performanceClass="L">
+
+              <hmi:paramDef name="Text"                       type="string"                   two-way="false" />
+              <hmi:paramDef name="Font"                       type="HmiFontPart"                              />
+              <hmi:paramDef name="TextColor"                  type="string"                                 />
+              <hmi:paramDef name="Enabled"                    type="boolean"                                  />
+              <hmi:paramDef name="TargetName"                 type="string"                                   />
+              <hmi:paramDef name="Width"                      type="number"                                   />
+              <hmi:paramDef name="Height"                     type="number"                                   />
+              <hmi:paramDef name="OutputFormat"               type="string"                                   />
+
+            </hmi:self>
+
+            <defs></defs>
+            <hmi-element:textField
+                        start-x="0"
+                        start-y="0"
+                        hmi-bind:width="{ ParamProps.Width }"
+                        hmi-bind:height="{ ParamProps.Height }"
+                        horizontal-text-alignment="center"
+                        vertical-text-alignment="middle"
+                        hmi-bind:value="{ ParamProps.Text }"
+                        hmi-bind:target="{ ParamProps.TargetName }"
+                        hmi-bind:fore-color="{ ParamProps.TextColor }"
+                        hmi-bind:output-format="{ ParamProps.OutputFormat }"
+                        hmi-bind:enabled="{ ParamProps.Enabled }"
+                        horizontal-scrollbar-visibility="collapsed"
+                        vertical-scrollbar-visibility="collapsed">
+
+              <hmi-feature:inputBehavior clear-on-activate="false" />
+              <hmi-feature:font hmi-bind:scope="{ ParamProps.Font }" />
+
+            </hmi-element:textField>
+          </svg>
+        </hmi:template>
+      </hmi:inline>
+    </g>
+  </g>
+
+  <!--Trend indicator -->
+  <g hmi:if="{{ and( HmiProps.ShowTrendIndicator, HmiProps.ComputedValueTendency != HmiValueTendency.Steady ) }}"
+                            hmi-bind:transform="translate({ LocalProps.TrendIndicatorX },{ LocalProps.TrendIndicatorY })">
+
+    <path d="M 7,0 l-7,13 l4,0 l0,7 l6,0 l0,-7 l4,0 z"
+          hmi-bind:transform="rotate({{ HmiProps.ComputedValueTendency == HmiValueTendency.Downwards ? 180 : 0 }},7,10)"
+          hmi-bind:fill="{ LocalProps.IOFieldTextColor }" />
+
+  </g>
+
+  <g id="ElementsGroupCompact" hmi:if="{ LocalProps.IsCompactMode }">
+
+    <line id="AlternateItemBorder"
+          x1="0"
+          hmi-bind:y1="{{ HmiProps.Height - HmiProps.BorderWidth / 2 }}"
+          hmi-bind:x2="{ HmiProps.Width }"
+          hmi-bind:y2="{{ HmiProps.Height - HmiProps.BorderWidth / 2 }}"
+          hmi-bind:stroke="{{ Converter.RGBA( HmiProps.AlternateBorderColor ) }}"
+          hmi-bind:stroke-width="{ HmiProps.BorderWidth }"
+              />
+    <rect id="SliderBackground"
+          hmi-bind:x="{{ LocalProps.IsScaleHorizontal ? HmiProps.BorderWidth + 1 : HmiProps.Width - HmiProps.BorderWidth - 41 }}"
+          hmi-bind:y="{{ LocalProps.IsScaleHorizontal ? HmiProps.Height - HmiProps.BorderWidth - 41 : HmiProps.BorderWidth + 1 }}"
+          hmi-bind:width="{{ LocalProps.IsScaleHorizontal ? HmiProps.Width - 2 * HmiProps.BorderWidth - 2 : 40 }}"
+          hmi-bind:height="{{ LocalProps.IsScaleHorizontal ? 40 : HmiProps.Width - 2 * HmiProps.BorderWidth - 2 }}"
+          hmi-bind:fill="{{ Converter.RGBA( HmiProps.StraightScale.TickColor ) }}" />
+    <g hmi-bind:transform="translate( {{ LocalProps.IsScaleHorizontal ? HmiProps.Width / 2 - 20 : HmiProps.Width - HmiProps.BorderWidth - 48 }}, {{ LocalProps.IsScaleHorizontal ? HmiProps.Height - HmiProps.BorderWidth - 48 : HmiProps.Height / 2 - 40 }} )">
+        <g hmi-bind:transform="translate({{ LocalProps.IsScaleHorizontal ? 54  : 0 }}) rotate({{ ParamProps.IsScaleHorizontal ? 90 : 0 }})">
+          <path hmi-bind:fill="{{ Converter.RGBA( HmiProps.ProcessValueIndicatorBackColor ) }}"
+              d="M 27,8 l 10,10 l -2,2 l -8,-6 l -8,6 l -2,-2 z"
+              hmi-event:down="url(#increaseProcessValue)" />
+        <path hmi-bind:fill="{{ Converter.RGBA( HmiProps.ProcessValueIndicatorBackColor ) }}"
+              d="M 27,48 l -10,-10 l 2,-2 l 8,6 l 8,-6 l 2,2 z"
+              hmi-event:down="url(#decreaseProcessValue)" />
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,68 @@
+#Version: 2.0
+
+Runtime:
+  mtp1500:
+    SystemID: 1
+    DefaultLanguage: en-US
+    Languages:
+    - en-US
+    InitialLoggingLanguages:
+    - en-US
+    DefinitionFiles:
+    - PREDEFINED/RuntimeSystem/CoreArtifacts_001.hmi.yml
+    - CustomWidgetType.hmi.yml
+    - Faceplates/fpButton_V001.faceplate.hmi.yml
+    - Faceplates/fpConveyor_V001.faceplate.hmi.yml
+    - Faceplates/fpElevator_V001.faceplate.hmi.yml
+    - Faceplates/fpBtnWithState_V001.faceplate.hmi.yml
+    Files:
+    - PREDEFINED/DomainFunctions.hmi.yml
+    - PREDEFINED/HmiCycle_001.hmi.yml
+    - PREDEFINED/IowaInternalDP_001.hmi.yml
+    - PREDEFINED/HmiAlarmClass_001.hmi.yml
+    - PREDEFINED/HmiTextLibrary_001.hmi.yml
+    - PREDEFINED/HmiTextListContainer_001.hmi.yml
+    - PREDEFINED/HmiColorLibrary_001.hmi.yml
+    - Screens/20_Messages.screen.hmi.yml
+    - Screens/21_Diagnostics.screen.hmi.yml
+    - Screens/30_Settings.screen.hmi.yml
+    - Screens/Root navigation level.screen.hmi.yml
+    - Screens/00_Application_Main.screen.hmi.yml
+    - Screens/01 - Screenlayout/01_ScreenLayout.screen.hmi.yml
+    - Screens/01 - Screenlayout/02_Header.screen.hmi.yml
+    - Screens/01 - Screenlayout/03_MainNavigation.screen.hmi.yml
+    - Screens/01 - Screenlayout/Template_Stop_Runtime.screen.hmi.yml
+    - Connections.S7P.hmi.yml
+    - Resources/TextLibrary.hmi.yml
+    - Resources/GraphicLibrary.hmi.yml
+    - Resources/FontLibrary.hmi.yml
+    - AlarmClasses.hmi.yml
+    - Tags/Template.hmi.yml
+    - Resources/TextLists.hmi.yml
+    - Resources/GraphicLists.hmi.yml
+    - GlobalScriptModule.hmi.yml
+    - ScreenWindowLayouts.hmi.yml
+    - PREDEFINED/RuntimeSystem/IowaInternalDP_001.hmi.yml
+    - PREDEFINED/UserInterfaceScripting/HmiStructureTag_001.hmi.yml
+    - PREDEFINED/S7PlusCommunication/IowaInternalDP_001.hmi.yml
+    - PREDEFINED/S7PlusCommunication/S7HmiConnection_001.hmi.yml
+    - PREDEFINED/S7PlusCommunication/S7PlusHmiConnection_001.hmi.yml
+    - PREDEFINED/S7PlusCommunication/HmiSimpleTag_001.hmi.yml
+    - PREDEFINED/RTS/IowaInternalDP_001.hmi.yml
+    - RenderingTemplate.hmi.yml
+    - Tags/Internal.hmi.yml
+    - OPCUAHmiConnection_001.hmi.yml
+    - PREDEFINED/OpcUaCommunication/IowaInternalDP_001.hmi.yml
+    - PREDEFINED/OpcUaCommunication/S7HmiConnection_001.hmi.yml
+    - UserManagement/RolesFunctionRights.hmi.yml
+    - UserManagement/Users.hmi.yml
+    - Tags/SIMATIC_S7-1500_OPC-UA_Application__Tags.hmi.yml
+    - SIMATIC_S7-1500_OPC-UA_Application__Alarms.hmi.yml
+    - PREDEFINED/GeneratedGlobalScripts.hmi.yml
+    SymbolFiles:
+    - PREDEFINED/ManagerNumbers.sym.yml
+    StyleFiles:
+    - ExternalFiles/Styles/ScreenItemPropertyList_ExtendedStyle.xml
+    - ExternalFiles/Styles/ScreenItemPropertyList_FlatStyle_Bright.xml
+    - ExternalFiles/Styles/ScreenItemPropertyList_FlatStyle_Dark.xml
+    CurrentStyle: ExtendedStyle

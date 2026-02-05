@@ -1,0 +1,7 @@
+name: '@simatic-ax/simplified-sorting-machine'
+version: 0.0.0-placeholder
+type: workspace
+author: Siemens AG
+description: Application example for a simplified sorting machine using SIMATIC AX and UE
+registries:
+  '@simatic-ax': 'https://npm.pkg.github.com/'

@@ -1,0 +1,1699 @@
+#Version: 2.0
+
+Screens:
+  00_Application_Main:
+    Width: 1920
+    Height: 976
+    BackColor: 0xFF3E435A
+    ScriptModules:
+      EventScripts:
+        ScriptLanguage: JavaScript
+        ScriptFile: Scripts\00_Application_Main_EventScripts.js
+        Scripts:
+          txtMoveConveyor1Stop_OnActivated:
+          txtMoveConveyor1Stop_OnDeactivated:
+          txtMoveConveyor1Forward_OnActivated:
+          txtMoveConveyor1Forward_OnDeactivated:
+          txtMoveConveyor1Backward_OnActivated:
+          txtMoveConveyor1Backward_OnDeactivated:
+          txtMoveConveyor2Stop_OnActivated:
+          txtMoveConveyor2Stop_OnDeactivated:
+          txtMoveConveyor2Forward_OnActivated:
+          txtMoveConveyor2Forward_OnDeactivated:
+          txtMoveConveyor2Backward_OnActivated:
+          txtMoveConveyor2Backward_OnDeactivated:
+          txtMoveConveyor3Stop_OnActivated:
+          txtMoveConveyor3Stop_OnDeactivated:
+          txtMoveConveyor3Forward_OnActivated:
+          txtMoveConveyor3Forward_OnDeactivated:
+          txtMoveConveyor3Backward_OnActivated:
+          txtMoveConveyor3Backward_OnDeactivated:
+          txtAutomaticApplication_OnActivated:
+          txtManualApplication_OnActivated:
+          txtResetAll_OnActivated:
+          txtResetAll_OnDeactivated:
+          txtAcknowledge_OnActivated:
+          txtAcknowledge_OnDeactivated:
+      DynamicScripts:
+        ScriptLanguage: JavaScript
+        ScriptFile: Scripts\00_Application_Main_DynamicScripts.js
+        Scripts:
+          syncElevatorBoxPosTop: 
+          AppStatusAutomatic:
+          AppStatusManual:
+    Layers:
+      Layer_0:
+        Items:
+          #Application Control
+          recApplicationControl:
+            ObjectType: Rectangle
+            Top: 16
+            Left: 16
+            Height: 304
+            Width: 304
+            RotationCenterX: 0
+            RotationCenterY: 0
+            BackColor: 0xFF202035
+            BorderWidth: 0
+            Enabled: True
+            TabIndex: 0
+            Corners:
+              BottomLeftRadius: 6
+              BottomRightRadius: 6
+              TopLeftRadius: 6
+              TopRightRadius: 6
+          LineAppControl1:
+            ObjectType: Line
+            Top: 56
+            Left: 16
+            Width: 304
+            Height: 0
+            X2: 304
+            Y2: 0
+            LineColor: 0xFFEFEFEF
+          txtAutomaticApplication:
+            ObjectType: TextBox
+            Top: 84
+            Left: 33
+            Height: 36
+            Width: 272
+            BackColor: 0xFF1491EB
+            ForeColor: 0xFFDDDCDC
+            Text: HmiScreenItemsTextLibrary.TextEntry_33 
+            TabIndex: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_23
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Activated
+                Type: Script
+                Script: '@local::EventScripts.txtAutomaticApplication_OnActivated'
+          txtManualApplication:
+            ObjectType: TextBox
+            Top: 132
+            Left: 32
+            Height: 36
+            Width: 272
+            BackColor: 0xFF1491EB
+            ForeColor: 0xFFDDDCDC
+            Text: HmiScreenItemsTextLibrary.TextEntry_34 
+            TabIndex: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_23
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Activated
+                Type: Script
+                Script: '@local::EventScripts.txtManualApplication_OnActivated'
+    #---
+    #Crane Control
+          txtParameter1:
+            ObjectType: TextBox
+            Top: 21
+            Left: 32
+            Height: 32
+            Width: 200
+            BorderWidth: 0
+            BackColor: 0xDDDCDC
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: GlobalTextLibrary.Entity_123
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+          txtAcknowledge:
+            ObjectType: TextBox
+            Top: 180
+            Left: 33
+            Height: 36
+            Width: 272
+            BackColor: 0xFF3E435A
+            ForeColor: 0xFFDDDCDC
+            Text: HmiScreenItemsTextLibrary.TextEntry_37 
+            TabIndex: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_23
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Activated
+                Type: Script
+                Script: '@local::EventScripts.txtAcknowledge_OnActivated'
+              ScriptEventHandler2:
+                Event: Deactivated
+                Type: Script
+                Script: '@local::EventScripts.txtAcknowledge_OnDeactivated'   
+    #---
+    #BasicBox1 Infos
+          recScanner:
+            ObjectType: Rectangle
+            Top: 16
+            Left: 656
+            Height: 160
+            Width: 304
+            RotationCenterX: 0
+            RotationCenterY: 0
+            BackColor: 0xFF202035
+            BorderWidth: 0
+            Enabled: True
+            TabIndex: 0
+            Corners:
+              BottomLeftRadius: 6
+              BottomRightRadius: 6
+              TopLeftRadius: 6
+              TopRightRadius: 6
+          lnScanner:
+            ObjectType: Line
+            Top: 56
+            Left: 656
+            Width: 304
+            Height: 0
+            X2: 304
+            Y2: 0
+            LineColor: 0xFFEFEFEF
+          txtHeadlineScanner:
+            ObjectType: TextBox
+            Top: 21
+            Left: 672
+            Height: 32
+            Width: 200
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: HmiScreenItemsTextLibrary.TextEntry_10
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+          txtScannerID:
+            ObjectType: TextBox
+            Top: 66
+            Left: 672
+            Height: 24
+            Width: 200
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: HmiScreenItemsTextLibrary.TextEntry_12
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+            BorderColor: 0xFFDDDCDC
+          txtScannerColor:
+            ObjectType: TextBox
+            Top: 98
+            Left: 672
+            Height: 24
+            Width: 200
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: HmiScreenItemsTextLibrary.TextEntry_13 
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+            BorderColor: 0xFFDDDCDC
+          txtScannerisFaulty:
+            ObjectType: TextBox
+            Top: 130
+            Left: 672
+            Height: 24
+            Width: 200
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: HmiScreenItemsTextLibrary.TextEntry_14 
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+            BorderColor: 0xFFDDDCDC
+          ioScannerID:
+            ObjectType: IOField
+            Width: 155
+            Height: 24
+            Top: 66
+            Left: 786
+            BorderWidth: 0
+            BackColor: 0xA1D1
+            HorizontalTextAlignment: Right
+            ForeColor: 0xFFDDDCDC
+            ProcessValue AS DInt: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            TabIndex: 0
+            IOFieldType: Output
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__0__id
+                Indirect: False
+                Direction: biDirectional
+                Property: 00_Application_Main.Layers.Layer_0.Items.ioScannerID#ProcessValue
+          ioScannerColor:
+            ObjectType: IOField
+            Width: 155
+            Height: 24
+            Top: 98
+            Left: 786
+            BorderWidth: 0
+            BackColor: 0xA1D1
+            HorizontalTextAlignment: Right
+            ForeColor: 0xFFDDDCDC
+            ProcessValue AS DInt: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            TabIndex: 0
+            IOFieldType: Output
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__0__baseColor
+                Indirect: False
+                Direction: biDirectional
+                Property: 00_Application_Main.Layers.Layer_0.Items.ioScannerColor#ProcessValue
+          ioScannerisFaulty:
+            ObjectType: IOField
+            Width: 155
+            Height: 24
+            Top: 130
+            Left: 786
+            BorderWidth: 0
+            BackColor: 0xA1D1
+            HorizontalTextAlignment: Right
+            ForeColor: 0xFFDDDCDC
+            ProcessValue AS DInt: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            TabIndex: 0
+            IOFieldType: Output
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__0__isFaulty
+                Indirect: False
+                Direction: biDirectional
+                Property: 00_Application_Main.Layers.Layer_0.Items.ioScannerisFaulty#ProcessValue
+    #---
+          recStorageStatus:
+            ObjectType: Rectangle
+            Top: 16
+            Left: 336
+            Height: 160
+            Width: 304
+            RotationCenterX: 0
+            RotationCenterY: 0
+            BackColor: 0xFF202035
+            BorderWidth: 0
+            Enabled: True
+            TabIndex: 0
+            Corners:
+              BottomLeftRadius: 6
+              BottomRightRadius: 6
+              TopLeftRadius: 6
+              TopRightRadius: 6
+          txtStorageStatus:
+            ObjectType: TextBox
+            Top: 21
+            Left: 350
+            Height: 32
+            Width: 200
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: GlobalTextLibrary.Entity_129
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+          ioParameterStorageTotalBoxesY:
+            ObjectType: IOField
+            Width: 155
+            Height: 24
+            Top: 131
+            Left: 468
+            BorderWidth: 0
+            BackColor: 0xA1D1
+            HorizontalTextAlignment: Right
+            ForeColor: 0xFFDDDCDC
+            ProcessValue AS DInt: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            TabIndex: 0
+            IOFieldType: Output
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: ServerInterfaces_Server_Interface_1_StorageInterface_totalBoxesY
+                Indirect: False
+                Direction: biDirectional
+                Property: 00_Application_Main.Layers.Layer_0.Items.ioParameterStorageTotalBoxesY#ProcessValue
+          ioStorageTotal:
+            ObjectType: IOField
+            Width: 41
+            Height: 24
+            Top: 67
+            Left: 582
+            BorderWidth: 0
+            BackColor: 0xA1D1
+            HorizontalTextAlignment: Right
+            ForeColor: 0xFFDDDCDC
+            ProcessValue AS DInt: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            TabIndex: 0
+            IOFieldType: Output
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: ServerInterfaces_Server_Interface_1_StorageInterface_totalBoxes
+                Indirect: False
+                Direction: biDirectional
+                Property: 00_Application_Main.Layers.Layer_0.Items.ioStorageTotal#ProcessValue
+          txtStorageTitleTotal:
+            ObjectType: TextBox
+            Top: 67
+            Left: 352
+            Height: 24
+            Width: 200
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: GlobalTextLibrary.Entity_133
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+          txtStorageTitleX:
+            ObjectType: TextBox
+            Top: 99
+            Left: 352
+            Height: 24
+            Width: 200
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: GlobalTextLibrary.Entity_134
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+          txtStorageTitleY:
+            ObjectType: TextBox
+            Top: 131
+            Left: 352
+            Height: 24
+            Width: 224
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: GlobalTextLibrary.Entity_135
+            TabIndex: 0
+
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+          ioStorageTotalBoxesX:
+            ObjectType: IOField
+            Width: 57
+            Height: 24
+            Top: 99
+            Left: 566
+            BorderWidth: 0
+            BackColor: 0xA1D1
+            HorizontalTextAlignment: Right
+            ForeColor: 0xFFDDDCDC
+            ProcessValue AS DInt: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            TabIndex: 0
+            IOFieldType: Output
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: ServerInterfaces_Server_Interface_1_StorageInterface_totalBoxesX
+                Indirect: False
+                Direction: biDirectional
+                Property: 00_Application_Main.Layers.Layer_0.Items.ioStorageTotalBoxesX#ProcessValue
+          lnStorageControl:
+            ObjectType: Line
+            Top: 56
+            Left: 336
+            Width: 304
+            Height: 0
+            X2: 304
+            Y2: 0
+            LineColor: 0xFFEFEFEF
+          txtResetAll:
+            ObjectType: TextBox
+            Top: 230
+            Left: 32
+            Height: 36
+            Width: 272
+            BackColor: 0xFFFF1F57
+            ForeColor: 0xFFDDDCDC
+            Text: GlobalTextLibrary.Entity_157
+            TabIndex: 0
+            RotationCenterX: 0
+            RotationCenterY: 0
+            AlternateBorderColor: White
+            Font:
+              Description: GlobalFontLibrary.Entity_23
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Activated
+                Type: Script
+                Script: '@local::EventScripts.txtResetAll_OnActivated'
+              ScriptEventHandler2:
+                Script: '@local::EventScripts.txtResetAll_OnDeactivated'
+                Type: Script
+                Event: Deactivated
+    #Box Control
+          recAppBoxControl1:
+            ObjectType: Rectangle
+            Top: 594
+            Left: 17
+            Height: 212
+            Width: 304
+            RotationCenterX: 0
+            RotationCenterY: 0
+            BackColor: 0xFF202035
+            BorderWidth: 0
+            Enabled: True
+            TabIndex: 0
+            Corners:
+              BottomLeftRadius: 6
+              BottomRightRadius: 6
+              TopLeftRadius: 6
+              TopRightRadius: 6
+          LineAppBoxControl1:
+            ObjectType: Line
+            Top: 632
+            Left: 16
+            Width: 304
+            Height: 0
+            X2: 304
+            Y2: 0
+            LineColor: 0xFFEFEFEF
+          txtHeadlineAppBoxControl1:
+            ObjectType: TextBox
+            Top: 598
+            Left: 32
+            Height: 32
+            Width: 200
+            BorderWidth: 0
+            BackColor: Black 0%
+            ForeColor: 0xFFDDDCDC
+            HorizontalTextAlignment: Left
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Enabled: True
+            ReadOnly: True
+            Text: HmiScreenItemsTextLibrary.TextEntry_38 
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_19
+    #Conveyor 1
+          fpConveyor1:
+            ObjectType: FaceplateContainer
+            ContainedType: fpConveyor_V001
+            Top: 336
+            Left: 16
+            Width: 304
+            Height: 240
+            Visible: True
+            TabIndex: 0
+            .Properties.Title:
+              Value: 'Conveyor 1'
+            .Properties.TagError:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorInterface__0__error
+            .Properties.TagMoveBackward:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorCommand__0__moveBackward
+            .Properties.TagMoveForward:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorCommand__0__moveForward
+            .Properties.TagStop:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorCommand__0__stop
+            .Properties.TagStatus:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorInterface__0__status
+            .Properties.AutomaticMode:
+              Tag: ServerInterfaces_Server_Interface_1_ApplicationCommand_automatic
+    # End of fpConveyor1
+    #Conveyor 2
+          fpConveyor2:
+            ObjectType: FaceplateContainer
+            ContainedType: fpConveyor_V001
+            Top: 336
+            Left: 336
+            Width: 304
+            Height: 240
+            Visible: True
+            TabIndex: 0
+            .Properties.Title:
+              Value: 'Conveyor 2'
+            .Properties.TagError:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorInterface__1__error
+            .Properties.TagMoveBackward:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorCommand__1__moveBackward
+            .Properties.TagMoveForward:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorCommand__1__moveForward
+            .Properties.TagStop:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorCommand__1__stop
+            .Properties.TagStatus:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorInterface__1__status
+            .Properties.AutomaticMode:
+              Tag: ServerInterfaces_Server_Interface_1_ApplicationCommand_automatic
+    # End of fpConveyor2
+    # FP Conveyor 3 - Output Down
+          fpConveyor3:
+            ObjectType: FaceplateContainer
+            ContainedType: fpConveyor_V001
+            Top: 336
+            Left: 656
+            Width: 304
+            Height: 240
+            Visible: True
+            TabIndex: 0
+            .Properties.Title:
+              Value: Conveyor 3
+            .Properties.TagError:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorInterface__2__error
+            .Properties.TagMoveBackward:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorCommand__2__moveBackward
+            .Properties.TagMoveForward:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorCommand__2__moveForward
+            .Properties.TagStop:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorCommand__2__stop
+            .Properties.TagStatus:
+              Tag: ServerInterfaces_Server_Interface_1_ConveyorInterface__2__status
+            .Properties.AutomaticMode:
+              Tag: ServerInterfaces_Server_Interface_1_ApplicationCommand_automatic
+    # Crane Control Faceplate
+          fpElevator1:
+            ObjectType: FaceplateContainer
+            ContainedType: fpElevator_V001
+            Top: 16
+            Left: 1600
+            Width: 304
+            Height: 272
+            Visible: True
+            TabIndex: 0
+            .Properties.Title:
+              Value: Elevator 1
+            .Properties.TagError:
+              Tag: ServerInterfaces_Server_Interface_1_ElevatorInterface_error
+            .Properties.TagMoveUp:
+              Tag: ServerInterfaces_Server_Interface_1_ElevatorComand_moveUp
+            .Properties.TagMoveDown:
+              Tag: ServerInterfaces_Server_Interface_1_ElevatorComand_moveDown
+            .Properties.TagStop:
+              Tag: ServerInterfaces_Server_Interface_1_ElevatorComand_stop
+            .Properties.TagStatus:
+              Tag: ServerInterfaces_Server_Interface_1_ElevatorInterface_status
+            .Properties.AutomaticMode:
+              Tag: ServerInterfaces_Server_Interface_1_ApplicationCommand_automatic
+            .Properties.TagElevatorPos:
+              Tag: ServerInterfaces_Server_Interface_1_ElevatorComand_position
+    # FP new Random Box
+          fpNewBoxTriggerRandomBox:
+            ObjectType: FaceplateContainer
+            ContainedType: fpButton_V001
+            Top: 648
+            Left: 33
+            Width: 272
+            Height: 36
+            Visible: True
+            TabIndex: 0
+            .Properties.Text:
+              Value: 'Add new Random Package'
+            .Properties.ControlTag:
+              Tag: ServerInterfaces_Server_Interface_1_ApplicationCommand_newBoxRandom
+    # FP new Box X
+          fpNewBoxTriggerBoxX:
+            ObjectType: FaceplateContainer
+            ContainedType: fpButton_V001
+            Top: 706
+            Left: 31
+            Width: 272
+            Height: 36
+            Visible: True
+            TabIndex: 0
+            .Properties.Text:
+              Value: 'Add new Package X'
+            .Properties.ControlTag:
+              Tag: ServerInterfaces_Server_Interface_1_ApplicationCommand_newBoxX
+    # FP new Box Y
+          fpNewBoxTriggerBoxY:
+            ObjectType: FaceplateContainer
+            ContainedType: fpButton_V001
+            Top: 752
+            Left: 31
+            Width: 272
+            Height: 36
+
+            Visible: True
+            TabIndex: 0
+            .Properties.Text:
+              Value: 'Add new Package Y'
+            .Properties.ControlTag:
+              Tag: ServerInterfaces_Server_Interface_1_ApplicationCommand_newBoxY
+    #NEW CHANGES for SORTING
+          CardboardBox_1:
+            ObjectType: CustomWidgetContainer
+            Left: 384
+            Top: 724
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__6__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__6__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__6__isPresent
+          CardboardBox_2:
+            ObjectType: CustomWidgetContainer
+            Left: 512
+            Top: 724
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__5__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__5__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__5__isPresent
+          CardboardBox_3:
+            ObjectType: CustomWidgetContainer
+            Left: 640
+            Top: 724
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__4__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__4__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__4__isPresent
+          CardboardBox_4:
+            ObjectType: CustomWidgetContainer
+            Left: 768
+            Top: 724
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__3__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__3__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__3__isPresent
+          CardboardBox_5:
+            ObjectType: CustomWidgetContainer
+            Left: 896
+            Top: 724
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__2__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__2__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__2__isPresent
+          CardboardBox_6:
+            ObjectType: CustomWidgetContainer
+            Left: 1025
+            Top: 724
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__1__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__1__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__1__isPresent
+          CardboardBox_8:
+            ObjectType: CustomWidgetContainer
+            Left: 1280
+            Top: 724
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ElevatorStation1BoxeInterface_posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ElevatorStation1BoxeInterface_baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ElevatorStation1BoxeInterface_isPresent
+              TagDynamic_4:
+                ObjectType: TagDynamic
+                Property: .#Top
+                Direction: biDirectional
+                Indirect: False
+                Tag: elevatorBoxPosTop
+          CardboardBox_9:
+            ObjectType: CustomWidgetContainer
+            Left: 1152
+            Top: 724
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__0__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__0__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__0__isPresent
+          CardboardBox_10:
+            ObjectType: CustomWidgetContainer
+            Left: 1408
+            Top: 724
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation3BoxesDownInterface__3__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation3BoxesDownInterface__3__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation3BoxesDownInterface__3__isPresent
+          CardboardBox_11:
+            ObjectType: CustomWidgetContainer
+            Left: 1536
+            Top: 724
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation3BoxesDownInterface__2__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation3BoxesDownInterface__2__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation3BoxesDownInterface__2__isPresent
+          CardboardBox_12:
+            ObjectType: CustomWidgetContainer
+            Left: 1664
+            Top: 724
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation3BoxesDownInterface__1__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation3BoxesDownInterface__1__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation3BoxesDownInterface__1__isPresent
+          CardboardBox_13:
+            ObjectType: CustomWidgetContainer
+            Left: 1792
+            Top: 724
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation3BoxesDownInterface__0__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation3BoxesDownInterface__0__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation3BoxesDownInterface__0__isPresent
+          CardboardBox_15:
+            ObjectType: CustomWidgetContainer
+            Left: 1408
+            Top: 439
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation2BoxesUpInterface__3__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation2BoxesUpInterface__3__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation2BoxesUpInterface__3__isPresent
+          CardboardBox_16:
+            ObjectType: CustomWidgetContainer
+            Left: 1536
+            Top: 439
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation2BoxesUpInterface__2__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation2BoxesUpInterface__2__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation2BoxesUpInterface__2__isPresent
+          CardboardBox_17:
+            ObjectType: CustomWidgetContainer
+            Left: 1664
+            Top: 439
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation2BoxesUpInterface__1__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation2BoxesUpInterface__1__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation2BoxesUpInterface__1__isPresent
+          CardboardBox_18:
+            ObjectType: CustomWidgetContainer
+            Left: 1792
+            Top: 439
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: False
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .#Left
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation2BoxesUpInterface__0__posLeft
+              TagDynamic_2:
+                ObjectType: TagDynamic
+                Property: .Properties.BasicColor#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation2BoxesUpInterface__0__baseColor
+              TagDynamic_3:
+                ObjectType: TagDynamic
+                Property: .#Visible
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation2BoxesUpInterface__0__isPresent
+          BottomSmall_1:
+            ObjectType: CustomWidgetContainer
+            Top: 846
+            Left: 373
+            Width: 33
+            Height: 127
+            RotationCenterX: 0
+            RotationCenterY: 0
+            TabIndex: 0
+            ContainedType: BottomSmall
+          BottomSmall_2:
+            ObjectType: CustomWidgetContainer
+            Top: 846
+            Left: 622
+            Width: 33
+            Height: 127
+            RotationCenterX: 0
+            RotationCenterY: 0
+            TabIndex: 0
+            ContainedType: BottomSmall
+          BottomSmall_3:
+            ObjectType: CustomWidgetContainer
+            Top: 846
+            Left: 879
+            Width: 33
+            Height: 127
+            RotationCenterX: 0
+            RotationCenterY: 0
+            TabIndex: 0
+            ContainedType: BottomSmall
+          BottomSmall_4:
+            ObjectType: CustomWidgetContainer
+            Top: 846
+            Left: 1069
+            Width: 33
+            Height: 127
+            RotationCenterX: 0
+            RotationCenterY: 0
+            TabIndex: 0
+            ContainedType: BottomSmall
+          BottomSmall_5:
+            ObjectType: CustomWidgetContainer
+            Top: 848
+            Left: 1254
+            Width: 33
+            Height: 127
+            RotationCenterX: 0
+            RotationCenterY: 0
+            TabIndex: 0
+            ContainedType: BottomSmall
+          Conveyor_8:
+            ObjectType: CustomWidgetContainer
+            Top: 820
+            Left: 1408
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          Conveyor_9:
+            ObjectType: CustomWidgetContainer
+            Top: 820
+            Left: 1536
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          Conveyor_10:
+            ObjectType: CustomWidgetContainer
+            Top: 820
+            Left: 1664
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          Conveyor_11:
+            ObjectType: CustomWidgetContainer
+            Top: 820
+            Left: 1792
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          BottomSmall_6:
+            ObjectType: CustomWidgetContainer
+            Top: 550
+            Left: 1397
+            Width: 33
+            Height: 428
+            RotationCenterX: 0
+            RotationCenterY: 0
+            TabIndex: 0
+            ContainedType: BottomSmall
+          BottomSmall_7:
+            ObjectType: CustomWidgetContainer
+            Top: 554
+            Left: 1648
+            Width: 33
+            Height: 425
+            RotationCenterX: 0
+            RotationCenterY: 0
+            TabIndex: 0
+            ContainedType: BottomSmall
+          BottomSmall_8:
+            ObjectType: CustomWidgetContainer
+            Top: 556
+            Left: 1898
+            Width: 33
+            Height: 423
+            RotationCenterX: 0
+            RotationCenterY: 0
+            TabIndex: 0
+            ContainedType: BottomSmall
+          Conveyor_1:
+            ObjectType: CustomWidgetContainer
+            Top: 820
+            Left: 384
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          Conveyor_2:
+            ObjectType: CustomWidgetContainer
+            Top: 820
+            Left: 512
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          Conveyor_3:
+            ObjectType: CustomWidgetContainer
+            Top: 820
+            Left: 640
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          Conveyor_4:
+            ObjectType: CustomWidgetContainer
+            Top: 820
+            Left: 768
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          Conveyor_5:
+            ObjectType: CustomWidgetContainer
+            Top: 820
+            Left: 896
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          Conveyor_6:
+            ObjectType: CustomWidgetContainer
+            Top: 820
+            Left: 1024
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          Conveyor_7:
+            ObjectType: CustomWidgetContainer
+            Top: 820
+            Left: 1146
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          Conveyor_13:
+            ObjectType: CustomWidgetContainer
+            Top: 535
+            Left: 1408
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          Conveyor_14:
+            ObjectType: CustomWidgetContainer
+            Top: 535
+            Left: 1536
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          Conveyor_15:
+            ObjectType: CustomWidgetContainer
+            Top: 535
+            Left: 1664
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          Conveyor_16:
+            ObjectType: CustomWidgetContainer
+            Top: 535
+            Left: 1792
+            Width: 128
+            Height: 35
+            ContainedType: Conveyor4Side
+          NoncontactThermometer_1:
+            ObjectType: CustomWidgetContainer
+            Left: 1140
+            Top: 604
+            Height: 80
+            Width: 80
+            ContainedType: NoncontactThermometer
+            RotationAngle: 90
+          svgAssemblyLineCrane:
+            ObjectType: CustomWidgetContainer
+            Left: 1266
+            Top: 0
+            Width: 148
+            Height: 836
+            ContainedType: AssemblyLineCrane
+            Dynamics:
+              TagDynamic_1:
+                ObjectType: TagDynamic
+                Property: .Properties.PositionVertical#Value
+                Direction: biDirectional
+                Indirect: False
+                Tag: ServerInterfaces_Server_Interface_1_ElevatorComand_position
+          recHideThermoElement:
+            ObjectType: Rectangle
+            Left: 1214
+            Top: 662
+            Height: 22
+            Width: 4
+            BackColor: 0xFF3E435A
+            BorderWidth: 0
+          plyScanner_1:
+            ObjectType: Polygon
+            Left: 1178
+            Points:
+            - 0,40
+            - 40,0
+            - 80,40
+            Top: 662
+            Height: 40
+            Width: 80
+            AlternateBackColor: 0x4AF41414
+            AlternateBorderColor: Red
+            BorderWidth: 0
+            BackFillPattern: GradientVertical
+            Dynamics:
+              TagDynamic1:
+                ObjectType: TagDynamic
+                Tag: ServerInterfaces_Server_Interface_1_ConveyorStation1BoxesInterface__0__isPresent
+                Indirect: False
+                Direction: toProperty
+                Property: 00_Application_Main.Layers.Layer_0.Items.plyScanner_1#Visible
+          txtElevatorSyncHidden:
+            ObjectType: TextBox
+            Top: 0
+            Left: 0
+            Height: 1
+            Width: 1
+            Visible: False
+            Text: GlobalTextLibrary.Entity_129
+            Dynamics:
+              ScriptDynamic1:
+                ObjectType: ScriptDynamic
+                Property: 00_Application_Main.Layers.Layer_0.Items.txtElevatorSyncHidden#Text
+                Script: '@local::DynamicScripts.syncElevatorBoxPosTop'
+                Triggers:
+                  Trigger1:
+                    ObjectType: HmiTagTrigger
+                    Tag: ServerInterfaces_Server_Interface_1_ElevatorComand_position
+          recAppControlStatus1:
+              ObjectType: Rectangle
+              BorderWidth: 0
+              BackFillPattern: Solid
+              Top: 111
+              Left: 155
+              Width: 24
+              Height: 6
+              Corners:
+                  BottomLeftRadius: 42
+                  BottomRightRadius: 42
+                  TopLeftRadius: 42
+                  TopRightRadius: 42
+              Dynamics:
+                ScriptDynamic1:
+                  ObjectType: ScriptDynamic
+                  Property: 00_Application_Main.Layers.Layer_0.Items.recAppControlStatus1#BackColor
+                  Script: '@local::DynamicScripts.AppStatusAutomatic'
+                  Triggers:
+                    Trigger1:
+                      ObjectType: HmiTagTrigger
+                      Tag: ServerInterfaces_Server_Interface_1_ApplicationCommand_automatic
+          recAppControlStatus2:
+            ObjectType: Rectangle
+            BorderWidth: 0
+            BackFillPattern: Solid
+            Top: 160
+            Left: 155
+            Width: 24
+            Height: 6
+            Corners:
+                BottomLeftRadius: 42
+                BottomRightRadius: 42
+                TopLeftRadius: 42
+                TopRightRadius: 42
+            Dynamics:
+              ScriptDynamic1:
+                ObjectType: ScriptDynamic
+                Property: 00_Application_Main.Layers.Layer_0.Items.recAppControlStatus2#BackColor
+                Script: '@local::DynamicScripts.AppStatusManual'
+                Triggers:
+                  Trigger1:
+                    ObjectType: HmiTagTrigger
+                    Tag: ServerInterfaces_Server_Interface_1_ApplicationCommand_manual
+      Layer_1: 
+      Layer_2: 
+      Layer_3: 
+      Layer_4: 
+      Layer_5: 
+      Layer_6: 
+      Layer_7: 
+      Layer_8: 
+      Layer_9: 
+      Layer_10: 
+      Layer_11: 
+      Layer_12: 
+      Layer_13: 
+      Layer_14: 
+      Layer_15: 
+      Layer_16: 
+      Layer_17: 
+      Layer_18: 
+      Layer_19: 
+      Layer_20: 
+      Layer_21: 
+      Layer_22: 
+      Layer_23: 
+      Layer_24: 
+      Layer_25: 
+      Layer_26: 
+      Layer_27: 
+      Layer_28: 
+      Layer_29: 
+      Layer_30: 
+      Layer_31: 
+    ValueConverters:
+      ValueConverter1:
+        ConditionType: Range
+        Default AS Color: Gray
+        Entries:
+          RangeValueConverterEntry1:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 2
+            To AS DInt: 2
+            Flashing: False
+            Rate: Medium
+            Value AS Color: 0xFF5ED1AD
+            AlternateValue AS Color: Red
+          RangeValueConverterEntry2:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 1
+            To AS DInt: 1
+            Flashing: False
+            Rate: Medium
+            Value AS Color: Gray
+            AlternateValue AS Color: Red
+          RangeValueConverterEntry3:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 3
+            To AS DInt: 7
+            Flashing: False
+            Rate: Medium
+            Value AS Color: Gray
+            AlternateValue AS Color: Red
+      ValueConverter2:
+        ConditionType: SingleBit
+        Default AS String: true
+        Entries:
+          BitValueConverterEntry1:
+            ObjectType: BitValueConverterEntry
+            ConditionPattern: b0
+            Flashing: False
+            Rate: Medium
+            Value AS String: true
+          BitValueConverterEntry2:
+            ObjectType: BitValueConverterEntry
+            ConditionPattern: b1
+            Flashing: False
+            Rate: Medium
+            Value AS String: false
+      ValueConverter3:
+        ConditionType: Range
+        Default AS String: false
+        Entries:
+          RangeValueConverterEntry1:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 1
+            To AS DInt: 1
+            Flashing: False
+            Rate: Medium
+            Value AS String: false
+          RangeValueConverterEntry2:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 2
+            To AS DInt: 2
+            Flashing: False
+            Rate: Medium
+            Value AS String: true
+          RangeValueConverterEntry3:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 3
+            To AS DInt: 7
+            Flashing: False
+            Rate: Medium
+            Value AS String: false
+      ValueConverter4:
+        ConditionType: Range
+        Default AS Color: 0xFFE2E2E2
+        Entries:
+          RangeValueConverterEntry1:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 1
+            To AS DInt: 1
+            Flashing: False
+            Rate: Medium
+            Value AS Color: 0xFFE2E2E2
+            AlternateValue AS Color: Red
+          RangeValueConverterEntry2:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 2
+            To AS DInt: 2
+            Flashing: False
+            Rate: Medium
+            Value AS Color: 0xFFFF5555
+            AlternateValue AS Color: Red
+          RangeValueConverterEntry3:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 3
+            To AS DInt: 7
+            Flashing: False
+            Rate: Medium
+            Value AS Color: 0xFFE2E2E2
+            AlternateValue AS Color: Red
+      ValueConverter5:
+        ConditionType: Range
+        Default AS String: true
+        Entries:
+          RangeValueConverterEntry1:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 0
+            To AS DInt: 0
+            Flashing: False
+            Rate: Medium
+            Value AS String: false
+          RangeValueConverterEntry2:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 1
+            To AS DInt: 128000
+            Flashing: False
+            Rate: Medium
+            Value AS String: true
+      ValueConverter6:
+        ConditionType: Range
+        Default AS String: true
+        Entries:
+          RangeValueConverterEntry1:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 1
+            To AS DInt: 6
+            Flashing: False
+            Rate: Medium
+            Value AS String: false
+          RangeValueConverterEntry2:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 7
+            To AS DInt: 7
+            Flashing: False
+            Rate: Medium
+            Value AS String: true
+          RangeValueConverterEntry3:
+            ObjectType: RangeValueConverterEntry
+            RangeType: Range
+            From AS DInt: 0
+            To AS DInt: 0
+            Flashing: False
+            Rate: Medium
+            Value AS String: false
+      ValueConverter7:
+        ConditionType: SingleBit
+        Default AS String: true
+        Entries:
+          BitValueConverterEntry1:
+            ObjectType: BitValueConverterEntry
+            ConditionPattern: b0
+            Flashing: False
+            Rate: Medium
+            Value AS String: false
+          BitValueConverterEntry2:
+            ObjectType: BitValueConverterEntry
+            ConditionPattern: b1
+            Flashing: False
+            Rate: Medium
+            Value AS String: true
+      ValueConverter8:
+        ConditionType: Boolean
+        Entries:
+          Entry1:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: true
+            Flashing: False
+            Rate: Medium
+            Value AS String: StatusOnDiagMFault
+          Entry2:
+            ObjectType: SimpleValueConverterEntry
+            Condition AS Bool: false
+            Flashing: False
+            Rate: Medium
+            Value AS String: StatusOnDiagMGood
+

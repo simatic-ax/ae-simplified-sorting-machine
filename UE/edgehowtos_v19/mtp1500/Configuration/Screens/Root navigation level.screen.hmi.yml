@@ -1,0 +1,249 @@
+#Version: 2.0
+Screens:
+  Root navigation level:
+    Width: 1920
+    Height: 695
+    BackFillPattern: Solid
+    BackColor: 0xFF3E435A
+    ScriptModules:
+      EventScripts:
+        ScriptLanguage: JavaScript
+        ScriptFile: Scripts\Root navigation level_EventScripts.js
+        Scripts:
+          changeScreenApplication_OnActivated:
+          changeScreenMessages_OnActivated:
+          changeScreenDiag_OnActivated:
+          changeScreenSettings_OnActivated:
+    Layers:
+      Layer_0:
+        Items:
+          rectSettings:
+            ObjectType: Rectangle
+            Height: 306
+            Width: 278
+            Left: 975
+            Top: 32
+            BorderWidth: 0
+            BackColor: 0xFF666679
+            BorderColor: LightGray
+            Enabled: True
+            Visible: True
+            TabIndex: 0
+            Corners:
+              BottomLeftRadius: 6
+              BottomRightRadius: 6
+              TopLeftRadius: 6
+              TopRightRadius: 6
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.changeScreenSettings_OnActivated'
+          rectDiag:
+            ObjectType: Rectangle
+            Height: 306
+            Width: 278
+            Left: 657
+            Top: 32
+            BorderWidth: 0
+            BackColor: 0xFF666679
+            BorderColor: 0xFF666679
+            Enabled: True
+            Visible: True
+            TabIndex: 0
+            Corners:
+              BottomLeftRadius: 6
+              BottomRightRadius: 6
+              TopLeftRadius: 6
+              TopRightRadius: 6
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.changeScreenDiag_OnActivated'
+          rectMessages:
+            ObjectType: Rectangle
+            Height: 306
+            Width: 278
+            Left: 342
+            Top: 32
+            BorderWidth: 0
+            BackColor: 0xFF666679
+            BorderColor: 0xFF3E435A
+            Enabled: True
+            Visible: True
+            Corners:
+              BottomLeftRadius: 6
+              BottomRightRadius: 6
+              TopLeftRadius: 6
+              TopRightRadius: 6
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.changeScreenMessages_OnActivated'
+          rectApplication:
+            ObjectType: Rectangle
+            Height: 306
+            Width: 278
+            Left: 32
+            Top: 32
+            BorderWidth: 0
+            BackColor: 0xFF666679
+            BorderColor: 0xFF5ED1AD
+            Enabled: True
+            Visible: True
+            Corners:
+              BottomLeftRadius: 6
+              BottomRightRadius: 6
+              TopLeftRadius: 6
+              TopRightRadius: 6
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Activated
+                Type: Script
+                Script: '@local::EventScripts.changeScreenApplication_OnActivated'
+          Graphic view_5:
+            ObjectType: GraphicView
+            Top: 88
+            Left: 1048
+            Width: 128
+            Height: 128
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Graphic: GlobalGraphicLibrary.Machine-Building_pos_rgb
+            FillLevel: 0
+            Opacity: 0.75
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.changeScreenSettings_OnActivated'
+          Graphic view_6:
+            ObjectType: GraphicView
+            Top: 88
+            Left: 732
+            Width: 128
+            Height: 128
+            RotationCenterX: 0
+            RotationCenterY: 0
+            TabIndex: 0
+            Graphic: GlobalGraphicLibrary.Technical-Data_pos_rgb
+            FillLevel: 0
+            Opacity: 0.75
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.changeScreenDiag_OnActivated'
+          Graphic view_7:
+            ObjectType: GraphicView
+            Top: 88
+            Left: 413
+            Width: 128
+            Height: 128
+            RotationCenterX: 0
+            RotationCenterY: 0
+            TabIndex: 0
+            Graphic: GlobalGraphicLibrary.Technical-Topics_pos_rgb
+            FillLevel: 0
+            Opacity: 0.75
+            EventHandlers:
+              ScriptHandlers1:
+                Event: Activated
+                Type: Script
+                Script: '@local::EventScripts.changeScreenMessages_OnActivated'
+          ApplicationCardboardBox:
+            ObjectType: CustomWidgetContainer
+            Left: 103
+            Top: 104
+            Height: 96
+            Width: 128
+            ContainedType: CardboardBoxTightlySealedWithOSHA-Tape
+            .Properties.ContrastColor:
+              Value: 0xFFFFCC01
+            Visible: true
+            EventHandlers:
+              ScriptHandlers1:
+                Event: Activated
+                Type: Script
+                Script: '@local::EventScripts.changeScreenApplication_OnActivated'
+          txtApplication:
+            ObjectType: TextBox
+            Height: 30
+            Width: 278
+            Text: GlobalTextLibrary.Entity_110
+            Left: 28
+            Top: 276
+            Enabled: True
+            Visible: True
+            RotationCenterX: 0
+            RotationCenterY: 0
+            ForeColor: 0xFF5ED1AD
+            Font:
+              Description: GlobalFontLibrary.Entity_18
+            EventHandlers:
+              ScriptHandlers1:
+                Event: Activated
+                Type: Script
+                Script: '@local::EventScripts.changeScreenApplication_OnActivated'
+          txtMessages:
+            ObjectType: TextBox
+            Height: 29
+            Width: 268
+            Text: GlobalTextLibrary.Entity_111
+            Left: 343
+            Top: 277
+            Enabled: True
+            Visible: True
+            RotationCenterX: 0
+            RotationCenterY: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_18
+            ForeColor: 0xFFDDDCDC
+            EventHandlers:
+              ScriptHandlers1:
+                Event: Activated
+                Type: Script
+                Script: '@local::EventScripts.changeScreenMessages_OnActivated'
+          txtDiag:
+            ObjectType: TextBox
+            Height: 29
+            Width: 268
+            Text: GlobalTextLibrary.Entity_112
+            Left: 662
+            Top: 279
+            Enabled: True
+            Visible: True
+            RotationCenterX: 0
+            RotationCenterY: 0
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_18
+            ForeColor: 0xFFDDDCDC
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.changeScreenDiag_OnActivated'
+          txtSettings:
+            ObjectType: TextBox
+            Height: 29
+            Width: 268
+            Text: GlobalTextLibrary.Entity_113
+            Left: 978
+            Top: 277
+            Enabled: True
+            Visible: True
+            RotationCenterX: 0
+            RotationCenterY: 0
+            TabIndex: 0
+            Font:
+              Description: GlobalFontLibrary.Entity_18
+            ForeColor: 0xFFDDDCDC
+            EventHandlers:
+              ScriptEventHandler1:
+                Event: Tapped
+                Type: Script
+                Script: '@local::EventScripts.changeScreenSettings_OnActivated'
+      Layer_1:

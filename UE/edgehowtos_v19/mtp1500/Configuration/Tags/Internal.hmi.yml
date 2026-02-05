@@ -1,0 +1,7 @@
+SimpleTags:
+  intDemoVertivalPos:
+    DataType: Int
+  intFlameSize:
+    DataType: Int
+  elevatorBoxPosTop:
+    DataType: Int

@@ -1,0 +1,22 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+               xmlns:hmi="http://svg.siemens.com/hmi/"
+               xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+               xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"
+               height="10" width="10" >
+  <hmi:self type="system:HmiBackgroundSystemPart" displayName="RowBackGround" name="rowbackground" version="1.0.0" performanceClass="s">
+
+  </hmi:self>
+  <g  opacity="1">
+    <rect id="ItemBGRect2"
+                    x="0"
+                    y="0"
+                   hmi-bind:width="{ HmiProps.Width}"
+                   hmi-bind:height="{ HmiProps.Height }"
+                   hmi-bind:fill="{{ Converter.RGBA( HmiProps.Color ) }}"/>
+  </g>
+</svg>

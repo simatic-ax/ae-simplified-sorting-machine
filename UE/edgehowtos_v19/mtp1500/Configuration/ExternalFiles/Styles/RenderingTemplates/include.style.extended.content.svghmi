@@ -1,0 +1,191 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+     id="IncludeContentRoot"
+     preserveAspectRatio="none">
+
+    <hmi:self type="part:HmiContentPart" displayName="Extended Content Part" name="style.extended.content.part" version="2.9" performanceClass="L">
+
+        <hmi:paramDef name="Graphic"        type="HmiGraphic"   />
+        <hmi:paramDef name="GraphicWidth"   type="number"       />
+        <hmi:paramDef name="GraphicHeight"  type="number"       />
+        <hmi:paramDef name="Text"           type="string"       />
+        <hmi:paramDef name="Font"           type="HmiFontPart"  />
+        <hmi:paramDef name="TextColor"      type="HmiColor"     />
+        <hmi:paramDef name="IsTextTrimmed"  type="boolean"  two-way="true"    />
+    </hmi:self>
+
+    <defs>
+        <!-- Local definitions of this template -->
+        <hmi:localDef name="MultiLine"              type="boolean"  hmi-bind:value="{{ Converter.IsMultiline( ParamProps.Text ) }}" />
+        <hmi:localDef name="TextWrapping"           type="string"   value="no-wrap" />
+        <hmi:localDef name="HasGraphic"             type="boolean"  hmi-bind:value="{{ ParamProps.Graphic != '' }}" />
+        <hmi:localDef name="ContentShowGraphic"     type="number"   hmi-bind:value="{{ and( HmiProps.ContentMode != HmiContentMode.Text, LocalProps.HasGraphic ) ? 1 : 0 }}" />
+        <hmi:localDef name="ContentShowText"        type="number"   hmi-bind:value="{{ or( HmiProps.ContentMode == HmiContentMode.Text, or( HmiProps.ContentMode == HmiContentMode.GraphicAndText, and( HmiProps.ContentMode == HmiContentMode.GraphicOrText, LocalProps.HasGraphic == 0 ) ) ) ? 1 : 0 }}" />
+        <hmi:localDef name="SplitHorizontal"        type="boolean"  hmi-bind:value="{{ or( HmiProps.TextPosition == HmiTextPosition.Top,  HmiProps.TextPosition == HmiTextPosition.Bottom ) }}" />
+        <hmi:localDef name="SplitVertical"          type="boolean"  hmi-bind:value="{{ or( HmiProps.TextPosition == HmiTextPosition.Left, HmiProps.TextPosition == HmiTextPosition.Right  ) }}" />
+        <hmi:localDef name="SplitRatio"             type="number"   hmi-bind:value="{{ and( LocalProps.ContentShowGraphic, LocalProps.ContentShowText ) ? HmiProps.SplitRatio : 1.0 }}" />
+        <hmi:localDef name="SplitRatioForWidth"     type="number"   hmi-bind:value="{{ LocalProps.SplitVertical   ? LocalProps.SplitRatio : 1.0 }}" />
+        <hmi:localDef name="SplitRatioForHeight"    type="number"   hmi-bind:value="{{ LocalProps.SplitHorizontal ? LocalProps.SplitRatio : 1.0 }}" />
+        <hmi:localDef name="Spacing"                type="number"   hmi-bind:value="{{ and( LocalProps.ContentShowGraphic, LocalProps.ContentShowText ) ? HmiProps.Spacing : 0 }}" />
+        <hmi:localDef name="SpacingForWidth"        type="number"   hmi-bind:value="{{ or( HmiProps.TextPosition == HmiTextPosition.Left, HmiProps.TextPosition == HmiTextPosition.Right ) ? LocalProps.Spacing : 0 }}" />
+        <hmi:localDef name="SpacingForHeight"       type="number"   hmi-bind:value="{{ or( HmiProps.TextPosition == HmiTextPosition.Top, HmiProps.TextPosition == HmiTextPosition.Bottom ) ? LocalProps.Spacing : 0 }}" />
+
+        <hmi:localDef name="ContentWidthGraphic"    type="number"   hmi-bind:value="{{ LocalProps.SplitVertical ?  floor( (Layout.ActualWidth - LocalProps.SpacingForWidth) * LocalProps.SplitRatioForWidth      ) : Layout.ActualWidth  }}" />
+        <hmi:localDef name="ContentWidthText"       type="number"   hmi-bind:value="{{ gt( ( and( LocalProps.SplitVertical, LocalProps.ContentShowGraphic ) ?  Layout.ActualWidth -  LocalProps.SpacingForWidth - LocalProps.ContentWidthGraphic : Layout.ActualWidth), 0 ) ? ( and( LocalProps.SplitVertical, LocalProps.ContentShowGraphic ) ?  Layout.ActualWidth -  LocalProps.SpacingForWidth - LocalProps.ContentWidthGraphic : Layout.ActualWidth ) : 0  }}" />
+        <hmi:localDef name="ContentHeightGraphic"   type="number"   hmi-bind:value="{{ LocalProps.SplitHorizontal   ?  floor( (Layout.ActualHeight -  LocalProps.SpacingForHeight) * LocalProps.SplitRatioForHeight )  : Layout.ActualHeight }}" />
+        <hmi:localDef name="ContentHeightText"      type="number"   hmi-bind:value="{{ and( LocalProps.SplitHorizontal, LocalProps.ContentShowGraphic ) ?  Layout.ActualHeight -  LocalProps.SpacingForHeight - LocalProps.ContentHeightGraphic : Layout.ActualHeight }}" />
+
+        <hmi:localDef name="TextPositionX"          type="number"   hmi-bind:value="{{ HmiProps.TextPosition == HmiTextPosition.Right  ? ( ( LocalProps.ContentShowGraphic ) ? LocalProps.ContentWidthGraphic : 0 )  +  LocalProps.SpacingForWidth  : 0 }}" />
+        <hmi:localDef name="TextPositionY"          type="number"   hmi-bind:value="{{ HmiProps.TextPosition == HmiTextPosition.Bottom ? ( ( LocalProps.ContentShowGraphic ) ? LocalProps.ContentHeightGraphic : 0 ) +  LocalProps.SpacingForHeight : 0 }}" />
+        <hmi:localDef name="GraphicPositionX"       type="number"   hmi-bind:value="{{ HmiProps.TextPosition == HmiTextPosition.Left   ? LocalProps.ContentWidthText     +  LocalProps.SpacingForWidth  : 0 }}" />
+        <hmi:localDef name="GraphicPositionY"       type="number"   hmi-bind:value="{{ HmiProps.TextPosition == HmiTextPosition.Top    ? LocalProps.ContentHeightText    +  LocalProps.SpacingForHeight : 0 }}" />
+
+        <hmi:localDef name="DisplayText"            type="string"   hmi-bind:value="{{ HmiProps.TextTrimming == HmiTextTrimming.None ? ParamProps.Text : Converter.TextEllipsis( ParamProps.Text, LocalProps.ContentWidthText, ParamProps.Font ) }}" />
+
+        <hmi:localDef name="Stretchmode"            type="string"   hmi-bind:value="{{ ( HmiProps.GraphicStretchMode == HmiGraphicStretchMode.Fill ) ? 'none' : ( ( HmiProps.GraphicStretchMode == HmiGraphicStretchMode.Uniform ) ? 'meet' : ( ( HmiProps.GraphicStretchMode == HmiGraphicStretchMode.UniformToFill ) ? 'slice' : 'none' ) ) }}" />
+        <hmi:localDef name="XAlign"                 type="string"   hmi-bind:value="{{ or( ( HmiProps.GraphicStretchMode == HmiGraphicStretchMode.Fill ), ( HmiProps.GraphicStretchMode == HmiGraphicStretchMode.None ) ) ? '' : 'xMid' }}" />
+        <hmi:localDef name="YAlign"                 type="string"   hmi-bind:value="{{ or( ( HmiProps.GraphicStretchMode == HmiGraphicStretchMode.Fill ), ( HmiProps.GraphicStretchMode == HmiGraphicStretchMode.None ) ) ? '' : 'YMid' }}" />
+        <hmi:localDef name="ModeBlank"              type="string"   hmi-bind:value="{{ or( ( HmiProps.GraphicStretchMode == HmiGraphicStretchMode.Fill ), ( HmiProps.GraphicStretchMode == HmiGraphicStretchMode.None ) ) ? '' : ' ' }}" />
+
+        <hmi:localDef name="StretchModeNoneX"       type="number"   hmi-bind:value="{{ ( LocalProps.ContentWidthGraphic / 2 ) - ( ParamProps.GraphicWidth / 2 ) }}" />
+        <hmi:localDef name="StretchModeNoneY"       type="number"   hmi-bind:value="{{ ( LocalProps.ContentHeightGraphic / 2 ) - ( ParamProps.GraphicHeight / 2 ) }}" />
+
+        <hmi:localDef name="T1_TextHeightFontSize"   type="number"  hmi-bind:value="{ ParamProps.Font.Size }" />
+
+        <!-- x, y and baseline position of the text-->
+        <hmi:localDef name="T1_TextAnchorX"          type="string"  hmi-bind:value="{{ HmiProps.HorizontalTextAlignment == HmiHorizontalAlignment.Center ? 'middle' : HmiProps.HorizontalTextAlignment == HmiHorizontalAlignment.Left ? 'start' : 'end' }}" />
+        <hmi:localDef name="T1_TextAnchorY"          type="string"  hmi-bind:value="{{ HmiProps.VerticalTextAlignment == HmiVerticalAlignment.Center ? 'middle' : HmiProps.VerticalTextAlignment == HmiVerticalAlignment.Top ? 'start' : 'end' }}" />
+        <hmi:localDef name="T1_x"                    type="number"  hmi-bind:value="{{ floor( (LocalProps.T1_TextAnchorX == 'start' ? 0 : LocalProps.T1_TextAnchorX == 'middle' ? LocalProps.MultiLine ? (LocalProps.ContentWidthText / 4) : (LocalProps.ContentWidthText / 2) :  LocalProps.MultiLine ? LocalProps.ContentWidthText/2 - 2: LocalProps.ContentWidthText - 2) ) }}" />
+        <hmi:localDef name="T1_y"                    type="number"  hmi-bind:value="{{ floor( (LocalProps.T1_TextAnchorY == 'start' ? ( LocalProps.T1_TextHeightFontSize )
+                                                                                                    : LocalProps.T1_TextAnchorY == 'middle' ? ( ( LocalProps.ContentHeightText + LocalProps.T1_TextHeightFontSize * 0.65 ) / 2 )
+                                                                                                                                        : ( LocalProps.ContentHeightText - LocalProps.T1_TextHeightFontSize * 0.20 - 2     )  ) ) }}" />
+        <hmi:action id="onMouseEnter">
+            <hmi:setProperty name="ParamProps.IsTextTrimmed"     type="boolean"  hmi-bind:value="{{ gt( Converter.TextWidth( ParamProps.Text, ParamProps.Font ),  LocalProps.ContentWidthText ) }}" />
+        </hmi:action>
+    </defs>
+
+    <g id="TextBehind" hmi-event:mouseEnter="url(#onMouseEnter)" hmi:if="{{ and( LocalProps.ContentShowText, ( HmiProps.TextPosition == HmiTextPosition.Behind ) ) }}" >
+	    <g id="SingleLineTextBehind" hmi:if="{{ not( LocalProps.MultiLine )}}">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/" xmlns:hmi="http://svg.siemens.com/hmi/"
+                xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/" xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+                xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/" xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+                preserveAspectRatio="none"
+                hmi-bind:x="{ LocalProps.TextPositionX }"
+                hmi-bind:y="{ LocalProps.TextPositionY }"
+                hmi-bind:width="{{ LocalProps.ContentWidthText + 2 }}"
+                hmi-bind:height="{ LocalProps.ContentHeightText }">
+
+                <g id="T1_TextGroup">
+                    <text id="TextText_T1"
+                        hmi-bind:x="{ LocalProps.T1_x }"
+                        hmi-bind:y="{ LocalProps.T1_y }"
+                        hmi-bind:fill="{{ Converter.RGBA( ParamProps.TextColor ) }}"
+                        hmi-bind:font-size="{ ParamProps.Font.Size }"
+                        hmi-bind:font-style="{{ ParamProps.Font.Italic ? 'italic' : 'normal' }}"
+                        hmi-bind:font-weight="{ ParamProps.Font.Weight }"
+                        hmi-bind:font-family="{ ParamProps.Font.Name }"
+                        hmi-bind:text-decoration="{{ Converter.TextDecoration( ParamProps.Font ) }}"
+                        hmi-bind:text-anchor="{ LocalProps.T1_TextAnchorX }">
+
+                        <hmi:text hmi-bind:value="{ LocalProps.DisplayText }" />
+                    </text>
+                </g>
+            </svg>
+        </g>
+        <g id="MultiLineTextBehind" hmi:if="{ LocalProps.MultiLine }">
+            <hmi-element:textField
+                hmi-bind:start-x="{ LocalProps.TextPositionX }"
+                hmi-bind:start-y="{ LocalProps.TextPositionY }"
+                hmi-bind:width="{ LocalProps.ContentWidthText }"
+                hmi-bind:height="{ LocalProps.ContentHeightText }"
+                hmi-bind:vertical-text-alignment="{ HmiProps.VerticalTextAlignment }"
+                hmi-bind:horizontal-text-alignment="{ HmiProps.HorizontalTextAlignment }"
+                hmi-bind:value="{ LocalProps.DisplayText }"
+                hmi-bind:fore-color="{{ Converter.RGBA( ParamProps.TextColor ) }}"
+                hmi-bind:text-wrapping="{ LocalProps.TextWrapping }"
+                enabled="false"
+                read-only="true"
+                multi-line="true"
+                horizontal-scrollbar-visibility="collapsed"
+                vertical-scrollbar-visibility="collapsed"
+                >
+                <hmi-feature:font hmi-bind:scope="{ ParamProps.Font }" />
+            </hmi-element:textField>
+        </g>
+    </g>
+
+    <g id="Picture" hmi:if="{ LocalProps.ContentShowGraphic }">
+        <svg hmi-bind:x="{ LocalProps.GraphicPositionX }"
+             hmi-bind:y="{ LocalProps.GraphicPositionY }"
+             hmi-bind:width="{  LocalProps.ContentWidthGraphic  }"
+             hmi-bind:height="{ LocalProps.ContentHeightGraphic }">
+
+            <image hmi-bind--xlink:href="{ ParamProps.Graphic }"
+                   hmi-bind:x="{{ ( HmiProps.GraphicStretchMode == HmiGraphicStretchMode.None ) ?  LocalProps.StretchModeNoneX : 0 }}"
+                   hmi-bind:y="{{ ( HmiProps.GraphicStretchMode == HmiGraphicStretchMode.None ) ?  LocalProps.StretchModeNoneY : 0 }}"
+                   hmi-bind:width="{{ ( HmiProps.GraphicStretchMode == HmiGraphicStretchMode.None ) ? ParamProps.GraphicWidth : LocalProps.ContentWidthGraphic }}"
+                   hmi-bind:height="{{ ( HmiProps.GraphicStretchMode == HmiGraphicStretchMode.None ) ? ParamProps.GraphicHeight : LocalProps.ContentHeightGraphic }}"
+                   hmi-bind:preserveAspectRatio="{{ LocalProps.XAlign + LocalProps.YAlign + LocalProps.ModeBlank + LocalProps.Stretchmode }}" />
+        </svg>
+    </g>
+
+    <g id="TextInFront" hmi-event:mouseEnter="url(#onMouseEnter)" hmi:if="{{  and( LocalProps.ContentShowText, ( HmiProps.TextPosition != HmiTextPosition.Behind ) )  }}" >
+        <g id="SingleLineTextInFront" hmi:if="{{ not( LocalProps.MultiLine ) }}">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/" xmlns:hmi="http://svg.siemens.com/hmi/"
+                xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/" xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+                xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/" xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+                preserveAspectRatio="none"
+                hmi-bind:x="{ LocalProps.TextPositionX }"
+                hmi-bind:y="{ LocalProps.TextPositionY }"
+                hmi-bind:width="{ LocalProps.ContentWidthText }"
+                hmi-bind:height="{ LocalProps.ContentHeightText }" >
+
+                <g id="T2_TextGroup">
+                    <text id="TextText"
+                        hmi-bind:x="{ LocalProps.T1_x }"
+                        hmi-bind:y="{ LocalProps.T1_y }"
+                        hmi-bind:fill="{{ Converter.RGBA( ParamProps.TextColor ) }}" hmi-bind:font-size="{ ParamProps.Font.Size }"
+                        hmi-bind:font-style="{{ ParamProps.Font.Italic ? 'italic' : 'normal' }}"
+                        hmi-bind:font-weight="{ ParamProps.Font.Weight }" hmi-bind:font-family="{ ParamProps.Font.Name }"
+                        hmi-bind:text-decoration="{{ Converter.TextDecoration( ParamProps.Font ) }}"
+                        hmi-bind:text-anchor="{ LocalProps.T1_TextAnchorX }">
+
+                        <hmi:text hmi-bind:value="{ LocalProps.DisplayText }" />
+                    </text>
+                </g>
+            </svg>
+        </g>
+        <g id="MultiLineTextInFront" hmi:if="{ LocalProps.MultiLine }">
+            <hmi-element:textField 
+                hmi-bind:start-x="{ LocalProps.TextPositionX }"
+                hmi-bind:start-y="{ LocalProps.TextPositionY }"
+                hmi-bind:width="{ LocalProps.ContentWidthText }"
+                hmi-bind:height="{ LocalProps.ContentHeightText }"
+                hmi-bind:vertical-text-alignment="{ HmiProps.VerticalTextAlignment }"
+                hmi-bind:horizontal-text-alignment="{ HmiProps.HorizontalTextAlignment }"
+                hmi-bind:value="{{ LocalProps.DisplayText }}"
+                hmi-bind:fore-color="{{ Converter.RGBA( ParamProps.TextColor ) }}"
+                hmi-bind:text-wrapping="{ LocalProps.TextWrapping }"                      
+                enabled="false"
+                read-only="true"
+                multi-line="true"
+                horizontal-scrollbar-visibility="collapsed"
+                vertical-scrollbar-visibility="collapsed">
+                <hmi-feature:font hmi-bind:scope="{ ParamProps.Font }" />
+            </hmi-element:textField>
+        </g>
+    </g>
+</svg>

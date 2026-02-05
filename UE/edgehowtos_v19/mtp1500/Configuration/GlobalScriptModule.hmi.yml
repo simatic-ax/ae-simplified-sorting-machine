@@ -1,0 +1,18 @@
+#Version: 2.0
+
+ScriptModules:
+  Navigation:
+    ScriptLanguage: JavaScript
+    ScriptFile: Scripts\Navigation.js
+    Scripts:
+      HideMainNavigation: 
+      HideSubNavigation: 
+      HideThirdNavigation: 
+      ShowMainNavigation: 
+      ShowSubNavigation: 
+      ShowThirdNavigation: 
+      ChangeScreen: 
+      ShowTileNavigation: 
+      HideTileNavigation: 
+      HighlightThirdNavIcon: 
+      HighlightButton: 

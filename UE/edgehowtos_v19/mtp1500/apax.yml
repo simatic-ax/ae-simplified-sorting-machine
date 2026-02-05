@@ -1,0 +1,5 @@
+name: mtp1500
+version: 0.0.0
+type: generic
+dependencies:
+  "@ue/hmiscada-v19.0.0.2": ^5.0.1

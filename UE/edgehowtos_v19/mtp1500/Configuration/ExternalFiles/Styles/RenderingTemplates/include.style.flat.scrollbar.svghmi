@@ -1,0 +1,307 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+
+     preserveAspectRatio="none">
+
+    <hmi:self type="system:HmiScrollBarSystemPart" displayName="ScrollBar Flat System Part" name="custom.flat.system.part" version="1.0.1" performanceClass="L" />
+
+    <defs>
+        <!-- Scrollbar related -->
+        <hmi:localDef name="PaddingElements"            type="number"  value="0" />
+        <hmi:localDef name="ThicknessMin"               type="number"  value="0" />
+        <hmi:localDef name="ThicknessIndicatorDefault"  type="number"  value="4" />
+        <hmi:localDef name="IndicatorYOffsetDefault"    type="number"  value="4" />
+
+        <!-- Button related -->
+        <hmi:localDef name="ButtonSizeDefault"          type="number"  value="25" />
+        <hmi:localDef name="ButtonPressedColor"         type="string"  value="DeepSkyBlue" />
+
+        <!-- Thumb related -->
+        <hmi:localDef name="ThumbSizeMin"               type="number"  value="8" />
+        <!-- END: Hard-coded some values for extended style -->
+
+        <!-- section: Ui-Property definitions -->
+        <hmi:localDef name="ButtonLowerPressed"         type="boolean" value="false" />
+        <hmi:localDef name="ButtonUpperPressed"         type="boolean" value="false" />
+        <hmi:localDef name="TrackLowerPressed"          type="boolean" value="false" />
+        <hmi:localDef name="TrackUpperPressed"          type="boolean" value="false" />
+		<hmi:localDef name="Pressed"                    type="boolean" value="false" />
+		<hmi:localDef name="MouseLeftBar"               type="boolean" value="true" />
+        <hmi:localDef name="ThumbHover"                 type="boolean" value="false" />
+        <hmi:localDef name="ThumbMove"                  type="boolean" value="false" />
+		<hmi:localDef name="TempX"                      type="number"  value="0" />
+		<hmi:localDef name="TempY"                      type="number"  value="0" />
+        <hmi:localDef name="IsIndicator"                type="boolean" value="false" />
+
+        <hmi:localDef name="BackColor"                  type="string" hmi-bind:value="{{ Converter.RGBA( HmiProps.BackColor ) }}" />
+        <hmi:localDef name="ThumbBackColor"             type="string" hmi-bind:value="{{ Converter.RGBA( HmiProps.ThumbBackColor ) }}" />
+        <hmi:localDef name="Width"                      type="number" hmi-bind:value="{{ eq( HmiProps.Orientation, HmiOrientation.Vertical ) ? Converter.Bounds( HmiProps.Height, 0, HmiProps.Height ) : Converter.Bounds( HmiProps.Width, 0, HmiProps.Width ) }}" />
+        <hmi:localDef name="Height"                     type="number" hmi-bind:value="{{ eq( HmiProps.Orientation, HmiOrientation.Vertical ) ? Converter.Bounds( HmiProps.Width, 0, HmiProps.Width ) : Converter.Bounds( HmiProps.Height, 0, HmiProps.Height ) }}" />
+
+        <hmi:localDef name="ButtonLowerCurrentColor"    type="string" hmi-bind:value="{{ LocalProps.ButtonLowerPressed ? LocalProps.ButtonPressedColor : LocalProps.ThumbBackColor }}" />
+        <hmi:localDef name="ButtonUpperCurrentColor"    type="string" hmi-bind:value="{{ LocalProps.ButtonUpperPressed ? LocalProps.ButtonPressedColor : LocalProps.ThumbBackColor }}" />
+
+        <hmi:localDef name="Direction"                  type="number" hmi-bind:value="{{ ge( HmiProps.EndValue, HmiProps.BeginValue ) ? 1 : -1 }}" />
+        <hmi:localDef name="EndValueNormed"             type="number" hmi-bind:value="{{ eq( LocalProps.Direction, 1 ) ?
+                                                                                           ( gt( HmiProps.EndValue - HmiProps.VisibleValueRange, HmiProps.BeginValue ) ? HmiProps.EndValue - HmiProps.VisibleValueRange : HmiProps.BeginValue ) :
+                                                                                           ( lt( HmiProps.EndValue + HmiProps.VisibleValueRange, HmiProps.BeginValue ) ? HmiProps.EndValue + HmiProps.VisibleValueRange : HmiProps.BeginValue ) }}" />
+        <hmi:localDef name="MaxValue"                   type="number" hmi-bind:value="{{ ge( LocalProps.EndValueNormed, HmiProps.BeginValue ) ? LocalProps.EndValueNormed : HmiProps.BeginValue }}" />
+        <hmi:localDef name="MinValue"                   type="number" hmi-bind:value="{{ ge( LocalProps.EndValueNormed, HmiProps.BeginValue ) ? HmiProps.BeginValue : LocalProps.EndValueNormed }}" />
+        <hmi:localDef name="ContentWidth"               type="number" hmi-bind:value="{{ ge( HmiProps.EndValue, HmiProps.BeginValue ) ? HmiProps.EndValue - HmiProps.BeginValue : HmiProps.BeginValue - HmiProps.EndValue }}" />
+        <hmi:localDef name="ContentWidthNormed"         type="number" hmi-bind:value="{{ le( LocalProps.ContentWidth, 0 ) ? 1 : LocalProps.ContentWidth }}" />
+        <hmi:localDef name="VisibleToContentRelation"   type="number" hmi-bind:value="{{ gt( LocalProps.ContentWidthNormed, HmiProps.VisibleValueRange ) ? ( HmiProps.VisibleValueRange / LocalProps.ContentWidthNormed ) : 1 }}" />
+        <hmi:localDef name="CurrentValueNormed"         type="number" hmi-bind:value="{{ Converter.Bounds( HmiProps.CurrentValue, LocalProps.MinValue, LocalProps.MaxValue ) }}" />
+        <hmi:localDef name="CurrentValueRelative"       type="number" hmi-bind:value="{{ ge( HmiProps.EndValue, HmiProps.BeginValue ) ? ( LocalProps.CurrentValueNormed - HmiProps.BeginValue ) / LocalProps.EndValueNormed : ( HmiProps.BeginValue - LocalProps.CurrentValueNormed ) / LocalProps.ContentWidthNormed }}" />
+
+        <hmi:localDef name="InteriorX"                  type="number" hmi-bind:value="{ LocalProps.PaddingElements }" />
+        <hmi:localDef name="InteriorWidth"              type="number" hmi-bind:value="{{  Converter.Max( 0, LocalProps.Width - 2 * ( LocalProps.PaddingElements ) ) }}" />
+        <hmi:localDef name="InteriorHeight"             type="number" hmi-bind:value="{{ Converter.Bounds( HmiProps.Thickness, LocalProps.Height, LocalProps.ThicknessMin ) }}" />
+        <hmi:localDef name="InteriorY"                  type="number" hmi-bind:value="{{ ( LocalProps.Height - LocalProps.InteriorHeight ) / 2 }}" />
+        <hmi:localDef name="IndicatorHeight"            type="number" hmi-bind:value="{{ Converter.Bounds( LocalProps.ThicknessIndicatorDefault, LocalProps.Height, LocalProps.ThicknessMin ) }}" />
+        <hmi:localDef name="IndicatorYHori"             type="number" hmi-bind:value="{{ gt( ( LocalProps.Height - LocalProps.IndicatorHeight ) / 2, LocalProps.IndicatorYOffsetDefault ) ? ( LocalProps.Height - LocalProps.IndicatorHeight - LocalProps.IndicatorYOffsetDefault ) : ( ( LocalProps.Height - LocalProps.IndicatorHeight ) / 2 ) }}" />
+        <hmi:localDef name="IndicatorYVert"             type="number" hmi-bind:value="{{ gt( ( LocalProps.Height - LocalProps.IndicatorHeight ) / 2, LocalProps.IndicatorYOffsetDefault ) ? LocalProps.IndicatorYOffsetDefault : ( LocalProps.Height - LocalProps.IndicatorHeight ) / 2  }}" />
+        <hmi:localDef name="ButtonSize"                 type="number" hmi-bind:value="{{ gt( LocalProps.InteriorWidth, 2 * LocalProps.ButtonSizeDefault + LocalProps.ThumbSizeMin ) ? LocalProps.ButtonSizeDefault : ( LocalProps.InteriorWidth ) / 2  }}" />
+        <hmi:localDef name="TrackLengthTotal"           type="number" hmi-bind:value="{{ Converter.Max( 0, LocalProps.InteriorWidth - 2 * LocalProps.ButtonSize ) }}" />
+        <hmi:localDef name="TrackLengthTotalDenom"      type="number" hmi-bind:value="{{ gt( LocalProps.TrackLengthTotal, 0 ) ? LocalProps.TrackLengthTotal : 1 }}" />
+        <hmi:localDef name="ThumbSize"                  type="number" hmi-bind:value="{{ Converter.Bounds( LocalProps.VisibleToContentRelation * LocalProps.TrackLengthTotal, LocalProps.ThumbSizeMin, LocalProps.TrackLengthTotal ) }}" />
+        <hmi:localDef name="TrackLengthThumbDiff"       type="number" hmi-bind:value="{{ gt( ( LocalProps.TrackLengthTotal - LocalProps.ThumbSize ), 0 ) ? ( LocalProps.TrackLengthTotal - LocalProps.ThumbSize ) : 1 }}" />
+        <hmi:localDef name="TrackLengthLower"           type="number" hmi-bind:value="{{ Converter.Bounds( LocalProps.CurrentValueRelative * LocalProps.TrackLengthThumbDiff, 0, LocalProps.TrackLengthThumbDiff ) }}" />
+        <hmi:localDef name="SmallStepRange"             type="number" hmi-bind:value="{{ HmiProps.SmallStepValueRange ? eq(HmiProps.SmallStepValueRange, 0) ? 10 : HmiProps.SmallStepValueRange : 10  }}" />
+        <hmi:localDef name="SmallStep"                  type="number" hmi-bind:value="{{ Converter.Max(LocalProps.TrackLengthThumbDiff / LocalProps.SmallStepRange, 0.05) }}" />
+        <hmi:localDef name="BigStep"                    type="number" hmi-bind:value="{{ HmiProps.VisibleValueRange * ( LocalProps.TrackLengthTotalDenom / LocalProps.ContentWidthNormed ) }}" />
+        <hmi:localDef name="DragConst"                  type="number" value="1" />
+
+        <!--    section: action definitions     -->
+
+        <!-- actions for lower button -->
+        <hmi:action id="buttonLowerDown">
+            <hmi:sendCommand name="MOVE_TRIGGERED"                  type="boolean" value="true" />
+			      <hmi:setProperty name="LocalProps.TempX"                type="number"  hmi-bind:value="{ EventArgs.X }" />
+			      <hmi:setProperty name="LocalProps.TempY"                type="number"  hmi-bind:value="{ EventArgs.Y }" />
+            <hmi:setProperty name="LocalProps.ButtonLowerPressed"   type="boolean" value="true" />
+			      <hmi:setProperty name="LocalProps.Pressed"              type="boolean" value="true" />
+        </hmi:action>
+
+        <hmi:action id="buttonLowerUp">
+            <hmi:setProperty name="HmiProps.CurrentValue" type="number"
+                             hmi-bind:value="{{ Converter.Bounds( HmiProps.CurrentValue - ( LocalProps.SmallStep * LocalProps.Direction *  ( LocalProps.ContentWidthNormed / LocalProps.TrackLengthThumbDiff ) ), LocalProps.MinValue, LocalProps.MaxValue ) }}"
+                             hmi-bind:condition="{ LocalProps.ButtonLowerPressed }" />
+            <hmi:setProperty name="LocalProps.ButtonLowerPressed"   type="boolean" value="false" />
+			      <hmi:setProperty name="LocalProps.Pressed"              type="boolean" value="false" />
+            <hmi:sendCommand name="MOVE_TRIGGERED"                  type="boolean" value="false" />
+        </hmi:action>
+        <!-- end actions for lower button -->
+
+        <!-- actions for upper button -->
+        <hmi:action id="buttonUpperDown">
+            <hmi:sendCommand name="MOVE_TRIGGERED"                  type="boolean" value="true" />
+			      <hmi:setProperty name="LocalProps.TempX"                type="number"  hmi-bind:value="{ EventArgs.X }" />
+			      <hmi:setProperty name="LocalProps.TempY"                type="number"  hmi-bind:value="{ EventArgs.Y }" />
+            <hmi:setProperty name="LocalProps.ButtonUpperPressed"   type="boolean" value="true" />
+			      <hmi:setProperty name="LocalProps.Pressed"              type="boolean" value="true" />
+        </hmi:action>
+
+        <hmi:action id="buttonUpperUp">
+            <hmi:setProperty name="HmiProps.CurrentValue" type="number"
+                             hmi-bind:value="{{ Converter.Bounds( HmiProps.CurrentValue + ( LocalProps.SmallStep * LocalProps.Direction *  ( LocalProps.ContentWidthNormed / LocalProps.TrackLengthThumbDiff ) ), LocalProps.MinValue, LocalProps.MaxValue ) }}"
+                             hmi-bind:condition="{ LocalProps.ButtonUpperPressed }" />
+            <hmi:setProperty name="LocalProps.ButtonUpperPressed"   type="boolean" value="false" />
+			      <hmi:setProperty name="LocalProps.Pressed"              type="boolean" value="false" />
+            <hmi:sendCommand name="MOVE_TRIGGERED"                  type="boolean" value="false" />
+        </hmi:action>
+        <!-- end actions for upper button -->
+
+        <!-- actions for the thumb -->
+        <hmi:action id="thumbEnter">
+            <hmi:setProperty name="LocalProps.ThumbHover"   type="boolean" value="false" />
+        </hmi:action>
+
+        <hmi:action id="thumbDown">
+            <hmi:sendCommand name="MOVE_TRIGGERED"                 type="boolean" value="true" />
+			      <hmi:setProperty name="LocalProps.TempX"               type="number"  hmi-bind:value="{ EventArgs.X }" />
+			      <hmi:setProperty name="LocalProps.TempY"               type="number"  hmi-bind:value="{ EventArgs.Y }" />
+            <hmi:setProperty name="LocalProps.ThumbMove"           type="boolean" value="true" />
+			      <hmi:setProperty name="LocalProps.Pressed"             type="boolean" value="true" />
+        </hmi:action>
+
+        <hmi:action id="thumbDragged">
+            <hmi:setProperty name="HmiProps.CurrentValue" type="number"
+                             hmi-bind:value="{{ Converter.Bounds( HmiProps.CurrentValue + ( LocalProps.DragConst * LocalProps.Direction * ( eq( HmiProps.Orientation, HmiOrientation.Horizontal ) ? EventArgs.PanDeltaX : EventArgs.PanDeltaY ) * ( LocalProps.ContentWidthNormed / LocalProps.TrackLengthThumbDiff ) ), LocalProps.MinValue, LocalProps.MaxValue ) }}"
+                             hmi-bind:condition="{ LocalProps.ThumbMove }"/>
+        </hmi:action>
+
+        <hmi:action id="thumbUp">
+            <hmi:setProperty name="LocalProps.ThumbMove"    type="boolean" value="false" />
+            <hmi:sendCommand name="MOVE_TRIGGERED"          type="boolean" value="false" />
+			      <hmi:setProperty name="LocalProps.Pressed"      type="boolean" value="false" />
+        </hmi:action>
+        <!-- end actions for the thumb -->
+
+        <!-- actions for lower track piece -->
+        <hmi:action id="trackLowerDown">
+            <hmi:sendCommand name="MOVE_TRIGGERED"                  type="boolean" value="true" />
+			      <hmi:setProperty name="LocalProps.TempX"        		type="number"  hmi-bind:value="{ EventArgs.X }" />
+			      <hmi:setProperty name="LocalProps.TempY"        		type="number"  hmi-bind:value="{ EventArgs.Y }" />
+            <hmi:setProperty name="LocalProps.TrackLowerPressed"    type="boolean" value="true" />
+			      <hmi:setProperty name="LocalProps.Pressed"              type="boolean" value="true" />
+        </hmi:action>
+
+        <hmi:action id="trackLowerUp">
+            <hmi:setProperty name="HmiProps.CurrentValue" type="number"
+                             hmi-bind:value="{{ Converter.Bounds( HmiProps.CurrentValue - ( LocalProps.BigStep * LocalProps.Direction *  ( LocalProps.ContentWidthNormed / LocalProps.TrackLengthThumbDiff ) ), LocalProps.MinValue, LocalProps.MaxValue ) }}"
+                             hmi-bind:condition="{ LocalProps.TrackLowerPressed }" />
+            <hmi:setProperty name="LocalProps.TrackLowerPressed"    type="boolean" value="false" />
+			      <hmi:setProperty name="LocalProps.Pressed"              type="boolean" value="false" />
+            <hmi:sendCommand name="MOVE_TRIGGERED"                  type="boolean" value="false" />
+        </hmi:action>
+        <!-- end actions for lower track piece -->
+
+        <!-- action for upper track piece -->
+        <hmi:action id="trackUpperDown">
+            <hmi:sendCommand name="MOVE_TRIGGERED"                  type="boolean" value="true" />
+			      <hmi:setProperty name="LocalProps.TempX"        		type="number"  hmi-bind:value="{ EventArgs.X }" />
+			      <hmi:setProperty name="LocalProps.TempY"        		type="number"  hmi-bind:value="{ EventArgs.Y }" />
+            <hmi:setProperty name="LocalProps.TrackUpperPressed"    type="boolean" value="true" />
+			      <hmi:setProperty name="LocalProps.Pressed"              type="boolean" value="true" />
+        </hmi:action>
+
+        <hmi:action id="trackUpperUp">
+            <hmi:setProperty name="HmiProps.CurrentValue" type="number"
+                             hmi-bind:value="{{ Converter.Bounds( HmiProps.CurrentValue + ( LocalProps.BigStep * LocalProps.Direction *  ( LocalProps.ContentWidthNormed / LocalProps.TrackLengthThumbDiff ) ), LocalProps.MinValue, LocalProps.MaxValue ) }}"
+                             hmi-bind:condition="{ LocalProps.TrackUpperPressed }" />
+            <hmi:setProperty name="LocalProps.TrackUpperPressed"    type="boolean" value="false" />
+			      <hmi:setProperty name="LocalProps.Pressed"              type="boolean" value="false" />
+            <hmi:sendCommand name="MOVE_TRIGGERED"                  type="boolean" value="false" />
+        </hmi:action>
+        <!-- end actions for upper track piece -->
+        <hmi:action id="onWheelOperated" event-propagation="false" >
+            <hmi:setProperty name="HmiProps.CurrentValue" type="number"
+                             hmi-bind:value="{{ Converter.Bounds( HmiProps.CurrentValue + (( ge( EventArgs.WheelDelta, 0) ? 1 : -1 ) * ( LocalProps.SmallStep * LocalProps.Direction ) ), LocalProps.MinValue, LocalProps.MaxValue ) }}"
+                             hmi-bind:condition="{{ not( LocalProps.ThumbMove) }}" />
+        </hmi:action>
+
+    </defs>
+    <!--   end section: action definitions -->
+
+    <!--   section: geometric elements     -->
+
+    <g id="TIFID_scroll"  hmi-bind:transform="rotate( {{ HmiProps.Orientation == HmiOrientation.Vertical ? 90 : 0 }},{{ HmiProps.Orientation == HmiOrientation.Vertical ? LocalProps.Height / 2 : 0 }},{{ HmiProps.Orientation == HmiOrientation.Vertical ? LocalProps.Height / 2 : 0 }} )"
+        hmi-event:wheel="url(#onWheelOperated)" >
+
+        <rect
+           hmi-bind:x="{ HmiProps.BorderWidth }"
+           hmi-bind:y="{ HmiProps.BorderWidth }"
+           hmi-bind:height="{{ Converter.Max( LocalProps.Height - 2 * HmiProps.BorderWidth, 0 ) }}"
+           hmi-bind:width="{{ Converter.Max( LocalProps.Width - 2 * HmiProps.BorderWidth, 0 ) }}"
+           hmi-bind:stroke="{ HmiProps.BorderColor }"
+           hmi-bind:stroke-width="{ HmiProps.BorderWidth }"
+           hmi-bind:fill="{ LocalProps.BackColor }" />
+
+        <g hmi:if="{{ not( LocalProps.IsIndicator ) }}" id="g_01">
+
+            <!-- lower button -->
+            <g id="TIFID_buttonLower_g"
+				        hmi-event:down="url(#buttonLowerDown)"
+				        hmi-event:up= "url(#buttonLowerUp)">
+
+                <rect id="buttonLower_rect"
+                      hmi-bind:x="{ LocalProps.InteriorX }"
+                      hmi-bind:y="{ LocalProps.InteriorY }"
+                      hmi-bind:width="{ LocalProps.ButtonSize }"
+                      hmi-bind:height="{ LocalProps.InteriorHeight }"
+                      hmi-bind:fill="{ LocalProps.BackColor }"
+                      stroke-width="0" />
+
+                <polyline id="buttonLower_poly"
+                      hmi-bind:points="{{ LocalProps.ButtonSize * 6 / 10 + LocalProps.InteriorX }}, {{ LocalProps.InteriorHeight / 4 + LocalProps.InteriorY }}
+                                       {{ LocalProps.ButtonSize / 3 + LocalProps.InteriorX }}, {{ LocalProps.InteriorHeight / 2 + LocalProps.InteriorY }}
+                                       {{ LocalProps.ButtonSize * 6 / 10 + LocalProps.InteriorX }}, {{ LocalProps.InteriorHeight * 9 / 12  + LocalProps.InteriorY }}"
+                      hmi-bind:stroke="{ LocalProps.ButtonLowerCurrentColor }"
+                      fill="none"
+                      stroke-width="2" />
+            </g>
+            <!-- end lower button -->
+
+            <!-- upper button -->
+            <g id="TIFID_buttonUpper_g"
+				        hmi-event:down="url(#buttonUpperDown)"
+				        hmi-event:up="url(#buttonUpperUp)" >
+
+                <rect id="buttonUpper_rect"
+                      hmi-bind:x="{{ LocalProps.InteriorX + LocalProps.InteriorWidth - LocalProps.ButtonSize }}"
+                      hmi-bind:y="{ LocalProps.InteriorY }"
+                      hmi-bind:width="{ LocalProps.ButtonSize }"
+                      hmi-bind:height="{ LocalProps.InteriorHeight }"
+                      hmi-bind:fill="{ LocalProps.BackColor }"
+                      stroke-width="0" />
+
+                <polyline id="buttonUpper_poly"
+                      hmi-bind:points="{{ Converter.Max ( -6 * LocalProps.ButtonSize / 10 + LocalProps.InteriorWidth + LocalProps.InteriorX, 0 ) }}, {{ LocalProps.InteriorHeight / 4  + LocalProps.InteriorY }}
+                                       {{ Converter.Max ( - LocalProps.ButtonSize / 3 + LocalProps.InteriorWidth + LocalProps.InteriorX, 0 ) }}, {{ LocalProps.InteriorHeight / 2 + LocalProps.InteriorY }}
+                                       {{ Converter.Max ( -6 * LocalProps.ButtonSize / 10 + LocalProps.InteriorWidth + LocalProps.InteriorX, 0 ) }}, {{ LocalProps.InteriorHeight * 9 / 12 + LocalProps.InteriorY }}"
+                      hmi-bind:stroke="{ LocalProps.ButtonUpperCurrentColor }"
+                      fill="none"
+                      stroke-width="2" />
+            </g>
+            <!-- end upper button -->
+        </g>
+
+        <!-- track piece lower -->
+        <g id="TIFID_trackLower_g" hmi:if="{{ gt( LocalProps.TrackLengthLower, 0.0 ) }}"
+				        hmi-event:down="url(#trackLowerDown)"
+				        hmi-event:up="url(#trackLowerUp)" >
+
+                <rect id="trackLower_rect"
+                      hmi-bind:x="{{ LocalProps.InteriorX + LocalProps.ButtonSize }}"
+                      hmi-bind:y="{ LocalProps.InteriorY }"
+                      hmi-bind:width="{{ gt( LocalProps.TrackLengthLower, 0.0 ) ? LocalProps.TrackLengthLower + LocalProps.ThumbSize / 2: 0.0 }}"
+                      hmi-bind:height="{ LocalProps.InteriorHeight }"
+					            hmi-bind:fill="{{ LocalProps.IsIndicator ? 'none' : LocalProps.BackColor }}" />
+        </g>
+        <!-- end track piece lower -->
+
+        <!-- track piece upper -->
+        <g id="TIFID_trackUpper_g" hmi:if="{{ lt( LocalProps.ThumbSize, LocalProps.TrackLengthTotal - LocalProps.TrackLengthLower ) }}"
+				        hmi-event:down="url(#trackUpperDown)"
+				        hmi-event:up="url(#trackUpperUp)" >
+
+                <rect id="trackUpper_rect"
+                      hmi-bind:x="{{ LocalProps.InteriorX + LocalProps.ButtonSize + LocalProps.TrackLengthLower + LocalProps.ThumbSize / 2 }}"
+                      hmi-bind:y="{ LocalProps.InteriorY }"
+                      hmi-bind:width="{{ lt( LocalProps.TrackLengthLower + LocalProps.ThumbSize, LocalProps.TrackLengthTotal ) ? LocalProps.TrackLengthTotal - LocalProps.ThumbSize / 2 - LocalProps.TrackLengthLower : 0.0 }}"
+                      hmi-bind:height="{ LocalProps.InteriorHeight }"
+					            hmi-bind:fill="{{ LocalProps.IsIndicator ? 'none' : LocalProps.BackColor }}" />
+        </g>
+        <!-- end track piece upper -->
+
+        <!-- thumb-->
+        <g id="TIFID_thumb_g" hmi:if="{{ gt( LocalProps.InteriorWidth, 2 * LocalProps.ButtonSize + LocalProps.ThumbSizeMin ) }}"
+				        hmi-event:pan="url(#thumbDragged)"
+				        hmi-event:down="url(#thumbDown)"
+				        hmi-event:up="url(#thumbUp)">
+
+                <rect id="thumb_Rect"
+                      hmi-bind:x="{{ LocalProps.InteriorX + LocalProps.ButtonSize + LocalProps.TrackLengthLower }}"
+                      hmi-bind:y="{{ LocalProps.IsIndicator ? ( eq( HmiProps.Orientation, HmiOrientation.Vertical ) ? LocalProps.IndicatorYVert : LocalProps.IndicatorYHori  ) : LocalProps.InteriorY }}"
+                      hmi-bind:width="{{ Converter.Max( LocalProps.ThumbSize, 0 ) }}"
+                      hmi-bind:height="{{ LocalProps.IsIndicator ? LocalProps.IndicatorHeight : LocalProps.InteriorHeight }}"
+                      hmi-bind:fill="{ LocalProps.ThumbBackColor }"
+                      hmi-bind:stroke-width="{{ HmiProps.BorderWidth / 4 }}" />
+
+                <!-- Thumb end -->
+        </g>
+    </g>
+
+    <!-- BE CAREFUL WHEN CHANGING ANYTHING BELOW THIS COMMENT !!! -->
+</svg>

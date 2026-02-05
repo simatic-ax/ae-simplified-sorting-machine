@@ -1,0 +1,210 @@
+#Version: 2.0
+
+Screens:
+  20_Messages:
+    Width: 1920
+    Height: 976
+    BackColor: 0xFFCDD3D7
+    Layers:
+      Layer_0:
+        Items:
+          ctlAlarmView:
+            ObjectType: AlarmControl
+            Width: 1920
+            Height: 976
+            Top: 0
+            Left: 0
+            WindowFlags: None
+            AlarmView:
+              Columns:
+                Meldeklasse:
+                  ObjectType: AlarmColumnPart
+                  AlarmBlock: Class
+                  Width: 160
+                Herkunft:
+                  ObjectType: AlarmColumnPart
+                  AlarmBlock: Origin
+                  Width: 160
+                Bereich:
+                  ObjectType: AlarmColumnPart
+                  AlarmBlock: Area
+                  Width: 160
+                Meldetext:
+                  ObjectType: AlarmColumnPart
+                  AlarmBlock: EventText
+                  Width: 424
+                Status Text:
+                  ObjectType: AlarmColumnPart
+                  AlarmBlock: StateText
+                  Width: 320
+            AlarmStatisticsView:
+              Columns:
+                ID:
+                  ObjectType: AlarmStatisticColumnPart
+                  Visible: True
+                  Width: 40
+                  AlarmStatisticBlock: ID
+                Name:
+                  ObjectType: AlarmStatisticColumnPart
+                  Visible: True
+                  Width: 80
+                  AlarmStatisticBlock: Name
+                Meldetext:
+                  ObjectType: AlarmStatisticColumnPart
+                  Visible: True
+                  Width: 120
+                  AlarmStatisticBlock: EventText
+                Änderungszeit:
+                  ObjectType: AlarmStatisticColumnPart
+                  Visible: True
+                  Width: 130
+                  AlarmStatisticBlock: ModificationTime
+                Durchschnitt aktiv aktiv:
+                  ObjectType: AlarmStatisticColumnPart
+                  Visible: True
+                  Width: 160
+                  AlarmStatisticBlock: AverageRaisedRaised
+                Durchschnitt aktiv inaktiv:
+                  ObjectType: AlarmStatisticColumnPart
+                  Visible: True
+                  Width: 160
+                  AlarmStatisticBlock: AverageRaisedCleared
+                Durchschnitt aktiv quittiert:
+                  ObjectType: AlarmStatisticColumnPart
+                  Visible: True
+                  Width: 200
+                  AlarmStatisticBlock: AverageRaisedAcknowledged
+                Frequenz:
+                  ObjectType: AlarmStatisticColumnPart
+                  Visible: True
+                  Width: 100
+                  AlarmStatisticBlock: Frequency
+            ToolBar:
+              Elements:
+                ControlBarToggleSwitch1:
+                  ObjectType: ControlBarToggleSwitchPart
+                  Mapping: ShowActiveAlarms
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarToggleSwitch2:
+                  ObjectType: ControlBarToggleSwitchPart
+                  Mapping: ShowLoggedAlarms
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarToggleSwitch3:
+                  ObjectType: ControlBarToggleSwitchPart
+                  Mapping: ShowLoggedAlarmsUpdated
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarToggleSwitch4:
+                  ObjectType: ControlBarToggleSwitchPart
+                  Mapping: AlarmStatisticsView
+                ControlBarButton1:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: FirstLine
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton2:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: PreviousLine
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton3:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: NextLine
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton4:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: LastLine
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton5:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: SingleAcknowledgment
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton6:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: GroupAcknowledgment
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton7:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: SingleReset
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarToggleSwitch5:
+                  ObjectType: ControlBarToggleSwitchPart
+                  Mapping: AlwaysShowRecent
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton8:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: StatisticsSetup
+                ControlBarButton9:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: SelectionDisplay
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+                ControlBarButton10:
+                  ObjectType: ControlBarButtonPart
+                  Mapping: SortSetup
+                  Visible: True
+                  Content:
+                    ContentMode: Graphic
+            StatusBar:
+              Elements:
+                ControlBarLabel1:
+                  ObjectType: ControlBarLabelPart
+                  Width: 80
+                  Mapping: PendingAcknowledgeableAlarms
+                  Visible: True
+                ControlBarDisplay1:
+                  ObjectType: ControlBarDisplayPart
+                  Width: 40
+                  Mapping: ConnectionStatus
+                  Visible: True
+      Layer_1: 
+      Layer_2: 
+      Layer_3: 
+      Layer_4: 
+      Layer_5: 
+      Layer_6: 
+      Layer_7: 
+      Layer_8: 
+      Layer_9: 
+      Layer_10: 
+      Layer_11: 
+      Layer_12: 
+      Layer_13: 
+      Layer_14: 
+      Layer_15: 
+      Layer_16: 
+      Layer_17: 
+      Layer_18: 
+      Layer_19: 
+      Layer_20: 
+      Layer_21: 
+      Layer_22: 
+      Layer_23: 
+      Layer_24: 
+      Layer_25: 
+      Layer_26: 
+      Layer_27: 
+      Layer_28: 
+      Layer_29: 
+      Layer_30: 
+      Layer_31: 

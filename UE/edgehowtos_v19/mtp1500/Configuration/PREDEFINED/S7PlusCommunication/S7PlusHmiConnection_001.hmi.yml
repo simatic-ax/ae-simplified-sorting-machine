@@ -1,0 +1,99 @@
+#Version: 2.0
+
+S7PlusConnections:
+  S7P_HMI_Connection_2:
+    ESOrigin: S7PlusCommunication # DFP generated - DO NOT REMOVE
+    ManagerNumber: 2
+    AlarmingProcedure: FullTextAlarms
+    AlarmDomains:
+    - 1
+    - 256
+    - 257
+    - 258
+    - 259
+    - 260
+    - 261
+    - 262
+    - 263
+    - 264
+    - 265
+    - 266
+    - 267
+    - 268
+    - 269
+    - 270
+    - 271
+    - 272
+    Alarms:
+      PlcDisconnectedAlarm:
+        ObjectType: HmiDiscreteAlarm
+        ParentID: 524565
+        AlarmClass: SystemAlarm
+        SourceType: TAG
+        SystemSeverity: 130
+        EventText: S7PlusAlarmTextLibrary.Entry_130
+        AlarmParameterTags:
+        - S7P_HMI_Connection_2#Name
+        - S7P_HMI_Connection_2#FailureTextList
+        - S7P_HMI_Connection_2#FailureReason
+        - S7P_HMI_Connection_2#FailureSourceAndErrorCode
+        - '@ServerMachineName_1#Value'
+        ConditionPattern: b000000000000000000000000000001XX
+        Area: System/HMI/DriverCommunication
+        Origin: '@S1%s@:@1%s@'
+        ID: SystemAlarmIDPlcDisconnected_S7P
+      PlcInStopAlarm:
+        ObjectType: HmiBinaryAlarm
+        ParentID: 65816
+        AlarmClass: SystemAlarm
+        SourceType: TAG
+        SystemSeverity: 0
+        EventText: AlarmTextLibrary.Entry_129
+        AlarmParameterTags:
+        - S7P_HMI_Connection_2#Name
+        - '@ServerMachineName_1#Value'
+        Origin: '@S1%s@:@1%s@'
+        ConditionPattern: 1
+        Area: System/HMI/DriverCommunication
+        ID: SystemAlarmIDPlcInStop_S7P
+      FTADisabledNotification:
+        ObjectType: HmiBinaryAlarm
+        ParentID: 66570
+        AlarmClass: SystemNotification
+        SourceType: TAG
+        SystemSeverity: 0
+        EventText: S7PlusAlarmTextLibrary.Entry_240
+        AlarmParameterTags:
+        - S7P_HMI_Connection_2#Name
+        Origin: '@S1%s@:@1%s@'
+        ConditionPattern: 1
+        Area: System/HMI/DriverCommunication
+        ID: SystemAlarmIDFtaDisabled_S7P
+      PlcResOverloadNotification:
+        ObjectType: HmiBinaryAlarm
+        ParentID: 66569
+        AlarmClass: SystemNotification
+        SourceType: TAG
+        SystemSeverity: 0
+        EventText: S7PlusAlarmTextLibrary.Entry_250
+        AlarmParameterTags:
+        - S7P_HMI_Connection_2#Name
+        - S7P_HMI_Connection_2#PlcTagResMax
+        Origin: '@S1%s@:@1%s@'
+        ConditionPattern: 1
+        Area: System/HMI/DriverCommunication
+        ID: SystemAlarmIDPlcResOverload_S7P
+      TimeCorrectionAlarm:
+        ObjectType: HmiBinaryAlarm
+        ParentID: 65824
+        AlarmClass: SystemAlarm
+        SourceType: TAG
+        SystemSeverity: 0
+        EventText: S7PlusAlarmTextLibrary.Entry_251
+        AlarmParameterTags:
+        - S7P_HMI_Connection_2#Name
+        - '@ServerMachineName_1#Value'
+        Origin: '@S1%s@:@1%s@'
+        ConditionPattern: 1
+        Area: System/HMI/DriverCommunication
+        ID: SystemAlarmTimeCorrectionAlarm_S7P

@@ -1,0 +1,10 @@
+Templates:
+  Modules:
+  - Name: 'g220_drvpos_Template'
+    Placeholders:
+    - Name: 'NAME'
+    Content:
+      Name: '${NAME}'
+      TypeIdentifier:
+        FileName: 'GSDML-V2.42-SIEMENS-SINAMICS_G220-20240814.XML'
+        GsdId: 'IDM_DRVPOS'

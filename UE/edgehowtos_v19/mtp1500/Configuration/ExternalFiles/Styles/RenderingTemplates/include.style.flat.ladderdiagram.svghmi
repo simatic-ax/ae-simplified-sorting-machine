@@ -1,0 +1,93 @@
+<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2022. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     preserveAspectRatio="none">
+
+    <hmi:self type="custom" displayName="Flat LadderDiagram" name="style.flat.ladderdiagram">
+        <hmi:paramDef name="LineColor"             type="string"               />
+        <hmi:paramDef name="ActiveLineColor"       type="string"               />
+        <hmi:paramDef name="InActiveLineColor"     type="string"               />
+    </hmi:self>
+
+    <hmi-element:flowDiagram hmi-bind:height="{ Layout.ActualHeight }" hmi-bind:width="{ Layout.ActualWidth }" type="ladder"  start-x="30" start-y="30">
+        <hmi-feature:flowLines>
+            <hmi-feature:flowLine line-state="normal" line-style="solid" hmi-bind:stroke="{ ParamProps.LineColor }" stroke-width="2">
+                <hmi-feature:flowLineDecorator decorator-type="input" show-text="true">
+                </hmi-feature:flowLineDecorator>
+                <hmi-feature:flowLineDecorator decorator-type="output" show-text="true">
+                </hmi-feature:flowLineDecorator>
+                <hmi-feature:flowLineDecorator decorator-type="terminal" show-text="true" symbol-type="line">
+                </hmi-feature:flowLineDecorator>
+            </hmi-feature:flowLine>
+          <hmi-feature:flowLine line-state="normal" line-style="dash"  hmi-bind:stroke="{ ParamProps.LineColor }" stroke-width="2">
+            <hmi-feature:flowLineDecorator decorator-type="input" show-text="true">
+            </hmi-feature:flowLineDecorator>
+            <hmi-feature:flowLineDecorator decorator-type="output" show-text="true">
+            </hmi-feature:flowLineDecorator>
+            <hmi-feature:flowLineDecorator decorator-type="terminal" show-text="true" symbol-type="line">
+            </hmi-feature:flowLineDecorator>
+          </hmi-feature:flowLine>
+            <hmi-feature:flowLine line-state="active" line-style="solid" hmi-bind:stroke="{ ParamProps.ActiveLineColor }" stroke-width="2">
+                <hmi-feature:flowLineDecorator decorator-type="input" show-text="true">
+                </hmi-feature:flowLineDecorator>
+                <hmi-feature:flowLineDecorator decorator-type="output" show-text="true">
+                </hmi-feature:flowLineDecorator>
+                <hmi-feature:flowLineDecorator decorator-type="terminal" show-text="true" symbol-type="line">
+                </hmi-feature:flowLineDecorator>
+            </hmi-feature:flowLine>
+            <hmi-feature:flowLine line-state="inactive" line-style="dash" hmi-bind:stroke="{ ParamProps.InActiveLineColor }" stroke-width="2">
+                <hmi-feature:flowLineDecorator decorator-type="input" show-text="true">
+                </hmi-feature:flowLineDecorator>
+                <hmi-feature:flowLineDecorator decorator-type="output" show-text="true">
+                </hmi-feature:flowLineDecorator>
+                <hmi-feature:flowLineDecorator decorator-type="terminal" show-text="true" symbol-type="line">
+                </hmi-feature:flowLineDecorator>
+            </hmi-feature:flowLine>
+        </hmi-feature:flowLines>
+        <hmi-feature:logic content-height="200" content-width="110">
+            <!--this template will render the logic gates/symbols along with the associated texts-->
+            <hmi:master-include template="include.style.flat.logicview.svghmi">
+            </hmi:master-include>
+        </hmi-feature:logic>
+        <hmi-feature:block content-height="300" content-width="300">
+          <!--modify the value as required-->
+          <hmi:master-include template="include.style.flat.blockview.svghmi" >
+          </hmi:master-include>
+        </hmi-feature:block>
+        <hmi:master-inline>
+            <hmi:template>
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                 xmlns:hmi="http://svg.siemens.com/hmi/"
+                 xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/" 
+                 xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"
+                 overflow="visible">
+                    <hmi:self type="custom" name="title" displayName="title" >
+                        <hmi:data type="text-details"></hmi:data>
+                    </hmi:self>
+                    <defs>
+                        <hmi:localDef name="Text"               type="string"                    hmi-data-bind:value="{ Content.Text }" />
+                        <hmi:localDef name="TextFontWeight"     type="string"                    hmi-data-bind:value="{ Content.TextFontWeight }" />
+                        <hmi:localDef name="TextFontSize"       type="number"                    hmi-data-bind:value="{ Content.TextFontSize }" />
+                        <hmi:localDef name="TextFontName"       type="string"                    hmi-data-bind:value="{ Content.TextFontName }" />
+                        <hmi:localDef name="LogicSystemPart"    type="HmiLogicSymbolSystemPart"  hmi-bind:value="{{ Converter.GetDefaultValue( 'HmiLogicSymbolSystemPart' ) }}" />
+                    </defs>
+                    <text  hmi-bind:font-size="{ LocalProps.TextFontSize }"
+                           hmi-bind:font-weight="{ LocalProps.TextFontWeight }"
+                           hmi-bind:fill="{{ Converter.RGBA(LocalProps.LogicSystemPart.HeaderForeColor) }}"
+                           hmi-bind:font-family="{ LocalProps.TextFontName }">
+                      <hmi:text hmi-bind:value="{ LocalProps.Text }"/>
+                    </text>
+                </svg>
+            </hmi:template>
+        </hmi:master-inline>
+    </hmi-element:flowDiagram>
+</svg>

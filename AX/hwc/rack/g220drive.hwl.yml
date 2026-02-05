@@ -1,0 +1,26 @@
+Devices:
+  - Name: "device_drive_g220"
+    Modules:
+      # G220 Drive interface based on template
+      - Apply: "g220_im_v64_Template"
+        Arguments:
+          NAME: "g220_drive"
+          IP_ADDRESS_X150: "192.168.0.2/24"
+          PROFINET_DEVICE_NAME_X150: "g220-test" # drive_rm
+      # Drive objects like Telegram and IO configuration
+      - Name: "drivespd"
+        TypeIdentifier:
+          FileName: 'GSDML-V2.42-SIEMENS-SINAMICS_G220-20240814.XML'
+          GsdId: 'IDM_DRVSPD'
+        IoConfiguration:
+          InputAddress: "320"
+          OutputAddress: "320"
+        Submodules:
+          - Name: "telegram1"
+            TypeIdentifier:
+              FileName: "GSDML-V2.42-SIEMENS-SINAMICS_G220-20240814.XML"
+              GsdId: "IDS_TEL1"
+            Slot: 3
+
+
+    

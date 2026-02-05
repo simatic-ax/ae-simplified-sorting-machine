@@ -1,0 +1,252 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.9/dtd/svg19-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:hmi-bind--xlink="http://svg.siemens.com/hmi/bind/xlink/"
+     xmlns:hmi="http://svg.siemens.com/hmi/"
+     xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+     xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+     xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+     xmlns:hmi-event="http://svg.siemens.com/hmi/event/"
+
+     preserveAspectRatio="none">
+
+    <hmi:self type="custom" displayName="Extended SrcollBar Vertical" name="custom.extended.srcollbar.vertical" version="1.0.1" performanceClass="L">
+
+        <hmi:paramDef name="BorderColor"            type="HmiColor"    />
+        <hmi:paramDef name="Width"                  type="number"      />
+        <hmi:paramDef name="Height"                 type="number"      />
+        <hmi:paramDef name="MinimumValue"           type="number"      />
+        <hmi:paramDef name="BorderWidth"            type="number"      />
+        <hmi:paramDef name="ContentHeight"          type="number"      />
+        <hmi:paramDef name="ScrollBarPosition"      type="number"      two-way="true" />
+    </hmi:self>
+
+    <defs>
+        <!--Start: Hard-coded some values for extended style  -->
+        <hmi:localDef name="BackColor"              type="string" value="rgba(100,100,106,1.0)" />
+        <hmi:localDef name="StrokeWidth"            type="number" value="4" />
+        <hmi:localDef name="PaddingElements"        type="number" value="1" />
+        <hmi:localDef name="PaddingTrack"           type="number" value="2" />
+        <hmi:localDef name="ThumbSizeMin"           type="number" value="8" />
+
+        <hmi:localDef name="ButtonSizeDefault"      type="number" value="20" />
+        <hmi:localDef name="FillOpacity"            type="number" value="0.5" />
+        <!--END: Hard-coded some values for extended style  -->
+
+        <!--    section: Ui-Property definitions    -->
+        <hmi:localDef name="ButtonTopPressed"       type="boolean" value="false" />
+        <hmi:localDef name="ButtonBottomPressed"    type="boolean" value="false" />
+        <hmi:localDef name="TrackTopPressed"        type="boolean" value="false" />
+        <hmi:localDef name="TrackBottomPressed"     type="boolean" value="false" />
+        <hmi:localDef name="ThumbHover"             type="boolean" value="false" />
+        <hmi:localDef name="ThumbMove"              type="boolean" value="false" />
+
+        <hmi:localDef name="Width"                  type="number" hmi-bind:value="{{ Converter.Bounds( ParamProps.Width, LocalProps.MinWidth, ParamProps.Width ) }}" />
+        <hmi:localDef name="Height"                 type="number" hmi-bind:value="{{ Converter.Bounds( ParamProps.Height, LocalProps.MinHeight, ParamProps.Height ) }}" />
+
+        <hmi:localDef name="ButtonPressedColor"     type="string" value="DeepSkyBlue" />
+        <hmi:localDef name="ButtonTopCurrentColor"  type="string" hmi-bind:value="{{ LocalProps.ButtonTopPressed ? LocalProps.ButtonPressedColor : LocalProps.BackColor }}" />
+        <hmi:localDef name="ButtonBottomCurrentColor" type="string" hmi-bind:value="{{ LocalProps.ButtonBottomPressed ? LocalProps.ButtonPressedColor : LocalProps.BackColor }}" />
+
+        <hmi:localDef name="MinValue"               type="number" hmi-bind:value="{ ParamProps.MinimumValue }" />
+        <hmi:localDef name="MaxValue"               type="number" hmi-bind:value="{{ ParamProps.ContentHeight - ParamProps.Height }}" />
+
+        <hmi:localDef name="InteriorX"              type="number" hmi-bind:value="{{ LocalProps.PaddingElements + LocalProps.PaddingElements }}" />
+        <hmi:localDef name="InteriorWidth"          type="number" hmi-bind:value="{{ LocalProps.Width -  2 * ( LocalProps.PaddingElements + LocalProps.PaddingTrack ) }}" />
+        <hmi:localDef name="InteriorY"              type="number" hmi-bind:value="{ LocalProps.PaddingElements }" />
+        <hmi:localDef name="InteriorHeight"         type="number" hmi-bind:value="{{ LocalProps.Height -  2 * (  LocalProps.PaddingElements )  }}" />
+
+        <hmi:localDef name="ButtonSize"             type="number" hmi-bind:value="{{ ge( LocalProps.InteriorHeight, 2 * LocalProps.ButtonSizeDefault + LocalProps.ThumbSizeMin ) ? LocalProps.ButtonSizeDefault : ( LocalProps.InteriorHeight ) / 2  }}" />
+        <hmi:localDef name="TrackLengthTotal"       type="number" hmi-bind:value="{{ LocalProps.InteriorHeight - 2 * LocalProps.ButtonSize }}" />"
+
+        <hmi:localDef name="ThumbSize"              type="number" hmi-bind:value="{{ Converter.Bounds( LocalProps.TrackLengthTotal / ( LocalProps.MaxValue - LocalProps.MinValue ) * LocalProps.TrackLengthTotal, LocalProps.ThumbSizeMin, ( LocalProps.TrackLengthTotal + LocalProps.ButtonSize ) / 2 ) }}" />
+        <hmi:localDef name="TrackLengthTop"         type="number" hmi-bind:value="{{ Converter.Bounds( ( ParamProps.ScrollBarPosition - LocalProps.MinValue ) / ( LocalProps.MaxValue - LocalProps.MinValue ) * ( LocalProps.TrackLengthTotal - LocalProps.ThumbSize ), 0.0001, LocalProps.TrackLengthTotal ) }}" />
+
+        <hmi:localDef name="BigStep"                type="number" hmi-bind:value="{{ ( LocalProps.MaxValue - LocalProps.MinValue ) / 10 }}" />
+        <hmi:localDef name="SmallStep"              type="number" hmi-bind:value="{{ ( LocalProps.MaxValue - LocalProps.MinValue ) / 50 }}" />
+        <hmi:localDef name="DragConst"              type="number" value="1" />
+
+        <!--    section: action definitions     -->
+        <!-- actions for top button -->
+
+        <hmi:action id="buttonTopDown">
+            <hmi:setProperty name="LocalProps.ButtonTopPressed" type="boolean" value="true" />
+        </hmi:action>
+
+        <hmi:action id="buttonTopUp">
+            <hmi:setProperty name="ParamProps.ScrollBarPosition" type="number"
+                             hmi-bind:value="{{ Converter.Bounds( ParamProps.ScrollBarPosition - LocalProps.SmallStep, LocalProps.MinValue, LocalProps.MaxValue ) }}"
+                             hmi-bind:condition="{ LocalProps.ButtonTopPressed }" />
+            <hmi:setProperty name="LocalProps.ButtonTopPressed" type="boolean" value="false" />
+        </hmi:action>
+
+        <!-- actions for bottom button -->
+
+        <hmi:action id="buttonBottomDown">
+            <hmi:setProperty name="LocalProps.ButtonBottomPressed" type="boolean" value="true" />
+        </hmi:action>
+
+        <hmi:action id="buttonBottomUp">
+            <hmi:setProperty name="ParamProps.ScrollBarPosition" type="number"
+                             hmi-bind:value="{{ Converter.Bounds( ParamProps.ScrollBarPosition +  LocalProps.SmallStep, LocalProps.MinValue, LocalProps.MaxValue ) }}"
+                             hmi-bind:condition="{ LocalProps.ButtonBottomPressed }" />
+            <hmi:setProperty name="LocalProps.ButtonBottomPressed" type="boolean" value="false" />
+        </hmi:action>
+
+        <!-- actions for thumb -->
+        <hmi:action id="thumbEnter">
+            <hmi:setProperty name="LocalProps.ThumbHover" type="boolean" value="true" />
+        </hmi:action>
+
+        <hmi:action id="thumbDown">
+            <hmi:setProperty name="LocalProps.ThumbMove" type="boolean" value="true" />
+        </hmi:action>
+
+        <hmi:action id="thumbDraggedY">
+            <hmi:setProperty name="ParamProps.ScrollBarPosition" type="number"
+                             hmi-bind:value="{{ Converter.Bounds( ParamProps.ScrollBarPosition + ( LocalProps.DragConst * EventArgs.PanDeltaY ) / ( LocalProps.TrackLengthTotal - LocalProps.ThumbSize ) * ( LocalProps.MaxValue - LocalProps.MinValue), LocalProps.MinValue, LocalProps.MaxValue ) }}"
+                              />
+        </hmi:action>
+
+        <hmi:action id="thumbUp">
+            <hmi:setProperty name="LocalProps.ThumbMove" type="boolean" value="false" />
+        </hmi:action>
+
+        <!-- actions for track piece top -->
+        <hmi:action id="trackTopDown">
+            <hmi:setProperty name="LocalProps.TrackTopPressed" type="boolean" value="true" />
+        </hmi:action>
+
+        <hmi:action id="trackTopUp">
+            <hmi:setProperty name="ParamProps.ScrollBarPosition" type="number"
+                             hmi-bind:value="{{Converter.Bounds( ParamProps.ScrollBarPosition - LocalProps.BigStep, LocalProps.MinValue, LocalProps.MaxValue ) }}"
+                             hmi-bind:condition="{ LocalProps.TrackTopPressed }" />
+            <hmi:setProperty name="LocalProps.TrackTopPressed" type="boolean" value="false" />
+        </hmi:action>
+
+        <!-- action for track piece bottom -->
+
+        <hmi:action id="trackBottomDown">
+            <hmi:setProperty name="LocalProps.TrackBottomPressed" type="boolean" value="true" />
+        </hmi:action>
+
+        <hmi:action id="trackBottomUp">
+            <hmi:setProperty name="ParamProps.ScrollBarPosition" type="number"
+                             hmi-bind:value="{{ Converter.Bounds( ParamProps.ScrollBarPosition + LocalProps.BigStep, LocalProps.MinValue, LocalProps.MaxValue ) }}"
+                             hmi-bind:condition="{ LocalProps.TrackBottomPressed }" />
+            <hmi:setProperty name="LocalProps.TrackBottomPressed" type="boolean" value="false" />
+        </hmi:action>
+
+    </defs>
+
+    <!--    section: geometric elements     -->
+
+    <g>
+        <rect
+              hmi-bind:x="{{ ParamProps.BorderWidth / 2 }}"
+              hmi-bind:y="{{ ParamProps.BorderWidth / 2 }}"
+              hmi-bind:height="{{ LocalProps.Height - ParamProps.BorderWidth }}"
+              hmi-bind:width="{{ LocalProps.Width - 2 * ParamProps.BorderWidth }}"
+              stroke-width="0"
+              fill="none"
+              hmi-bind:stroke="{{ Converter.RGBA( ParamProps.BorderColor ) }}" />
+
+        <!--    section: template for vertical orientation -->
+        <g id="g_01">
+
+            <!-- top Button -->
+            <g id="buttonTop_g"
+               hmi-event:down="url(#buttonTopDown)"
+               hmi-event:up="url(#buttonTopUp)" >
+
+                <rect id="buttonTop_rect"
+                      hmi-bind:x="{ LocalProps.InteriorX }"
+                      hmi-bind:y="{ LocalProps.InteriorY }"
+                      hmi-bind:width="{ LocalProps.InteriorWidth }"
+                      hmi-bind:height="{ LocalProps.ButtonSize }"
+                      fill-opacity="0"
+                      hmi-bind:stroke-width="{ LocalProps.StrokeWidth }" />
+
+                <polygon id="buttonTop_poly"
+                         hmi-bind:points="{{ LocalProps.InteriorWidth / 2 + LocalProps.InteriorX }}, {{ LocalProps.ButtonSize / 3 + LocalProps.InteriorY + 2 }}
+                                       {{ LocalProps.InteriorWidth / 6 + LocalProps.InteriorX }}, {{ LocalProps.ButtonSize * 2/3 + LocalProps.InteriorY }}
+                                       {{ LocalProps.InteriorWidth * 5/6 + LocalProps.InteriorX }}, {{ LocalProps.ButtonSize * 2/3  + LocalProps.InteriorY }}"
+                         hmi-bind:fill="{ LocalProps.ButtonTopCurrentColor }"
+                         stroke-width="0"
+                         opacity="0.5" />
+            </g>
+
+            <!-- bottom Button -->
+            <g id="buttonBottom_g"
+               hmi-event:down="url(#buttonBottomDown)"
+               hmi-event:up="url(#buttonBottomUp)" >
+
+                <rect id="buttonBottom_rect"
+                      hmi-bind:x="{ LocalProps.InteriorX }"
+                      hmi-bind:y="{{ LocalProps.InteriorY + LocalProps.InteriorHeight - LocalProps.ButtonSize }}"
+                      hmi-bind:width="{ LocalProps.InteriorWidth }"
+                      hmi-bind:height="{ LocalProps.ButtonSize }"
+                      fill-opacity="0"
+                      hmi-bind:stroke-width="{{ LocalProps.StrokeWidth }}" />
+
+                <polygon id="buttonBottom_poly"
+                         hmi-bind:points="{{ LocalProps.InteriorWidth / 6 + LocalProps.InteriorX }}, {{ -2 * LocalProps.ButtonSize / 3 + LocalProps.InteriorHeight  + LocalProps.InteriorY }}
+                                       {{ LocalProps.InteriorWidth / 2 + LocalProps.InteriorX }}, {{ -LocalProps.ButtonSize / 3 + LocalProps.InteriorHeight + LocalProps.InteriorY - 2 }}
+                                       {{ LocalProps.InteriorWidth * 5/6  + LocalProps.InteriorX }}, {{ -2 * LocalProps.ButtonSize / 3 + LocalProps.InteriorHeight + LocalProps.InteriorY }}"
+                         hmi-bind:fill="{ LocalProps.ButtonBottomCurrentColor }"
+                         stroke-width="0"
+                         opacity="0.5"  />
+
+            </g>
+
+            <!-- track piece top -->
+            <g id="trackTop_g" hmi:if="{{ le( LocalProps.ThumbSize, LocalProps.TrackLengthTotal - LocalProps.TrackLengthTop ) }}"
+               hmi-event:down="url(#trackTopDown)"
+               hmi-event:up="url(#trackTopUp)">
+
+                <rect id="trackTop_rect"
+                      hmi-bind:x="{ LocalProps.InteriorX }"
+                      hmi-bind:y="{{ LocalProps.InteriorY + LocalProps.ButtonSize }}"
+                      hmi-bind:width="{ LocalProps.InteriorWidth }"
+                      hmi-bind:height="{{ ge( LocalProps.TrackLengthTop, 0.0 ) ? LocalProps.TrackLengthTop : 0.0 }}"
+                      fill-opacity="0" />
+            </g>
+
+            <!-- track piece bottom -->
+            <g id="trackBottom_g" hmi-event:down="url(#trackBottomDown)"
+               hmi-event:up="url(#trackBottomUp)">
+
+                <rect id="trackBottom_rect"
+                      hmi-bind:x="{ LocalProps.InteriorX }"
+                      hmi-bind:y="{{ LocalProps.InteriorY + LocalProps.ButtonSize + LocalProps.TrackLengthTop + LocalProps.ThumbSize }}"
+                      hmi-bind:width="{ LocalProps.InteriorWidth }"
+                      hmi-bind:height="{{ lt( LocalProps.TrackLengthTop + LocalProps.ThumbSize, LocalProps.TrackLengthTotal ) ? LocalProps.TrackLengthTotal - LocalProps.ThumbSize - LocalProps.TrackLengthTop : 0.0 }}"
+                      fill-opacity="0" />
+            </g>
+
+            <!-- thumb-->
+            <g id="thumb_g" hmi:if="{{ gt( LocalProps.InteriorHeight, 2 * LocalProps.ButtonSize + LocalProps.ThumbSizeMin ) }}"
+               hmi-event:mouseEnter="url(#thumbEnter)"
+               hmi-event:pan="url(#thumbDraggedY)"
+               hmi-event:down="url(#thumbDown)"
+               hmi-event:up="url(#thumbUp)">
+
+                <rect id="thumb_Rect"
+                      hmi-bind:x="{ LocalProps.InteriorX }"
+                      hmi-bind:y="{{ LocalProps.InteriorY + LocalProps.ButtonSize + LocalProps.TrackLengthTop }}"
+                      hmi-bind:width="{ LocalProps.InteriorWidth }"
+                      hmi-bind:height="{ LocalProps.ThumbSize }"
+                      hmi-bind:fill="{ LocalProps.BackColor }"
+                      hmi-bind:fill-opacity="{ LocalProps.FillOpacity }"
+                      hmi-bind:stroke-width="{{ LocalProps.StrokeWidth / 4 }}"
+                      rx="3" ry="3" />
+            </g>
+        </g>
+    </g>
+
+    <!-- BE CAREFULL WHEN CHANGING ANYTHING BELOW THIS COMMENT !!! -->
+</svg>

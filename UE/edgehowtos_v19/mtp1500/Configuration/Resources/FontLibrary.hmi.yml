@@ -1,0 +1,114 @@
+#Version: 2.0
+
+FontDescLibraries:
+  HmiScreenItemsFontLibrary:
+    Type: Text
+    Languages:
+    - en-US
+    DefaultLanguage: en-US
+    Entries:
+      FontEntry_1:
+        FontDescription:
+        - Siemens Sans;16;0;0;0;400
+      FontEntry_2:
+        FontDescription:
+        - Siemens Sans;16;0;0;0;400
+  GlobalFontLibrary:
+    DefaultLanguage: en-US
+    Languages:
+    - en-US
+    Type: Font
+    Entries:
+      Entity_1:
+        FontDescription:
+        - Siemens Sans;18;0;0;0;700
+      Entity_2:
+        FontDescription:
+        - Siemens Sans;16;0;0;0;700
+      Entity_3:
+        FontDescription:
+        - Siemens Sans;16;0;0;0;400
+      Entity_4:
+        FontDescription:
+        - Siemens Sans;18;0;0;0;700
+      Entity_5:
+        FontDescription:
+        - Siemens Sans;18;0;0;0;700
+      Entity_6:
+        FontDescription:
+        - Siemens Sans;14;0;0;0;400
+      Entity_7:
+        FontDescription:
+        - Siemens Sans;16;0;0;0;700
+      Entity_8:
+        FontDescription:
+        - Siemens Sans;16;0;0;0;400
+      Entity_9:
+        FontDescription:
+        - Siemens Sans;14;0;0;0;700
+      Entity_10:
+        FontDescription:
+        - Siemens Sans;16;0;0;0;700
+      Entity_11:
+        FontDescription:
+        - Siemens Sans;24;0;0;0;700
+      Entity_12:
+        FontDescription:
+        - Siemens Sans;32;0;0;0;400
+      Entity_13:
+        FontDescription:
+        - Siemens Sans;24;0;0;0;700
+      Entity_14:
+        FontDescription:
+        - Siemens Sans;20;0;0;0;400
+      Entity_15:
+        FontDescription:
+        - Siemens Sans;16;0;0;0;700
+      Entity_16:
+        FontDescription:
+        - Siemens Sans;16;0;0;0;700
+      Entity_17:
+        FontDescription:
+        - Siemens Sans;13;0;0;0;400
+      Entity_18:
+        FontDescription:
+        - Siemens Sans;20;0;0;0;700
+      Entity_19:
+        FontDescription:
+        - Siemens Sans;16;0;0;0;700
+      Entity_20:
+        FontDescription:
+        - Siemens Sans;30;0;0;0;700
+      Entity_21:
+        FontDescription:
+        - Siemens Sans;12;0;0;0;400
+      Entity_22:
+        FontDescription:
+        - Siemens Sans;12;0;0;0;700
+      Entity_23:
+        FontDescription:
+        - Siemens Sans;18;0;0;0;700
+      Entity_24:
+        FontDescription:
+        - Siemens Sans;11;0;0;0;400
+      Entity_25:
+        FontDescription:
+        - Siemens Sans;11;0;0;0;700
+      Entity_26:
+        FontDescription:
+        - Siemens Sans;19;0;0;0;700
+      Entity_27:
+        FontDescription:
+        - Siemens Sans;20;0;0;0;700
+      Entity_28:
+        FontDescription:
+        - Siemens Sans;14;0;0;0;700
+      Entity_29:
+        FontDescription:
+        - Siemens Sans;20;0;0;0;400
+      Entity_30:
+        FontDescription:
+        - Siemens Sans;1;0;0;0;400
+      Entity_31:
+        FontDescription:
+        - Siemens Sans;80;0;0;0;400

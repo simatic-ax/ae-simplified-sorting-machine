@@ -1,0 +1,40 @@
+{
+  "name": "mtp1500",
+  "version": "0.0.0",
+  "lockFileVersion": "2",
+  "installStrategy": "strict",
+  "root": {
+    "name": "mtp1500",
+    "version": "0.0.0",
+    "dependencies": {
+      "@ue/hmiscada-v19.0.0.2": "^5.0.1"
+    }
+  },
+  "packages": {
+    "@ue/hmiscada-v19.0.0.2": {
+      "name": "@ue/hmiscada-v19.0.0.2",
+      "version": "5.0.1",
+      "integrity": "sha512-ySY/SSc83Qj3nePVmj4oRYqEJBs0L2znc8KSyC2lWXzTdKkjcq0zJ07idxvi7b6eyF9v2fY1sORYxDcqCIfGAg==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/hmiscada-v19.0.0.2/-/hmiscada-v19.0.0.2-5.0.1.tgz",
+      "dependencies": {
+        "@ue/model-hmiscada-v19.0.0.2": "4.0.1",
+        "@ue/scripting-types-rt-05-00-00-11": "3.0.1"
+      }
+    },
+    "@ue/model-hmiscada-v19.0.0.2": {
+      "name": "@ue/model-hmiscada-v19.0.0.2",
+      "version": "4.0.1",
+      "integrity": "sha512-rTyUeotCkCS987d83u0R14saL9CPm5iHI/7lCYl9iGYFNwlRuU69kBGmIjgv+sJoj6pUjW7KoSE1ck/TTFPGog==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/model-hmiscada-v19.0.0.2/-/model-hmiscada-v19.0.0.2-4.0.1.tgz",
+      "dependencies": {}
+    },
+    "@ue/scripting-types-rt-05-00-00-11": {
+      "name": "@ue/scripting-types-rt-05-00-00-11",
+      "version": "3.0.1",
+      "integrity": "sha512-yCDpmxNuBzKC/owObc3KiItbtiOxWXhwAq6HHHolBmNkzmfKHEfGDqcVWfIiw0BDtRpvr3jysoauP804K7HI/A==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/scripting-types-rt-05-00-00-11/-/scripting-types-rt-05-00-00-11-3.0.1.tgz",
+      "dependencies": {}
+    }
+  },
+  "workspaces": {}
+}

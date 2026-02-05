@@ -1,0 +1,98 @@
+﻿<!DOCTYPE svg PUBLIC "-//SIEMENS//DTD SVG 1.0 TIA-HMI//EN" "http://tia.siemens.com/graphics/svg/1.4/dtd/svg14-hmi.dtd">
+<!-- SIMATIC WINCC UA Copyright (C) Siemens AG 2017. All Rights Reserved. -->
+
+<!--  SingleCurlyBrackets = true;   DirectBindingToChromProps = true;   hmi-bind:scope = false  -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       xmlns:hmi="http://svg.siemens.com/hmi/"
+       xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+       xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+       xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+       xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"
+     height="10" width="10" >
+  <hmi:self type="system:HmiDataCellSystemPart" displayName="DataCell" name="datacell" version="1.0.0" performanceClass="s">
+    <hmi:data type="cell-view"></hmi:data>
+    <hmi:paramDef name="Padding"      type="HmiPaddingPart" />
+    <hmi:focus focusVisual="local"  canFocus="false"/>
+  </hmi:self>
+  <defs>
+    <hmi:localDef name="Width"        type="number" hmi-bind:value="{ HmiProps.Width }"   />
+    <hmi:localDef name="Height"       type="number" hmi-bind:value="{ HmiProps.Height }"   />
+  </defs>
+  <g>
+    <hmi:inline
+        hmi-bind:width="{ HmiProps.Width }"
+        hmi-bind:height="{ HmiProps.Height }">
+        <hmi:param name="Text"                    type="string"                   hmi-data-bind:value="{ Content.Data }" />
+        <hmi:param name="IsEditing"               type="boolean"                  hmi-data-bind:value="{ Content.IsEditing }" />
+        <hmi:param name="OutputFormat"            type="string"                   hmi-data-bind:value="{ Content.OutputFormat }" />
+        <hmi:param name="TextColor"               type="HmiColor"                 hmi-data-bind:value="{ Colors.Fore }" />
+        <hmi:param name="BackColor"               type="HmiColor"                 hmi-data-bind:value="{ Colors.Back }" />
+        <hmi:param name="Systempart"              type="HmiDataCellSystemPart"    hmi-bind:value="{ HmiProps }" />
+        <hmi:param name="Font"                    type="HmiFontPart"              hmi-bind:value="{ HmiProps.Font }" />
+        <hmi:param name="Padding"                 type="HmiPaddingPart"           hmi-bind:value="{ ParamProps.Padding }" />
+        <hmi:param name="Width"                   type="number"                   hmi-bind:value="{ LocalProps.Width }" />
+        <hmi:param name="Height"                  type="number"                   hmi-bind:value="{ LocalProps.Height }" />
+        <hmi:template  >
+        <svg xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:hmi="http://svg.siemens.com/hmi/"
+            xmlns:hmi-bind="http://svg.siemens.com/hmi/bind/"
+            xmlns:hmi-element="http://svg.siemens.com/hmi/element/"
+            xmlns:hmi-feature="http://svg.siemens.com/hmi/feature/"
+            xmlns:hmi-data-bind="http://svg.siemens.com/hmi/data/bind/"
+            preserveAspectRatio="none" >
+          <hmi:self type="custom" displayName="Custom Extended Text Part" name="custom.extended.text.part" version="1.0.1" performanceClass="L">
+            <hmi:paramDef name="Systempart"                 type="HmiDataCellSystemPart"    />
+            <hmi:paramDef name="Text"                       type="string"                   />
+            <hmi:paramDef name="IsEditing"                  type="boolean"                  />
+            <hmi:paramDef name="Font"                       type="HmiFontPart"              />
+            <hmi:paramDef name="TextColor"                  type="HmiColor"                 />
+            <hmi:paramDef name="BackColor"                  type="HmiColor"                 />
+            <hmi:paramDef name="Padding"                    type="HmiPaddingPart"           />
+            <hmi:paramDef name="Width"                      type="number"                   />
+            <hmi:paramDef name="Height"                     type="number"                   />
+            <hmi:paramDef name="OutputFormat"               type="string"                   />
+            <hmi:focus focusVisual="local"  canFocus="false"/>
+          </hmi:self>
+          <rect id="TIFID_ItemBGRect2"
+                  x="0"
+                  y="0"
+                 hmi-bind:width="{ ParamProps.Width }"
+                 hmi-bind:height="{ ParamProps.Height }"
+                 hmi-bind:fill="{{ ParamProps.IsEditing ? 'rgba(255,255,255,1)' : Converter.RGBA( ParamProps.BackColor ) }}"
+            />
+          <g id="editBox" >
+            <hmi-element:textField
+                                     hmi-bind:start-x="{ ParamProps.Padding.Left }"
+                                     hmi-bind:start-y="{ ParamProps.Padding.Top }"
+                                     hmi-bind:fore-color="{{ ParamProps.IsEditing ? 'rgba(0,0,0,1)' : Converter.RGBA( ParamProps.TextColor ) }}"
+                                     hmi-bind:width="{ ParamProps.Systempart.Width }"
+                                     hmi-bind:height="{  ParamProps.Systempart.Height }"
+                                     hmi-bind:vertical-text-alignment="{  ParamProps.Systempart.Content.VerticalTextAlignment }"
+                                     hmi-bind:horizontal-text-alignment="{ ParamProps.Systempart.Content.HorizontalTextAlignment }"
+                                     hmi-bind:value="{ParamProps.Text}"
+                                     hmi-bind:output-format="{ParamProps.OutputFormat}"
+                                     padding="0"
+                                     hmi-bind:read-only="{{ParamProps.IsEditing ? false : true}}"
+                                     hmi-bind:enabled="{ParamProps.Systempart.Enabled}"
+                                     target="ParamProps.Text"
+                                     hmi-bind:horizontal-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}"
+									                   hmi-bind:vertical-scrollbar-visibility="{{ HmiScrollBarVisibility.Collapsed }}"
+                                   >
+              <hmi-feature:font
+                  hmi-bind:size="{ ParamProps.Systempart.Font.Size }"
+                  hmi-bind:italic="{ ParamProps.Systempart.Font.Italic }"
+                  hmi-bind:weight="{ ParamProps.Systempart.Font.Weight }"
+                  hmi-bind:strike-out="{ ParamProps.Systempart.Font.StrikeOut }"
+                  hmi-bind:underline="{ ParamProps.Systempart.Font.Underline }"
+                  hmi-bind:name="{ParamProps.Systempart.Font.Name }" />
+            </hmi-element:textField>
+          </g>
+        </svg>
+      </hmi:template>
+    </hmi:inline>
+  </g>
+
+</svg>
