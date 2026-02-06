@@ -52,11 +52,12 @@ jobs:
           apax-token: ${{ secrets.APAX_TOKEN }}
           registries: |
             https://npm.pkg.github.com/,${{ secrets.GITHUB_TOKEN }}
-
+            
+      - name: Change to `ax` directory
+        run: cd ax
+        
       - name: Install dependencies
         uses: simatic-ax/actions/apax-install@v3
-        with:
-          path: ${{ inputs.path }}
 
       - name: Determine version
         id: determine_version
@@ -74,13 +75,11 @@ jobs:
       - name: Version the package
         uses: simatic-ax/actions/apax-version@v4
         with:
-          path: ${{ inputs.path }}
           version: ${{ steps.determine_version.outputs.version }}
 
       - name: Build source code
         uses: simatic-ax/actions/apax-build@v4
         with:
-          path: ${{ inputs.path }}
           apax-build-targets: |
             llvm
             1500
@@ -91,7 +90,6 @@ jobs:
       - name: Test source code
         uses: simatic-ax/actions/apax-test@v4
         with:
-          path: ${{ inputs.path }}
           coverage: true
           loglevel: debug
 
