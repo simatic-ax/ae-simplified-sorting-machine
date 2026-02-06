@@ -10,6 +10,7 @@ on:
       - 'main'    # Only run when pushing to the main branch
     paths:
       - 'AX/**'   # Only run when files in the AX directory are modified
+  pull_request:
 
 jobs:
   call-ax-workflow:
