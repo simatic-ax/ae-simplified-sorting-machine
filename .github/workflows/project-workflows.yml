@@ -8,8 +8,10 @@ on:
   push:
     branches:
       - 'main'    # Only run when pushing to the main branch
-    paths:
-      - 'AX/**'   # Only run when files in the AX directory are modified
+      - 'test/build-test-action' # Test to run action. Should be deleted when merged to main
+    # paths:
+    #   - 'AX/**'   # Only run when files in the AX directory are modified
+  pull_request:
 
 jobs:
   call-ax-workflow:
