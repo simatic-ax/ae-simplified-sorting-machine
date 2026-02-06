@@ -54,7 +54,7 @@ jobs:
             https://npm.pkg.github.com/,${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
-        uses: simatic-ax/actions/apax-install@v4
+        uses: simatic-ax/actions/apax-install@v3
         with:
           path: ${{ inputs.path }}
 
