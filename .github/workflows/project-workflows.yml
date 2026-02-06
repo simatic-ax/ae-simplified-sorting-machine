@@ -25,6 +25,5 @@ jobs:
     secrets:
       # Pass required secrets for APAX package management
       APAX_TOKEN: ${{ secrets.APAX_TOKEN }}           # Token for APAX registry access
-      GH_GITHUB_TOKEN: ${{ secrets.GH_GITHUB_TOKEN }} # GitHub token for package operations
 
 
