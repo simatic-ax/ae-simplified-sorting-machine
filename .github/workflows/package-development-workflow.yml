@@ -23,7 +23,6 @@ on:
       path:
         required: false
         type: string
-        default: "AX"
 
 permissions:
   contents: read     # required for checkout
@@ -54,7 +53,9 @@ jobs:
             https://npm.pkg.github.com/,${{ secrets.GITHUB_TOKEN }}
             
       - name: Change to `ax` directory
-        run: cd ax
+        run: |
+          ls -l
+          cd AX
         
       - name: Install dependencies
         uses: simatic-ax/actions/apax-install@v3
