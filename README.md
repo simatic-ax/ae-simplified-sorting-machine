@@ -116,9 +116,9 @@ The following shows an example configuration of PLCSIM Advanced.
     apax login
     ```
 2.  Navigate to the desired folder.
-3.  Clone the repository:
+3.  Load the application example:
     ```sh
-    git clone <repository-link>
+    apax create @simatic-ax/simplified-sorting-machine --registry https://npm.pkg.github.com simplified-sorting-machine
     ```
     (Optional) Open in AX Code:
     ```sh
