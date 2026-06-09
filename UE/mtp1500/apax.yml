@@ -1,0 +1,32 @@
+name: mtp1500
+version: 0.0.0
+type: generic
+dependencies:
+  "@ue/code.elements": ^4.2.2
+  "@ue/open.elements": ^3.2.2
+  "@ue/es-support-packages-hmiscada-v20.0.0.2": ^3.0.0
+scripts:
+  # Preparation of a delta download and delta download can be used if the device has already been downloaded to Runtime at least once,
+  # and if the changes that have been made since the last download do not require a full download.
+  delta:
+    - apax dm prepare-download --delta
+    - apax dm download --unsecure --delta
+
+  # Make a full download
+  fulldownload:
+    - apax dm prepare-download
+    # In case of first download ever, keep next line commented
+    - apax dm stop-runtime --unsecure --stop-any || echo "Warning - There is no active runtime or it could not be stopped. Open the SIMATIC Runtime Manager for more information."
+    - apax dm download --unsecure
+    - apax dm start-runtime --unsecure
+
+  # Downloads the configuration project of a device to a portable archive
+  offline:
+    - apax dm prepare-download
+    - apax dm download --portable
+
+  # Update the Domain Functions
+  updatedomainf: apax dm update-domain-functions
+
+  # Just compile
+  compile: apax dm prepare-download

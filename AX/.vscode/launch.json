@@ -11,7 +11,9 @@
             "request": "launch",
             "program": "${workspaceFolder}",
             "ip": "192.168.0.1",
-            "certificate": "${workspaceFolder}/certificate/reference_x509.crt"
+            "certificate": "${workspaceFolder}/certificate/reference_x509.crt",
+            "username": "User1",
+            "password": "Siemens1!"
         }
     ]
 }

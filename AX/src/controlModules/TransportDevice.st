@@ -59,30 +59,29 @@ NAMESPACE ControlModules
         END_METHOD
 
         /// Gets the enable status of the transport device
-        /// @return: TRUE if device is enabled, FALSE otherwise
         METHOD PUBLIC GetIsEnabled : BOOL
             GetIsEnabled := _enable;
         END_METHOD
 
-        /// Gets the feedback status of the transport device
-        /// @return: TRUE if movement is done, FALSE otherwise
+        /// Gets the feedback status of the transport device.
+        /// TRUE if movement is done, FALSE otherwise
         METHOD PUBLIC GetIsDone : BOOL
             GetIsDone := _done;
         END_METHOD
 
         /// Gets the actual position of the transport device
-        /// @return: Actual position in INT
         METHOD PUBLIC GetActualPosition : INT
             GetActualPosition := _actualPos;
         END_METHOD
 
 
         /// Commands the transport device to move to a specified position (not supported in base class)
-        /// @param targetPos: Target position for the movement command
-        /// @return: FALSE (not supported in abstract base class)
+        /// Return FALSE if not supported
         METHOD PUBLIC PosAbsolute : BOOL
             VAR_INPUT
+                /// Target position for the movement command
                 targetPos : INT;
+                /// Velocity for the movement (optional)
                 velocity : INT := INT#0;
             END_VAR
             _status := typeTransportDeviceBaseStatus#ERR_COMMAND_NOT_SUPPORTED;
@@ -91,10 +90,10 @@ NAMESPACE ControlModules
         END_METHOD
 
         /// Moves the drive at a specified constant velocity (not supported in base class)
-        /// @param velocity: Velocity in LU (Length Units) for the drive
-        /// @return: FALSE (not supported in abstract base class)
+        /// Return FALSE if not supported
         METHOD PUBLIC MoveVelocity : BOOL
             VAR_INPUT
+                /// Velocity in LU (Length Units) for the drive
                 velocity : INT;
             END_VAR
             _status := typeTransportDeviceBaseStatus#ERR_COMMAND_NOT_SUPPORTED;
@@ -103,12 +102,12 @@ NAMESPACE ControlModules
          END_METHOD
     
         /// Executes a relative positioning movement (not supported in base class)
-        /// @param posIncrement: Position increment in LU to move relative to current position
-        /// @param velocity: Velocity for the movement (uses last velocity if 0)
-        /// @return: FALSE (not supported in abstract base class)
+        /// Return FALSE if not supported
         METHOD PUBLIC PosRelative : BOOL
             VAR_INPUT
+                /// Position increment in LU to move relative to current position
                 posIncrement : INT;
+                /// Velocity for the movement (uses last velocity if 0)
                 velocity : INT := INT#0;
             END_VAR
             _status := typeTransportDeviceBaseStatus#ERR_COMMAND_NOT_SUPPORTED;
@@ -118,13 +117,11 @@ NAMESPACE ControlModules
  
 
         /// Retrieves the current status of the transport device
-        /// @return: Status word containing device state information
         METHOD PUBLIC GetStatus : WORD
             GetStatus := _status;
         END_METHOD
 
         /// Get is the transport device in error state
-        /// @return: TRUE if device is in error state, FALSE otherwise
         METHOD PUBLIC GetIsError : BOOL
             GetIsError := _error;
         END_METHOD

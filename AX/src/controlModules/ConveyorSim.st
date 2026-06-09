@@ -41,10 +41,9 @@ NAMESPACE ControlModules
             DEFAULT_CYCLE_INCREMENT : INT := INT#10;
         END_VAR
         /// Configures the simulated conveyor parameters
-        /// @param cycleIncrement: Movement increment per execution cycle (absolute value will be used)
-
         METHOD PUBLIC SetConfig
             VAR_INPUT
+                /// Movement increment per execution cycle (absolute value will be used)
                 cycleIncrement : INT := INT#10;
             END_VAR
             _cycleIncrement := ABS(cycleIncrement);
@@ -55,13 +54,12 @@ NAMESPACE ControlModules
         METHOD PUBLIC OVERRIDE Stop
             THIS.clearCommands();
         END_METHOD
-        /// Moves the simulated drive at a specified constant velocity
-        /// Simulates continuous movement in positive direction
-        /// @param velocity: Velocity in LU (Length Units) for the drive (sign determines direction)
-        /// @return: TRUE if movement command was accepted, FALSE otherwise
-
+        /// Moves the simulated drive at a specified constant velocity.
+        /// Simulates continuous movement in positive direction.
+        /// TRUE if movement command was accepted, FALSE otherwise
         METHOD PUBLIC OVERRIDE MoveVelocity : BOOL
             VAR_INPUT
+                /// Velocity in LU (Length Units) for the drive (sign determines direction)
                 velocity : INT;
             END_VAR
             // Clear possible remaining commands before triggering new commands
@@ -80,15 +78,14 @@ NAMESPACE ControlModules
             _done := FALSE;
             MoveVelocity := _moveEnable;
         END_METHOD
-        /// Executes a relative positioning movement
-        /// Moves the drive by a specified increment from current position
-        /// @param posIncrement: Position increment in LU to move relative to current position
-        /// @param velocity: Velocity for the movement (uses last velocity if 0)
-        /// @return: TRUE if movement command was accepted, FALSE otherwise
-
+        /// Executes a relative positioning movement.
+        /// Moves the drive by a specified increment from current position.
+        /// TRUE if movement command was accepted, FALSE otherwise
         METHOD PUBLIC OVERRIDE PosRelative : BOOL
             VAR_INPUT
+                /// Position increment in LU to move relative to current position
                 posIncrement : INT;
+                /// Velocity for the movement (uses last velocity if 0)
                 velocity : INT := INT#0;
             END_VAR
             // Clear actual commands before starting new command
@@ -112,14 +109,15 @@ NAMESPACE ControlModules
             _done := FALSE;
             PosRelative := _moveEnable;
         END_METHOD
-        /// Executes an absolute positioning movement
-        /// Moves the drive to a specified absolute position
-        /// @param targetPos: Target position for the movement
-        /// @return: TRUE if movement command was accepted, FALSE otherwise
-
+        
+        /// Executes an absolute positioning movement.
+        /// Moves the drive to a specified absolute position.
+        /// TRUE if movement command was accepted, FALSE otherwise
         METHOD PUBLIC OVERRIDE PosAbsolute : BOOL
             VAR_INPUT
+                /// Target position for the movement
                 targetPos : INT;
+                /// Velocity for the movement (optional)
                 velocity : INT := INT#0;
             END_VAR
             // Clear actual commands before starting new command
@@ -142,40 +140,40 @@ NAMESPACE ControlModules
             _done := FALSE;
             PosAbsolute := TRUE;
         END_METHOD
+
         /// Sets the current position as the home/reference position
         /// Simulates homing by setting current position to zero
-
         METHOD PUBLIC SetHomePosition
             THIS.clearCommands();
             _actualPos := INT#0;
             _operationMode := typeConveyorModuleMode#SET_HOME_POSITION;
         END_METHOD
-        /// Checks if the drive axis has been referenced/homed
-        /// For simulation, always returns TRUE as homing is instant
-        /// @return: TRUE (always referenced in simulation)
 
+        /// Checks if the drive axis has been referenced/homed.
+        /// For simulation, always returns TRUE as homing is instant.
+        /// TRUE (always referenced in simulation)
         METHOD PUBLIC IsHomed : BOOL
             IsHomed := TRUE; // Always homed in simulation
         END_METHOD
-        /// Gets the completion status of positioning operations
-        /// @return: TRUE if positioning operation is completed, FALSE if still moving
 
+        /// Gets the completion status of positioning operations.
+        /// TRUE if positioning operation is completed, FALSE if still moving
         METHOD PUBLIC OVERRIDE GetIsDone : BOOL
             GetIsDone := _done;
         END_METHOD
+
         /// Clears all active commands and resets drive parameters
         /// Used internally when starting a new command to prevent conflicts
-
         METHOD PROTECTED clearCommands
             _moveEnable := FALSE;
             _positioningActive := FALSE;
             _operationMode := typeConveyorModuleMode#IDLE;
             _moveDirection := INT#1;
         END_METHOD
+
         /// Executes the simulated conveyor control logic cyclically
         /// Simulates movement by incrementing position values
         /// This method should be called in every cycle of the main program
-
         METHOD PUBLIC OVERRIDE Execute
             VAR_TEMP
                 increment : INT := INT#0;

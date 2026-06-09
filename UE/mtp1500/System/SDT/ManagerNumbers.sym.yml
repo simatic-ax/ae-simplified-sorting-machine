@@ -1,0 +1,47 @@
+#Version: 2.0
+
+SymbolicConstants:
+  ManagerNumber:
+    Entries:
+      OpcUaCommunication:
+        DataType: USInt
+        Value: 3
+      TagLogging:
+        DataType: USInt
+        Value: 111
+      AlarmLogging:
+        DataType: USInt
+        Value: 222
+      ContextLogging:
+        DataType: USInt
+        Value: 127
+      S7Communication:
+        DataType: USInt
+        Value: 1
+      S7PlusCommunication:
+        DataType: USInt
+        Value: 2
+      StdModbusTCPCommunication:
+        DataType: USInt
+        Value: 4
+      AllenBradleyEIPCommunication:
+        DataType: USInt
+        Value: 5
+      OmronEIPCommunication:
+        DataType: USInt
+        Value: 8
+      MitsubishiMCCommunication:
+        DataType: USInt
+        Value: 7
+      MitsubishiiQCommunication:
+        DataType: USInt
+        Value: 6
+      StdModbusRTUCommunication:
+        DataType: USInt
+        Value: 9
+      Distribution:
+        DataType: USInt
+        Value: 1
+      RTS:
+        DataType: USInt
+        Value: 22

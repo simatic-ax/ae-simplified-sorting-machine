@@ -1,6 +1,6 @@
 # Sorting Machine Project
 
-## Project Overview
+## Description
 
 This project serves as a simple application example, providing a demo case for exploring the interaction between Control Logic Engineering and Unified Elements. It also covers the installation of GSD files and demonstrates hardware integration. Feel free to adapt and extend this project to implement additional functionalities according to your needs.
 
@@ -57,13 +57,14 @@ This project serves as a simple application example, providing a demo case for e
 
 The PLC program in this project was exclusively created using SIMATIC AX Logic Control Engineering. The visualization was exclusively developed in SIMATIC AX WinCC Unified Elements. Furthermore, the configuration of the SINAMICS G220 was not performed with SINAMICS Startdrive, but through its web configuration interface.
 
--   SIMATIC AX Logic Control Engineering - [Download](https://console.simatic-ax.siemens.io/downloads)
--   SIMATIC AX WinCC Unified Elements - [Download](https://docu.simatic-ue.siemens.io/download_ue/)
+-   SIMATIC AXCode - [Download](https://console.simatic-ax.siemens.io/downloads)
 -   SIMATIC S7-PLCSIM Advanced - [Download](https://support.industry.siemens.com/cs/ww/en/view/109963863)
 
 ## Usage Instructions
 
-This application example repository can be cloned using Git. Additionally, a project template package is available for rapid AX project creation utilizing `apax`.
+This application example repository can be cloned using Git. Additionally, a project template package is available for rapid AX project creation utilizing `apax`. 
+
+It is recommended to open the workspace `sorting-machine.code-workspace`. When using the workspace, it is easier to select the context for running commands for either AX, UE  or the project in generall. To Run commands for AX, when creating a terminal, there is a selection for which context it should be created. 
 
 > To use this application example, you need to log in to the GitHub registry https://npm.pkg.github.com/. You'll find more information [here](https://github.com/simatic-ax/.github/blob/main/docs/personalaccesstoken.md).
 
@@ -120,6 +121,9 @@ The following shows an example configuration of PLCSIM Advanced.
     ```sh
     apax create @simatic-ax/simplified-sorting-machine --registry https://npm.pkg.github.com simplified-sorting-machine
     ```
+    ```sh
+    cd ae-simplified-sorting-machine/AX
+    ```
     (Optional) Open in AX Code:
     ```sh
     axcode .
@@ -143,16 +147,12 @@ The following shows an example configuration of PLCSIM Advanced.
 
 1.  Ensure SIMATIC AX Logic Control Engineering steps 1–3 are completed.
 2.  Navigate to your project folder.
-3.  Open SIMATIC AX WinCC Unified Elements.
+3.  Open folder *UE/mtp1500*.
 4.  Install dependencies:
     ```sh
     apax install
     ```
-5.  Change IP locally:
-    ```sh
-    apax changeip_local
-    ```
-6.  Download the project:
+5.  Download the project:
     ```sh
     apax fulldownload
     ```
@@ -188,9 +188,12 @@ Please note: These settings are provided as an example and can be adjusted to fi
     apax login
     ```
 2.  Navigate to the desired folder.
-3.  Clone the repository:
+3.  Load the application example:
     ```sh
-    git clone <repository-link>
+    apax create @simatic-ax/simplified-sorting-machine --registry https://npm.pkg.github.com simplified-sorting-machine
+    ```
+    ```sh
+    cd ae-simplified-sorting-machine/AX
     ```
     (Optional) Open in AX Code:
     ```sh
@@ -205,10 +208,16 @@ Please note: These settings are provided as an example and can be adjusted to fi
     ```sh
     apax setup_hw_certificates_and_user
     ```
-7.  Compile and load S7-1500 PLC:
+7.  Compile and load:
+    * For initial Load:
+    ```sh
+    apax compile_and_load_all_init
+    ```
+    * For normal Load:
     ```sh
     apax compile_and_load_all
     ```
+
 
 ### SIMATIC AX WinCC Unified Elements Steps for Hardware
 
@@ -219,13 +228,13 @@ Please note: These settings are provided as an example and can be adjusted to fi
     ```sh
     apax install
     ```
-5.  Change IP locally:
+5.  Add a [remote target](https://docs.industrial-operations-x.siemens.cloud/r/en-us/simatic-ax-wincc-unified-elements-cli-references/device-manager-cli/list-of-supported-commands/add-target):
     ```sh
-    apax changeip_remote
+    apax dm add-target <name> --hostname <hostname>
     ```
 6.  Download the project:
     ```sh
-    apax fulldownload
+    apax dm prepare-download --target <target-name>
     ```
 ## Internal Readmes
 - [SIMATIC AX Readme](AX/README.md)
@@ -233,7 +242,7 @@ Please note: These settings are provided as an example and can be adjusted to fi
 
 ## Useful Links
 
--   [SIMATIC AX WinCC Unified Elements Documentation](https://docu.simatic-ue.siemens.io/learn/documentation/document-based-engineering/)
+-   [SIMATIC AX WinCC Unified Elements Documentation](https://docs.industrial-operations-x.siemens.cloud/p/simatic-ax-ue)
 -   [SIMATIC AX Logic Control Engineering Documentation](https://docs.industrial-operations-x.siemens.cloud/p/simatic-ax)
 
 ## License

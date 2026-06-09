@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "lib": [ "ES2022" ],
+    "module": "ES2022",
+    "target": "ES2022",
+    "types": [
+      "../System/.typings/HMIRuntime.d.ts"
+    ]
+  },
+  "include": [ "./**/*.js" ]
+}

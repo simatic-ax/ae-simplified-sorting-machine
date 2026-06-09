@@ -1,0 +1,67 @@
+#Version: 2.0
+
+DomainFunctions:
+  GlobalIDManagement:
+    Active: False
+    Extension: true
+  OpcUaCommunication:
+    Active: true
+    Extension: true
+    ConnectionID:
+    - SIMATIC_S7-1500_OPC-UA_Application_
+  TagLogging:
+    Active: False
+    Extension: true
+  AlarmLogging:
+    Active: False
+    Extension: true
+  ContextLogging:
+    Active: False
+    Extension: true
+  S7Communication:
+    Active: False
+    Extension: true
+  S7PlusCommunication:
+    Active: true
+    Extension: true
+    ConnectionID:
+    - HMI_Connection_2
+  StdModbusTCPCommunication:
+    Active: False
+    Extension: true
+  AllenBradleyEIPCommunication:
+    Active: False
+    Extension: true
+  OmronEIPCommunication:
+    Active: False
+    Extension: true
+  MitsubishiMCCommunication:
+    Active: False
+    Extension: true
+  MitsubishiiQCommunication:
+    Active: False
+    Extension: true
+  StdModbusRTUCommunication:
+    Active: False
+    Extension: true
+  Distribution:
+    Active: False
+    Extension: true
+  SecureCommunication:
+    Active: False
+    Extension: true
+  ParameterControl:
+    Active: False
+    Extension: true
+  JobScheduler:
+    Active: False
+    Extension: true
+  RTS:
+    Active: True
+    Extension: true
+  OpcUaServer:
+    Active: False
+    Extension: true
+  SystemDiagnostics:
+    Active: False
+    Extension: true

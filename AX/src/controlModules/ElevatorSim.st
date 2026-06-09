@@ -38,13 +38,13 @@ NAMESPACE ControlModules
         END_VAR
         
         /// Configures the elevator movement parameters and position limits
-        /// @param cycleIncrement: Movement increment per execution cycle (absolute value will be used)
-        /// @param upperLimit: Maximum allowed position for elevator movement
-        /// @param lowerLimit: Minimum allowed position for elevator movement
         METHOD PUBLIC SetConfigLimits
             VAR_INPUT
+                /// Movement increment per execution cycle (absolute value will be used)
                 cycleIncrement : INT;
+                /// Maximum allowed position for elevator movement
                 upperLimit : INT;
+                /// Minimum allowed position for elevator movement
                 lowerLimit : INT;
             END_VAR
             // Take Absolute value of increment
@@ -56,16 +56,15 @@ NAMESPACE ControlModules
 
         /// Returns the inverted elevator position for HMI display (0 = up, 100 = down)
         /// Due to specific assembly crane SVG requirements
-        /// @return: Inverted position value (100 - actual position)
         METHOD PUBLIC GetInvertedPosition : INT
             GetInvertedPosition := 100 - _actualPos;
         END_METHOD
 
         /// Commands the elevator to move upward continuously until upper limit is reached
         /// Enables movement without a specific target position
-        /// @param velocity: Velocity for upward movement (optional, uses current if 0)
         METHOD PUBLIC MoveUp 
             VAR_INPUT
+                /// Velocity for upward movement (optional, uses current if 0)
                 velocity : INT;
             END_VAR
             // Enable movement witout target
@@ -80,9 +79,9 @@ NAMESPACE ControlModules
 
         /// Commands the elevator to move downward continuously until lower limit is reached
         /// Enables movement without a specific target position
-        /// @param velocity: Velocity for downward movement (optional, uses current if 0)
         METHOD PUBLIC MoveDown
             VAR_INPUT
+                /// Velocity for downward movement (optional, uses current if 0)
                 velocity : INT;
             END_VAR
             // Enable movement witout target
@@ -103,13 +102,14 @@ NAMESPACE ControlModules
             _moveEnable := FALSE;
         END_METHOD
         
-        /// Commands the elevator to move to a specific target position
-        /// Validates target position against configured limits and determines movement direction
-        /// @param targetPos: Target position for the elevator movement
-        /// @return: TRUE if movement command was accepted, FALSE if target is out of limits or error occurred
+        /// Commands the elevator to move to a specific target position.
+        /// Validates target position against configured limits and determines movement direction.
+        /// TRUE if movement command was accepted, FALSE if target is out of limits or error occurred
         METHOD PUBLIC  OVERRIDE PosAbsolute : BOOL
             VAR_INPUT
+                /// Target position for the elevator movement
                 targetPos : INT;
+                /// Velocity for downward movement (optional, uses current if 0)
                 velocity : INT := INT#0;
             END_VAR
             // Disable movement without target if active
@@ -151,6 +151,7 @@ NAMESPACE ControlModules
         /// This method should be called in every cycle of the main program
         METHOD PUBLIC OVERRIDE Execute
             VAR_TEMP
+                /// Position increment for every cycle
                 increment : INT := INT#0;
             END_VAR
             /// Resets pending error.

@@ -4,6 +4,9 @@ USING System.Timer;
 USING Simatic.Ax.Sinamics;
 
 NAMESPACE SortingMachine
+    
+    /// Conveyor station that manages box transport on a conveyor belt with forward and backward movement.
+    /// Handles box addition, removal, and position tracking while preventing collisions between boxes.
     CLASS ConveyorStation EXTENDS BaseStation
         //=============================================================================
         //SIEMENS AG
@@ -68,17 +71,17 @@ NAMESPACE SortingMachine
         END_VAR
 
         /// Constructor - Initializes the conveyor station with control interface and settings
-        /// @param stationID: Unique identifier for this station
-        /// @param stationPosLeft: Position of station in relation to left reference
-        /// @param moveIncrement: Distance increment for each box position movement (default: 128)
-        /// @param conveyorControl: Interface to the conveyor transport device
-        /// @param boxInputIndex: Index position for new box input (default: BOXES_UPPER_LIMIT)
         METHOD PUBLIC CONSTRUCTOR
             VAR_INPUT
+                /// Unique identifier for this station
                 stationID : UINT;
+                /// Position of station in relation to left reference
                 stationPosLeft : INT;
+                /// Distance increment for each box position movement (default: 128)
                 moveIncrement : INT := INT#128;
+                /// Interface to the conveyor transport device
                 conveyorControl : ITransportDevice;
+                /// Index position for new box input (default: BOXES_UPPER_LIMIT)
                 boxInputIndex : DINT := BOXES_UPPER_LIMIT;
             END_VAR
             THIS.CONSTRUCTOR(stationID, stationPosLeft);
@@ -93,9 +96,9 @@ NAMESPACE SortingMachine
         END_METHOD
 
         /// Set conveyor control interface
-        /// @param conveyorControl: Interface to the conveyor transport device
         METHOD PUBLIC SetConveyorControl
             VAR_INPUT
+                /// Interface to the conveyor transport device
                 conveyorControl : ITransportDevice;
             END_VAR
             _conveyorControl := conveyorControl;
@@ -129,9 +132,9 @@ NAMESPACE SortingMachine
         END_METHOD
 
         /// Set manual commands to be done during execute
-        /// @param manualCommands: Commands to be executed manually on the elevator
         METHOD PUBLIC SetManualCommands 
             VAR_INPUT
+                /// Commands to be executed manually on the elevator
                 manualCommands : typeConveyorCommand;
             END_VAR
             // manualCommands.stop is not implemented
@@ -142,11 +145,11 @@ NAMESPACE SortingMachine
             END_IF;
         END_METHOD
 
-        /// Sets the add box signal to add a new box at position 0
-        /// @param newBox: IBasicBox interface containing the box data and triggers adding a new box
-        /// @return: TRUE if box prepared to be added to the station. FALSE if rejected
+        /// Sets the add box signal to add a new box at position 0.
+        /// TRUE if box prepared to be added to the station. FALSE if rejected
         METHOD PUBLIC AddNewBox : BOOL
             VAR_INPUT
+                /// IBasicBox interface containing the box data and triggers adding a new box
                 newBox : IBasicBox;
             END_VAR
             IF newBox = NULL THEN
@@ -166,22 +169,22 @@ NAMESPACE SortingMachine
             END_IF;
         END_METHOD
 
-        /// Checks if the station is ready to remove a box
-        /// @return: TRUE if station has a box ready for removal, FALSE otherwise
+        /// Checks if the station is ready to remove a box.
+        /// TRUE if station has a box ready for removal, FALSE otherwise
         METHOD PUBLIC ReadyToRemoveBox : BOOL
             ReadyToRemoveBox := _readyToRemoveBox;
         END_METHOD
 
-        /// Checks if the station is ready to receive a new box
-        /// Station is ready when no box is present and elevator is at home position
-        /// @return: TRUE if ready to receive a box, FALSE otherwise
+        /// Checks if the station is ready to receive a new box.
+        /// Station is ready when no box is present and elevator is at home position.
+        /// TRUE if ready to receive a box, FALSE otherwise
         METHOD PUBLIC ReadyToReciveBox : BOOL
             ReadyToReciveBox := NOT (_boxes[_boxInputIndex].BoxData.isPresent OR _moving);
         END_METHOD
 
-        /// Removes the box from the conveyor output position when ready
-        /// Can only remove box when the station indicates it's ready for removal
-        /// @return: Interface to the removed box, or invalid interface if no box to remove
+        /// Removes the box from the conveyor output position when ready.
+        /// Can only remove box when the station indicates it's ready for removal.
+        /// Returns the Interface to the removed box, or invalid interface if no box to remove
         METHOD PUBLIC RemoveBox : IBasicBox
             IF _readyToRemoveBox THEN
                 RemoveBox := _boxes[BOXES_LOWER_LIMIT];
@@ -193,7 +196,7 @@ NAMESPACE SortingMachine
 
         // Conveyor specific property getters
         /// Gets the moving status of the conveyor station
-        /// @return: TRUE if conveyor is currently moving, FALSE if stationary
+        /// TRUE if conveyor is currently moving, FALSE if stationary
         METHOD PUBLIC GetIsMoving : BOOL
             GetIsMoving := _moving;
         END_METHOD
@@ -219,14 +222,13 @@ NAMESPACE SortingMachine
         END_METHOD
 
         /// Gets the current number of boxes on the conveyor
-        /// @return: Number of boxes currently present on the conveyor
         METHOD PUBLIC GetBoxCount : DINT
             GetBoxCount := _boxCount;
         END_METHOD
 
         /// Gets if the move action is completed
         /// Can be overridden so that other movement methods can be used, like SinaPos
-        /// @return: TRUE if move action completed, FALSE if still moving
+        /// TRUE if move action completed, FALSE if still moving
         METHOD PROTECTED moveDone : BOOL
             moveDone := _conveyorControl.GetIsDone();
         END_METHOD
@@ -428,7 +430,6 @@ NAMESPACE SortingMachine
         END_METHOD
         
         /// Get from an array of boxes, all boxes data
-        /// @return: Array of all box data
         METHOD PUBLIC GetAllBoxData : ARRAY[0.. BOXES_UPPER_LIMIT] OF SortingMachine.typeBoxData
             VAR_TEMP
                 /// Temporary Iterator
@@ -439,27 +440,25 @@ NAMESPACE SortingMachine
             END_FOR;
         END_METHOD
 
-        /// Get from an array of boxes, a box data at specific index
-        /// @param index: Index of the box to retrieve data from
-        /// @return: Box data at the specified index
+        /// Get from an array of boxes, a box data at specific index.
         METHOD PUBLIC GetBoxDataAtIndex : typeBoxData
             VAR_INPUT
+                /// Index of the box to retrieve data from
                 index : DINT;
             END_VAR
             GetBoxDataAtIndex := _boxes[index].BoxData;
         END_METHOD
 
         /// Sets the movement increment value for box positioning
-        /// @param increment: Distance increment for each box position movement
         METHOD PUBLIC SetMoveIncrement
             VAR_INPUT
+                /// Distance increment for each box position movement
                 increment : INT;
             END_VAR
             _moveIncrement := increment;
         END_METHOD
 
         /// Gets the current movement increment value
-        /// @return: Current movement increment used for box positioning
         METHOD PUBLIC GetMoveIncrement : INT
             GetMoveIncrement := _moveIncrement;
         END_METHOD

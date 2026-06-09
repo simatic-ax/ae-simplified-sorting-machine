@@ -6,22 +6,26 @@ type: app
 description: Application example for box sorting machine. Sorting is done by separating the boxes by color.
 # Targets to be compiled with 'apax build'
 targets:
-  - "1500"
+  - "s7"
   - llvm # Because of the use of Sina, no llvm can be used as target and PLCSIM needs to be used
   # Catalog:
 catalogs:
-  "@ax/simatic-ax": ^2510.0.0
+  "@ax/simatic-ax": ^2510.13.1
 
 dependencies:
   "@ax/simatic-alarming": ^5.1.0
-  "@ax/system": ^10.2.7
-  "@ax/system-edgedetection": ^10.2.7
-  "@ax/simatic-crypto": ^4.0.15
-  "@simatic-ax/sinamics-drive-functions": ^2.0.0 # Need to use external Registry
+  "@ax/system": ^10.4.16
+  "@ax/system-edgedetection": ^10.4.16
+  "@ax/simatic-crypto": ^4.0.40
+  "@simatic-ax/sinamics-drive-functions": ^2.1.0 # Need to use external Registry
+  "@ax/system-timer": ^10.4.16
+  "@ax/system-bistable": ^10.4.16
   # Dependencies
 devDependencies:
-  "@ax/sdk": ^2510.3.0
-  "@ax/certificate-management": ^2.0.0
+  "@ax/sdk": ^2510.13.1
+  "@ax/certificate-management": ^2.0.1
+  "@ax/st-lang-contrib-xlad": ^1.1.0
+  "@ax/xlad-service": ^1.1.0
 
 registries:
   default: https://registry.npmjs.org/
@@ -33,7 +37,7 @@ variables:
   HW_BIN_FOLDER: ./bin/hw
 
   # Folder where to find the compiled SW artifacts
-  SW_BIN_FOLDER: "./bin/1500"
+  SW_BIN_FOLDER: "./bin/s7"
   APAX_BUILD_ARGS:
     - --debug # Enable debug information for value debugging
 
@@ -66,6 +70,10 @@ variables:
   PLC_NAME: "PLC_1"
 
   DRIVE_NAME: "Drive_1"
+
+  # Ordernumber and version of the PLC for generating the template file.
+  PLC_ORDERNUMBER: "6ES7 516-3AP03-0AB0"
+  PLC_VERSION: "V4.0"
 
   # The user names as specified in the PLC configuration
   USER_NAME: "User1"
@@ -112,9 +120,12 @@ scripts:
 
   # Generate Template for GSD file
   hw_generate_config_templates:
-    - apax hwc generate-template-file --gsd-file-name "GSDML-V2.42-SIEMENS-SINAMICS_G220-20240814.XML" --gsd-id "IDD_G220-V6.4" --output hwc/hw_templates/g220_im_v64.hwl.yml
-    - apax hwc generate-template-file --gsd-file-name "GSDML-V2.42-SIEMENS-SINAMICS_G220-20240814.XML" --gsd-id "IDM_DRVSPD" --output hwc/hw_templates/g220_drvspd.hwl.yml
-    - apax hwc generate-template-file --gsd-file-name "GSDML-V2.42-SIEMENS-SINAMICS_G220-20240814.XML" --gsd-id "IDM_DRVPOS" --output hwc/hw_templates/g220_drvpos.hwl.yml
+    - apax hwc generate-template-file --gsd-file-name "GSDML-V2.42-SIEMENS-SINAMICS_G220-20240814.XML" --gsd-id "IDD_G220-V6.4" --output hwc/hw_templates/ag220_im_v64.hwl.yml
+    - apax hwc generate-template-file --gsd-file-name "GSDML-V2.42-SIEMENS-SINAMICS_G220-20240814.XML" --gsd-id "IDM_DRVSPD" --output hwc/hw_templates/ag220_drvspd.hwl.yml
+    - apax hwc generate-template-file --gsd-file-name "GSDML-V2.42-SIEMENS-SINAMICS_G220-20240814.XML" --gsd-id "IDM_DRVPOS" --output hwc/hw_templates/ag220_drvpos.hwl.yml
+
+  hw_generate_plc_template:
+    - apax hwc generate-template-file --order-number "$PLC_ORDERNUMBER" --version "$PLC_VERSION" -o hwc/hw_templates/plc_1516_V4_0.hwl.yml
 
   # Setup needed before hw_compile possible
   setup_hw_certificates_and_user:
@@ -122,15 +133,15 @@ scripts:
     - apax hwc_add_user
     - apax install_gsd
 
-  ##################################################################################
-  # Compiles the hardware description (input: sources) to generate specific data (output: binaries) and updates the IO and HwIdent mapping (SystemConstants)
+    ##################################################################################
+    # Compiles the hardware description (input: sources) to generate specific data (output: binaries) and updates the IO and HwIdent mapping (SystemConstants)
   hw_compile: hwc compile $INPUT_HWC --output $HW_BIN_FOLDER
+  # First time loading the target-specific hardware data (binaries) onto the PLC
+  hw_load_init: hwld load --input $HW_BIN_FOLDER/$PLC_NAME --target $IP_ADDRESS --accept-security-disclaimer --certificate $TLS_CONNECT_CERTFILE --master-password $MASTER_PW
   # Loads the target-specific hardware data (binaries) onto the PLC
-  hw_load: hwld load --input $HW_BIN_FOLDER/$PLC_NAME --target $IP_ADDRESS --accept-security-disclaimer --certificate $TLS_CONNECT_CERTFILE --master-password $MASTER_PW
-  # Load Drive hwc to drive
-  drive_load: hwld load --input $HW_BIN_FOLDER/$PLC_NAME --target $DRIVE_IP_ADDRESS --accept-security-disclaimer # --certificate $TLS_CONNECT_CERTFILE # --master-password $MASTER_PW
+  hw_load: hwld load --input $HW_BIN_FOLDER/$PLC_NAME --target $IP_ADDRESS --accept-security-disclaimer --certificate $TLS_CONNECT_CERTFILE --master-password $MASTER_PW -u $USER_NAME -p $USER_PASSWORD
   # Calls 'apax load' to download the builded program to the target. An 'apax build' might be required upfront
-  load: sld load --input $SW_BIN_FOLDER --target $IP_ADDRESS --restart --accept-security-disclaimer --log debug -C $TLS_CONNECT_CERTFILE
+  load: sld load --input $SW_BIN_FOLDER --target $IP_ADDRESS --restart --accept-security-disclaimer --log debug -C $TLS_CONNECT_CERTFILE -u $USER_NAME -p $USER_PASSWORD
   # Builds and downloads the application to the target PLC
   dlplc:
     - apax build
@@ -140,8 +151,10 @@ scripts:
     - apax hw_compile
     - apax hw_load
     - apax dlplc
+  compile_and_load_all_init:
+    - apax hw_compile
+    - apax hw_load_init
+    - apax dlplc
 
   monitor:
-    - apax mon --target $IP_ADDRESS --certificate $TLS_IMPORT_CERTFILE --password $MASTER_PW --input ./variables.mon --continuous
-
-
+    - apax mon --target $IP_ADDRESS --certificate $TLS_CONNECT_CERTFILE --input watchlist/conveyor.mon --continuous -u "$USER_NAME" --password "$USER_PASSWORD"

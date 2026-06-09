@@ -19,18 +19,18 @@ NAMESPACE ControlModules
 
         /// Commands the elevator to move upward continuously until upper limit is reached
         /// Enables movement without a specific target position
-        /// @param velocity: Velocity for upward movement
         METHOD  MoveUp 
             VAR_INPUT
+                /// Velocity for upward movement
                 velocity : INT;
             END_VAR
         END_METHOD
 
         /// Commands the elevator to move downward continuously until lower limit is reached
         /// Enables movement without a specific target position
-        /// @param velocity: Velocity for downward movement
         METHOD  MoveDown
             VAR_INPUT
+                /// Velocity for downward movement
                 velocity : INT;
             END_VAR
         END_METHOD

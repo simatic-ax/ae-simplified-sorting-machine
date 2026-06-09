@@ -265,11 +265,24 @@ To give a example how it can be imported and used, here is a workflow prepared f
 1. Compile hardware with `apax hw_compile`
 1. The Hardware ID will be generated automatically and can be found under [.\SystemConstants\PLC_1_HwIdentifiers.st](SystemConstants\PLC_1_HwIdentifiers.st).
 
+## Ladder Diagram Logic (xLAD) Implementation
+
+This project includes a Ladder Diagram (LD) logic implementation using the xLad Extension, located, for example, in [src/packagingSortingMachine/BoxAmountTracker.ld](src/packagingSortingMachine/BoxAmountTracker.ld). The LD logic is designed for use with SIMATIC AX and demonstrates integration of classic PLC programming with modern, object-oriented Structured Text (ST) components.
+
+### BoxAmountTracker Function Block
+
+The `BoxAmountTracker` function block, implemented in xLAD, tracks the number of boxes of each type (X and Y) and provides a reset mechanism. It features:
+
+- **Inputs:**
+    - `addBoxY` (BOOL): Increments the count for Y-type boxes (e.g., yellow).
+    - `addBoxX` (BOOL): Increments the count for X-type boxes (e.g., green).
+    - `reset` (BOOL): Resets all box counters to zero.
+- **Outputs:**
+    - `storedBoxes` (of type `SortingMachine.typeStorageInterface`): Holds the current counts for total, X-type, and Y-type boxes.
 
 ## Requirements
 
 - AX Prerequisites: https://docs.industrial-operations-x.siemens.cloud/r/en-us/ax/get-started/2510/prerequisites
-- UE Prerequisites: https://docu.simatic-ue.siemens.io/learn/getting-started/getting-started-local-ue/webpage_docs/requirements/
 
 ### Links
 SINAMICS library: https://github.com/simatic-ax/sinamics-drive-functions

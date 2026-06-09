@@ -1,12 +1,32 @@
+# End of Input Conveyor queue
+ConveyorStation1BoxesInterface[0].posLeft
+ConveyorStation1BoxesInterface[0].isPresent
 
+# Start of Input Conveyor queue
+ConveyorStation1BoxesInterface[6].posLeft
+ConveyorStation1BoxesInterface[6].isPresent
+
+# Manual Box addition
+ApplicationCommand.newBoxX
+ApplicationCommand.newBoxY
+ApplicationCommand.newBoxRandom
+
+# Manual Commands
+ApplicationCommand.automatic
+ApplicationCommand.manual
+ApplicationCommand.resetAll
+ApplicationCommand.acknowledge
+
+# Machine Status
 MachineStatus
 
-elevatorComand
+# Feedback stored boxes
+StorageInterface.totalBoxes
 
-ConveyorStation1BoxesInterface[0]
+StorageInterface.totalBoxesX
+StorageInterface.totalBoxesY
 
-ConveyorStation1BoxesInterface[6]
-
-StorageInterface
-
-ApplicationCommand
+# Manual Elevator Control
+ElevatorComand.moveUp
+ElevatorComand.moveDown 
+ElevatorComand.stop 

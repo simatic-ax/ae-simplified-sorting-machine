@@ -53,11 +53,11 @@ NAMESPACE SortingMachine
         END_VAR
         /// Constructor - Initializes the base station with settings
         /// This method should only be used once during startup
-        /// @param stationID: Unique identifier for this station
-        /// @param stationPosLeft: Position of station in relation to left reference
         METHOD PROTECTED CONSTRUCTOR
             VAR_INPUT
+                /// Unique identifier for this station
                 stationID : UINT;
+                /// Position of station in relation to left reference
                 stationPosLeft : INT;
             END_VAR
             _stationPosLeft := stationPosLeft;
@@ -77,8 +77,8 @@ NAMESPACE SortingMachine
             _enable := FALSE;
         END_METHOD
 
-        /// Gets the current enable state of the station
-        /// @return: TRUE if station is enabled, FALSE if disabled
+        /// Gets the current enable state of the station.
+        /// TRUE if station is enabled, FALSE if disabled
         METHOD PUBLIC GetEnable : BOOL
             GetEnable := _enable;
         END_METHOD
@@ -95,32 +95,30 @@ NAMESPACE SortingMachine
             THIS.clearError();
         END_METHOD
 
-        /// Gets the ready status of the station
-        /// @return: TRUE if station is ready for operation, FALSE otherwise
+        /// Gets the ready status of the station.
+        /// TRUE if station is ready for operation, FALSE otherwise
         METHOD PUBLIC GetIsReady : BOOL 
             GetIsReady := _ready;
         END_METHOD
 
-        /// Gets the busy/processing status of the station
-        /// @return: TRUE if station is currently processing, FALSE if idle
+        /// Gets the busy/processing status of the station.
+        /// TRUE if station is currently processing, FALSE if idle
         METHOD PUBLIC GetIsBusy : BOOL
             GetIsBusy := _busy;
         END_METHOD
 
-        /// Gets the error status of the station
-        /// @return: TRUE if an error has occurred, FALSE if operating normally
+        /// Gets the error status of the station.
+        /// TRUE if an error has occurred, FALSE if operating normally
         METHOD PUBLIC GetError : BOOL
             GetError := _error;
         END_METHOD
 
-        /// Gets the current error code if an error has occurred
-        /// @return: Error code (typeStationStatus) indicating the type of error
+        /// Gets the current error code if an error has occurred.
         METHOD PUBLIC GetStatus : typeStationStatus
             GetStatus := _status;
         END_METHOD
 
         /// Gets the error code and status of the station using defined type
-        /// @return: typeStationInterface containing both error flag and status code
         METHOD PUBLIC GetErrorAndStatus : typeStatusInterface
             VAR_TEMP
                 status : typeStatusInterface;
@@ -131,25 +129,24 @@ NAMESPACE SortingMachine
             GetErrorAndStatus := status;
         END_METHOD
 
-        /// Gets the current station ID
-        /// @return: Station ID (UINT) assigned to this station
+        /// Gets the current Station ID (UINT) assigned to this station
         METHOD PUBLIC GetStationID : UINT
             GetStationID := _stationID;
         END_METHOD
 
         /// Set manual mode active state
-        /// @param manualModeActvEn: TRUE to activate manual mode, FALSE to deactivate
         METHOD PUBLIC SetManualModeActive
             VAR_INPUT
+                /// TRUE to activate manual mode, FALSE to deactivate
                 manualModeActvEn : BOOL;
             END_VAR
             _manualModeEn := manualModeActvEn;
         END_METHOD
 
         /// Sets an error condition with error code
-        /// @param errorCode: Error code to set
         METHOD PROTECTED setError
             VAR_INPUT
+                // Error code to set
                 errorCode : typeStationStatus;
             END_VAR
             _error := TRUE;
@@ -166,9 +163,9 @@ NAMESPACE SortingMachine
             _state := typeStationState#STATE_IDLE;
         END_METHOD
 
-        /// Handles common reset functionality
-        /// Should be called by derived classes in their Execute method
-        /// @return: TRUE if reset was triggered this cycle, FALSE otherwise
+        /// Handles common reset functionality.
+        /// Should be called by derived classes in their Execute method.
+        /// TRUE if reset was triggered this cycle, FALSE otherwise
         METHOD PROTECTED handleReset : BOOL
             // Call trigger for reset so it only works on rising edge
             _resetTrigger(signal := _reset);

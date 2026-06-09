@@ -33,9 +33,9 @@ NAMESPACE SortingMachine
         END_VAR
 
         /// Constructor to configure the box generator
-        /// @param config: Configuration structure with default values and color settings
         METHOD PUBLIC CONSTRUCTOR
             VAR_INPUT
+                /// Configuration structure with default values and color settings
                 config : BoxGeneratorConfig;
             END_VAR
             _config := config;
@@ -43,17 +43,17 @@ NAMESPACE SortingMachine
         END_METHOD
 
         /// Constructor with individual parameters for convenience
-        /// @param defaultWidth: Default width for all generated boxes
-        /// @param defaultStartPosition: Default start position for all generated boxes
-        /// @param colorX: Color code for X-type boxes
-        /// @param colorY: Color code for Y-type boxes
-        /// @param startingId: Starting ID for box numbering
         METHOD PUBLIC CONSTRUCTOR
             VAR_INPUT
+                /// Default width for all generated boxes
                 defaultWidth : INT;
+                /// Default start position for all generated boxes
                 defaultStartPosition : INT;
+                /// Color code for X-type boxes
                 colorX : WSTRING;
+                /// Color code for Y-type boxes
                 colorY : WSTRING;
+                /// Starting ID for box numbering
                 startingId : UINT := UINT#1;
             END_VAR
             _config.defaultWidth := defaultWidth;
@@ -66,16 +66,17 @@ NAMESPACE SortingMachine
         END_METHOD
 
         /// Create a new box
-        /// @param customId: Optional custom ID, if 0 uses auto-increment
-        /// @param customStartPos: Optional custom start position, if 0 uses default
-        /// @return: New BasicBox instance configured as X-type
         METHOD PRIVATE CreateBox
             VAR_INPUT
+                /// Optional custom ID, if 0 uses auto-increment
                 customId : UINT := UINT#0;
+                /// Optional custom start position, if 0 uses default
                 customStartPos : INT := 0;
+                /// Color to use for the box
                 customColor : WSTRING;
             END_VAR
             VAR_IN_OUT
+                /// New BasicBox instance configured as specified
                 newBox : BasicBox;
             END_VAR
             
@@ -110,18 +111,17 @@ NAMESPACE SortingMachine
         END_METHOD
 
         /// Create a new X-type box (typically green)
-        /// @param customId: Optional custom ID, if 0 uses auto-increment
-        /// @param customStartPos: Optional custom start position, if 0 uses default
-        /// @return: New BasicBox instance configured as X-type
         METHOD PUBLIC CreateBoxX
             VAR_INPUT
+                /// Optional custom ID, if 0 uses auto-increment
                 customId : UINT := UINT#0;
+                /// Optional custom start position, if 0 uses default
                 customStartPos : INT := 0;
             END_VAR
             VAR_IN_OUT
+                /// New BasicBox instance configured as X-type
                 newBox : BasicBox;
             END_VAR
-            
             
             THIS.CreateBox(
                 customId := customId, 
@@ -131,17 +131,17 @@ NAMESPACE SortingMachine
         END_METHOD
 
         /// Create a new Y-type box (typically yellow)
-        /// @param customId: Optional custom ID, if 0 uses auto-increment
-        /// @param customWidth: Optional custom width, if 0 uses default
-        /// @param customStartPos: Optional custom start position, if 0 uses default
-        /// @return: New BasicBox instance configured as Y-type
         METHOD PUBLIC CreateBoxY
             VAR_INPUT
+                /// Optional custom ID, if 0 uses auto-increment
                 customId : UINT := UINT#0;
+                /// Optional custom width, if 0 uses default (currently unused)
                 customWidth : INT := 0;
+                /// Optional custom start position, if 0 uses default
                 customStartPos : INT := 0;
             END_VAR
             VAR_IN_OUT
+                /// New BasicBox instance configured as Y-type
                 newBox : BasicBox;
             END_VAR
                         
@@ -153,22 +153,20 @@ NAMESPACE SortingMachine
         END_METHOD
 
         /// Create a random box (randomly X-type or Y-type)
-        /// @param customId: Optional custom ID, if 0 uses auto-increment
-        /// @param customWidth: Optional custom width, if 0 uses default
-        /// @param customStartPos: Optional custom start position, if 0 uses default
-        /// @return: New BasicBox instance with random type (X or Y)
         METHOD PUBLIC CreateRandomBox
             VAR_INPUT
+                /// Optional custom ID, if 0 uses auto-increment
                 customId : UINT := UINT#0;
+                /// Optional custom start position, if 0 uses default
                 customStartPos : INT := 0;
             END_VAR
             VAR_IN_OUT
+                /// New BasicBox instance with random type (X or Y)
                 newBox : BasicBox;
             END_VAR
             VAR_TEMP
                 randomValue : UDINT;
                 useColor : WSTRING;
-
             END_VAR
             
             // Generate random value using simple linear congruential generator
@@ -189,30 +187,28 @@ NAMESPACE SortingMachine
         END_METHOD
 
         /// Get the current configuration
-        /// @return: Current BoxGeneratorConfig
         METHOD PUBLIC GetConfig : BoxGeneratorConfig
             GetConfig := _config;
         END_METHOD
 
         /// Update the configuration
-        /// @param config: New configuration to apply
         METHOD PUBLIC SetConfig
             VAR_INPUT
+                /// New configuration to apply
                 config : BoxGeneratorConfig;
             END_VAR
             _config := config;
         END_METHOD
 
-        /// Get the current ID counter value
-        /// @return: Current ID that would be used for the next box
+        /// Get the current ID that would be used for the next box
         METHOD PUBLIC GetCurrentId : UINT
             GetCurrentId := _currentId;
         END_METHOD
 
         /// Set the current ID counter
-        /// @param newId: New ID value to use for subsequent boxes
         METHOD PUBLIC SetCurrentId
             VAR_INPUT
+                /// New ID value to use for subsequent boxes
                 newId : UINT;
             END_VAR
             _currentId := newId;

@@ -1,0 +1,39 @@
+#Version: 2.0
+
+GraphicLibraries:
+  GlobalGraphicLibrary:
+    DefaultLanguage: en-US
+    Languages:
+    - en-US
+    Type: Graphic
+    Entries:
+      Menu:
+        BinaryType: Embedded
+        Resource AS DynStringArray:
+        - Configuration/ExternalFiles/Graphics/Menu_1.svg
+        Format: svg
+      Machine-Building_pos_rgb:
+        BinaryType: Embedded
+        Resource AS DynStringArray:
+        - Configuration/ExternalFiles/Graphics/Machine-Building_pos_rgb_1.png
+        Format: png
+      Technical-Data_pos_rgb:
+        BinaryType: Embedded
+        Resource AS DynStringArray:
+        - Configuration/ExternalFiles/Graphics/Technical-Data_pos_rgb_1.png
+        Format: png
+      Technical-Topics_pos_rgb:
+        BinaryType: Embedded
+        Resource AS DynStringArray:
+        - Configuration/ExternalFiles/Graphics/Technical-Topics_pos_rgb_1.png
+        Format: png
+      Hand:
+        BinaryType: Embedded
+        Resource AS DynStringArray:
+        - Configuration/ExternalFiles/Graphics/Hand.svg
+        Format: svg
+      Home:
+        BinaryType: Embedded
+        Resource AS DynStringArray:
+        - Configuration/ExternalFiles/Graphics/Home.svg
+        Format: svg
