@@ -1,0 +1,191 @@
+#Version: 2.0
+
+StaticArtifacts:
+  Driver2:
+    ObjectType: IowaInternalDP
+    StructureType: DriverCommon
+    ESOrigin: S7PlusCommunication # DFP generated - DO NOT REMOVE
+    .OV:
+      DataType: DTUSInt
+      Alarms:
+        DriverManagerOverloadAlarm:
+          ObjectType: HmiAnalogAlarm
+          ParentID: 18
+          AlarmClass: SystemAlarm
+          SourceType: TAG
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_30
+          AlarmParameterTags:
+          - Driver2#Name
+          - '@ServerMachineName_1#Value'
+          Condition: EQ
+          InitialConditionValue: 1
+          Area: System/HMI/DriverCommunication
+          ID: DriverManagerOverloadAlarm
+        DriverManagerOverloadWarning:
+          ObjectType: HmiAnalogAlarm
+          ParentID: 18
+          AlarmClass: SystemNotification
+          SourceType: TAG
+          SystemSeverity: 0
+          EventText: AlarmTextLibrary.Entry_31
+          AlarmParameterTags:
+          - Driver2#Name
+          - '@ServerMachineName_1#Value'
+          Condition: EQ
+          InitialConditionValue: 2
+          Area: System/HMI/DriverCommunication
+          ID: SystemDisconnectedAlarm
+  Conn_event_0_1_to_driver_2_1:
+    ObjectType: IowaInternalDP
+    StructureType: ManagerConnections
+    ESOrigin: S7PlusCommunication # DFP generated - DO NOT REMOVE
+    .ManagerName:
+      DataType: DTString
+      InitialValue: S7PDriver_2
+    .ManagerConnected:
+      DataType: DTBool
+      Alarms:
+        DriverManagerAlarm:
+          ObjectType: HmiBinaryAlarm
+          ParentID: 6
+          AlarmClass: SystemAlarm
+          SourceType: TAG
+          SystemSeverity: 132
+          EventText: AlarmTextLibrary.Entry_22
+          AlarmParameterTags:
+          - Conn_event_0_1_to_driver_2_1.ManagerName#Value
+          - '@ServerMachineName_1#Value'
+          ConditionPattern: 0
+          Area: System/HMI/DriverCommunication
+          ID: DriverManagerAlarm
+  Driver_2:
+    ObjectType: S7HmiConnection
+    ESOrigin: S7PlusCommunication # DFP generated - DO NOT REMOVE
+    ManagerNumber: 2
+  HMI_Connection_2:
+    ObjectType: S7PlusHmiConnection
+    ESOrigin: S7PlusCommunication # DFP generated - DO NOT REMOVE
+    ManagerNumber: 2
+    Alarms:
+      PlcDisconnectedAlarm:
+        ObjectType: HmiDiscreteAlarm
+        ParentID: 524565
+        AlarmClass: SystemAlarm
+        SourceType: TAG
+        SystemSeverity: 130
+        EventText: S7PlusAlarmTextLibrary.Entry_130
+        AlarmParameterTags:
+        - HMI_Connection_2#Name
+        - HMI_Connection_2#FailureTextList
+        - HMI_Connection_2#FailureReason
+        - HMI_Connection_2#FailureSourceAndErrorCode
+        - '@ServerMachineName_1#Value'
+        ConditionPattern: b000000000000000000000000000001XX
+        Area: System/HMI/DriverCommunication
+        Origin: '@S1%s@:@1%s@'
+        ID: SystemAlarmIDPlcDisconnected_S7P
+      PlcInStopAlarm:
+        ObjectType: HmiBinaryAlarm
+        ParentID: 65816
+        AlarmClass: SystemAlarm
+        SourceType: TAG
+        SystemSeverity: 0
+        EventText: AlarmTextLibrary.Entry_129
+        AlarmParameterTags:
+        - HMI_Connection_2#Name
+        - '@ServerMachineName_1#Value'
+        Origin: '@S1%s@:@1%s@'
+        ConditionPattern: 1
+        Area: System/HMI/DriverCommunication
+        ID: SystemAlarmIDPlcInStop_S7P
+      FTADisabledNotification:
+        ObjectType: HmiBinaryAlarm
+        ParentID: 66570
+        AlarmClass: SystemNotification
+        SourceType: TAG
+        SystemSeverity: 0
+        EventText: S7PlusAlarmTextLibrary.Entry_240
+        AlarmParameterTags:
+        - HMI_Connection_2#Name
+        Origin: '@S1%s@:@1%s@'
+        ConditionPattern: 1
+        Area: System/HMI/DriverCommunication
+        ID: SystemAlarmIDFtaDisabled_S7P
+      PlcResOverloadNotification:
+        ObjectType: HmiBinaryAlarm
+        ParentID: 66569
+        AlarmClass: SystemNotification
+        SourceType: TAG
+        SystemSeverity: 0
+        EventText: S7PlusAlarmTextLibrary.Entry_250
+        AlarmParameterTags:
+        - HMI_Connection_2#Name
+        - HMI_Connection_2#PlcTagResMax
+        Origin: '@S1%s@:@1%s@'
+        ConditionPattern: 1
+        Area: System/HMI/DriverCommunication
+        ID: SystemAlarmIDPlcResOverload_S7P
+      TimeCorrectionAlarm:
+        ObjectType: HmiBinaryAlarm
+        ParentID: 65824
+        AlarmClass: SystemAlarm
+        SourceType: TAG
+        SystemSeverity: 0
+        EventText: S7PlusAlarmTextLibrary.Entry_251
+        AlarmParameterTags:
+        - HMI_Connection_2#Name
+        - '@ServerMachineName_1#Value'
+        Origin: '@S1%s@:@1%s@'
+        ConditionPattern: 1
+        Area: System/HMI/DriverCommunication
+        ID: SystemAlarmTimeCorrectionAlarm_S7P
+  HMI_Connection_2_CentralAlarm:
+    ObjectType: HmiSimpleTag
+    DataType: Bool
+    ESOrigin: S7PlusCommunication # DFP generated - DO NOT REMOVE
+    Address: 0001:AL_FT
+    Connection: HMI_Connection_2
+    AcquisitionMode: ExternAlert
+    ControllerDataType: Undefined
+    ManagerNumber: 2
+    Alarms:
+      HMI_Connection_2_CentralAlarm:
+        ObjectType: HmiBinaryAlarm
+        ParentID: 1
+        AlarmClass: Notification
+        SourceType: CONTROLLER
+        SystemSeverity: 0
+        ConditionPattern: 1
+        MultiInstance: true
+        EventText: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText1: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText2: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText3: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText4: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText5: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText6: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText7: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText8: S7PlusAlarmTextLibrary.Entry_30
+        AlarmText9: S7PlusAlarmTextLibrary.Entry_30
+        InfoText: S7PlusAlarmTextLibrary.Entry_30
+        Area: System/HMI/DriverCommunication
+        Origin: '@S1%s@:HMI_Connection_2'
+  '@HMI_Connection_2_PLC_OpState':
+    ObjectType: HmiSimpleTag
+    DataType: DInt
+    ESOrigin: S7PlusCommunication # DFP generated - DO NOT REMOVE
+    Address: 0001:ST:0.0.0
+    Connection: HMI_Connection_2
+    AcquisitionMode: OnChange
+    ControllerDataType: S7PTransOpStateType
+    ManagerNumber: 2
+  '@HMI_Connection_2_PLC_OpStateCtrl':
+    ObjectType: HmiSimpleTag
+    DataType: DInt
+    ESOrigin: S7PlusCommunication # DFP generated - DO NOT REMOVE
+    Address: 0001:ST:0.1.0
+    Connection: HMI_Connection_2
+    AcquisitionMode: OnChange
+    ControllerDataType: S7PTransOpStateCtrlType
+    ManagerNumber: 2

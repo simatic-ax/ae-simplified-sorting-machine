@@ -1,0 +1,25 @@
+#Version: 2.0
+
+Runtime:
+  mtp1500:
+    SystemID: 1
+    DefaultLanguage: en-US
+    Languages:
+    - en-US
+    InitialLoggingLanguages:
+    - en-US
+    DefinitionFiles:
+    - '**/*.type.yml'
+    Files:
+    - '**/*.hmi.yml'
+    SymbolFiles:
+    - '**/*.sym.yml'
+    StyleFiles:
+    - '**/*.style.xml'
+    CurrentStyle: ExtendedStyle
+    CustomWebControls:
+    - '**/*.manifest.json'
+    ScriptFiles:
+    - '**/*.ts'
+    - '**/*.js'
+    ExcludedFiles: []

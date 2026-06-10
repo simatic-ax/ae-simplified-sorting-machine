@@ -1,0 +1,9 @@
+{
+    "files.readonlyInclude": {
+        "**/System/**": true,
+        "**/device.test.yml": true,
+        "**/device.yml": true,
+        "**/id.ile.yml": true,
+        "**/*.bak": true
+    }
+}

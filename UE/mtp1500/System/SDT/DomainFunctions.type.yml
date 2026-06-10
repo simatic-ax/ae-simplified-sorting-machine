@@ -1,0 +1,163 @@
+#Version: 2.0
+
+StaticArtifacts:
+  RuntimeSystem:
+    ObjectType: DomainFunction
+    Active: True
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: True # PREDEFINED - please do NOT change/delete
+  AlarmService:
+    ObjectType: DomainFunction
+    Active: True
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: True # PREDEFINED - please do NOT change/delete
+  UserInterfaceScripting:
+    ObjectType: DomainFunction
+    Active: True
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: True # PREDEFINED - please do NOT change/delete
+    ComponentPath: Scripting
+    DBPRCV: 0.0.0.0
+  GlobalIDManagement:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  OpcUaCommunication:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 3
+    ManagerType: DRV
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  TagLogging:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 111
+    ManagerType: DATA
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  AlarmLogging:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 222
+    ManagerType: DATA
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  ContextLogging:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 127
+    ManagerType: DATA
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  S7Communication:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 1
+    ManagerType: DRV
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  S7PlusCommunication:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 2
+    ManagerType: DRV
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+    ComponentPath: S7Plus
+    DBPRCV: 0.0.0.0
+  StdModbusTCPCommunication:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 4
+    ManagerType: DRV
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+    ComponentPath: CSP/StdModbusTCP
+    DBPRCV: 0.0.0.0
+  AllenBradleyEIPCommunication:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 5
+    ManagerType: DRV
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+    ComponentPath: CSP/AllenBradleyEIP
+    DBPRCV: 0.0.0.0
+  OmronEIPCommunication:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 8
+    ManagerType: DRV
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+    ComponentPath: CSP/OmronEip
+    DBPRCV: 0.0.0.0
+  MitsubishiMCCommunication:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 7
+    ManagerType: DRV
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+    ComponentPath: CSP/MitsubishiMC
+    DBPRCV: 0.0.0.0
+  MitsubishiiQCommunication:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 6
+    ManagerType: DRV
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+    ComponentPath: CSP/MitsubishiiQ
+    DBPRCV: 0.0.0.0
+  StdModbusRTUCommunication:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 9
+    ManagerType: DRV
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+    ComponentPath: CSP/StdModbusRTU
+    DBPRCV: 0.0.0.0
+  Distribution:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 1
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  SecureCommunication:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  SystemDiagnostics:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+    ComponentPath: Diagnostics
+    DBPRCV: 0.0.0.0
+  ParameterControl:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+    ComponentPath: PACO
+    DBPRCV: 2.0.0.0
+  JobScheduler:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+  RTS:
+    ObjectType: DomainFunction
+    Active: True
+    ManagerNumber: 22
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete
+    ComponentPath: VCS
+    DBPRCV: 0.0.0.0
+  OpcUaServer:
+    ObjectType: DomainFunction
+    Active: False
+    ManagerNumber: 0
+    ManagerType: API
+    Mandatory: False # PREDEFINED - please do NOT change/delete

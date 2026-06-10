@@ -23,16 +23,17 @@ NAMESPACE ControlModules
             _defaultVelocity : INT;
         END_VAR
         /// Configures the SinaSpeed drive parameters and elevator limits
-        /// @param sinaSpeedConfig: Configuration for SinaSpeed axis parameters
-        /// @param sinaRefSpeed: Reference speed for the drive in engineering units
-        /// @param hwidSTW: Hardware ID of the SIMATIC S7-1200/1500 setpoint slot
-        /// @param hwidZSW: Hardware ID of the SIMATIC S7-1200/1500 actual value slot
         METHOD PUBLIC SetConfigSina
             VAR_INPUT
+                /// Configuration for SinaSpeed axis parameters
                 sinaSpeedConfig : SinaSpeedConfiguration;
+                /// Reference speed for the drive in engineering units
                 sinaRefSpeed : REAL;
+                /// Default velocity for the elevator
                 defaultVelocity : INT;
+                /// Hardware ID of the SIMATIC S7-1200/1500 setpoint slot
                 hwidSTW : UINT;
+                /// Hardware ID of the SIMATIC S7-1200/1500 actual value slot
                 hwidZSW : UINT;
             END_VAR
             // Set sina settings
@@ -59,9 +60,9 @@ NAMESPACE ControlModules
 
         /// Commands the elevator to move upward continuously until upper limit is reached
         /// Enables movement without a specific target position
-        /// @param velocity: Velocity for upward movement (absolute value will be used)
         METHOD PUBLIC OVERRIDE MoveUp
             VAR_INPUT
+                /// Velocity for upward movement (absolute value will be used)
                 velocity : INT;
             END_VAR
             VAR_TEMP
@@ -85,9 +86,9 @@ NAMESPACE ControlModules
 
         /// Commands the elevator to move downward continuously until lower limit is reached
         /// Enables movement without a specific target position
-        /// @param velocity: Velocity for downward movement (absolute value will be used)
         METHOD PUBLIC OVERRIDE MoveDown
             VAR_INPUT
+                /// Velocity for downward movement (absolute value will be used)
                 velocity : INT;
             END_VAR
             VAR_TEMP

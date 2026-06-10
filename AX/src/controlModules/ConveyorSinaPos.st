@@ -25,15 +25,15 @@ NAMESPACE ControlModules
         END_VAR
         
         /// Configures the SinaPos drive parameters and hardware connections
-        /// @param configSinaPos: Configuration for axis parameters
-        /// @param hwidSTW: Hardware ID of the SIMATIC S7-1200/1500 setpoint slot
-        /// @param hwidZSW: Hardware ID of the SIMATIC S7-1200/1500 actual value slot
-        /// @param mode: Set Sina Pos mode of operation
         METHOD PUBLIC SetConfigSina
             VAR_INPUT
+                /// Configuration for axis parameters
                 configSinaPos : SinaPosConfiguration;
+                /// Hardware ID of the SIMATIC S7-1200/1500 setpoint slot
                 hwidSTW : UINT;
+                /// Hardware ID of the SIMATIC S7-1200/1500 actual value slot
                 hwidZSW : UINT;
+                /// Set Sina Pos mode of operation
                 mode : SinaPosMode;
             END_VAR
             _sinaPosDrive.config := configSinaPos;
@@ -49,11 +49,12 @@ NAMESPACE ControlModules
             _enable := FALSE;
         END_METHOD
 
-        /// Moves the drive at a specified constant velocity
-        /// Sets the drive to jog mode and starts continuous movement
-        /// @return: TRUE if movement command was accepted, FALSE otherwise
+        /// Moves the drive at a specified constant velocity.
+        /// Sets the drive to jog mode and starts continuous movement.
+        /// TRUE if movement command was accepted, FALSE otherwise
         METHOD PUBLIC OVERRIDE MoveVelocity : BOOL
             VAR_INPUT
+                /// Velocity for the movement
                 velocity    : INT;
             END_VAR
             // Clear possible remaining commands befor triggering new commands
@@ -65,14 +66,14 @@ NAMESPACE ControlModules
             MoveVelocity := TRUE;
         END_METHOD
 
-        /// Executes a relative positioning movement
-        /// Moves the drive by a specified increment from current position
-        /// @param posIncrement: Position increment in LU to move relative to current position
-        /// @param velocity: Velocity for the movement (uses last velocity if 0)
-        /// @return: TRUE if movement command was accepted, FALSE otherwise
+        /// Executes a relative positioning movement.
+        /// Moves the drive by a specified increment from current position.
+        /// TRUE if movement command was accepted, FALSE otherwise
         METHOD PUBLIC OVERRIDE PosRelative : BOOL
             VAR_INPUT
+                /// Position increment in LU to move relative to current position
                 posIncrement   : INT;
+                /// Velocity for the movement (uses last velocity if 0)
                 velocity    : INT   := INT#0;
             END_VAR
             // Clear actual commands before starting new command
@@ -90,13 +91,14 @@ NAMESPACE ControlModules
         END_METHOD
 
     
-        /// Executes an absolute positioning movement
-        /// Moves the drive to a specified absolute position
-        /// @param targetPos: Target position for the movement
-        /// @return: TRUE if movement command was accepted, FALSE otherwise
+        /// Executes an absolute positioning movement.
+        /// Moves the drive to a specified absolute position.
+        /// TRUE if movement command was accepted, FALSE otherwise
         METHOD PUBLIC OVERRIDE PosAbsolute : BOOL
             VAR_INPUT
+                /// Target position for the movement
                 targetPos : INT;
+                /// Velocity for the movement (optional)
                 velocity : INT := INT#0;
             END_VAR
             // Clear actual commands before starting new command
@@ -123,8 +125,8 @@ NAMESPACE ControlModules
         END_METHOD
 
 
-        /// Checks if the drive axis has been referenced/homed
-        /// @return: TRUE if axis is referenced and ready for positioning, FALSE otherwise
+        /// Checks if the drive axis has been referenced/homed.
+        /// Returns TRUE if axis is referenced and ready for positioning, FALSE otherwise
         METHOD PUBLIC IsHomed : BOOL
             IsHomed := _sinaPosDrive.axisReferenced;
         END_METHOD

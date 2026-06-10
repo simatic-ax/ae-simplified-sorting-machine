@@ -1,0 +1,175 @@
+{
+  "name": "mtp1500",
+  "version": "0.0.0",
+  "lockFileVersion": "2",
+  "installStrategy": "strict",
+  "root": {
+    "name": "mtp1500",
+    "version": "0.0.0",
+    "dependencies": {
+      "@ue/code.elements": "^4.2.2",
+      "@ue/open.elements": "^3.2.2",
+      "@ue/es-support-packages-hmiscada-v20.0.0.2": "^3.0.0"
+    }
+  },
+  "packages": {
+    "@ue/code.elements": {
+      "name": "@ue/code.elements",
+      "version": "4.2.2",
+      "integrity": "sha512-UrPU/fFsbXtpW6IlqVdixyKexyuVx/y60o73JGi+YBupTN2ceiQ73yTBiH1JEo9tlbfYCK9kddMsvH6HK+Qf8g==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/code.elements/-/code.elements-4.2.2.tgz",
+      "dependencies": {
+        "@ue/code.elements-win-x64": "4.2.2",
+        "@ue/code.elements-linux-x64": "4.2.2"
+      }
+    },
+    "@ue/code.elements-linux-x64": {
+      "name": "@ue/code.elements-linux-x64",
+      "version": "4.2.2",
+      "integrity": "sha512-65z/x6Pk+ggsilM4Yx3DWBSCdOMNF8NN+8fFNV+MGXm9OSge6H+Za8MMaRSOzEJKQuPsVdc8QXvxzB/EklbHJA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/code.elements-linux-x64/-/code.elements-linux-x64-4.2.2.tgz",
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {
+        "@ue/unified-cli-formatter": "^2.1.1"
+      }
+    },
+    "@ue/code.elements-win-x64": {
+      "name": "@ue/code.elements-win-x64",
+      "version": "4.2.2",
+      "integrity": "sha512-FkWwMKpLKTv2VZcXhWvbg2HFYEilC5NFRugB7F7M08k19WHS5a0dGdxJFFxqvPLoE+8LnOr6n0+PT/SeaOM4YA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/code.elements-win-x64/-/code.elements-win-x64-4.2.2.tgz",
+      "os": [
+        "win32"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {
+        "@ue/unified-cli-formatter": "^2.1.1"
+      }
+    },
+    "@ue/codesupportsnippets-hmiscada-v20.0.0.2": {
+      "name": "@ue/codesupportsnippets-hmiscada-v20.0.0.2",
+      "version": "1.1.0",
+      "integrity": "sha512-KP9vahcWWq780qXdDmzdYbe3GhGBP54DJg1U9ChUVsqL/kMh09Sx7hJaDooHED0sIdspUBBfXk1G55EGo45qCg==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/codesupportsnippets-hmiscada-v20.0.0.2/-/codesupportsnippets-hmiscada-v20.0.0.2-1.1.0.tgz",
+      "dependencies": {}
+    },
+    "@ue/customwidgets-hmiscada-v20.0.0.2": {
+      "name": "@ue/customwidgets-hmiscada-v20.0.0.2",
+      "version": "1.0.1",
+      "integrity": "sha512-l27Xq/t8NcEfnUbDXpabr0emyESYZSGzjSncUAos4okHWOfQQuMwSacX15CEgxdS4TjG9n7sylTt7jYkt0ncpw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/customwidgets-hmiscada-v20.0.0.2/-/customwidgets-hmiscada-v20.0.0.2-1.0.1.tgz",
+      "dependencies": {}
+    },
+    "@ue/es-support-packages-hmiscada-v20.0.0.2": {
+      "name": "@ue/es-support-packages-hmiscada-v20.0.0.2",
+      "version": "3.0.0",
+      "integrity": "sha512-lTI4QDxgk713tFTE2S3WECP1LCL6xSDC6t0XliMo9x5OHz8CB6x493sO08vCglBrqS+x/zvUTjMg4Xg/oTQ5sw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/es-support-packages-hmiscada-v20.0.0.2/-/es-support-packages-hmiscada-v20.0.0.2-3.0.0.tgz",
+      "dependencies": {
+        "@ue/codesupportsnippets-hmiscada-v20.0.0.2": "1.1.0",
+        "@ue/customwidgets-hmiscada-v20.0.0.2": "1.0.1",
+        "@ue/model-hmiscada-v20.0.0.2": "4.0.0",
+        "@ue/scriptingobjectmodels-hmiscada-v20.0.0.2": "1.0.0",
+        "@ue/systemstyles-hmiscada-v20.0.0.2": "1.0.0",
+        "@ue/validationrules-hmiscada-v20.0.0.2": "1.3.0",
+        "@ue/webcctypes-hmiscada-v20.0.0.2": "1.0.0",
+        "@ue/scripting-types-hmiscada-v20.0.0.2": "2.0.0"
+      }
+    },
+    "@ue/model-hmiscada-v20.0.0.2": {
+      "name": "@ue/model-hmiscada-v20.0.0.2",
+      "version": "4.0.0",
+      "integrity": "sha512-hvVxjNCAr5B3NRMsyoDRLf6VOsKD7qV1LeybHT4+aC5jHB3ngfqggvVo3AKkT2S/8iYtbu7mHXo6Ya6VfT8Cvw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/model-hmiscada-v20.0.0.2/-/model-hmiscada-v20.0.0.2-4.0.0.tgz",
+      "dependencies": {}
+    },
+    "@ue/open.elements": {
+      "name": "@ue/open.elements",
+      "version": "3.2.2",
+      "integrity": "sha512-zZ8f6eaHlBmzxWANeuFDA4yjIuXhhWBE7Ema5lDYUmMNT+UjubVLZUEOFI1hhttbiR3ZnqJbV8DknXMXf3m6Fw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/open.elements/-/open.elements-3.2.2.tgz",
+      "dependencies": {
+        "@ue/code.elements": "^3.0.0 || ^4.0.0",
+        "@ue/unified-cli-formatter": "^2.1.0",
+        "@ue/open.elements-win-x64": "3.2.2",
+        "@ue/open.elements-linux-x64": "3.2.2"
+      }
+    },
+    "@ue/open.elements-linux-x64": {
+      "name": "@ue/open.elements-linux-x64",
+      "version": "3.2.2",
+      "integrity": "sha512-NBQEGneyTLDF86gLSqnSJ6pCY2X90q0H08HKr4m++nxLOSDavVJulK2n7sPXYCoLM/QPlhrgI9nv7fQbom54Kw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/open.elements-linux-x64/-/open.elements-linux-x64-3.2.2.tgz",
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {}
+    },
+    "@ue/open.elements-win-x64": {
+      "name": "@ue/open.elements-win-x64",
+      "version": "3.2.2",
+      "integrity": "sha512-VWzKwFD+jLROuwDfU/+GeiMU3YE2McsTEzH9gX3HPth8xZlbflpxc3sEZ3dy2JGr9pv0n7DmJ2mq4HaTOWHlbQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/open.elements-win-x64/-/open.elements-win-x64-3.2.2.tgz",
+      "os": [
+        "win32"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {}
+    },
+    "@ue/scripting-types-hmiscada-v20.0.0.2": {
+      "name": "@ue/scripting-types-hmiscada-v20.0.0.2",
+      "version": "2.0.0",
+      "integrity": "sha512-Kg6LDFmoY3wQ09yX34C6yusJuk1+lHB55/9GpO1V0AsFhE57ouSA11/CKq94lHUufDphN32IpIl1Nhr+hWfisQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/scripting-types-hmiscada-v20.0.0.2/-/scripting-types-hmiscada-v20.0.0.2-2.0.0.tgz",
+      "dependencies": {}
+    },
+    "@ue/scriptingobjectmodels-hmiscada-v20.0.0.2": {
+      "name": "@ue/scriptingobjectmodels-hmiscada-v20.0.0.2",
+      "version": "1.0.0",
+      "integrity": "sha512-SSt7wv5c4VqsC4peHTuvakIsw04NrM4pzyBGJymCCLULVen2B02BW7y8uo7VY+xficlAjrxTZIEH56r0+bnzgw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/scriptingobjectmodels-hmiscada-v20.0.0.2/-/scriptingobjectmodels-hmiscada-v20.0.0.2-1.0.0.tgz",
+      "dependencies": {}
+    },
+    "@ue/systemstyles-hmiscada-v20.0.0.2": {
+      "name": "@ue/systemstyles-hmiscada-v20.0.0.2",
+      "version": "1.0.0",
+      "integrity": "sha512-aZZTJV/uDE6838gdM9e29opjA6gNw60e1Pvigs+IpArTxXdleF9nm/md6peir3yif+7Kvjxeb2grfg6YfYAKjA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/systemstyles-hmiscada-v20.0.0.2/-/systemstyles-hmiscada-v20.0.0.2-1.0.0.tgz",
+      "dependencies": {}
+    },
+    "@ue/unified-cli-formatter": {
+      "name": "@ue/unified-cli-formatter",
+      "version": "2.1.5",
+      "integrity": "sha512-TdjKHR08wX95O3qHQSabRExSVMYXCxWN8u5QzZYRkdcNtXt8t9N7gDkfFg/vNuDbfBr314htfmdp/aca0mDZ5w==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/unified-cli-formatter/-/unified-cli-formatter-2.1.5.tgz",
+      "dependencies": {}
+    },
+    "@ue/validationrules-hmiscada-v20.0.0.2": {
+      "name": "@ue/validationrules-hmiscada-v20.0.0.2",
+      "version": "1.3.0",
+      "integrity": "sha512-wyYFhFT4EQIG/DEmry9J8r2RtDWVGD0hjHWu/+UOxz+3O540AhuHqOQGc39sbuZKrUkgxtZlzEZvE8IFVtrX5w==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/validationrules-hmiscada-v20.0.0.2/-/validationrules-hmiscada-v20.0.0.2-1.3.0.tgz",
+      "dependencies": {}
+    },
+    "@ue/webcctypes-hmiscada-v20.0.0.2": {
+      "name": "@ue/webcctypes-hmiscada-v20.0.0.2",
+      "version": "1.0.0",
+      "integrity": "sha512-BMbWYabtr4U+BnD6giky4E3200bLlur5BUWilfFvsrpetE4r2qgvBG2sc/vJasqwKlN124PClWHn2oiGuWXO1A==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ue/webcctypes-hmiscada-v20.0.0.2/-/webcctypes-hmiscada-v20.0.0.2-1.0.0.tgz",
+      "dependencies": {}
+    }
+  },
+  "workspaces": {}
+}

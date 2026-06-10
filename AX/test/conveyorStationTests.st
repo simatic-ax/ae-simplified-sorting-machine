@@ -4,7 +4,7 @@ USING System.EdgeDetection;
 
 NAMESPACE Test
 
-    {TestFixture}
+{TestFixture}
 CLASS ConveyorStaitonTests
 
     VAR

@@ -57,6 +57,8 @@ NAMESPACE SortingMachine
             _elevatorDelayTime : TON;
             /// Coordinator was previously reset
             _prevReset : BOOL;
+            /// Box amount tracker
+            _boxAmountTracker : BoxAmountTracker;
             /// S7-1500 program Alarm for Automatic mode coordenator
             {S7.Alarm = NoAck, "Automatic Mode in Error"}
             alarmAutomaticMode : ProgramAlarm;
@@ -139,8 +141,7 @@ NAMESPACE SortingMachine
         // Remove boxes from output conveyor 2
         IF conveyorStation2.ReadyToRemoveBox() THEN
             conveyorStation2.RemoveBox();
-            storedBoxes.totalBoxesY := storedBoxes.totalBoxesY + 1;
-            storedBoxes.totalBoxes := storedBoxes.totalBoxes + 1;
+            _boxAmountTracker.addBoxY := TRUE;
         // Continue moving Conveyor
         ELSIF NOT conveyorStation2.GetIsMoving() THEN
             conveyorStation2.MoveIncrementForward();
@@ -149,11 +150,19 @@ NAMESPACE SortingMachine
         // Remove boxes from output conveyor 3
         IF conveyorStation3.ReadyToRemoveBox() THEN
             conveyorStation3.RemoveBox();
-            storedBoxes.totalBoxesX := storedBoxes.totalBoxesX + 1;
-            storedBoxes.totalBoxes := storedBoxes.totalBoxes + 1;
+            _boxAmountTracker.addBoxX := TRUE;
         // Continue moving Conveyor
         ELSIF NOT conveyorStation3.GetIsMoving() THEN
             conveyorStation3.MoveIncrementForward();
         END_IF;
+
+        // Track box additions
+        _boxAmountTracker(
+            reset := reset, 
+            storedBoxes => storedBoxes);
+        // Reset add box inputs for next cycle
+        _boxAmountTracker.addBoxX := FALSE;
+        _boxAmountTracker.addBoxY := FALSE;
+
     END_FUNCTION_BLOCK
 END_NAMESPACE

@@ -34,15 +34,15 @@ NAMESPACE SortingMachine
         END_VAR        
         
         /// Constructor - Initializes the elevator bi-state station
-        /// @param stationID: Unique identifier for this station
-        /// @param stationPosLeft: Position of station in relation to left reference
-        /// @param elevatorControl: Interface to the elevator control module
-        /// @param stationConfig: Configuration parameters for the station
         METHOD PUBLIC CONSTRUCTOR
             VAR_INPUT
+                /// Unique identifier for this station
                 stationID : UINT;
+                /// Position of station in relation to left reference
                 stationPosLeft : INT;
+                /// Interface to the elevator control module
                 elevatorControl : IElevator;
+                /// Configuration parameters for the station
                 stationConfig : typeElevatorBiStateStationConfig;
             END_VAR
             THIS.CONSTRUCTOR(stationID, stationPosLeft);
@@ -51,22 +51,20 @@ NAMESPACE SortingMachine
         END_METHOD
 
         /// Set elevator control interface
-        /// @param elevatorControl: Interface to the elevator control module
         METHOD PUBLIC SetElevatorControl
             VAR_INPUT
+                /// Interface to the elevator control module
                 elevatorControl : IElevator;
             END_VAR
             _elevatorControl := elevatorControl;
         END_METHOD
 
         /// Gets the box data currently handled by the elevator station
-        /// @return: Interface to the box data of the current box on the elevator
         METHOD PUBLIC GetBoxData : typeBoxData
             GetBoxData := _box.BoxData;
         END_METHOD
 
         /// Gets the actual position of the elevator
-        /// @return: Actual elevator position as calculated by the station
         METHOD PUBLIC GetElevatorPositionValue : INT
             GetElevatorPositionValue := _elevatorPosition;
         END_METHOD
@@ -88,7 +86,6 @@ NAMESPACE SortingMachine
 
         /// Gets the current elevator position as an enumerated value
         /// Converts numeric position to corresponding position enum based on configuration
-        /// @return: typeElevatorPosition enum value (HOME, WORK_POS_1, WORK_POS_2, or UNDEF)
         METHOD PUBLIC GetElevatorPositionEnum : typeElevatorPosition
             // Determine position based on configured positions
             IF _elevatorPosition = _stationConfig.PositionHome  THEN
@@ -104,11 +101,11 @@ NAMESPACE SortingMachine
         
         /// Try to add a new box to the elevator. A box can only be added when the elevator is at the right position
         /// and it is free.
-        /// @param newBox: IBasicBox interface containing the box data and triggers adding a new box
-        /// @return: TRUE if box added to the station. FALSE if rejected
+        /// TRUE if box added to the station. FALSE if rejected
         METHOD PUBLIC AddNewBox : BOOL
             VAR_INPUT
-            newBox : IBasicBox;
+                /// Interface to the new box to be added
+                newBox : IBasicBox;
             END_VAR
             IF newBox = NULL THEN
                 AddNewBox := FALSE;
@@ -126,16 +123,16 @@ NAMESPACE SortingMachine
             AddNewBox := TRUE;
         END_METHOD
 
-        /// Checks if the station is ready to receive a new box 
-        /// Box can only be added when elevator is at home position and no box is present
-        /// @return: TRUE if station is ready to remove the box, FALSE otherwise
+        /// Checks if the station is ready to receive a new box.
+        /// Box can only be added when elevator is at home position and no box is present.
+        /// TRUE if station is ready to remove the box, FALSE otherwise
         METHOD PUBLIC ReadyToRemoveBox : BOOL
             ReadyToRemoveBox := _readyToRemoveBox;
         END_METHOD
 
         /// Removes the box from the elevator station when ready
         /// Can only remove box when the station indicates it's ready for removal
-        /// @return: Interface to the removed box, or invalid interface if no box to remove
+        /// Returns the Interface to the removed box, or invalid interface if no box to remove
         METHOD PUBLIC RemoveBox : IBasicBox
             IF _readyToRemoveBox THEN
                 RemoveBox := (_box);
@@ -144,9 +141,9 @@ NAMESPACE SortingMachine
             END_IF;
         END_METHOD
 
-        /// Checks if the station is ready to receive a new box
-        /// Station is ready when no box is present and elevator is at home position
-        /// @return: TRUE if ready to receive a box, FALSE otherwise
+        /// Checks if the station is ready to receive a new box.
+        /// Station is ready when no box is present and elevator is at home position.
+        /// TRUE if ready to receive a box, FALSE otherwise
         METHOD PUBLIC ReadyToReciveBox : BOOL
             ReadyToReciveBox := NOT _box.BoxData.isPresent AND (_elevatorPosition = _stationConfig.PositionHome);
         END_METHOD
@@ -168,9 +165,9 @@ NAMESPACE SortingMachine
             _elevatorControl.AckError();
         END_METHOD
 
-        /// Determines target position based on box properties and station configuration
-        /// Uses box base color to determine if elevator should move up, down, or to home
-        /// @return: Target position for the elevator based on box properties
+        /// Determines target position based on box properties and station configuration.
+        /// Uses box base color to determine if elevator should move up, down, or to home.
+        /// Returns target position for the elevator based on box properties
         METHOD PROTECTED getTargetPosition : INT
             VAR_TEMP
                 boxData : typeBoxData;
@@ -194,9 +191,9 @@ NAMESPACE SortingMachine
 
         END_METHOD
 
-        /// Checks if the elevator is at the target position within precision limits
-        /// Uses configured precision offset to determine if position is acceptable
-        /// @return: TRUE if elevator is at target position within tolerance, FALSE otherwise
+        /// Checks if the elevator is at the target position within precision limits.
+        /// Uses configured precision offset to determine if position is acceptable.
+        /// TRUE if elevator is at target position within tolerance, FALSE otherwise
         METHOD PROTECTED isAtTarget : BOOL
             // Check if the position is within the limits
             IF      (_elevatorPosition) >= (THIS.getTargetPosition() - _stationConfig.PrecisionOffset)

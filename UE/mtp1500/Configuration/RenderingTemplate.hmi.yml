@@ -1,0 +1,29 @@
+RenderingTemplates:
+  CardboardBoxTightlySealedWithOSHA-Tape:
+    TemplateFile: Configuration/ExternalFiles/CustomWidgets/CardboardBoxTightlySealedWithOSHA-Tape.svghmi
+  NoncontactThermometer:
+    TemplateFile: Configuration/ExternalFiles/CustomWidgets/NoncontactThermometer.svghmi
+  AssemblyLineCrane:
+    TemplateFile : Configuration/ExternalFiles/CustomWidgets/AssemblyLineCrane.svghmi
+  Conveyor4Side:
+    TemplateFile: Configuration/ExternalFiles/CustomWidgets/Conveyor4Side.svghmi
+  BottomSmall:
+    TemplateFile: Configuration/ExternalFiles/CustomWidgets/BottomSmall.svghmi
+  DigitalScale:
+    TemplateFile: Configuration/ExternalFiles/CustomWidgets/DigitalScale.svghmi
+  BoilerHorizontalCutawayWithFire:
+    TemplateFile: Configuration/ExternalFiles/CustomWidgets/BoilerHorizontalCutawayWithFire.svghmi
+  InfoAttentionDark:
+    TemplateFile: Configuration/ExternalFiles/CustomWidgets/InfoAttentionDark.svghmi
+  InfoDangerDark:
+    TemplateFile: Configuration/ExternalFiles/CustomWidgets/InfoDangerDark.svghmi
+  StatusOnDiagMDemand:
+    TemplateFile: Configuration/ExternalFiles/CustomWidgets/StatusOnDiagMDemand.svghmi
+  StatusOnDiagMGood:
+    TemplateFile: Configuration/ExternalFiles/CustomWidgets/StatusOnDiagMGood.svghmi
+  InfoErrorCriticalDark:
+    TemplateFile: Configuration/ExternalFiles/CustomWidgets/InfoErrorCriticalDark.svghmi
+  InfoDecisionDark:
+    TemplateFile: Configuration/ExternalFiles/CustomWidgets/InfoDecisionDark.svghmi
+  StatusOnDiagMFault:
+    TemplateFile: Configuration/ExternalFiles/CustomWidgets/StatusOnDiagMFault.svghmi

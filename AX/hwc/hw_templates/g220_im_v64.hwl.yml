@@ -16,12 +16,18 @@ Templates:
       - Name: 'PN-IO'
         Label: 'X150'
         Addresses:
-          Configured:
-          - IPv4: '${IP_ADDRESS_X150}'
-          - ProfinetDeviceName: '${PROFINET_DEVICE_NAME_X150}'
+        - Type: 'IPv4'
+          Address: '${IP_ADDRESS_X150}'
+          # RouterAddress: '192.168.0.1'
+        - Type: 'Profinet'
+          ProfinetDeviceName: '${PROFINET_DEVICE_NAME_X150}'
         Parameters:
           IECV22LLDPMode: False
-          # PrioritizedStartup (Boolean)
+          IsochronousMode: False
+          # IsochronousTiToCalculationMode (Integer)
+          # IsochronousTi (Number)
+          # IsochronousTo (Number)
+          PrioritizedStartup: False
       Ports:
       - Name: 'Port_1'
         Label: 'X150 P1'
@@ -33,7 +39,6 @@ Templates:
           EndOfTopologyDiscovery: False
           PortMonitoring: False
           # TransmissionRateAutoNegotiation: True
-          # CableName: 0
           # MediumAttachmentType: 'Copper'
       - Name: 'Port_2'
         Label: 'X150 P2'
@@ -45,7 +50,6 @@ Templates:
           EndOfTopologyDiscovery: False
           PortMonitoring: False
           # TransmissionRateAutoNegotiation: True
-          # CableName: 0
           # MediumAttachmentType: 'Copper'
       Parameters:
         RecordDataList:
