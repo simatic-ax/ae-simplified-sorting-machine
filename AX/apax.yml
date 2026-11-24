@@ -17,7 +17,7 @@ dependencies:
   "@ax/system": ^10.4.16
   "@ax/system-edgedetection": ^10.4.16
   "@ax/simatic-crypto": ^4.0.40
-  "@simatic-ax/sinamics-drive-functions": ^2.1.0 # Need to use external Registry
+  "@simatic-ax/sinamics-drive-functions": ^3.0.0 # Need to use external Registry
   "@ax/system-timer": ^10.4.16
   "@ax/system-bistable": ^10.4.16
   # Dependencies
